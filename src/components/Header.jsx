@@ -24,47 +24,47 @@ export function Header({ onOpenModal }) {
 
   return (
     <header style={{ position: 'sticky', top: 0, zIndex: 1000, background: '#ffffff', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
-      {/* Top Utility Bar */}
-      <div style={{ background: '#0f172a', color: '#cbd5e1', fontSize: '0.82rem', padding: '0.45rem 0', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+      {/* Top Utility & Market Heartbeat Bar */}
+      <div style={{ background: '#060a17', color: '#94a3b8', fontSize: '0.8rem', padding: '0.45rem 0', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
           
-          {/* Contact Details */}
+          {/* Live Market Heartbeat & Regulatory Standing */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
-            <a href={`tel:${COMPANY_INFO.phone}`} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: '#e2e8f0', textDecoration: 'none' }}>
-              <Phone size={13} color="#38bdf8" />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#e2e8f0', fontSize: '0.78rem', fontWeight: 600 }}>
+              <span className="pulse-dot-green" />
+              <span>LIVE DESK ACTIVE</span>
+              <span style={{ color: '#475569' }}>|</span>
+              <span style={{ color: '#cbd5e1' }}>NIFTY 50 <span style={{ color: '#4ade80' }}>25,124 (+0.6%)</span></span>
+              <span style={{ color: '#cbd5e1', display: 'none' }} className="d-md-inline">SENSEX <span style={{ color: '#4ade80' }}>81,950 (+0.5%)</span></span>
+            </div>
+
+            <span style={{ color: '#334155', display: 'none' }} className="d-md-inline">|</span>
+
+            <a href={`tel:${COMPANY_INFO.phone}`} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: '#cbd5e1', textDecoration: 'none', fontSize: '0.78rem' }}>
+              <Phone size={12} color="#38bdf8" />
               <span>{COMPANY_INFO.phone}</span>
             </a>
-            <span style={{ color: '#475569' }}>|</span>
-            <a href={`mailto:${COMPANY_INFO.email}`} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: '#e2e8f0', textDecoration: 'none' }}>
-              <Mail size={13} color="#38bdf8" />
-              <span>{COMPANY_INFO.email}</span>
-            </a>
-            <span style={{ color: '#475569', display: 'none' }} className="d-md-inline">|</span>
-            <div style={{ display: 'none', alignItems: 'center', gap: '0.35rem', color: '#94a3b8' }} className="d-md-flex">
-              <MapPin size={13} color="#38bdf8" />
-              <span>Gomtinagar, Lucknow</span>
-            </div>
           </div>
 
           {/* Regulatory & Portal Login Access */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', background: 'rgba(37,99,235,0.2)', padding: '0.15rem 0.6rem', borderRadius: '4px', border: '1px solid rgba(37,99,235,0.4)', color: '#60a5fa', fontWeight: 600, fontSize: '0.75rem' }}>
-              <Shield size={12} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', background: 'rgba(56, 189, 248, 0.12)', padding: '0.18rem 0.65rem', borderRadius: '4px', border: '1px solid rgba(56, 189, 248, 0.25)', color: '#38bdf8', fontWeight: 700, fontSize: '0.73rem' }}>
+              <Shield size={11} />
               <span>AMFI: {COMPANY_INFO.arn}</span>
             </div>
 
             <button 
               onClick={() => onOpenModal('client-login')}
-              style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#ffffff', background: '#2563eb', padding: '0.2rem 0.65rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 600, transition: '0.2s' }}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#ffffff', background: '#2563eb', padding: '0.22rem 0.75rem', borderRadius: '5px', fontSize: '0.75rem', fontWeight: 700, border: 'none', cursor: 'pointer', transition: '0.2s' }}
               title="Client Portfolio Login"
             >
               <LogIn size={12} />
-              <span>Client Login</span>
+              <span>Client Portal</span>
             </button>
 
             <button 
               onClick={() => onOpenModal('partner-login')}
-              style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#f8fafc', background: '#334155', padding: '0.2rem 0.65rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 600, transition: '0.2s' }}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#cbd5e1', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', padding: '0.22rem 0.75rem', borderRadius: '5px', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer', transition: '0.2s' }}
               title="Partner / Sub-broker Login"
             >
               <UserCheck size={12} />
@@ -250,10 +250,10 @@ export function Header({ onOpenModal }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <button 
               onClick={() => onOpenModal('consultation')}
-              className="btn-primary"
-              style={{ padding: '0.65rem 1.3rem', fontSize: '0.88rem' }}
+              className="btn-emerald"
+              style={{ padding: '0.6rem 1.35rem', fontSize: '0.88rem', fontWeight: 700 }}
             >
-              <span>Get Free Advice</span>
+              <span>Book Private Advisory</span>
               <ArrowRight size={15} />
             </button>
 

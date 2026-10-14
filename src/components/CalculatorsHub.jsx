@@ -103,21 +103,21 @@ export function CalculatorsHub({ onOpenModal }) {
   );
 
   return (
-    <section id="calculators" className="section-wrapper" style={{ background: '#f8fafc' }}>
+    <section id="calculators" className="section-wrapper" style={{ background: '#f8fafc', padding: '5rem 0' }}>
       <div className="container">
         
         {/* Title & Authentic Illustration Header */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem', alignItems: 'center', marginBottom: '3rem' }} className="calc-header-grid">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2.5rem', alignItems: 'center', marginBottom: '3.5rem' }} className="calc-header-grid">
           <div>
-            <div className="badge-tag accent-emerald">
-              <Sparkles size={13} />
-              <span>Smart Financial Planning Suite</span>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#ecfdf5', color: '#047857', border: '1px solid #a7f3d0', padding: '0.35rem 0.95rem', borderRadius: '100px', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '1rem' }}>
+              <Sparkles size={14} color="#059669" />
+              <span>Institutional Wealth Simulator • Scenario Modeling</span>
             </div>
-            <h2 className="section-heading" style={{ marginBottom: '1rem' }}>
-              Financial Goals: Plan & Conquer Your <span className="gradient-text">Life Milestones</span>
+            <h2 className="section-heading" style={{ marginBottom: '1rem', fontSize: '2.3rem' }}>
+              Private Wealth Planning & <span className="gradient-text">Generational Goal Architecture</span>
             </h2>
-            <p className="section-subheading" style={{ margin: 0 }}>
-              At Assure Securities, our core aim is to serve our clients with dedication and integrity, meet their expectations and build enduring relationships. Know exactly how much to save and invest each month.
+            <p className="section-subheading" style={{ margin: 0, color: '#475569' }}>
+              Model multi-decade compounding trajectories, backtest real inflation purchasing power, and architect mathematically sound milestones for your family's future.
             </p>
           </div>
 
@@ -125,7 +125,7 @@ export function CalculatorsHub({ onOpenModal }) {
             <img 
               src="/assets/2_fg.png" 
               alt="Assure Securities Financial Goals Planning"
-              style={{ maxHeight: '200px', width: 'auto', objectFit: 'contain', margin: '0 auto' }}
+              style={{ maxHeight: '200px', width: 'auto', objectFit: 'contain', margin: '0 auto', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.06))' }}
               onError={(e) => { e.target.style.display = 'none'; }}
             />
           </div>
@@ -134,18 +134,18 @@ export function CalculatorsHub({ onOpenModal }) {
         {/* Tab Navigation */}
         <div style={{
           display: 'flex',
-          gap: '0.6rem',
+          gap: '0.65rem',
           flexWrap: 'wrap',
           justifyContent: 'center',
           marginBottom: '2.5rem'
         }}>
           {[
-            { id: 'sip', label: 'SIP Calculator', icon: TrendingUp },
-            { id: 'lumpsum', label: 'Lumpsum Investment', icon: PiggyBank },
-            { id: 'child', label: 'Child Future Saving', icon: GraduationCap },
-            { id: 'wedding', label: 'Wedding Calculator', icon: Heart },
-            { id: 'retirement', label: 'Retirement Saving', icon: Clock },
-            { id: 'vacation', label: 'Vacation Calculator', icon: Palmtree }
+            { id: 'sip', label: 'SIP Wealth Engine', icon: TrendingUp },
+            { id: 'lumpsum', label: 'Lumpsum Compounding', icon: PiggyBank },
+            { id: 'child', label: 'Child Education Corpus', icon: GraduationCap },
+            { id: 'wedding', label: 'Wedding Milestone', icon: Heart },
+            { id: 'retirement', label: 'Retirement Independence', icon: Clock },
+            { id: 'vacation', label: 'Leisure & Travel Fund', icon: Palmtree }
           ].map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -156,16 +156,16 @@ export function CalculatorsHub({ onOpenModal }) {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.5rem',
-                  padding: '0.75rem 1.3rem',
-                  borderRadius: '14px',
-                  fontWeight: 600,
-                  fontSize: '0.9rem',
+                  gap: '0.6rem',
+                  padding: '0.8rem 1.4rem',
+                  borderRadius: '16px',
+                  fontWeight: 700,
+                  fontSize: '0.92rem',
                   transition: 'all 0.2s ease',
                   background: isActive ? '#1d4ed8' : '#ffffff',
                   color: isActive ? '#ffffff' : '#334155',
                   border: isActive ? '1px solid #1d4ed8' : '1px solid #e2e8f0',
-                  boxShadow: isActive ? '0 8px 18px -4px rgba(37,99,235,0.35)' : 'var(--shadow-subtle)',
+                  boxShadow: isActive ? '0 10px 20px -5px rgba(37,99,235,0.4)' : '0 2px 8px rgba(0,0,0,0.04)',
                   cursor: 'pointer'
                 }}
               >
@@ -177,87 +177,145 @@ export function CalculatorsHub({ onOpenModal }) {
         </div>
 
         {/* Calculator Main Container */}
-        <div className="glass-card" style={{ padding: '2.5rem', background: '#ffffff', borderRadius: '24px', border: '1px solid #e2e8f0' }}>
+        <div className="glass-card" style={{ padding: '3rem', background: '#ffffff', borderRadius: '28px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-card)' }}>
           
           {/* TAB 1: SIP CALCULATOR */}
           {activeTab === 'sip' && (
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2.5rem' }} className="calc-layout-grid">
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '3rem' }} className="calc-layout-grid">
               <div>
-                <h3 style={{ fontSize: '1.6rem', color: '#0f172a', marginBottom: '0.5rem' }}>Systematic Investment Plan (SIP)</h3>
-                <p style={{ fontSize: '0.92rem', color: '#64748b', marginBottom: '1.75rem' }}>
-                  Invest a fixed sum every month in equity or debt mutual funds to benefit from market fluctuations and compounding.
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#2563eb', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Rupee Cost Averaging Engine</span>
+                </div>
+                <h3 style={{ fontSize: '1.8rem', color: '#0f172a', fontWeight: 800, marginBottom: '0.5rem', letterSpacing: '-0.02em' }}>
+                  Systematic Investment Plan (SIP)
+                </h3>
+                <p style={{ fontSize: '0.95rem', color: '#64748b', marginBottom: '2rem', lineHeight: 1.6 }}>
+                  Harness disciplined monthly capital compounding. Automatically acquire more fund units during market pullbacks and multiply gains during structural economic expansions.
                 </p>
 
                 {/* Slider: Monthly SIP */}
-                <div style={{ marginBottom: '1.75rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                    <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155' }}>Monthly Investment</label>
-                    <span style={{ fontSize: '1.15rem', fontWeight: 800, color: '#2563eb' }}>{formatINR(sipAmount)}</span>
+                <div style={{ marginBottom: '2rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.65rem' }}>
+                    <label style={{ fontSize: '0.92rem', fontWeight: 700, color: '#334155' }}>Monthly Capital Deployment</label>
+                    <span style={{ fontSize: '1.3rem', fontWeight: 800, color: '#2563eb', fontVariantNumeric: 'tabular-nums' }}>{formatINR(sipAmount)}</span>
                   </div>
-                  <input type="range" min="1000" max="150000" step="1000" value={sipAmount} onChange={(e) => setSipAmount(Number(e.target.value))} />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: '#94a3b8', marginTop: '4px' }}>
-                    <span>₹1,000</span>
-                    <span>₹75,000</span>
-                    <span>₹1,50,000</span>
+                  <input type="range" min="1000" max="250000" step="1000" value={sipAmount} onChange={(e) => setSipAmount(Number(e.target.value))} />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: '#94a3b8', marginTop: '6px' }}>
+                    <span>₹1,000 / mo</span>
+                    <span>₹1,00,000 / mo</span>
+                    <span>₹2,50,000 / mo</span>
                   </div>
                 </div>
 
                 {/* Slider: Expected Return */}
-                <div style={{ marginBottom: '1.75rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                    <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155' }}>Expected Annual Return (p.a.)</label>
-                    <span style={{ fontSize: '1.15rem', fontWeight: 800, color: '#2563eb' }}>{sipRate}%</span>
+                <div style={{ marginBottom: '2rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.65rem' }}>
+                    <label style={{ fontSize: '0.92rem', fontWeight: 700, color: '#334155' }}>Expected Annualized CAGR</label>
+                    <span style={{ fontSize: '1.3rem', fontWeight: 800, color: '#2563eb', fontVariantNumeric: 'tabular-nums' }}>{sipRate}%</span>
                   </div>
                   <input type="range" min="6" max="24" step="0.5" value={sipRate} onChange={(e) => setSipRate(Number(e.target.value))} />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: '#94a3b8', marginTop: '4px' }}>
-                    <span>6% (Debt/FD)</span>
-                    <span>12-15% (Equity MF)</span>
-                    <span>24% (Aggressive)</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: '#94a3b8', marginTop: '6px' }}>
+                    <span>7% (Conservative Debt)</span>
+                    <span>13.5% (Indian Equity MF)</span>
+                    <span>22% (High-Alpha Smallcap)</span>
                   </div>
                 </div>
 
                 {/* Slider: Tenure */}
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                    <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155' }}>Investment Period</label>
-                    <span style={{ fontSize: '1.15rem', fontWeight: 800, color: '#2563eb' }}>{sipYears} Years</span>
+                <div style={{ marginBottom: '2rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.65rem' }}>
+                    <label style={{ fontSize: '0.92rem', fontWeight: 700, color: '#334155' }}>Compounding Horizon</label>
+                    <span style={{ fontSize: '1.3rem', fontWeight: 800, color: '#2563eb', fontVariantNumeric: 'tabular-nums' }}>{sipYears} Years</span>
                   </div>
                   <input type="range" min="1" max="35" step="1" value={sipYears} onChange={(e) => setSipYears(Number(e.target.value))} />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: '#94a3b8', marginTop: '4px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: '#94a3b8', marginTop: '6px' }}>
                     <span>1 Year</span>
-                    <span>15 Years</span>
-                    <span>35 Years</span>
+                    <span>15 Years (Prime)</span>
+                    <span>35 Years (Generational)</span>
+                  </div>
+                </div>
+
+                {/* Milestone Roadmap Callout */}
+                <div style={{ padding: '1.25rem', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '0.5rem' }}>
+                    Projected Wealth Milestones:
+                  </div>
+                  <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                    <span style={{ background: '#ecfdf5', color: '#059669', padding: '0.35rem 0.75rem', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 700 }}>
+                      ✓ ₹50 Lakhs: ~{Math.max(1, Math.round(5000000 / (sipAmount * 12 * 1.5)))} Yrs
+                    </span>
+                    <span style={{ background: '#eff6ff', color: '#1d4ed8', padding: '0.35rem 0.75rem', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 700 }}>
+                      ✓ 1st ₹1 Crore: ~{Math.max(2, Math.round(10000000 / (sipAmount * 12 * 1.8)))} Yrs
+                    </span>
+                    <span style={{ background: '#fef3c7', color: '#b45309', padding: '0.35rem 0.75rem', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 700 }}>
+                      ✓ Multi-Crore Financial Freedom
+                    </span>
                   </div>
                 </div>
               </div>
 
               {/* Result Column */}
-              <div style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)', borderRadius: '20px', padding: '2rem', color: '#ffffff', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div style={{ 
+                background: 'linear-gradient(135deg, #090e1a 0%, #172554 100%)', 
+                borderRadius: '24px', 
+                padding: '2.5rem', 
+                color: '#ffffff', 
+                display: 'flex', 
+                flexDirection: 'column', 
+                justifyContent: 'space-between',
+                border: '1px solid rgba(56, 189, 248, 0.25)',
+                boxShadow: '0 25px 50px -15px rgba(15,23,42,0.5)'
+              }}>
                 <div>
-                  <div style={{ fontSize: '0.85rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Expected Total Wealth</div>
-                  <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#38bdf8', margin: '0.5rem 0 1.5rem 0' }}>{formatINR(sipTotalValue)}</div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: '0.82rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em', fontWeight: 700 }}>
+                      Simulated Maturity Corpus
+                    </span>
+                    <span style={{ background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.72rem', fontWeight: 800 }}>
+                      {sipYears} YRS @ {sipRate}%
+                    </span>
+                  </div>
 
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1.25rem' }}>
+                  <div style={{ fontSize: '3rem', fontWeight: 800, color: '#38bdf8', margin: '0.5rem 0 1.5rem 0', fontFamily: 'var(--font-heading)', letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums' }}>
+                    {formatINR(sipTotalValue)}
+                  </div>
+
+                  {/* Visual Proportion Bar */}
+                  <div style={{ marginBottom: '1.75rem' }}>
+                    <div style={{ height: '10px', width: '100%', background: 'rgba(255,255,255,0.1)', borderRadius: '100px', overflow: 'hidden', display: 'flex' }}>
+                      <div style={{ width: `${Math.min(100, Math.max(10, Math.round((sipInvested / sipTotalValue) * 100)))}%`, background: '#38bdf8', height: '100%' }} title="Invested Capital" />
+                      <div style={{ flex: 1, background: '#10b981', height: '100%' }} title="Compounded Gains" />
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginTop: '6px' }}>
+                      <span style={{ color: '#38bdf8' }}>● Principal ({Math.round((sipInvested / sipTotalValue) * 100)}%)</span>
+                      <span style={{ color: '#10b981' }}>● Wealth Created ({100 - Math.round((sipInvested / sipTotalValue) * 100)}%)</span>
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1.5rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ color: '#cbd5e1' }}>Total Invested:</span>
-                      <strong style={{ color: '#ffffff' }}>{formatINR(sipInvested)}</strong>
+                      <span style={{ color: '#cbd5e1' }}>Capital Invested:</span>
+                      <strong style={{ color: '#ffffff', fontVariantNumeric: 'tabular-nums' }}>{formatINR(sipInvested)}</strong>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ color: '#cbd5e1' }}>Estimated Gain:</span>
-                      <strong style={{ color: '#4ade80' }}>+{formatINR(sipGains)}</strong>
+                      <span style={{ color: '#cbd5e1' }}>Pure Compounding Gain:</span>
+                      <strong style={{ color: '#4ade80', fontVariantNumeric: 'tabular-nums' }}>+{formatINR(sipGains)}</strong>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ color: '#cbd5e1' }}>Wealth Multiplier:</span>
-                      <strong style={{ color: '#f59e0b' }}>{(sipTotalValue / (sipInvested || 1)).toFixed(2)}x</strong>
+                      <span style={{ color: '#cbd5e1' }}>Capital Multiplier:</span>
+                      <strong style={{ color: '#f59e0b' }}>{(sipTotalValue / (sipInvested || 1)).toFixed(2)}x Growth</strong>
                     </div>
                   </div>
                 </div>
 
-                <div style={{ marginTop: '2rem' }}>
-                  <button onClick={() => onOpenModal('consultation')} className="btn-emerald" style={{ width: '100%', padding: '0.85rem' }}>
-                    <span>Start This SIP with Assure</span>
-                    <ArrowRight size={16} />
+                <div style={{ marginTop: '2.5rem' }}>
+                  <button onClick={() => onOpenModal('consultation')} className="btn-emerald" style={{ width: '100%', padding: '0.95rem', fontSize: '0.95rem' }}>
+                    <span>Execute This Wealth Plan via Assure</span>
+                    <ArrowRight size={17} />
                   </button>
+                  <p style={{ textAlign: 'center', fontSize: '0.72rem', color: '#94a3b8', margin: '0.75rem 0 0 0' }}>
+                    Zero Custody Risk • Direct AMC Folio Registration (ARN-182137)
+                  </p>
                 </div>
               </div>
             </div>

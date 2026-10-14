@@ -28,21 +28,66 @@ export function InvestorZone({ onOpenModal, theme = "dark" }) {
       id="investor-zone" 
       className={isDark ? "section-dark section-wrapper" : "section-light-white section-wrapper"}
       style={{ 
-        background: isDark ? '#0f172a' : '#ffffff',
-        borderTop: isDark ? '1px solid rgba(255,255,255,0.06)' : 'none'
+        background: isDark ? '#0b1120' : '#ffffff',
+        borderTop: isDark ? '1px solid rgba(255,255,255,0.06)' : 'none',
+        padding: '5rem 0'
       }}
     >
       <div className="container">
         
         {/* Section Header */}
-        <div className="section-title-wrap">
-          <div className="badge-tag">Investor Self-Service & Compliance</div>
-          <h2 className="section-heading" style={{ color: isDark ? '#ffffff' : '#0f172a' }}>
-            Official Portals, <span className="gradient-text">KYC & Document Center</span>
+        <div className="section-title-wrap" style={{ marginBottom: '3rem' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: isDark ? 'rgba(56, 189, 248, 0.12)' : '#e0f2fe', color: isDark ? '#38bdf8' : '#0369a1', border: isDark ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid #bae6fd', padding: '0.35rem 0.9rem', borderRadius: '100px', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '1rem' }}>
+            <CheckCircle size={14} color="#10b981" />
+            <span>SEBI & AMFI Regulatory Infrastructure • ARN-182137</span>
+          </div>
+          <h2 className="section-heading" style={{ color: isDark ? '#ffffff' : '#0f172a', fontSize: '2.3rem' }}>
+            Official Portals, <span className="gradient-text">e-KYC & Regulatory Compliance Hub</span>
           </h2>
           <p className="section-subheading" style={{ color: isDark ? '#cbd5e1' : '#64748b' }}>
-            Convenient, direct access to official SEBI, KRA, and Registrar service portals to keep your mutual fund folios 100% compliant and up-to-date.
+            Direct, uninterrupted access to sovereign KYC registration agencies, SEBI-licensed registrars (CAMS & KFintech), and statutory mutual fund document repositories.
           </p>
+        </div>
+
+        {/* 4-Pillar Zero-Custody Security Matrix */}
+        <div style={{
+          background: isDark ? 'linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%)' : '#f8fafc',
+          border: isDark ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid #e2e8f0',
+          borderRadius: '22px',
+          padding: '2rem 2.5rem',
+          marginBottom: '3rem',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gap: '1.5rem'
+        }}>
+          <div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Zero Custody Risk</div>
+            <div style={{ fontSize: '1rem', fontWeight: 800, color: isDark ? '#ffffff' : '#0f172a', marginTop: '0.25rem' }}>Direct-to-AMC Funds Flow</div>
+            <div style={{ fontSize: '0.8rem', color: isDark ? '#94a3b8' : '#64748b', marginTop: '0.25rem', lineHeight: 1.5 }}>
+              Your money never touches Assure bank accounts. Payments route directly to respective AMC escrow accounts.
+            </div>
+          </div>
+          <div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#10b981', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Statutory Registrars</div>
+            <div style={{ fontSize: '1rem', fontWeight: 800, color: isDark ? '#ffffff' : '#0f172a', marginTop: '0.25rem' }}>CAMS & KFintech Integrated</div>
+            <div style={{ fontSize: '0.8rem', color: isDark ? '#94a3b8' : '#64748b', marginTop: '0.25rem', lineHeight: 1.5 }}>
+              All folios created under your direct PAN. Access independent Consolidated Account Statements (CAS) anytime.
+            </div>
+          </div>
+          <div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#f59e0b', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Exchange Settlement</div>
+            <div style={{ fontSize: '1rem', fontWeight: 800, color: isDark ? '#ffffff' : '#0f172a', marginTop: '0.25rem' }}>BSE StAR MF Execution</div>
+            <div style={{ fontSize: '0.8rem', color: isDark ? '#94a3b8' : '#64748b', marginTop: '0.25rem', lineHeight: 1.5 }}>
+              Institutional trade routing with instant automated payment authentication via UPI, Netbanking & OTM.
+            </div>
+          </div>
+          <div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#a78bfa', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Full Confidentiality</div>
+            <div style={{ fontSize: '1rem', fontWeight: 800, color: isDark ? '#ffffff' : '#0f172a', marginTop: '0.25rem' }}>256-Bit Cryptographic Vault</div>
+            <div style={{ fontSize: '0.8rem', color: isDark ? '#94a3b8' : '#64748b', marginTop: '0.25rem', lineHeight: 1.5 }}>
+              Enterprise data protection. We strictly uphold non-disclosure and confidentiality of all private family assets.
+            </div>
+          </div>
         </div>
 
         {/* 5 Official Service Cards */}
@@ -52,36 +97,41 @@ export function InvestorZone({ onOpenModal, theme = "dark" }) {
               key={idx}
               className="glass-card"
               style={{ 
-                padding: '1.6rem', 
+                padding: '1.75rem', 
                 display: 'flex', 
                 flexDirection: 'column', 
                 justifyContent: 'space-between', 
-                background: isDark ? 'rgba(30, 41, 59, 0.75)' : '#ffffff', 
-                border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid #e2e8f0',
-                color: isDark ? '#ffffff' : '#0f172a'
+                background: isDark ? '#0f172a' : '#ffffff', 
+                border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e2e8f0',
+                borderRadius: '18px',
+                color: isDark ? '#ffffff' : '#0f172a',
+                boxShadow: isDark ? '0 10px 25px rgba(0,0,0,0.4)' : '0 4px 15px rgba(0,0,0,0.04)'
               }}
             >
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                  <div style={{ background: isDark ? '#1e293b' : '#eff6ff', padding: '0.65rem', borderRadius: '12px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
+                  <div style={{ background: isDark ? '#1e293b' : '#eff6ff', padding: '0.7rem', borderRadius: '14px', border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid #dbeafe' }}>
                     {getServiceIcon(srv.icon)}
                   </div>
                   <span style={{ 
-                    fontSize: '0.72rem', 
-                    fontWeight: 700, 
-                    padding: '0.2rem 0.5rem', 
-                    borderRadius: '4px', 
-                    background: isDark ? 'rgba(255,255,255,0.1)' : '#f1f5f9', 
-                    color: isDark ? '#cbd5e1' : '#475569' 
+                    fontSize: '0.7rem', 
+                    fontWeight: 800, 
+                    padding: '0.25rem 0.6rem', 
+                    borderRadius: '6px', 
+                    background: isDark ? 'rgba(56, 189, 248, 0.15)' : '#e0f2fe', 
+                    color: isDark ? '#38bdf8' : '#0284c7',
+                    border: isDark ? '1px solid rgba(56, 189, 248, 0.3)' : '1px solid #bae6fd',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.04em'
                   }}>
                     {srv.portal}
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: '1.15rem', color: isDark ? '#ffffff' : '#0f172a', fontWeight: 700, marginBottom: '0.5rem' }}>
+                <h3 style={{ fontSize: '1.2rem', color: isDark ? '#ffffff' : '#0f172a', fontWeight: 800, marginBottom: '0.5rem', letterSpacing: '-0.01em' }}>
                   {srv.title}
                 </h3>
-                <p style={{ fontSize: '0.85rem', color: isDark ? '#cbd5e1' : '#64748b', lineHeight: 1.5, marginBottom: '1rem' }}>
+                <p style={{ fontSize: '0.85rem', color: isDark ? '#94a3b8' : '#64748b', lineHeight: 1.6, marginBottom: '1.25rem' }}>
                   {srv.desc}
                 </p>
               </div>
@@ -93,15 +143,17 @@ export function InvestorZone({ onOpenModal, theme = "dark" }) {
                 className="btn-secondary"
                 style={{ 
                   width: '100%', 
-                  padding: '0.65rem', 
+                  padding: '0.75rem', 
                   fontSize: '0.85rem', 
+                  fontWeight: 700,
                   justifyContent: 'center',
                   background: isDark ? '#1e293b' : '#ffffff',
                   color: isDark ? '#38bdf8 !important' : 'var(--primary-700) !important',
-                  borderColor: isDark ? 'rgba(56, 189, 248, 0.3)' : 'var(--primary-200)'
+                  borderColor: isDark ? 'rgba(56, 189, 248, 0.3)' : 'var(--primary-200)',
+                  borderRadius: '10px'
                 }}
               >
-                <span>Open Official Portal</span>
+                <span>Launch Official Portal</span>
                 <ExternalLink size={14} />
               </a>
             </div>
