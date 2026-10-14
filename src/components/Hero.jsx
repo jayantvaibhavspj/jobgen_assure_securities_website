@@ -1,668 +1,482 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
-  ShieldCheck, TrendingUp, ArrowRight, Sparkles, CheckCircle2, 
-  Smartphone, Award, Coins, ChevronRight, ChevronLeft, Lock, 
-  Layers, PieChart, Activity, ExternalLink, Calendar, PhoneCall,
-  BarChart3, Zap, Shield, HelpCircle
+  ArrowRight, ShieldCheck, TrendingUp, Sparkles, CheckCircle2, 
+  Lock, PieChart, ArrowUpRight, BarChart3, Layers
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/websiteData';
 
-const BANNER_SLIDES = [
-  {
-    image: '/assets/b1-2.jpg',
-    badge: 'Wealth Creation',
-    title: 'Bespoke Mutual Fund Architecture',
-    subtitle: 'Whether you want to build multi-generational family wealth or retire early, meeting your aspirations with mathematical discipline is our aim.'
-  },
-  {
-    image: '/assets/b2-1.jpg',
-    badge: 'Retirement Planning',
-    title: 'Retire in Sovereign Comfort',
-    subtitle: 'When you got silver in your hair, you must have gold in your pocket. High-cash-flow SWP and sovereign preservation strategies.'
-  },
-  {
-    image: '/assets/child.jpg',
-    badge: 'Children Education',
-    title: 'Ivy-League & Global Higher Education',
-    subtitle: 'Give wings to their global aspirations with inflation-hedged equity and foreign mutual fund allocations.'
-  },
-  {
-    image: '/assets/b4-2.jpg',
-    badge: '100% Digital',
-    title: 'Paperless Institutional Execution',
-    subtitle: 'Direct-to-AMC mutual fund distribution with instant biometric KYC, automated mandates, and real-time portfolio telemetry.'
-  }
-];
-
 export function Hero({ onOpenModal, onNavigate }) {
-  const [activeTab, setActiveTab] = useState('terminal'); // 'terminal' | 'campaigns'
-  const [currentSlide, setCurrentSlide] = useState(0);
-  
-  // Interactive Wealth Simulation State
-  const [monthlySip, setMonthlySip] = useState(25000);
-  const [tenureYears, setTenureYears] = useState(15);
-  const [expectedCagr, setExpectedCagr] = useState(13.5);
+  const [selectedRange, setSelectedRange] = useState('3Y');
 
-  // Auto-advance campaign slides
-  useEffect(() => {
-    if (activeTab === 'campaigns') {
-      const timer = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % BANNER_SLIDES.length);
-      }, 5000);
-      return () => clearInterval(timer);
-    }
-  }, [activeTab]);
-
-  // Compounding Math
-  const totalMonths = tenureYears * 12;
-  const monthlyRate = (expectedCagr / 100) / 12;
-  const futureValue = Math.round(
-    monthlySip * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) * (1 + monthlyRate)
-  );
-  const totalInvested = monthlySip * totalMonths;
-  const wealthGain = futureValue - totalInvested;
-
-  const formatINR = (val) => {
-    if (val >= 10000000) {
-      return `₹${(val / 10000000).toFixed(2)} Cr`;
-    }
-    if (val >= 100000) {
-      return `₹${(val / 100000).toFixed(2)} Lakh`;
-    }
-    return '₹' + Math.round(val).toLocaleString('en-IN');
-  };
-
-  const slide = BANNER_SLIDES[currentSlide];
+  // Illustrative portfolio chart coordinates
+  const chartPoints = [
+    { label: "Y1", value: 1200000, x: 20, y: 150 },
+    { label: "Y2", value: 1540000, x: 100, y: 130 },
+    { label: "Y3", value: 1820000, x: 180, y: 105 },
+    { label: "Y4", value: 2180000, x: 260, y: 70 },
+    { label: "Y5", value: 2480000, x: 340, y: 35 }
+  ];
 
   return (
-    <div style={{ position: 'relative', overflow: 'hidden', background: '#050914', color: '#ffffff' }}>
-      
-      {/* Subtle Mesh Ambient Glows */}
-      <div style={{
-        position: 'absolute',
-        top: '-150px',
-        left: '20%',
-        width: '600px',
-        height: '600px',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(37,99,235,0.15) 0%, rgba(37,99,235,0) 70%)',
-        filter: 'blur(60px)',
-        pointerEvents: 'none',
-        zIndex: 0
-      }} />
+    <div>
+      {/* SECTION 6 & 7: HERO COMPOSITION (Deep Navy #071A2F) */}
+      <section 
+        style={{ 
+          background: 'var(--color-primary)', 
+          color: '#ffffff', 
+          position: 'relative', 
+          overflow: 'hidden',
+          padding: '5rem 0 6rem 0',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+        }}
+      >
+        {/* Subtle Radial Glow & Background Grid Texture */}
+        <div 
+          style={{
+            position: 'absolute',
+            top: '-20%',
+            right: '-10%',
+            width: '600px',
+            height: '600px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(22, 185, 129, 0.12) 0%, rgba(7, 26, 47, 0) 70%)',
+            filter: 'blur(60px)',
+            pointerEvents: 'none'
+          }} 
+        />
+        <div 
+          style={{
+            position: 'absolute',
+            bottom: '-20%',
+            left: '-10%',
+            width: '500px',
+            height: '500px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(37, 99, 235, 0.14) 0%, rgba(7, 26, 47, 0) 70%)',
+            filter: 'blur(60px)',
+            pointerEvents: 'none'
+          }} 
+        />
 
-      <div style={{
-        position: 'absolute',
-        top: '25%',
-        right: '-100px',
-        width: '550px',
-        height: '550px',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(16,185,129,0.12) 0%, rgba(16,185,129,0) 70%)',
-        filter: 'blur(60px)',
-        pointerEvents: 'none',
-        zIndex: 0
-      }} />
+        {/* Delicate background grid pattern */}
+        <div 
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: `
+              linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
+            `,
+            backgroundSize: '48px 48px',
+            pointerEvents: 'none'
+          }} 
+        />
 
-      {/* Main Grand Hero Container */}
-      <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: '3.5rem', paddingBottom: '4.5rem' }}>
-        
-        {/* Top Regulatory Credential Pill */}
-        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '2rem' }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            background: 'rgba(30, 41, 59, 0.85)',
-            border: '1px solid rgba(56, 189, 248, 0.3)',
-            borderRadius: '9999px',
-            padding: '0.35rem 1rem',
-            fontSize: '0.8rem',
-            fontWeight: 700,
-            color: '#38bdf8'
-          }}>
-            <span className="pulse-dot-green" />
-            <span>AMFI REGISTERED MUTUAL FUND DISTRIBUTOR • ARN-182137</span>
-          </div>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div 
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: '1fr', 
+              gap: '3.5rem', 
+              alignItems: 'center' 
+            }}
+            className="hero-grid"
+          >
+            
+            {/* LEFT COLUMN: High-Conviction Typography & CTAs */}
+            <div>
+              {/* Small Eyebrow */}
+              <div 
+                style={{ 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '0.5rem', 
+                  background: 'rgba(22, 185, 129, 0.12)', 
+                  color: 'var(--color-accent)', 
+                  border: '1px solid rgba(22, 185, 129, 0.25)', 
+                  padding: '0.35rem 0.9rem', 
+                  borderRadius: '100px', 
+                  fontSize: '0.78rem', 
+                  fontWeight: 800, 
+                  letterSpacing: '0.06em', 
+                  textTransform: 'uppercase', 
+                  marginBottom: '1.5rem' 
+                }}
+              >
+                <Sparkles size={13} color="var(--color-accent)" />
+                <span>SMARTER WEALTH. BETTER FUTURE.</span>
+              </div>
 
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.4rem',
-            background: 'rgba(16, 185, 129, 0.1)',
-            border: '1px solid rgba(16, 185, 129, 0.3)',
-            borderRadius: '9999px',
-            padding: '0.35rem 0.9rem',
-            fontSize: '0.78rem',
-            fontWeight: 700,
-            color: '#34d399'
-          }}>
-            <ShieldCheck size={14} />
-            <span>DIRECT AMC EXECUTION • ZERO CUSTODY RISK</span>
-          </div>
+              {/* Large Headline */}
+              <h1 
+                style={{ 
+                  fontSize: '3.6rem', 
+                  fontWeight: 800, 
+                  lineHeight: 1.12, 
+                  color: '#ffffff', 
+                  letterSpacing: '-0.03em', 
+                  marginBottom: '1.25rem' 
+                }}
+                className="hero-headline"
+              >
+                Build Wealth.<br />
+                <span style={{ color: 'var(--color-accent)' }}>Invest With Confidence.</span>
+              </h1>
 
-          <div style={{
-            display: 'none',
-            alignItems: 'center',
-            gap: '0.4rem',
-            background: 'rgba(255, 255, 255, 0.05)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            borderRadius: '9999px',
-            padding: '0.35rem 0.9rem',
-            fontSize: '0.78rem',
-            color: '#cbd5e1'
-          }} className="d-md-flex">
-            <Lock size={12} color="#38bdf8" />
-            <span>256-Bit Bank Grade SSL</span>
-          </div>
-        </div>
+              {/* Supporting Copy */}
+              <p 
+                style={{ 
+                  fontSize: '1.18rem', 
+                  color: '#94a3b8', 
+                  lineHeight: 1.65, 
+                  maxWidth: '560px', 
+                  marginBottom: '2.5rem' 
+                }}
+              >
+                Smart investment solutions, expert guidance and digital tools designed around your financial goals.
+              </p>
 
-        {/* 2-Column Institutional Command Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '3.5rem', alignItems: 'center' }} className="hero-wealth-grid">
-          
-          {/* Left Column: Authoritative Value Proposition & Firm Standing */}
-          <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#facc15', fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.75rem' }}>
-              <Award size={16} />
-              <span>15+ Years of Proven Market Wisdom</span>
-            </div>
+              {/* Primary & Secondary Action Buttons */}
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '2.5rem' }}>
+                <button 
+                  onClick={() => onOpenModal('consultation')}
+                  className="btn-primary-emerald"
+                  style={{ minHeight: '52px', padding: '0 2rem', fontSize: '1rem' }}
+                >
+                  <span>Start Investing</span>
+                  <ArrowRight size={17} />
+                </button>
 
-            <h1 style={{
-              fontSize: '3.4rem',
-              lineHeight: 1.12,
-              fontWeight: 800,
-              letterSpacing: '-0.03em',
-              color: '#ffffff',
-              marginBottom: '1.5rem',
-              fontFamily: 'var(--font-heading)'
-            }}>
-              Private Wealth Architecture. <br />
-              <span className="gold-gradient-text">Disciplined Capital Compounding.</span>
-            </h1>
+                <button 
+                  onClick={() => onNavigate('products')}
+                  className="btn-outline-white"
+                  style={{ minHeight: '52px', padding: '0 1.8rem', fontSize: '1rem' }}
+                >
+                  <span>Explore Solutions</span>
+                </button>
+              </div>
 
-            <p style={{
-              fontSize: '1.18rem',
-              color: '#cbd5e1',
-              lineHeight: 1.7,
-              marginBottom: '2rem',
-              maxWidth: '620px',
-              fontWeight: 400
-            }}>
-              Guiding <strong>₹250+ Crores</strong> in capital across <strong>1,500+ discerning families</strong>, medical professionals, and business owners. We integrate institutional quantitative fund screening with fiduciary dedication to protect and compound multi-generational wealth.
-            </p>
-
-            {/* 4 Trust Highlights Checkmarks */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem', marginBottom: '2.5rem' }}>
-              {[
-                { title: "Direct AMC Settlement", desc: "100% of capital transfers directly to SEBI custodians (Zero intermediary holding risk)." },
-                { title: "Institutional Scheme Vetting", desc: "Sharpe, Sortino, rolling return alpha & downside capture ratio analysis." },
-                { title: "Comprehensive Asset Suite", desc: "Equities, AAA Corporate FDs, Sovereign Gold, PMS & AIF under one roof." },
-                { title: "Fiduciary Lucknow Desk", desc: "Personal in-person meetings at Gomtinagar with licensed wealth specialists." }
-              ].map((item, idx) => (
-                <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                  <div style={{ background: 'rgba(16, 185, 129, 0.15)', padding: '0.3rem', borderRadius: '8px', marginTop: '2px' }}>
-                    <CheckCircle2 size={16} color="#10b981" />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#ffffff' }}>{item.title}</div>
-                    <div style={{ fontSize: '0.8rem', color: '#94a3b8', lineHeight: 1.4 }}>{item.desc}</div>
-                  </div>
+              {/* Regulatory Assurance Strip */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', color: '#cbd5e1' }}>
+                  <ShieldCheck size={16} color="var(--color-accent)" />
+                  <span>AMFI Reg. ARN-182137</span>
                 </div>
-              ))}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', color: '#cbd5e1' }}>
+                  <CheckCircle2 size={16} color="var(--color-accent)" />
+                  <span>Zero Custody Risk</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', color: '#cbd5e1' }}>
+                  <Lock size={16} color="var(--color-accent)" />
+                  <span>Direct-to-AMC Execution</span>
+                </div>
+              </div>
+
             </div>
 
-            {/* Dual Elite Action Buttons */}
-            <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <button 
-                onClick={() => onOpenModal('consultation')}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.65rem',
-                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                  color: '#ffffff',
-                  fontWeight: 700,
-                  fontSize: '1.05rem',
-                  padding: '1rem 2.2rem',
-                  borderRadius: '9999px',
-                  boxShadow: '0 10px 25px -5px rgba(16,185,129,0.5)',
-                  border: '1px solid rgba(16,185,129,0.3)',
-                  cursor: 'pointer',
-                  transition: 'all 0.25s ease'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-                onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-              >
-                <span>Schedule Private Portfolio Review</span>
-                <ArrowRight size={18} />
-              </button>
-
-              <button 
-                onClick={() => onNavigate('calculators')}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.65rem',
-                  background: 'rgba(30, 41, 59, 0.7)',
-                  color: '#ffffff',
-                  fontWeight: 600,
-                  fontSize: '1.05rem',
-                  padding: '1rem 2rem',
-                  borderRadius: '9999px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  cursor: 'pointer',
-                  transition: 'all 0.25s ease'
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(56, 189, 248, 0.15)'; e.currentTarget.style.borderColor = '#38bdf8'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(30, 41, 59, 0.7)'; e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)'; }}
-              >
-                <Activity size={18} color="#38bdf8" />
-                <span>Simulate 30-Yr Wealth Trajectory</span>
-              </button>
-            </div>
-
-            {/* Direct WhatsApp Callout */}
-            <div style={{ marginTop: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.85rem', color: '#94a3b8' }}>
-              <span style={{ color: '#64748b' }}>Direct Line:</span>
-              <a href={`tel:${COMPANY_INFO.phone}`} style={{ color: '#38bdf8', fontWeight: 700 }}>{COMPANY_INFO.phone}</a>
-              <span style={{ color: '#475569' }}>•</span>
-              <a 
-                href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=Hello%20Assure%20Securities,%20I%20would%20like%20to%20schedule%20a%20private%20portfolio%20consultation.`} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{ color: '#4ade80', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}
-              >
-                <span>Instant WhatsApp Advisory</span>
-                <ExternalLink size={12} />
-              </a>
-            </div>
-
-          </div>
-
-          {/* Right Column: Private Wealth Command Terminal Window */}
-          <div>
-            <div className="terminal-window">
+            {/* RIGHT COLUMN: Premium Financial Visualization (Dashboard / Card Composition) */}
+            <div style={{ position: 'relative' }}>
               
-              {/* Terminal Title Bar with OS Tabs */}
-              <div style={{
-                background: 'rgba(6, 10, 20, 0.95)',
-                padding: '0.85rem 1.25rem',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap',
-                gap: '0.75rem'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ef4444', display: 'inline-block' }} />
-                  <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#f59e0b', display: 'inline-block' }} />
-                  <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#10b981', display: 'inline-block' }} />
-                  <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#94a3b8', letterSpacing: '0.04em', marginLeft: '0.5rem' }}>
-                    ASSURE WEALTH OS • v4.2 PRO
+              {/* Main Financial Dashboard Card */}
+              <div 
+                style={{ 
+                  background: 'var(--color-secondary)', 
+                  borderRadius: '24px', 
+                  border: '1px solid rgba(255, 255, 255, 0.1)', 
+                  padding: '2.25rem', 
+                  boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.55)',
+                  backdropFilter: 'blur(16px)',
+                  position: 'relative',
+                  zIndex: 2
+                }}
+              >
+                {/* Header with Demo Label */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                  <div>
+                    <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                      Wealth Management Dashboard
+                    </div>
+                    <div style={{ fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginTop: '2px' }}>
+                      Private Client Portfolio
+                    </div>
+                  </div>
+
+                  <span 
+                    style={{ 
+                      fontSize: '0.68rem', 
+                      fontWeight: 700, 
+                      padding: '0.25rem 0.6rem', 
+                      borderRadius: '6px', 
+                      background: 'rgba(255, 255, 255, 0.08)', 
+                      color: '#94a3b8',
+                      border: '1px solid rgba(255, 255, 255, 0.12)' 
+                    }}
+                  >
+                    Illustrative Demo
                   </span>
                 </div>
 
-                {/* View Switcher */}
-                <div style={{ display: 'flex', background: 'rgba(255,255,255,0.06)', padding: '2px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.08)' }}>
-                  <button
-                    onClick={() => setActiveTab('terminal')}
-                    style={{
-                      background: activeTab === 'terminal' ? '#2563eb' : 'transparent',
-                      color: activeTab === 'terminal' ? '#ffffff' : '#94a3b8',
-                      border: 'none',
-                      borderRadius: '8px',
-                      padding: '0.35rem 0.85rem',
-                      fontSize: '0.75rem',
+                {/* Portfolio Value & Growth Rate */}
+                <div style={{ marginBottom: '1.75rem' }}>
+                  <div style={{ fontSize: '0.82rem', color: '#94a3b8' }}>Total Portfolio Value</div>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.85rem', marginTop: '0.25rem', flexWrap: 'wrap' }}>
+                    <div style={{ fontSize: '2.75rem', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums' }}>
+                      ₹24,80,000
+                    </div>
+                    <div style={{ 
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      gap: '0.3rem', 
+                      background: 'rgba(22, 185, 129, 0.15)', 
+                      color: 'var(--color-accent)', 
+                      padding: '0.3rem 0.65rem', 
+                      borderRadius: '8px', 
+                      fontSize: '0.85rem', 
                       fontWeight: 700,
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.35rem'
-                    }}
-                  >
-                    <BarChart3 size={13} />
-                    <span>Wealth Simulator</span>
-                  </button>
+                      border: '1px solid rgba(22, 185, 129, 0.3)' 
+                    }}>
+                      <TrendingUp size={14} />
+                      <span>+18.6% Annualized</span>
+                    </div>
+                  </div>
+                </div>
 
-                  <button
-                    onClick={() => setActiveTab('campaigns')}
-                    style={{
-                      background: activeTab === 'campaigns' ? '#2563eb' : 'transparent',
-                      color: activeTab === 'campaigns' ? '#ffffff' : '#94a3b8',
-                      border: 'none',
-                      borderRadius: '8px',
-                      padding: '0.35rem 0.85rem',
-                      fontSize: '0.75rem',
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.35rem'
-                    }}
-                  >
-                    <Layers size={13} />
-                    <span>Campaign Briefings ({BANNER_SLIDES.length})</span>
-                  </button>
+                {/* Smooth Portfolio Growth Line Chart (SVG) */}
+                <div style={{ marginBottom: '1.75rem', background: 'rgba(7, 26, 47, 0.6)', padding: '1.25rem', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                    <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600 }}>Capital Compounding Trajectory</span>
+                    <div style={{ display: 'flex', gap: '0.35rem' }}>
+                      {['1Y', '3Y', '5Y', 'ALL'].map((r) => (
+                        <button
+                          key={r}
+                          onClick={() => setSelectedRange(r)}
+                          style={{
+                            fontSize: '0.68rem',
+                            fontWeight: 700,
+                            padding: '0.2rem 0.5rem',
+                            borderRadius: '4px',
+                            background: selectedRange === r ? 'var(--color-accent)' : 'transparent',
+                            color: selectedRange === r ? '#ffffff' : '#94a3b8',
+                            border: 'none',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          {r}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* SVG Chart */}
+                  <svg viewBox="0 0 360 160" style={{ width: '100%', height: '110px', overflow: 'visible' }}>
+                    <defs>
+                      <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#16B981" stopOpacity="0.35" />
+                        <stop offset="100%" stopColor="#16B981" stopOpacity="0.0" />
+                      </linearGradient>
+                    </defs>
+
+                    {/* Subtle grid lines */}
+                    <line x1="0" y1="40" x2="360" y2="40" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
+                    <line x1="0" y1="90" x2="360" y2="90" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
+                    <line x1="0" y1="140" x2="360" y2="140" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
+
+                    {/* Gradient Area Fill */}
+                    <path
+                      d="M 20 150 Q 100 130 180 105 T 260 70 T 340 35 L 340 160 L 20 160 Z"
+                      fill="url(#chartGradient)"
+                    />
+
+                    {/* Smooth Line Path */}
+                    <path
+                      d="M 20 150 Q 100 130 180 105 T 260 70 T 340 35"
+                      fill="none"
+                      stroke="#16B981"
+                      strokeWidth="3.5"
+                      strokeLinecap="round"
+                    />
+
+                    {/* Data Points */}
+                    {chartPoints.map((pt, i) => (
+                      <g key={i}>
+                        <circle cx={pt.x} cy={pt.y} r="4" fill="#071A2F" stroke="#16B981" strokeWidth="2.5" />
+                      </g>
+                    ))}
+                  </svg>
+                </div>
+
+                {/* Asset Allocation Breakdown */}
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                    <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                      Disciplined Asset Allocation
+                    </span>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--color-accent)', fontWeight: 600 }}>Optimized Risk-Return</span>
+                  </div>
+
+                  {/* Multi-segmented Allocation Bar */}
+                  <div style={{ height: '8px', width: '100%', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '100px', display: 'flex', overflow: 'hidden', marginBottom: '0.75rem' }}>
+                    <div style={{ width: '60%', background: '#16B981' }} title="Mutual Funds 60%" />
+                    <div style={{ width: '25%', background: '#38BDF8' }} title="Equities 25%" />
+                    <div style={{ width: '15%', background: '#F59E0B' }} title="Fixed Income 15%" />
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', fontSize: '0.75rem' }}>
+                    <span style={{ color: '#cbd5e1' }}><strong style={{ color: '#16B981' }}>●</strong> Mutual Funds (60%)</span>
+                    <span style={{ color: '#cbd5e1' }}><strong style={{ color: '#38BDF8' }}>●</strong> Equity Alpha (25%)</span>
+                    <span style={{ color: '#cbd5e1' }}><strong style={{ color: '#F59E0B' }}>●</strong> Bonds & FDs (15%)</span>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Floating Badge 1: Top Right (Monthly SIP Active) */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  top: '-18px',
+                  right: '-18px',
+                  background: '#ffffff',
+                  color: 'var(--color-primary)',
+                  borderRadius: '16px',
+                  padding: '0.85rem 1.15rem',
+                  boxShadow: '0 16px 32px rgba(0, 0, 0, 0.25)',
+                  border: '1px solid var(--color-border)',
+                  zIndex: 3,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.75rem'
+                }}
+                className="d-none d-md-flex"
+              >
+                <div style={{ background: '#ecfdf5', padding: '0.5rem', borderRadius: '10px' }}>
+                  <TrendingUp size={20} color="#059669" />
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--color-text-secondary)', fontWeight: 700, textTransform: 'uppercase' }}>Monthly Systematic Plan</div>
+                  <div style={{ fontSize: '0.98rem', fontWeight: 800, color: 'var(--color-primary)' }}>₹25,000 / month</div>
                 </div>
               </div>
 
-              {/* TAB 1: Wealth Simulator Terminal */}
-              {activeTab === 'terminal' ? (
-                <div style={{ padding: '2rem' }}>
-                  
-                  {/* Simulated Private Client Portfolio Telemetry */}
-                  <div style={{
-                    background: 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                    borderRadius: '18px',
-                    padding: '1.25rem 1.5rem',
-                    marginBottom: '1.75rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    flexWrap: 'wrap',
-                    gap: '1rem'
-                  }}>
-                    <div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem' }}>
-                        <span style={{ fontSize: '0.75rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Simulated Wealth Trajectory</span>
-                        <span style={{ background: 'rgba(16,185,129,0.2)', color: '#4ade80', fontSize: '0.7rem', fontWeight: 800, padding: '0.1rem 0.45rem', borderRadius: '4px' }}>
-                          +{expectedCagr}% CAGR
-                        </span>
-                      </div>
-                      <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#ffffff', fontFamily: 'var(--font-heading)', lineHeight: 1 }}>
-                        {formatINR(futureValue)}
-                      </div>
-                    </div>
-
-                    <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Invested Principal</div>
-                      <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#e2e8f0' }}>{formatINR(totalInvested)}</div>
-                      <div style={{ fontSize: '0.8rem', color: '#4ade80', fontWeight: 700, marginTop: '2px' }}>
-                        +{formatINR(wealthGain)} Gain
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Institutional Asset Allocation Strip */}
-                  <div style={{ marginBottom: '1.75rem' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', fontSize: '0.82rem' }}>
-                      <span style={{ color: '#cbd5e1', fontWeight: 600 }}>Curated Multi-Asset Diversification</span>
-                      <span style={{ color: '#38bdf8', fontWeight: 700 }}>Optimal Sharpe Ratio: 1.48</span>
-                    </div>
-
-                    {/* Progress Allocation Bar */}
-                    <div style={{ height: '10px', borderRadius: '5px', overflow: 'hidden', display: 'flex', width: '100%', marginBottom: '0.65rem' }}>
-                      <div style={{ width: '45%', background: '#2563eb' }} title="Large & Flexi-Cap Equity (45%)" />
-                      <div style={{ width: '25%', background: '#38bdf8' }} title="Mid & Small-Cap Alpha (25%)" />
-                      <div style={{ width: '15%', background: '#10b981' }} title="Sovereign Debt & Corporate FDs (15%)" />
-                      <div style={{ width: '10%', background: '#f59e0b' }} title="Sovereign Gold & Commodities (10%)" />
-                      <div style={{ width: '5%', background: '#a855f7' }} title="Liquid Emergency Reserves (5%)" />
-                    </div>
-
-                    {/* Asset Legend */}
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem', fontSize: '0.75rem', color: '#94a3b8' }}>
-                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
-                        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#2563eb' }} />
-                        <span>Core Equity (45%)</span>
-                      </span>
-                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
-                        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#38bdf8' }} />
-                        <span>Mid/Small Alpha (25%)</span>
-                      </span>
-                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
-                        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }} />
-                        <span>Fixed Income (15%)</span>
-                      </span>
-                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
-                        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f59e0b' }} />
-                        <span>Gold/Hedging (10%)</span>
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Interactive Slider 1: Monthly Allocation */}
-                  <div style={{ marginBottom: '1.4rem' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.45rem' }}>
-                      <label style={{ fontSize: '0.85rem', color: '#94a3b8', fontWeight: 600 }}>Monthly Capital Deployment (SIP)</label>
-                      <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#38bdf8' }}>₹{monthlySip.toLocaleString('en-IN')}/mo</span>
-                    </div>
-                    <input 
-                      type="range"
-                      min="2500"
-                      max="200000"
-                      step="2500"
-                      value={monthlySip}
-                      onChange={(e) => setMonthlySip(Number(e.target.value))}
-                    />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: '#64748b', marginTop: '3px' }}>
-                      <span>₹2,500</span>
-                      <span>₹50,000</span>
-                      <span>₹1,00,000</span>
-                      <span>₹2,00,000</span>
-                    </div>
-                  </div>
-
-                  {/* Interactive Slider 2: Investment Horizon */}
-                  <div style={{ marginBottom: '1.75rem' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.45rem' }}>
-                      <label style={{ fontSize: '0.85rem', color: '#94a3b8', fontWeight: 600 }}>Compounding Duration</label>
-                      <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#38bdf8' }}>{tenureYears} Years</span>
-                    </div>
-                    <input 
-                      type="range"
-                      min="3"
-                      max="30"
-                      step="1"
-                      value={tenureYears}
-                      onChange={(e) => setTenureYears(Number(e.target.value))}
-                    />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: '#64748b', marginTop: '3px' }}>
-                      <span>3 Years</span>
-                      <span>10 Years</span>
-                      <span>20 Years</span>
-                      <span>30 Years</span>
-                    </div>
-                  </div>
-
-                  {/* Wealth Milestone Callout */}
-                  <div style={{
-                    background: 'rgba(56, 189, 248, 0.08)',
-                    border: '1px solid rgba(56, 189, 248, 0.2)',
-                    borderRadius: '14px',
-                    padding: '0.9rem 1.25rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    marginBottom: '1.5rem'
-                  }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                      <Zap size={18} color="#facc15" />
-                      <div>
-                        <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#ffffff' }}>Wealth Freedom Milestone</div>
-                        <div style={{ fontSize: '0.75rem', color: '#cbd5e1' }}>
-                          At this pace, your portfolio compounds by <strong>+{formatINR(Math.round(futureValue * 0.135))} every year</strong> in pure passive gains.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Instant CTA inside Terminal */}
-                  <div style={{ display: 'flex', gap: '0.75rem' }}>
-                    <button 
-                      onClick={() => onOpenModal('consultation')}
-                      style={{
-                        flex: 1,
-                        background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
-                        color: '#ffffff',
-                        border: '1px solid rgba(56, 189, 248, 0.4)',
-                        padding: '0.85rem',
-                        borderRadius: '12px',
-                        fontSize: '0.92rem',
-                        fontWeight: 700,
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '0.5rem'
-                      }}
-                    >
-                      <span>Get Customized Portfolio Blueprint</span>
-                      <ArrowRight size={15} />
-                    </button>
-
-                    <button 
-                      onClick={() => onNavigate('calculators')}
-                      style={{
-                        background: 'rgba(255,255,255,0.08)',
-                        color: '#ffffff',
-                        border: '1px solid rgba(255,255,255,0.12)',
-                        padding: '0.85rem 1.2rem',
-                        borderRadius: '12px',
-                        fontSize: '0.92rem',
-                        fontWeight: 600,
-                        cursor: 'pointer'
-                      }}
-                    >
-                      <span>All 6 Tools</span>
-                    </button>
-                  </div>
-
+              {/* Floating Badge 2: Bottom Left (Zero Custody Direct AMC) */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  bottom: '-22px',
+                  left: '-22px',
+                  background: '#ffffff',
+                  color: 'var(--color-primary)',
+                  borderRadius: '16px',
+                  padding: '0.85rem 1.15rem',
+                  boxShadow: '0 16px 32px rgba(0, 0, 0, 0.25)',
+                  border: '1px solid var(--color-border)',
+                  zIndex: 3,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.75rem'
+                }}
+                className="d-none d-md-flex"
+              >
+                <div style={{ background: '#eff6ff', padding: '0.5rem', borderRadius: '10px' }}>
+                  <ShieldCheck size={20} color="#2563eb" />
                 </div>
-              ) : (
-                /* TAB 2: Authentic Campaign Slides Viewer */
-                <div style={{ position: 'relative', height: '480px', overflow: 'hidden' }}>
-                  <img 
-                    src={slide.image} 
-                    alt={slide.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.55 }}
-                    onError={(e) => { e.target.style.display = 'none'; }}
-                  />
-                  
-                  <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: 'linear-gradient(to top, rgba(6,10,20,0.98) 0%, rgba(6,10,20,0.5) 60%, transparent 100%)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'flex-end',
-                    padding: '2.5rem'
-                  }}>
-                    <div className="badge-tag" style={{ background: 'rgba(56, 189, 248, 0.2)', color: '#38bdf8', borderColor: 'rgba(56, 189, 248, 0.4)', width: 'fit-content', marginBottom: '0.6rem' }}>
-                      {slide.badge}
-                    </div>
-                    <h3 style={{ fontSize: '1.8rem', color: '#ffffff', fontWeight: 800, marginBottom: '0.5rem' }}>
-                      {slide.title}
-                    </h3>
-                    <p style={{ color: '#cbd5e1', fontSize: '0.95rem', lineHeight: 1.5, marginBottom: '1.5rem' }}>
-                      {slide.subtitle}
-                    </p>
-
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <button 
-                        onClick={() => onOpenModal('consultation')}
-                        className="btn-emerald"
-                        style={{ padding: '0.7rem 1.4rem', fontSize: '0.88rem' }}
-                      >
-                        <span>Consult Advisor on This Strategy</span>
-                      </button>
-
-                      {/* Navigation Dots */}
-                      <div style={{ display: 'flex', gap: '0.4rem' }}>
-                        {BANNER_SLIDES.map((_, i) => (
-                          <button
-                            key={i}
-                            onClick={() => setCurrentSlide(i)}
-                            style={{
-                              width: i === currentSlide ? '22px' : '8px',
-                              height: '8px',
-                              borderRadius: '4px',
-                              background: i === currentSlide ? '#38bdf8' : 'rgba(255,255,255,0.3)',
-                              border: 'none',
-                              cursor: 'pointer',
-                              transition: 'all 0.2s ease'
-                            }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+                <div>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--color-text-secondary)', fontWeight: 700, textTransform: 'uppercase' }}>Fiduciary Safety</div>
+                  <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--color-primary)' }}>Direct AMC Settlement</div>
                 </div>
-              )}
+              </div>
 
             </div>
+
           </div>
-
         </div>
+      </section>
 
-      </div>
-
-      {/* Institutional Security & Trust Matrix Banner (Direct AMC Settlement & Zero Custody) */}
-      <div style={{
-        background: 'rgba(6, 10, 20, 0.98)',
-        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-        padding: '2rem 0'
-      }}>
+      {/* SECTION 8: CLEAN TRUST STRIP (Immediately Below Hero) */}
+      <section 
+        style={{ 
+          background: 'var(--color-white)', 
+          borderBottom: '1px solid var(--color-border)',
+          padding: '2.5rem 0' 
+        }}
+      >
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.75rem' }}>
-            
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-              <div style={{ background: 'rgba(16,185,129,0.15)', padding: '0.65rem', borderRadius: '12px' }}>
-                <ShieldCheck size={24} color="#10b981" />
+          <div 
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', 
+              gap: '1.5rem',
+              alignItems: 'center'
+            }}
+          >
+            {[
+              { 
+                metric: COMPANY_INFO.arn, 
+                label: "AMFI Registered", 
+                sub: "Valid till July 2027" 
+              },
+              { 
+                metric: "15+ Years", 
+                label: "Market Wisdom", 
+                sub: "Navigated bull & bear cycles" 
+              },
+              { 
+                metric: "₹250+ Crore", 
+                label: "Client Assets Guided", 
+                sub: "Equities, Fixed Income & Hybrid" 
+              },
+              { 
+                metric: "40+ AMCs", 
+                label: "Direct Empanelment", 
+                sub: "BSE StAR MF Execution" 
+              },
+              { 
+                metric: "Zero Custody", 
+                label: "100% Fund Safety", 
+                sub: "Direct-to-AMC Settlement" 
+              }
+            ].map((stat, i) => (
+              <div 
+                key={i} 
+                style={{ 
+                  textAlign: 'left',
+                  padding: '0.75rem 1rem',
+                  borderLeft: i > 0 ? '1px solid var(--color-border)' : 'none'
+                }}
+                className={i > 0 ? "border-left-responsive" : ""}
+              >
+                <div style={{ fontSize: '1.55rem', fontWeight: 800, color: 'var(--color-primary)', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+                  {stat.metric}
+                </div>
+                <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--color-accent)', marginTop: '0.15rem' }}>
+                  {stat.label}
+                </div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '0.2rem' }}>
+                  {stat.sub}
+                </div>
               </div>
-              <div>
-                <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.2rem' }}>Direct-to-AMC Settlement</h4>
-                <p style={{ fontSize: '0.82rem', color: '#94a3b8', margin: 0, lineHeight: 1.4 }}>
-                  Zero custody risk. 100% of investments flow directly from your bank to SEBI-regulated fund custodians.
-                </p>
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-              <div style={{ background: 'rgba(56,189,248,0.15)', padding: '0.65rem', borderRadius: '12px' }}>
-                <Award size={24} color="#38bdf8" />
-              </div>
-              <div>
-                <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.2rem' }}>AMFI Verified ARN-182137</h4>
-                <p style={{ fontSize: '0.82rem', color: '#94a3b8', margin: 0, lineHeight: 1.4 }}>
-                  Officially registered distributor valid up to July 2027. Full AMFI Code of Conduct compliance.
-                </p>
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-              <div style={{ background: 'rgba(234,179,8,0.15)', padding: '0.65rem', borderRadius: '12px' }}>
-                <TrendingUp size={24} color="#facc15" />
-              </div>
-              <div>
-                <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.2rem' }}>₹250+ Cr Assets Guided</h4>
-                <p style={{ fontSize: '0.82rem', color: '#94a3b8', margin: 0, lineHeight: 1.4 }}>
-                  Over 15+ years of market wisdom navigating bull runs, recessions, and global macro market cycles.
-                </p>
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-              <div style={{ background: 'rgba(168,85,247,0.15)', padding: '0.65rem', borderRadius: '12px' }}>
-                <Lock size={24} color="#a855f7" />
-              </div>
-              <div>
-                <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.2rem' }}>256-Bit Bank Encryption</h4>
-                <p style={{ fontSize: '0.82rem', color: '#94a3b8', margin: 0, lineHeight: 1.4 }}>
-                  Your personal portfolio, PAN and KYC information are strictly confidential and never commercialized.
-                </p>
-              </div>
-            </div>
-
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
+      {/* Responsive Styles */}
       <style>{`
-        @media (min-width: 1024px) {
-          .hero-wealth-grid { grid-template-columns: 1.12fr 0.88fr !important; }
+        @media (min-width: 992px) {
+          .hero-grid {
+            grid-template-columns: 1.15fr 0.85fr !important;
+          }
+        }
+        @media (max-width: 767px) {
+          .hero-headline {
+            font-size: 2.6rem !important;
+          }
+          .border-left-responsive {
+            border-left: none !important;
+            border-top: 1px solid var(--color-border) !important;
+            padding-top: 1rem !important;
+          }
+          .d-none { display: none !important; }
         }
       `}</style>
     </div>

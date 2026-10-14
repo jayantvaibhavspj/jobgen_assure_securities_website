@@ -1,15 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Hero } from '../components/Hero';
-import { QuickToolsBar } from '../components/QuickToolsBar';
-import { AboutSection } from '../components/AboutSection';
 import { ProductsSection } from '../components/ProductsSection';
+import { GoalInvestingSection } from '../components/GoalInvestingSection';
+import { QuickToolsBar } from '../components/QuickToolsBar';
 import { CalculatorsHub } from '../components/CalculatorsHub';
-import { InvestorZone } from '../components/InvestorZone';
+import { WhyAssureSection } from '../components/WhyAssureSection';
+import { AppSection } from '../components/AppSection';
+import { PortfolioVisualization } from '../components/PortfolioVisualization';
+import { MarketSection } from '../components/MarketSection';
+import { InsightsSection } from '../components/InsightsSection';
 import { EducationalVideos } from '../components/EducationalVideos';
 import { TestimonialsSection } from '../components/TestimonialsSection';
-import { PartnerSection } from '../components/PartnerSection';
-import { ContactSection } from '../components/ContactSection';
+import { FaqSection } from '../components/FaqSection';
+import { FinalCtaSection } from '../components/FinalCtaSection';
 
 export function HomePage({ onOpenModal }) {
   const navigate = useNavigate();
@@ -26,60 +30,74 @@ export function HomePage({ onOpenModal }) {
   };
 
   return (
-    <div>
-      {/* Hero Banner Carousel & Compounding Teaser (Light) */}
+    <div className="homepage-wrapper">
+      {/* 1. HERO + TRUST STRIP (Section 6, 7 & 8) */}
       <Hero 
         onOpenModal={onOpenModal} 
         onNavigate={handleNavigate} 
       />
 
-      {/* 6 Quick Intelligence Tools with Original GIFs (Dark) */}
-      <QuickToolsBar 
-        onOpenModal={onOpenModal} 
-        theme="dark"
-      />
-
-      {/* About Section (Light) */}
-      <AboutSection 
-        onOpenModal={onOpenModal} 
-      />
-
-      {/* Products Showcase (Dark) */}
+      {/* 2. INVESTMENT SOLUTIONS (Section 9) */}
       <ProductsSection 
         onOpenModal={onOpenModal} 
         onNavigate={handleNavigate} 
-        theme="dark"
       />
 
-      {/* Calculators Hub (Light) */}
+      {/* 3. GOAL-BASED INVESTING (Section 10) */}
+      <GoalInvestingSection 
+        onOpenModal={onOpenModal}
+      />
+
+      {/* 4. FINANCIAL TOOLS OVERVIEW (Section 11) */}
+      <QuickToolsBar 
+        onOpenModal={onOpenModal} 
+      />
+
+      {/* 5. INTERACTIVE CALCULATORS HUB (Section 12) */}
       <CalculatorsHub 
         onOpenModal={onOpenModal} 
       />
 
-      {/* Investor Zone & KYC Portals (Dark) */}
-      <InvestorZone 
+      {/* 6. WHY ASSURE EDITORIAL SECTION (Section 13) */}
+      <WhyAssureSection 
         onOpenModal={onOpenModal} 
-        theme="dark"
       />
 
-      {/* Educational Videos Masterclasses (Light) */}
+      {/* 7. APP SECTION (Section 14) */}
+      <AppSection 
+        onOpenModal={onOpenModal} 
+      />
+
+      {/* 8. PORTFOLIO VISUALIZATION (Section 15) */}
+      <PortfolioVisualization 
+        onOpenModal={onOpenModal} 
+      />
+
+      {/* 9. MARKET SECTION (Section 16) */}
+      <MarketSection />
+
+      {/* 10. INSIGHTS SECTION (Section 17) */}
+      <InsightsSection 
+        onOpenModal={onOpenModal} 
+      />
+
+      {/* 11. EDUCATIONAL VIDEO MASTERCLASSES */}
       <EducationalVideos 
         onOpenModal={onOpenModal} 
       />
 
-      {/* Verified Reviews & 40+ AMCs Marquee (Dark) */}
-      <TestimonialsSection 
-        theme="dark"
+      {/* 12. VERIFIED REVIEWS & 40+ AMCS PARTNERS (Section 18) */}
+      <TestimonialsSection />
+
+      {/* 13. FAQ ACCORDION (Section 19) */}
+      <FaqSection 
+        onOpenModal={onOpenModal} 
       />
 
-      {/* Become a Partner Onboarding (Light) */}
-      <PartnerSection 
-        theme="light"
-      />
-
-      {/* Contact & Lucknow Headquarters (Dark) */}
-      <ContactSection 
-        theme="dark"
+      {/* 14. FINAL CLOSING CTA (Section 20) */}
+      <FinalCtaSection 
+        onOpenModal={onOpenModal} 
+        onNavigate={handleNavigate} 
       />
     </div>
   );
