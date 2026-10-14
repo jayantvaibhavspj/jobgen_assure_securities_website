@@ -1,38 +1,34 @@
 import React from 'react';
-import { ShieldCheck, Cpu, Target, Layers, ArrowUpRight } from 'lucide-react';
+import { ShieldCheck, Cpu, Target, Layers, ArrowRight } from 'lucide-react';
 
-const REASONS = [
+const ADVANTAGES = [
   {
     num: "01",
     title: "Expert Guidance",
     subtitle: "15+ Years of Multi-Cycle Market Wisdom",
     description: "Financial markets are volatile, but discipline endures. Our AMFI-registered professionals (ARN-182137) provide seasoned, research-driven advisory tailored to your unique risk profile—never chasing speculative fads.",
-    icon: ShieldCheck,
-    tag: "AMFI Registered"
+    icon: ShieldCheck
   },
   {
     num: "02",
     title: "Technology Driven",
     subtitle: "Real-Time Tracking & Paperless Execution",
     description: "Track your family's consolidated net worth in one unified dashboard. From instant digital KYC to automated SIP mandates and capital gains reporting, technology empowers every single interaction.",
-    icon: Cpu,
-    tag: "Digital Ecosystem"
+    icon: Cpu
   },
   {
     num: "03",
     title: "Goal-Based Investing",
     subtitle: "Milestone-Driven Asset Allocation",
-    description: "Every rupee you invest should have a dedicated mission. We systematically map your assets to life milestones—early retirement, child's ivy-league education, dream home, and generational wealth preservation.",
-    icon: Target,
-    tag: "Milestone Architecture"
+    description: "Every rupee you invest should have a dedicated mission. We systematically map your assets to life milestones—early retirement, children's global education, dream home, and generational wealth preservation.",
+    icon: Target
   },
   {
     num: "04",
-    title: "Complete Wealth Ecosystem",
+    title: "Complete Wealth Solutions",
     subtitle: "Direct AMC Settlement & Zero Custody Risk",
-    description: "Access top-quartile Mutual Funds, AAA-rated Corporate Fixed Deposits, Sovereign Gold Bonds, PMS/AIF, and Life Insurance. Your capital flows directly to regulated AMCs with complete transparency.",
-    icon: Layers,
-    tag: "Direct Settlement"
+    description: "Access top-quartile Mutual Funds, AAA-rated Corporate Fixed Deposits, Sovereign Gold Bonds, and PMS/AIF. Your capital flows directly to regulated AMCs with complete transparency.",
+    icon: Layers
   }
 ];
 
@@ -41,205 +37,142 @@ export function WhyAssureSection({ onOpenModal }) {
     <section 
       id="why-assure"
       style={{ 
-        padding: '7rem 0', 
+        padding: 'var(--section-pad-desktop) 0', 
         background: '#ffffff',
         borderBottom: '1px solid var(--color-border)' 
       }}
+      className="section-pad"
     >
       <div className="container">
         
-        {/* Editorial Section Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '2rem', marginBottom: '4.5rem' }}>
-          <div style={{ maxWidth: '600px' }}>
-            <span 
-              style={{ 
-                fontSize: '0.8rem', 
-                fontWeight: 800, 
-                color: 'var(--color-accent)', 
-                textTransform: 'uppercase', 
-                letterSpacing: '0.08em',
-                display: 'block',
-                marginBottom: '0.75rem' 
-              }}
-            >
-              The Assure Advantage
-            </span>
+        {/* Editorial Two-Column Layout (Section 16) */}
+        <div 
+          style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+            gap: 'clamp(3rem, 6vw, 5rem)',
+            alignItems: 'flex-start'
+          }}
+          className="why-assure-grid"
+        >
+          
+          {/* LEFT: Large Statement & Fiduciary Manifesto */}
+          <div style={{ position: 'sticky', top: '100px' }}>
+            <div className="eyebrow-pill emerald">
+              <ShieldCheck size={13} />
+              <span>The Assure Advantage</span>
+            </div>
+
             <h2 
               style={{ 
-                fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', 
-                fontWeight: 800, 
+                fontSize: 'clamp(2.2rem, 3.8vw, 3rem)', 
+                fontWeight: 700, 
                 color: 'var(--color-primary)', 
                 letterSpacing: '-0.03em', 
-                lineHeight: 1.15,
-                margin: 0
+                lineHeight: 1.2,
+                marginBottom: '1.5rem'
               }}
             >
               Why Investors Choose Assure
             </h2>
-          </div>
 
-          <div style={{ maxWidth: '440px' }}>
             <p 
               style={{ 
-                fontSize: '1.05rem', 
-                color: 'var(--color-text-secondary)', 
+                fontSize: '1.18rem', 
+                color: 'var(--color-text)', 
+                fontWeight: 500, 
                 lineHeight: 1.6, 
-                margin: 0 
+                marginBottom: '1.5rem' 
               }}
             >
-              We combine institutional research with personal dedication to guide Indian families toward enduring financial freedom.
+              "We believe wealth is built with patience, precision, and an unwavering commitment to your family's future."
             </p>
+
+            <p 
+              style={{ 
+                fontSize: '0.95rem', 
+                color: 'var(--color-text-secondary)', 
+                lineHeight: 1.65, 
+                marginBottom: '2.5rem' 
+              }}
+            >
+              Unlike automated robo-advisors or aggressive trading brokers, Assure Securities acts as your dedicated wealth custodian and financial sounding board—bringing fifteen years of institutional discipline to private families.
+            </p>
+
+            <button 
+              onClick={() => onOpenModal && onOpenModal('consultation')}
+              className="btn-primary-navy"
+            >
+              <span>Start Your Journey With Assure →</span>
+            </button>
           </div>
-        </div>
 
-        {/* 4 Large Editorial Blocks */}
-        <div 
-          style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-            gap: '2.5rem',
-            position: 'relative'
-          }}
-        >
-          {REASONS.map((reason, idx) => {
-            const Icon = reason.icon;
+          {/* RIGHT: Editorial Stack (01, 02, 03, 04 with Thin Separators) */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {ADVANTAGES.map((adv, idx) => {
+              const Icon = adv.icon;
 
-            return (
-              <div 
-                key={reason.num}
-                style={{ 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  justifyContent: 'space-between',
-                  paddingTop: '1.5rem',
-                  borderTop: '1px solid var(--color-border)',
-                  position: 'relative',
-                  transition: 'transform 0.25s ease'
-                }}
-              >
-                <div>
-                  {/* Top Bar: Number & Tag */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2rem' }}>
-                    <span 
-                      style={{ 
-                        fontSize: 'clamp(2.8rem, 4.5vw, 3.8rem)', 
-                        fontWeight: 800, 
-                        color: 'var(--color-primary)', 
-                        letterSpacing: '-0.04em',
-                        lineHeight: 1,
-                        opacity: 0.85
-                      }}
-                    >
-                      {reason.num}
-                    </span>
-
-                    <span 
-                      style={{ 
-                        fontSize: '0.72rem', 
-                        fontWeight: 700, 
-                        textTransform: 'uppercase', 
-                        letterSpacing: '0.04em',
-                        color: 'var(--color-accent)',
-                        background: 'rgba(22, 185, 129, 0.08)',
-                        padding: '0.25rem 0.65rem',
-                        borderRadius: '6px'
-                      }}
-                    >
-                      {reason.tag}
-                    </span>
-                  </div>
-
-                  {/* Title & Subtitle */}
-                  <h3 
-                    style={{ 
-                      fontSize: '1.4rem', 
-                      fontWeight: 800, 
-                      color: 'var(--color-primary)', 
-                      letterSpacing: '-0.02em', 
-                      marginBottom: '0.5rem' 
-                    }}
-                  >
-                    {reason.title}
-                  </h3>
-
+              return (
+                <div 
+                  key={adv.num}
+                  style={{ 
+                    paddingTop: idx === 0 ? '0' : '2.5rem',
+                    paddingBottom: '2.5rem',
+                    borderBottom: idx === ADVANTAGES.length - 1 ? 'none' : '1px solid var(--color-border)',
+                    display: 'flex',
+                    gap: '1.75rem',
+                    alignItems: 'flex-start'
+                  }}
+                  className="advantage-row"
+                >
+                  {/* Large Number */}
                   <div 
                     style={{ 
-                      fontSize: '0.85rem', 
-                      fontWeight: 600, 
-                      color: 'var(--color-accent)', 
-                      marginBottom: '1rem' 
+                      fontSize: 'clamp(2.2rem, 3.5vw, 2.75rem)', 
+                      fontWeight: 700, 
+                      color: 'var(--color-primary)', 
+                      lineHeight: 1, 
+                      opacity: 0.85,
+                      fontFamily: 'var(--font-family)',
+                      minWidth: '55px'
                     }}
                   >
-                    {reason.subtitle}
+                    {adv.num}
                   </div>
 
-                  {/* Body description */}
-                  <p 
-                    style={{ 
-                      fontSize: '0.92rem', 
-                      color: 'var(--color-text-secondary)', 
-                      lineHeight: 1.65, 
-                      margin: 0,
-                      marginBottom: '1.75rem' 
-                    }}
-                  >
-                    {reason.description}
-                  </p>
-                </div>
+                  {/* Advantage Content */}
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.35rem' }}>
+                      <Icon size={16} color="var(--color-accent)" />
+                      <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0 }}>
+                        {adv.title}
+                      </h3>
+                    </div>
 
-                {/* Minimal Icon Footer Indicator */}
-                <div 
-                  style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '0.5rem',
-                    color: 'var(--color-primary)',
-                    fontSize: '0.85rem',
-                    fontWeight: 700
-                  }}
-                >
-                  <Icon size={16} color="var(--color-accent)" />
-                  <span>Institutional Standard</span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-accent)', marginBottom: '0.65rem' }}>
+                      {adv.subtitle}
+                    </div>
 
-        {/* Bottom Editorial Callout Strip */}
-        <div 
-          style={{ 
-            marginTop: '4.5rem', 
-            padding: '2rem 2.5rem', 
-            borderRadius: '20px', 
-            background: 'var(--color-bg)', 
-            border: '1px solid var(--color-border)',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '1.5rem'
-          }}
-        >
-          <div>
-            <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-primary)', margin: '0 0 0.35rem 0' }}>
-              Direct Custody Peace of Mind
-            </h4>
-            <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>
-              Assure Securities never holds client funds. All investments settle directly with SEBI-regulated Asset Management Companies.
-            </p>
+                    <p style={{ fontSize: '0.92rem', color: 'var(--color-text-secondary)', lineHeight: 1.65, margin: 0 }}>
+                      {adv.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
-          <button 
-            onClick={() => onOpenModal && onOpenModal('consultation')}
-            className="btn-primary-navy"
-            style={{ fontSize: '0.9rem', padding: '0.75rem 1.6rem' }}
-          >
-            Start Your Journey With Assure →
-          </button>
         </div>
 
       </div>
+
+      <style>{`
+        @media (min-width: 992px) {
+          .why-assure-grid {
+            grid-template-columns: 0.95fr 1.05fr !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

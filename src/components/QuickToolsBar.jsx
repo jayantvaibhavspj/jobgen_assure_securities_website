@@ -8,7 +8,7 @@ const FINANCIAL_TOOLS = [
     id: "sip-calculator",
     title: "SIP Calculator",
     category: "Wealth Creation",
-    color: "#16B981", // Emerald accent
+    color: "#16B981",
     bgLight: "rgba(22, 185, 129, 0.08)",
     description: "Calculate expected future corpus from disciplined monthly mutual fund investments.",
     icon: Calculator,
@@ -22,7 +22,7 @@ const FINANCIAL_TOOLS = [
     bgLight: "rgba(2, 132, 199, 0.08)",
     description: "Model the compounding power of increasing your SIP amount annually with salary increments.",
     icon: TrendingUp,
-    targetTab: "step-up"
+    targetTab: "sip"
   },
   {
     id: "lumpsum-calculator",
@@ -38,8 +38,8 @@ const FINANCIAL_TOOLS = [
     id: "retirement-calculator",
     title: "Retirement Calculator",
     category: "Long-Term Freedom",
-    color: "#f59e0b",
-    bgLight: "rgba(245, 158, 11, 0.08)",
+    color: "#d97706",
+    bgLight: "rgba(217, 119, 6, 0.08)",
     description: "Estimate your target post-retirement nest egg accounting for future inflation and life expectancy.",
     icon: Calendar,
     targetTab: "retirement"
@@ -52,37 +52,37 @@ const FINANCIAL_TOOLS = [
     bgLight: "rgba(139, 92, 246, 0.08)",
     description: "Plan home or personal loan repayments with detailed principal vs interest amortization splits.",
     icon: Home,
-    targetTab: "emi"
+    targetTab: "retirement"
   },
   {
     id: "goal-planner",
     title: "Goal Planner",
     category: "Milestone Planning",
-    color: "#ec4899",
-    bgLight: "rgba(236, 72, 153, 0.08)",
+    color: "#059669",
+    bgLight: "rgba(5, 150, 105, 0.08)",
     description: "Reverse engineer the required monthly SIP needed to fund child education or home down payments.",
     icon: Target,
-    targetTab: "education"
+    targetTab: "child"
   },
   {
     id: "sip-delay",
     title: "SIP Delay Cost",
     category: "Opportunity Cost",
-    color: "#ef4444",
-    bgLight: "rgba(239, 68, 68, 0.08)",
+    color: "#dc2626",
+    bgLight: "rgba(220, 38, 38, 0.08)",
     description: "Visualize the quantifiable financial cost of delaying your SIP investments by just 1 to 5 years.",
     icon: Clock,
-    targetTab: "sip-delay"
+    targetTab: "sip"
   },
   {
     id: "fund-comparison",
     title: "Fund Comparison",
     category: "Scheme Research",
-    color: "#14b8a6",
-    bgLight: "rgba(20, 184, 166, 0.08)",
+    color: "#0D2945",
+    bgLight: "rgba(13, 41, 69, 0.08)",
     description: "Analyze risk-adjusted alpha, expense ratios, portfolio overlap, and rolling historical metrics.",
     icon: Scale,
-    targetTab: "comparison"
+    targetTab: "sip"
   }
 ];
 
@@ -90,7 +90,6 @@ export function QuickToolsBar({ onOpenModal, onSelectTool }) {
   const [hoveredTool, setHoveredTool] = useState(null);
 
   const handleToolClick = (tool) => {
-    // Smooth scroll down to CalculatorsHub if it's on page, or trigger modal
     const calcSection = document.getElementById('calculators');
     if (calcSection) {
       calcSection.scrollIntoView({ behavior: 'smooth' });
@@ -104,57 +103,27 @@ export function QuickToolsBar({ onOpenModal, onSelectTool }) {
     <section 
       id="tools-section"
       style={{ 
-        padding: '6rem 0', 
-        background: '#ffffff',
+        padding: 'var(--section-pad-desktop) 0', 
+        background: 'var(--color-bg)',
         borderBottom: '1px solid var(--color-border)'
       }}
+      className="section-pad"
     >
       <div className="container">
         
-        {/* Section Header */}
-        <div style={{ maxWidth: '720px', margin: '0 auto 3.5rem auto', textAlign: 'center' }}>
-          <div 
-            style={{ 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              gap: '0.5rem', 
-              background: 'rgba(22, 185, 129, 0.1)', 
-              color: 'var(--color-accent)', 
-              padding: '0.4rem 1rem', 
-              borderRadius: '100px', 
-              fontSize: '0.8rem', 
-              fontWeight: 700, 
-              letterSpacing: '0.06em', 
-              textTransform: 'uppercase', 
-              marginBottom: '1rem' 
-            }}
-          >
-            <Sparkles size={14} />
+        {/* Section Header (Section 11) */}
+        <div className="section-header-center">
+          <div className="eyebrow-pill emerald">
+            <Sparkles size={13} />
             <span>Smart Financial Decision Tools</span>
           </div>
 
-          <h2 
-            style={{ 
-              fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', 
-              fontWeight: 800, 
-              color: 'var(--color-primary)', 
-              letterSpacing: '-0.03em', 
-              lineHeight: 1.2, 
-              marginBottom: '1rem' 
-            }}
-          >
-            Plan Better With Smart Financial Tools
+          <h2>
+            Plan Better With <span style={{ color: 'var(--color-accent)' }}>Smart Financial Tools</span>
           </h2>
 
-          <p 
-            style={{ 
-              fontSize: '1.05rem', 
-              color: 'var(--color-text-secondary)', 
-              lineHeight: 1.6, 
-              margin: 0 
-            }}
-          >
-            Institutional-grade calculators and diagnostics designed to bring clarity, mathematical rigor, and confidence to your financial planning.
+          <p>
+            Institutional-grade calculators and diagnostics designed to bring mathematical rigor, clarity, and confidence to your financial planning.
           </p>
         </div>
 
@@ -178,16 +147,16 @@ export function QuickToolsBar({ onOpenModal, onSelectTool }) {
                 onMouseLeave={() => setHoveredTool(null)}
                 className="fintech-card"
                 style={{
-                  padding: '1.85rem',
+                  padding: '1.75rem',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   cursor: 'pointer',
                   borderColor: isHovered ? tool.color : 'var(--color-border)',
-                  background: isHovered ? '#ffffff' : '#fafbfd',
-                  boxShadow: isHovered ? '0 12px 28px -6px rgba(7, 26, 47, 0.1)' : 'var(--shadow-card)',
+                  background: '#ffffff',
+                  boxShadow: isHovered ? '0 12px 28px -6px rgba(7, 26, 47, 0.08)' : 'var(--shadow-card)',
                   transform: isHovered ? 'translateY(-4px)' : 'none',
-                  transition: 'all 0.28s ease'
+                  transition: 'all 280ms ease'
                 }}
               >
                 <div>
@@ -195,8 +164,8 @@ export function QuickToolsBar({ onOpenModal, onSelectTool }) {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
                     <div 
                       style={{ 
-                        width: '46px', 
-                        height: '46px', 
+                        width: '44px', 
+                        height: '44px', 
                         borderRadius: '12px', 
                         background: tool.bgLight, 
                         display: 'flex', 
@@ -204,10 +173,10 @@ export function QuickToolsBar({ onOpenModal, onSelectTool }) {
                         justifyContent: 'center', 
                         color: tool.color,
                         transition: 'transform 0.25s ease',
-                        transform: isHovered ? 'scale(1.08)' : 'none'
+                        transform: isHovered ? 'scale(1.06)' : 'none'
                       }}
                     >
-                      <Icon size={22} strokeWidth={2.2} />
+                      <Icon size={20} strokeWidth={1.8} />
                     </div>
 
                     <span 
@@ -232,7 +201,7 @@ export function QuickToolsBar({ onOpenModal, onSelectTool }) {
                       fontSize: '1.2rem', 
                       fontWeight: 700, 
                       color: 'var(--color-primary)', 
-                      marginBottom: '0.6rem',
+                      marginBottom: '0.5rem',
                       letterSpacing: '-0.01em' 
                     }}
                   >
@@ -253,16 +222,16 @@ export function QuickToolsBar({ onOpenModal, onSelectTool }) {
                   </p>
                 </div>
 
-                {/* Arrow & Action */}
+                {/* Arrow & Action (Section 11) */}
                 <div 
                   style={{ 
                     display: 'flex', 
                     alignItems: 'center', 
                     justifyContent: 'space-between',
-                    paddingTop: '1rem',
-                    borderTop: '1px solid rgba(229, 234, 240, 0.8)',
-                    fontSize: '0.88rem',
-                    fontWeight: 700,
+                    paddingTop: '0.85rem',
+                    borderTop: '1px solid var(--color-border)',
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
                     color: isHovered ? tool.color : 'var(--color-primary)',
                     transition: 'color 0.2s ease'
                   }}
@@ -270,54 +239,16 @@ export function QuickToolsBar({ onOpenModal, onSelectTool }) {
                   <span>Launch Calculator</span>
                   <div 
                     style={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center',
-                      width: '28px',
-                      height: '28px',
-                      borderRadius: '50%',
-                      background: isHovered ? tool.bgLight : 'transparent',
-                      transform: isHovered ? 'translateX(4px)' : 'none',
-                      transition: 'all 0.25s ease'
+                      transform: isHovered ? 'translateX(5px)' : 'none',
+                      transition: 'transform 250ms ease'
                     }}
                   >
-                    <ArrowRight size={16} strokeWidth={2.4} />
+                    <ArrowRight size={15} strokeWidth={2} />
                   </div>
                 </div>
               </div>
             );
           })}
-        </div>
-
-        {/* Bottom Banner Note */}
-        <div 
-          style={{ 
-            marginTop: '3.5rem', 
-            padding: '1.25rem 1.75rem', 
-            borderRadius: '16px', 
-            background: 'var(--color-bg)', 
-            border: '1px solid var(--color-border)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '1rem'
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-            <CheckCircle2 size={18} color="var(--color-accent)" />
-            <span style={{ fontSize: '0.9rem', color: 'var(--color-text)', fontWeight: 500 }}>
-              Need a personalized plan aligned with your tax bracket and time horizon?
-            </span>
-          </div>
-
-          <button
-            onClick={() => onOpenModal && onOpenModal('consultation')}
-            className="btn-outline-navy"
-            style={{ padding: '0.5rem 1.25rem', fontSize: '0.85rem' }}
-          >
-            Speak with an Advisor →
-          </button>
         </div>
 
       </div>

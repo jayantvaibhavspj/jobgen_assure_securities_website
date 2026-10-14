@@ -26,9 +26,10 @@ export function Hero({ onOpenModal, onNavigate }) {
           color: '#ffffff', 
           position: 'relative', 
           overflow: 'hidden',
-          padding: '5rem 0 6rem 0',
+          padding: 'clamp(4.5rem, 7vw, 6.5rem) 0',
           borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
         }}
+        className="hero-section"
       >
         {/* Subtle Radial Glow & Background Grid Texture */}
         <div 
@@ -39,7 +40,7 @@ export function Hero({ onOpenModal, onNavigate }) {
             width: '600px',
             height: '600px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(22, 185, 129, 0.12) 0%, rgba(7, 26, 47, 0) 70%)',
+            background: 'radial-gradient(circle, rgba(22, 185, 129, 0.1) 0%, rgba(7, 26, 47, 0) 70%)',
             filter: 'blur(60px)',
             pointerEvents: 'none'
           }} 
@@ -52,7 +53,7 @@ export function Hero({ onOpenModal, onNavigate }) {
             width: '500px',
             height: '500px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(37, 99, 235, 0.14) 0%, rgba(7, 26, 47, 0) 70%)',
+            background: 'radial-gradient(circle, rgba(13, 41, 69, 0.4) 0%, rgba(7, 26, 47, 0) 70%)',
             filter: 'blur(60px)',
             pointerEvents: 'none'
           }} 
@@ -64,8 +65,8 @@ export function Hero({ onOpenModal, onNavigate }) {
             position: 'absolute',
             inset: 0,
             backgroundImage: `
-              linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
+              linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px)
             `,
             backgroundSize: '48px 48px',
             pointerEvents: 'none'
@@ -77,14 +78,14 @@ export function Hero({ onOpenModal, onNavigate }) {
             style={{ 
               display: 'grid', 
               gridTemplateColumns: '1fr', 
-              gap: '3.5rem', 
+              gap: 'clamp(2.5rem, 5vw, 4rem)', 
               alignItems: 'center' 
             }}
             className="hero-grid"
           >
             
-            {/* LEFT COLUMN: High-Conviction Typography & CTAs */}
-            <div>
+            {/* LEFT COLUMN: 55% High-Conviction Typography & CTAs */}
+            <div className="hero-left-content">
               {/* Small Eyebrow */}
               <div 
                 style={{ 
@@ -94,13 +95,13 @@ export function Hero({ onOpenModal, onNavigate }) {
                   background: 'rgba(22, 185, 129, 0.12)', 
                   color: 'var(--color-accent)', 
                   border: '1px solid rgba(22, 185, 129, 0.25)', 
-                  padding: '0.35rem 0.9rem', 
+                  padding: '0.35rem 0.95rem', 
                   borderRadius: '100px', 
                   fontSize: '0.78rem', 
-                  fontWeight: 800, 
+                  fontWeight: 700, 
                   letterSpacing: '0.06em', 
                   textTransform: 'uppercase', 
-                  marginBottom: '1.5rem' 
+                  marginBottom: '1.25rem' 
                 }}
               >
                 <Sparkles size={13} color="var(--color-accent)" />
@@ -110,9 +111,9 @@ export function Hero({ onOpenModal, onNavigate }) {
               {/* Large Headline */}
               <h1 
                 style={{ 
-                  fontSize: '3.6rem', 
-                  fontWeight: 800, 
-                  lineHeight: 1.12, 
+                  fontSize: 'clamp(2.5rem, 4.8vw, 3.8rem)', 
+                  fontWeight: 700, 
+                  lineHeight: 1.15, 
                   color: '#ffffff', 
                   letterSpacing: '-0.03em', 
                   marginBottom: '1.25rem' 
@@ -123,59 +124,62 @@ export function Hero({ onOpenModal, onNavigate }) {
                 <span style={{ color: 'var(--color-accent)' }}>Invest With Confidence.</span>
               </h1>
 
-              {/* Supporting Copy */}
+              {/* Supporting Copy (under 2-3 lines) */}
               <p 
                 style={{ 
-                  fontSize: '1.18rem', 
+                  fontSize: '1.12rem', 
                   color: '#94a3b8', 
                   lineHeight: 1.65, 
                   maxWidth: '560px', 
-                  marginBottom: '2.5rem' 
+                  marginBottom: '2rem' 
                 }}
               >
                 Smart investment solutions, expert guidance and digital tools designed around your financial goals.
               </p>
 
               {/* Primary & Secondary Action Buttons */}
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '2.5rem' }}>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '1.5rem' }}>
                 <button 
-                  onClick={() => onOpenModal('consultation')}
+                  onClick={() => onOpenModal && onOpenModal('consultation')}
                   className="btn-primary-emerald"
-                  style={{ minHeight: '52px', padding: '0 2rem', fontSize: '1rem' }}
                 >
-                  <span>Start Investing</span>
-                  <ArrowRight size={17} />
+                  <span>Start Investing →</span>
                 </button>
 
                 <button 
-                  onClick={() => onNavigate('products')}
+                  onClick={() => onNavigate && onNavigate('products')}
                   className="btn-outline-white"
-                  style={{ minHeight: '52px', padding: '0 1.8rem', fontSize: '1rem' }}
                 >
                   <span>Explore Solutions</span>
                 </button>
               </div>
 
+              {/* Subtle Trust Statement Below Buttons (Section 6) */}
+              <div style={{ fontSize: '0.88rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
+                <CheckCircle2 size={15} color="var(--color-accent)" />
+                <span>Investment solutions designed around your goals.</span>
+              </div>
+
               {/* Regulatory Assurance Strip */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', color: '#cbd5e1' }}>
-                  <ShieldCheck size={16} color="var(--color-accent)" />
+                  <ShieldCheck size={15} color="var(--color-accent)" />
                   <span>AMFI Reg. ARN-182137</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', color: '#cbd5e1' }}>
-                  <CheckCircle2 size={16} color="var(--color-accent)" />
+                  <CheckCircle2 size={15} color="var(--color-accent)" />
                   <span>Zero Custody Risk</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', color: '#cbd5e1' }}>
-                  <Lock size={16} color="var(--color-accent)" />
-                  <span>Direct-to-AMC Execution</span>
+                  <Lock size={15} color="var(--color-accent)" />
+                  <span>Direct AMC Settlement</span>
                 </div>
               </div>
 
             </div>
 
-            {/* RIGHT COLUMN: Premium Financial Visualization (Dashboard / Card Composition) */}
-            <div style={{ position: 'relative' }}>
+            {/* RIGHT COLUMN: 45% Premium Financial Visualization */}
+            <div style={{ position: 'relative' }} className="hero-right-visual">
               
               {/* Main Financial Dashboard Card */}
               <div 
@@ -183,7 +187,7 @@ export function Hero({ onOpenModal, onNavigate }) {
                   background: 'var(--color-secondary)', 
                   borderRadius: '24px', 
                   border: '1px solid rgba(255, 255, 255, 0.1)', 
-                  padding: '2.25rem', 
+                  padding: 'clamp(1.75rem, 3.5vw, 2.25rem)', 
                   boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.55)',
                   backdropFilter: 'blur(16px)',
                   position: 'relative',
@@ -191,13 +195,13 @@ export function Hero({ onOpenModal, onNavigate }) {
                 }}
               >
                 {/* Header with Demo Label */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
                   <div>
-                    <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                    <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                       Wealth Management Dashboard
                     </div>
-                    <div style={{ fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginTop: '2px' }}>
-                      Private Client Portfolio
+                    <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#ffffff', marginTop: '2px' }}>
+                      Assure Private Client Portfolio
                     </div>
                   </div>
 
@@ -205,7 +209,7 @@ export function Hero({ onOpenModal, onNavigate }) {
                     style={{ 
                       fontSize: '0.68rem', 
                       fontWeight: 700, 
-                      padding: '0.25rem 0.6rem', 
+                      padding: '0.2rem 0.55rem', 
                       borderRadius: '6px', 
                       background: 'rgba(255, 255, 255, 0.08)', 
                       color: '#94a3b8',
@@ -217,10 +221,10 @@ export function Hero({ onOpenModal, onNavigate }) {
                 </div>
 
                 {/* Portfolio Value & Growth Rate */}
-                <div style={{ marginBottom: '1.75rem' }}>
-                  <div style={{ fontSize: '0.82rem', color: '#94a3b8' }}>Total Portfolio Value</div>
-                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.85rem', marginTop: '0.25rem', flexWrap: 'wrap' }}>
-                    <div style={{ fontSize: '2.75rem', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums' }}>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <div style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Portfolio Value</div>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.75rem', marginTop: '0.25rem', flexWrap: 'wrap' }}>
+                    <div style={{ fontSize: 'clamp(2.2rem, 3.5vw, 2.75rem)', fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums' }}>
                       ₹24,80,000
                     </div>
                     <div style={{ 
@@ -229,34 +233,34 @@ export function Hero({ onOpenModal, onNavigate }) {
                       gap: '0.3rem', 
                       background: 'rgba(22, 185, 129, 0.15)', 
                       color: 'var(--color-accent)', 
-                      padding: '0.3rem 0.65rem', 
-                      borderRadius: '8px', 
-                      fontSize: '0.85rem', 
+                      padding: '0.25rem 0.6rem', 
+                      borderRadius: '6px', 
+                      fontSize: '0.82rem', 
                       fontWeight: 700,
                       border: '1px solid rgba(22, 185, 129, 0.3)' 
                     }}>
-                      <TrendingUp size={14} />
-                      <span>+18.6% Annualized</span>
+                      <TrendingUp size={13} />
+                      <span>+18.6%</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Smooth Portfolio Growth Line Chart (SVG) */}
-                <div style={{ marginBottom: '1.75rem', background: 'rgba(7, 26, 47, 0.6)', padding: '1.25rem', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                    <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600 }}>Capital Compounding Trajectory</span>
-                    <div style={{ display: 'flex', gap: '0.35rem' }}>
+                <div style={{ marginBottom: '1.5rem', background: 'rgba(7, 26, 47, 0.6)', padding: '1rem', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                    <span style={{ fontSize: '0.73rem', color: '#94a3b8', fontWeight: 600 }}>Portfolio Growth</span>
+                    <div style={{ display: 'flex', gap: '0.25rem' }}>
                       {['1Y', '3Y', '5Y', 'ALL'].map((r) => (
                         <button
                           key={r}
                           onClick={() => setSelectedRange(r)}
                           style={{
                             fontSize: '0.68rem',
-                            fontWeight: 700,
-                            padding: '0.2rem 0.5rem',
+                            fontWeight: 600,
+                            padding: '0.15rem 0.45rem',
                             borderRadius: '4px',
                             background: selectedRange === r ? 'var(--color-accent)' : 'transparent',
-                            color: selectedRange === r ? '#ffffff' : '#94a3b8',
+                            color: selectedRange === r ? '#071A2F' : '#94a3b8',
                             border: 'none',
                             cursor: 'pointer'
                           }}
@@ -268,38 +272,38 @@ export function Hero({ onOpenModal, onNavigate }) {
                   </div>
 
                   {/* SVG Chart */}
-                  <svg viewBox="0 0 360 160" style={{ width: '100%', height: '110px', overflow: 'visible' }}>
+                  <svg viewBox="0 0 360 140" style={{ width: '100%', height: '95px', overflow: 'visible' }}>
                     <defs>
-                      <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#16B981" stopOpacity="0.35" />
+                      <linearGradient id="chartGradientHero" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#16B981" stopOpacity="0.3" />
                         <stop offset="100%" stopColor="#16B981" stopOpacity="0.0" />
                       </linearGradient>
                     </defs>
 
                     {/* Subtle grid lines */}
-                    <line x1="0" y1="40" x2="360" y2="40" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
-                    <line x1="0" y1="90" x2="360" y2="90" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
-                    <line x1="0" y1="140" x2="360" y2="140" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
+                    <line x1="0" y1="35" x2="360" y2="35" stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
+                    <line x1="0" y1="80" x2="360" y2="80" stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
+                    <line x1="0" y1="125" x2="360" y2="125" stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
 
                     {/* Gradient Area Fill */}
                     <path
-                      d="M 20 150 Q 100 130 180 105 T 260 70 T 340 35 L 340 160 L 20 160 Z"
-                      fill="url(#chartGradient)"
+                      d="M 20 130 Q 100 115 180 90 T 260 60 T 340 25 L 340 140 L 20 140 Z"
+                      fill="url(#chartGradientHero)"
                     />
 
                     {/* Smooth Line Path */}
                     <path
-                      d="M 20 150 Q 100 130 180 105 T 260 70 T 340 35"
+                      d="M 20 130 Q 100 115 180 90 T 260 60 T 340 25"
                       fill="none"
                       stroke="#16B981"
-                      strokeWidth="3.5"
+                      strokeWidth="3"
                       strokeLinecap="round"
                     />
 
                     {/* Data Points */}
                     {chartPoints.map((pt, i) => (
                       <g key={i}>
-                        <circle cx={pt.x} cy={pt.y} r="4" fill="#071A2F" stroke="#16B981" strokeWidth="2.5" />
+                        <circle cx={pt.x} cy={pt.y - 10} r="3.5" fill="#071A2F" stroke="#16B981" strokeWidth="2" />
                       </g>
                     ))}
                   </svg>
@@ -307,24 +311,24 @@ export function Hero({ onOpenModal, onNavigate }) {
 
                 {/* Asset Allocation Breakdown */}
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
-                    <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                      Disciplined Asset Allocation
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                    <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                      Asset Allocation
                     </span>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--color-accent)', fontWeight: 600 }}>Optimized Risk-Return</span>
+                    <span style={{ fontSize: '0.72rem', color: 'var(--color-accent)', fontWeight: 600 }}>Optimal Balance</span>
                   </div>
 
                   {/* Multi-segmented Allocation Bar */}
-                  <div style={{ height: '8px', width: '100%', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '100px', display: 'flex', overflow: 'hidden', marginBottom: '0.75rem' }}>
+                  <div style={{ height: '7px', width: '100%', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '100px', display: 'flex', overflow: 'hidden', marginBottom: '0.65rem' }}>
                     <div style={{ width: '60%', background: '#16B981' }} title="Mutual Funds 60%" />
-                    <div style={{ width: '25%', background: '#38BDF8' }} title="Equities 25%" />
-                    <div style={{ width: '15%', background: '#F59E0B' }} title="Fixed Income 15%" />
+                    <div style={{ width: '25%', background: '#38BDF8' }} title="Equity 25%" />
+                    <div style={{ width: '15%', background: '#F59E0B' }} title="Bonds 15%" />
                   </div>
 
-                  <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', fontSize: '0.75rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.65rem', fontSize: '0.74rem' }}>
                     <span style={{ color: '#cbd5e1' }}><strong style={{ color: '#16B981' }}>●</strong> Mutual Funds (60%)</span>
-                    <span style={{ color: '#cbd5e1' }}><strong style={{ color: '#38BDF8' }}>●</strong> Equity Alpha (25%)</span>
-                    <span style={{ color: '#cbd5e1' }}><strong style={{ color: '#F59E0B' }}>●</strong> Bonds & FDs (15%)</span>
+                    <span style={{ color: '#cbd5e1' }}><strong style={{ color: '#38BDF8' }}>●</strong> Equity (25%)</span>
+                    <span style={{ color: '#cbd5e1' }}><strong style={{ color: '#F59E0B' }}>●</strong> Bonds (15%)</span>
                   </div>
                 </div>
 
@@ -334,27 +338,27 @@ export function Hero({ onOpenModal, onNavigate }) {
               <div 
                 style={{
                   position: 'absolute',
-                  top: '-18px',
-                  right: '-18px',
+                  top: '-15px',
+                  right: '-15px',
                   background: '#ffffff',
                   color: 'var(--color-primary)',
-                  borderRadius: '16px',
-                  padding: '0.85rem 1.15rem',
-                  boxShadow: '0 16px 32px rgba(0, 0, 0, 0.25)',
+                  borderRadius: '14px',
+                  padding: '0.75rem 1rem',
+                  boxShadow: '0 12px 28px rgba(0, 0, 0, 0.25)',
                   border: '1px solid var(--color-border)',
                   zIndex: 3,
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.75rem'
+                  gap: '0.65rem'
                 }}
-                className="d-none d-md-flex"
+                className="d-none-mobile"
               >
-                <div style={{ background: '#ecfdf5', padding: '0.5rem', borderRadius: '10px' }}>
-                  <TrendingUp size={20} color="#059669" />
+                <div style={{ background: '#ecfdf5', padding: '0.45rem', borderRadius: '8px' }}>
+                  <TrendingUp size={18} color="#059669" />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.7rem', color: 'var(--color-text-secondary)', fontWeight: 700, textTransform: 'uppercase' }}>Monthly Systematic Plan</div>
-                  <div style={{ fontSize: '0.98rem', fontWeight: 800, color: 'var(--color-primary)' }}>₹25,000 / month</div>
+                  <div style={{ fontSize: '0.68rem', color: 'var(--color-text-secondary)', fontWeight: 700, textTransform: 'uppercase' }}>Monthly Systematic Plan</div>
+                  <div style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--color-primary)' }}>₹25,000 / month</div>
                 </div>
               </div>
 
@@ -362,27 +366,27 @@ export function Hero({ onOpenModal, onNavigate }) {
               <div 
                 style={{
                   position: 'absolute',
-                  bottom: '-22px',
-                  left: '-22px',
+                  bottom: '-18px',
+                  left: '-18px',
                   background: '#ffffff',
                   color: 'var(--color-primary)',
-                  borderRadius: '16px',
-                  padding: '0.85rem 1.15rem',
-                  boxShadow: '0 16px 32px rgba(0, 0, 0, 0.25)',
+                  borderRadius: '14px',
+                  padding: '0.75rem 1rem',
+                  boxShadow: '0 12px 28px rgba(0, 0, 0, 0.25)',
                   border: '1px solid var(--color-border)',
                   zIndex: 3,
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.75rem'
+                  gap: '0.65rem'
                 }}
-                className="d-none d-md-flex"
+                className="d-none-mobile"
               >
-                <div style={{ background: '#eff6ff', padding: '0.5rem', borderRadius: '10px' }}>
-                  <ShieldCheck size={20} color="#2563eb" />
+                <div style={{ background: '#eff6ff', padding: '0.45rem', borderRadius: '8px' }}>
+                  <ShieldCheck size={18} color="#2563eb" />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.7rem', color: 'var(--color-text-secondary)', fontWeight: 700, textTransform: 'uppercase' }}>Fiduciary Safety</div>
-                  <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--color-primary)' }}>Direct AMC Settlement</div>
+                  <div style={{ fontSize: '0.68rem', color: 'var(--color-text-secondary)', fontWeight: 700, textTransform: 'uppercase' }}>Fiduciary Safety</div>
+                  <div style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--color-primary)' }}>Direct AMC Settlement</div>
                 </div>
               </div>
 
@@ -392,8 +396,9 @@ export function Hero({ onOpenModal, onNavigate }) {
         </div>
       </section>
 
-      {/* SECTION 8: CLEAN TRUST STRIP (Immediately Below Hero) */}
+      {/* SECTION 8 & 9: CLEAN TRUST STRIP (White #FFFFFF Background, Section Transitions Rhythm) */}
       <section 
+        id="trust-strip"
         style={{ 
           background: 'var(--color-white)', 
           borderBottom: '1px solid var(--color-border)',
@@ -445,10 +450,10 @@ export function Hero({ onOpenModal, onNavigate }) {
                 }}
                 className={i > 0 ? "border-left-responsive" : ""}
               >
-                <div style={{ fontSize: '1.55rem', fontWeight: 800, color: 'var(--color-primary)', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+                <div style={{ fontSize: '1.45rem', fontWeight: 700, color: 'var(--color-primary)', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
                   {stat.metric}
                 </div>
-                <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--color-accent)', marginTop: '0.15rem' }}>
+                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-accent)', marginTop: '0.15rem' }}>
                   {stat.label}
                 </div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '0.2rem' }}>
@@ -460,23 +465,34 @@ export function Hero({ onOpenModal, onNavigate }) {
         </div>
       </section>
 
-      {/* Responsive Styles */}
+      {/* Responsive & Animation Styles */}
       <style>{`
         @media (min-width: 992px) {
           .hero-grid {
-            grid-template-columns: 1.15fr 0.85fr !important;
+            grid-template-columns: 1.2fr 0.8fr !important;
           }
         }
         @media (max-width: 767px) {
-          .hero-headline {
-            font-size: 2.6rem !important;
-          }
+          .d-none-mobile { display: none !important; }
           .border-left-responsive {
             border-left: none !important;
             border-top: 1px solid var(--color-border) !important;
             padding-top: 1rem !important;
           }
-          .d-none { display: none !important; }
+        }
+        .hero-left-content {
+          animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .hero-right-visual {
+          animation: heroFadeScale 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes heroFadeUp {
+          from { opacity: 0; transform: translateY(18px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes heroFadeScale {
+          from { opacity: 0; transform: scale(0.97) translateY(12px); }
+          to { opacity: 1; transform: scale(1) translateY(0); }
         }
       `}</style>
     </div>

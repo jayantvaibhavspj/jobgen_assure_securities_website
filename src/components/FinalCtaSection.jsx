@@ -7,114 +7,102 @@ export function FinalCtaSection({ onOpenModal, onNavigate }) {
     <section 
       id="final-cta"
       style={{ 
-        padding: '7rem 0', 
+        padding: 'var(--section-pad-desktop) 0', 
         background: 'var(--color-primary)', 
         color: '#ffffff',
         position: 'relative',
         overflow: 'hidden',
         borderBottom: '1px solid rgba(255,255,255,0.08)'
       }}
+      className="section-pad"
     >
-      {/* Subtle Background Financial Grid & Line Glow */}
+      {/* Subtle Background Radial & Financial Grid */}
       <div 
         style={{ 
           position: 'absolute', 
           inset: 0, 
-          backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)', 
+          backgroundImage: 'radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)', 
           backgroundSize: '32px 32px',
-          opacity: 0.5,
+          opacity: 0.45,
           pointerEvents: 'none'
         }} 
       />
 
+      {/* Abstract Financial-Line Artwork (Section 18) */}
       <div 
         style={{ 
           position: 'absolute', 
           bottom: '0', 
           left: '0', 
           right: '0', 
-          height: '180px', 
+          height: '160px', 
           pointerEvents: 'none',
-          opacity: 0.25
+          opacity: 0.2
         }}
       >
-        <svg width="100%" height="100%" viewBox="0 0 1200 180" preserveAspectRatio="none">
+        <svg width="100%" height="100%" viewBox="0 0 1200 160" preserveAspectRatio="none">
           <path 
-            d="M 0 160 Q 300 80 600 120 T 1200 40 L 1200 180 L 0 180 Z" 
-            fill="url(#ctaLineGradient)" 
+            d="M 0 140 Q 300 70 600 100 T 1200 30 L 1200 160 L 0 160 Z" 
+            fill="url(#ctaLineGradientFinal)" 
           />
           <path 
-            d="M 0 160 Q 300 80 600 120 T 1200 40" 
+            d="M 0 140 Q 300 70 600 100 T 1200 30" 
             stroke="#16B981" 
             strokeWidth="2" 
             fill="none" 
           />
           <defs>
-            <linearGradient id="ctaLineGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#16B981" stopOpacity="0.4" />
+            <linearGradient id="ctaLineGradientFinal" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#16B981" stopOpacity="0.3" />
               <stop offset="100%" stopColor="#16B981" stopOpacity="0.0" />
             </linearGradient>
           </defs>
         </svg>
       </div>
 
-      <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '820px' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '780px' }}>
         
         {/* Eyebrow */}
-        <div 
-          style={{ 
-            display: 'inline-flex', 
-            alignItems: 'center', 
-            gap: '0.5rem', 
-            background: 'rgba(22, 185, 129, 0.12)', 
-            color: 'var(--color-accent)', 
-            padding: '0.4rem 1.1rem', 
-            borderRadius: '100px', 
-            fontSize: '0.82rem', 
-            fontWeight: 700, 
-            letterSpacing: '0.06em', 
-            textTransform: 'uppercase', 
-            marginBottom: '1.5rem' 
-          }}
-        >
-          <Sparkles size={14} />
+        <div className="eyebrow-pill emerald" style={{ marginBottom: '1.25rem' }}>
+          <Sparkles size={13} />
           <span>Your Wealth Architecture Starts Here</span>
         </div>
 
-        {/* Heading */}
+        {/* Heading (Section 18) */}
         <h2 
           style={{ 
-            fontSize: 'clamp(2.4rem, 4.5vw, 3.8rem)', 
-            fontWeight: 800, 
+            fontSize: 'clamp(2.4rem, 4.5vw, 3.6rem)', 
+            fontWeight: 700, 
             color: '#ffffff', 
             letterSpacing: '-0.03em', 
             lineHeight: 1.15, 
             marginBottom: '1.25rem' 
           }}
         >
-          Your Financial Goals Deserve a Strategy.
+          Your Financial Goals<br />
+          <span style={{ color: 'var(--color-accent)' }}>Deserve a Strategy.</span>
         </h2>
 
         {/* Supporting Copy */}
         <p 
           style={{ 
-            fontSize: '1.15rem', 
+            fontSize: '1.12rem', 
             color: '#94a3b8', 
             lineHeight: 1.65, 
-            maxWidth: '620px', 
-            margin: '0 auto 2.75rem auto' 
+            maxWidth: '580px', 
+            margin: '0 auto 2.5rem auto' 
           }}
         >
           Take the next step toward a more structured financial future with seasoned, research-driven advisory from Assure Securities.
         </p>
 
-        {/* Buttons */}
+        {/* Action Buttons (Section 18 & 22) */}
         <div 
           style={{ 
             display: 'flex', 
             justifyContent: 'center', 
             alignItems: 'center', 
-            gap: '1.25rem', 
+            gap: '1rem', 
             flexWrap: 'wrap',
             marginBottom: '3rem'
           }}
@@ -122,7 +110,6 @@ export function FinalCtaSection({ onOpenModal, onNavigate }) {
           <button 
             onClick={() => onOpenModal && onOpenModal('consultation')}
             className="btn-primary-emerald"
-            style={{ fontSize: '1.05rem', padding: '0.95rem 2rem' }}
           >
             <span>Book a Consultation →</span>
           </button>
@@ -133,7 +120,6 @@ export function FinalCtaSection({ onOpenModal, onNavigate }) {
               else if (onOpenModal) onOpenModal('consultation');
             }}
             className="btn-outline-white"
-            style={{ fontSize: '1.05rem', padding: '0.95rem 2rem' }}
           >
             <span>Contact Us</span>
           </button>
@@ -147,24 +133,24 @@ export function FinalCtaSection({ onOpenModal, onNavigate }) {
             alignItems: 'center', 
             gap: 'clamp(1rem, 3vw, 2.5rem)', 
             flexWrap: 'wrap',
-            fontSize: '0.85rem',
+            fontSize: '0.82rem',
             color: '#94a3b8',
             borderTop: '1px solid rgba(255,255,255,0.08)',
-            paddingTop: '2rem'
+            paddingTop: '1.75rem'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <ShieldCheck size={16} color="var(--color-accent)" />
-            <span>AMFI Registered: <strong>ARN-182137</strong></span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+            <ShieldCheck size={15} color="var(--color-accent)" />
+            <span>AMFI Reg: <strong>ARN-182137</strong></span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Sparkles size={16} color="var(--color-accent)" />
-            <span>Zero Custody Direct AMC Settlement</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+            <Sparkles size={15} color="var(--color-accent)" />
+            <span>Zero Custody Direct Settlement</span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <MapPin size={16} color="var(--color-accent)" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+            <MapPin size={15} color="var(--color-accent)" />
             <span>Gomtinagar, Lucknow Headquarters</span>
           </div>
         </div>

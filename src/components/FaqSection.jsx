@@ -39,62 +39,32 @@ export function FaqSection({ onOpenModal }) {
     <section 
       id="faq-section"
       style={{ 
-        padding: '7rem 0', 
+        padding: 'var(--section-pad-desktop) 0', 
         background: 'var(--color-bg)',
         borderBottom: '1px solid var(--color-border)' 
       }}
+      className="section-pad"
     >
-      <div className="container" style={{ maxWidth: '880px' }}>
+      <div className="container" style={{ maxWidth: '840px' }}>
         
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <div 
-            style={{ 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              gap: '0.5rem', 
-              background: 'rgba(7, 26, 47, 0.06)', 
-              color: 'var(--color-primary)', 
-              padding: '0.4rem 1rem', 
-              borderRadius: '100px', 
-              fontSize: '0.8rem', 
-              fontWeight: 700, 
-              letterSpacing: '0.06em', 
-              textTransform: 'uppercase', 
-              marginBottom: '1rem' 
-            }}
-          >
-            <HelpCircle size={14} color="var(--color-accent)" />
+        <div className="section-header-center">
+          <div className="eyebrow-pill emerald">
+            <HelpCircle size={13} />
             <span>Clarity & Regulatory Compliance</span>
           </div>
 
-          <h2 
-            style={{ 
-              fontSize: 'clamp(2.2rem, 3.8vw, 3rem)', 
-              fontWeight: 800, 
-              color: 'var(--color-primary)', 
-              letterSpacing: '-0.03em', 
-              lineHeight: 1.2, 
-              marginBottom: '1rem' 
-            }}
-          >
-            Frequently Asked Questions
+          <h2>
+            Frequently Asked <span style={{ color: 'var(--color-accent)' }}>Questions</span>
           </h2>
 
-          <p 
-            style={{ 
-              fontSize: '1.05rem', 
-              color: 'var(--color-text-secondary)', 
-              lineHeight: 1.6, 
-              margin: 0 
-            }}
-          >
+          <p>
             Clear, unambiguous answers about how we protect your capital, structure asset allocation, and adhere to SEBI / AMFI guidelines.
           </p>
         </div>
 
-        {/* Accordion Stack */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        {/* Accordion Stack (Section 19: Large Question, Plus/Minus Icon, Smooth Transition) */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
           {FAQS.map((item, idx) => {
             const isOpen = openIndex === idx;
 
@@ -106,8 +76,8 @@ export function FaqSection({ onOpenModal }) {
                   borderRadius: '16px',
                   border: isOpen ? '1px solid var(--color-primary)' : '1px solid var(--color-border)',
                   overflow: 'hidden',
-                  boxShadow: isOpen ? '0 10px 25px -5px rgba(7, 26, 47, 0.08)' : '0 1px 3px rgba(0,0,0,0.02)',
-                  transition: 'all 0.25s ease'
+                  boxShadow: isOpen ? 'var(--shadow-card)' : 'none',
+                  transition: 'border-color 0.25s ease, box-shadow 0.25s ease'
                 }}
               >
                 {/* Question Row */}
@@ -115,7 +85,7 @@ export function FaqSection({ onOpenModal }) {
                   onClick={() => toggleFaq(idx)}
                   style={{
                     width: '100%',
-                    padding: '1.5rem 1.75rem',
+                    padding: '1.35rem 1.6rem',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
@@ -125,13 +95,14 @@ export function FaqSection({ onOpenModal }) {
                     textAlign: 'left',
                     cursor: 'pointer'
                   }}
+                  aria-expanded={isOpen}
                 >
                   <span 
                     style={{ 
-                      fontSize: '1.08rem', 
+                      fontSize: '1.05rem', 
                       fontWeight: 700, 
                       color: isOpen ? 'var(--color-primary)' : 'var(--color-text)', 
-                      letterSpacing: '-0.01em',
+                      letterSpacing: '-0.015em',
                       lineHeight: 1.4
                     }}
                   >
@@ -140,8 +111,8 @@ export function FaqSection({ onOpenModal }) {
 
                   <div 
                     style={{ 
-                      width: '32px', 
-                      height: '32px', 
+                      width: '30px', 
+                      height: '30px', 
                       borderRadius: '50%', 
                       background: isOpen ? 'var(--color-primary)' : 'var(--color-bg)', 
                       color: isOpen ? '#ffffff' : 'var(--color-primary)', 
@@ -152,7 +123,7 @@ export function FaqSection({ onOpenModal }) {
                       transition: 'all 0.2s ease'
                     }}
                   >
-                    {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+                    {isOpen ? <Minus size={15} /> : <Plus size={15} />}
                   </div>
                 </button>
 
@@ -160,12 +131,13 @@ export function FaqSection({ onOpenModal }) {
                 {isOpen && (
                   <div 
                     style={{ 
-                      padding: '0 1.75rem 1.5rem 1.75rem', 
-                      fontSize: '0.95rem', 
+                      padding: '0 1.6rem 1.35rem 1.6rem', 
+                      fontSize: '0.92rem', 
                       color: 'var(--color-text-secondary)', 
                       lineHeight: 1.65,
                       borderTop: '1px solid #f1f5f9',
-                      paddingTop: '1.25rem'
+                      paddingTop: '1rem',
+                      animation: 'faqFadeIn 0.3s ease forwards'
                     }}
                   >
                     {item.a}
@@ -179,8 +151,8 @@ export function FaqSection({ onOpenModal }) {
         {/* Still Have Questions Box */}
         <div 
           style={{ 
-            marginTop: '3.5rem', 
-            padding: '1.75rem 2rem', 
+            marginTop: '3rem', 
+            padding: '1.5rem 1.85rem', 
             borderRadius: '16px', 
             background: '#ffffff', 
             border: '1px solid var(--color-border)',
@@ -188,14 +160,14 @@ export function FaqSection({ onOpenModal }) {
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            gap: '1.25rem'
+            gap: '1rem'
           }}
         >
           <div>
-            <div style={{ fontWeight: 800, color: 'var(--color-primary)', fontSize: '1.05rem', marginBottom: '0.25rem' }}>
+            <div style={{ fontWeight: 700, color: 'var(--color-primary)', fontSize: '1rem', marginBottom: '0.2rem' }}>
               Still have questions about your mutual fund portfolio?
             </div>
-            <div style={{ fontSize: '0.88rem', color: 'var(--color-text-secondary)' }}>
+            <div style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>
               Our Lucknow advisory team is available for phone consultations and in-person discussions.
             </div>
           </div>
@@ -203,13 +175,20 @@ export function FaqSection({ onOpenModal }) {
           <button 
             onClick={() => onOpenModal && onOpenModal('consultation')}
             className="btn-primary-emerald"
-            style={{ fontSize: '0.88rem', padding: '0.65rem 1.35rem' }}
+            style={{ fontSize: '0.85rem', height: '44px', padding: '0 1.25rem' }}
           >
             <span>Ask an Advisor →</span>
           </button>
         </div>
 
       </div>
+
+      <style>{`
+        @keyframes faqFadeIn {
+          from { opacity: 0; transform: translateY(-4px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   );
 }

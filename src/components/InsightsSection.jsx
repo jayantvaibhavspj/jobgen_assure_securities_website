@@ -40,107 +40,39 @@ const ARTICLES = [
 
 export function InsightsSection({ onOpenModal }) {
   const [selectedArticle, setSelectedArticle] = useState(null);
-  const [activeCategory, setActiveCategory] = useState('All');
 
-  const categories = ['All', 'Asset Allocation', 'Tax Optimization', 'Fixed Income', 'Mutual Funds', 'Retirement'];
-
-  const filteredArticles = activeCategory === 'All' 
-    ? ARTICLES 
-    : ARTICLES.filter(a => a.category === activeCategory);
-
-  const featured = filteredArticles.find(a => a.featured) || filteredArticles[0] || ARTICLES[0];
-  const sideArticles = filteredArticles.filter(a => a.id !== featured.id);
+  const featured = ARTICLES[0];
+  const secondaryArticles = ARTICLES.slice(1);
 
   return (
     <section 
       id="insights"
       style={{ 
-        padding: '7rem 0', 
+        padding: 'var(--section-pad-desktop) 0', 
         background: '#ffffff',
         borderBottom: '1px solid var(--color-border)' 
       }}
+      className="section-pad"
     >
       <div className="container">
         
         {/* Section Header */}
-        <div style={{ maxWidth: '750px', margin: '0 auto 3.5rem auto', textAlign: 'center' }}>
-          <div 
-            style={{ 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              gap: '0.5rem', 
-              background: 'rgba(22, 185, 129, 0.1)', 
-              color: 'var(--color-accent)', 
-              padding: '0.4rem 1rem', 
-              borderRadius: '100px', 
-              fontSize: '0.8rem', 
-              fontWeight: 700, 
-              letterSpacing: '0.06em', 
-              textTransform: 'uppercase', 
-              marginBottom: '1rem' 
-            }}
-          >
-            <BookOpen size={14} />
+        <div className="section-header-center">
+          <div className="eyebrow-pill emerald">
+            <BookOpen size={13} />
             <span>Research & Wealth Intelligence</span>
           </div>
 
-          <h2 
-            style={{ 
-              fontSize: 'clamp(2.2rem, 3.8vw, 3rem)', 
-              fontWeight: 800, 
-              color: 'var(--color-primary)', 
-              letterSpacing: '-0.03em', 
-              lineHeight: 1.2, 
-              marginBottom: '1rem' 
-            }}
-          >
-            Insights For Smarter Financial Decisions
+          <h2>
+            Insights For Smarter <span style={{ color: 'var(--color-accent)' }}>Financial Decisions</span>
           </h2>
 
-          <p 
-            style={{ 
-              fontSize: '1.05rem', 
-              color: 'var(--color-text-secondary)', 
-              lineHeight: 1.6, 
-              margin: 0 
-            }}
-          >
+          <p>
             Institutional analysis, asset allocation frameworks, and actionable financial planning guides to elevate your investment perspective.
           </p>
         </div>
 
-        {/* Category Pills */}
-        <div 
-          style={{ 
-            display: 'flex', 
-            gap: '0.6rem', 
-            flexWrap: 'wrap', 
-            justifyContent: 'center', 
-            marginBottom: '3rem' 
-          }}
-        >
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              style={{
-                padding: '0.45rem 1.1rem',
-                borderRadius: '100px',
-                fontSize: '0.85rem',
-                fontWeight: 600,
-                border: activeCategory === cat ? '1px solid var(--color-primary)' : '1px solid var(--color-border)',
-                background: activeCategory === cat ? 'var(--color-primary)' : '#ffffff',
-                color: activeCategory === cat ? '#ffffff' : 'var(--color-text-secondary)',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Modern Editorial Layout: One Large Featured + Two Smaller */}
+        {/* Editorial Layout: ONE large featured article (approx 50%), TWO smaller articles (Section 17) */}
         <div 
           style={{ 
             display: 'grid', 
@@ -148,13 +80,13 @@ export function InsightsSection({ onOpenModal }) {
             gap: '2rem',
             alignItems: 'stretch'
           }}
+          className="insights-editorial-grid"
         >
-          {/* Large Featured Article (takes min 2 columns on wide screens) */}
+          {/* Large Featured Article (approx 50% width on desktop) */}
           <div 
             className="fintech-card"
             style={{ 
-              gridColumn: 'span 1', 
-              padding: 'clamp(1.75rem, 3.5vw, 2.75rem)',
+              padding: 'clamp(2rem, 3.5vw, 2.75rem)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
@@ -167,11 +99,11 @@ export function InsightsSection({ onOpenModal }) {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
                 <span 
                   style={{ 
-                    fontSize: '0.75rem', 
-                    fontWeight: 800, 
+                    fontSize: '0.72rem', 
+                    fontWeight: 700, 
                     color: 'var(--color-accent)', 
                     background: 'rgba(22, 185, 129, 0.1)', 
-                    padding: '0.3rem 0.75rem', 
+                    padding: '0.25rem 0.65rem', 
                     borderRadius: '6px', 
                     textTransform: 'uppercase', 
                     letterSpacing: '0.04em' 
@@ -180,16 +112,16 @@ export function InsightsSection({ onOpenModal }) {
                   Featured • {featured.category}
                 </span>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>
-                  <Clock size={14} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.78rem', color: 'var(--color-text-secondary)' }}>
+                  <Clock size={13} />
                   <span>{featured.readTime}</span>
                 </div>
               </div>
 
               <h3 
                 style={{ 
-                  fontSize: 'clamp(1.5rem, 2.5vw, 1.85rem)', 
-                  fontWeight: 800, 
+                  fontSize: 'clamp(1.5rem, 2.4vw, 1.85rem)', 
+                  fontWeight: 700, 
                   color: 'var(--color-primary)', 
                   letterSpacing: '-0.02em', 
                   lineHeight: 1.3, 
@@ -201,7 +133,7 @@ export function InsightsSection({ onOpenModal }) {
 
               <p 
                 style={{ 
-                  fontSize: '0.98rem', 
+                  fontSize: '0.95rem', 
                   color: 'var(--color-text-secondary)', 
                   lineHeight: 1.65, 
                   marginBottom: '1.75rem' 
@@ -214,14 +146,14 @@ export function InsightsSection({ onOpenModal }) {
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--color-border)', paddingTop: '1.25rem' }}>
                 <div>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-primary)' }}>{featured.author}</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{featured.date}</div>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-primary)' }}>{featured.author}</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--color-muted)' }}>{featured.date}</div>
                 </div>
 
                 <button 
                   onClick={() => setSelectedArticle(featured)}
                   className="btn-primary-navy"
-                  style={{ fontSize: '0.88rem', padding: '0.6rem 1.25rem' }}
+                  style={{ height: '44px', fontSize: '0.85rem', padding: '0 1.25rem' }}
                 >
                   <span>Read Article →</span>
                 </button>
@@ -229,9 +161,9 @@ export function InsightsSection({ onOpenModal }) {
             </div>
           </div>
 
-          {/* Side Column: Two Smaller Articles Stacked */}
+          {/* Two Smaller Articles Stacked Vertically */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            {sideArticles.map((art) => (
+            {secondaryArticles.map((art) => (
               <div
                 key={art.id}
                 className="fintech-card"
@@ -249,11 +181,11 @@ export function InsightsSection({ onOpenModal }) {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
                     <span 
                       style={{ 
-                        fontSize: '0.72rem', 
+                        fontSize: '0.7rem', 
                         fontWeight: 700, 
                         color: 'var(--color-primary)', 
                         background: 'var(--color-bg)', 
-                        padding: '0.25rem 0.6rem', 
+                        padding: '0.2rem 0.55rem', 
                         borderRadius: '6px', 
                         textTransform: 'uppercase' 
                       }}
@@ -261,14 +193,14 @@ export function InsightsSection({ onOpenModal }) {
                       {art.category}
                     </span>
 
-                    <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>
+                    <span style={{ fontSize: '0.73rem', color: 'var(--color-muted)' }}>
                       {art.readTime}
                     </span>
                   </div>
 
                   <h4 
                     style={{ 
-                      fontSize: '1.2rem', 
+                      fontSize: '1.18rem', 
                       fontWeight: 700, 
                       color: 'var(--color-primary)', 
                       letterSpacing: '-0.01em', 
@@ -292,8 +224,8 @@ export function InsightsSection({ onOpenModal }) {
                   </p>
                 </div>
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--color-border)', paddingTop: '0.85rem' }}>
-                  <span style={{ fontSize: '0.78rem', color: 'var(--color-text-secondary)' }}>{art.author}</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--color-border)', paddingTop: '0.75rem' }}>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--color-muted)' }}>{art.author}</span>
                   <button 
                     onClick={() => setSelectedArticle(art)}
                     style={{ 
@@ -308,7 +240,7 @@ export function InsightsSection({ onOpenModal }) {
                       gap: '0.25rem'
                     }}
                   >
-                    <span>Read Article →</span>
+                    <span>Read →</span>
                   </button>
                 </div>
               </div>
@@ -369,15 +301,15 @@ export function InsightsSection({ onOpenModal }) {
                 <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-accent)', textTransform: 'uppercase' }}>
                   {selectedArticle.category} • {selectedArticle.readTime}
                 </span>
-                <h3 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--color-primary)', marginTop: '0.5rem', lineHeight: 1.25 }}>
+                <h3 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'var(--color-primary)', marginTop: '0.5rem', lineHeight: 1.25 }}>
                   {selectedArticle.title}
                 </h3>
-                <div style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem' }}>
+                <div style={{ fontSize: '0.82rem', color: 'var(--color-muted)', marginTop: '0.4rem' }}>
                   Authored by {selectedArticle.author} • Published {selectedArticle.date}
                 </div>
               </div>
 
-              <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '1.5rem', fontSize: '1rem', color: 'var(--color-text)', lineHeight: 1.75 }}>
+              <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '1.5rem', fontSize: '0.98rem', color: 'var(--color-text)', lineHeight: 1.75 }}>
                 <p style={{ fontWeight: 600, color: 'var(--color-primary)', marginBottom: '1.25rem' }}>
                   {selectedArticle.excerpt}
                 </p>
@@ -399,6 +331,14 @@ export function InsightsSection({ onOpenModal }) {
         )}
 
       </div>
+
+      <style>{`
+        @media (min-width: 992px) {
+          .insights-editorial-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

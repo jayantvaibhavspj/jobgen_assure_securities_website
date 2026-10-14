@@ -49,62 +49,28 @@ export function MarketSection() {
     <section 
       id="market-overview"
       style={{ 
-        padding: '6rem 0', 
+        padding: 'var(--section-pad-desktop) 0', 
         background: 'var(--color-bg)',
         borderBottom: '1px solid var(--color-border)' 
       }}
+      className="section-pad"
     >
       <div className="container">
         
         {/* Section Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '3.5rem' }}>
-          <div>
-            <div 
-              style={{ 
-                display: 'inline-flex', 
-                alignItems: 'center', 
-                gap: '0.5rem', 
-                background: 'rgba(7, 26, 47, 0.06)', 
-                color: 'var(--color-primary)', 
-                padding: '0.35rem 0.9rem', 
-                borderRadius: '100px', 
-                fontSize: '0.78rem', 
-                fontWeight: 700, 
-                letterSpacing: '0.04em', 
-                textTransform: 'uppercase', 
-                marginBottom: '0.75rem' 
-              }}
-            >
-              <Clock size={13} color="var(--color-accent)" />
-              <span>Indicative Market Snapshot • Educational Overview</span>
-            </div>
-
-            <h2 
-              style={{ 
-                fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', 
-                fontWeight: 800, 
-                color: 'var(--color-primary)', 
-                letterSpacing: '-0.03em', 
-                lineHeight: 1.2, 
-                margin: 0 
-              }}
-            >
-              Markets At A Glance
-            </h2>
+        <div className="section-header-center">
+          <div className="eyebrow-pill navy">
+            <Clock size={13} color="var(--color-accent)" />
+            <span>Indicative Snapshot • Educational Overview</span>
           </div>
 
-          <div style={{ maxWidth: '460px' }}>
-            <p 
-              style={{ 
-                fontSize: '0.95rem', 
-                color: 'var(--color-text-secondary)', 
-                lineHeight: 1.6, 
-                margin: 0 
-              }}
-            >
-              Monitor key domestic indices and asset classes to maintain an informed perspective on broad Indian capital market developments.
-            </p>
-          </div>
+          <h2>
+            Markets At A <span style={{ color: 'var(--color-accent)' }}>Glance</span>
+          </h2>
+
+          <p>
+            Monitor key domestic indices and asset classes to maintain an informed perspective on broad Indian capital market developments.
+          </p>
         </div>
 
         {/* 4 Index Cards Grid */}
@@ -132,10 +98,10 @@ export function MarketSection() {
                 {/* Header: Name & Exchange */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
                   <div>
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-primary)', margin: 0 }}>
+                    <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0 }}>
                       {item.name}
                     </h3>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', fontWeight: 600 }}>
+                    <span style={{ fontSize: '0.73rem', color: 'var(--color-text-secondary)', fontWeight: 600 }}>
                       {item.exchange}
                     </span>
                   </div>
@@ -145,48 +111,48 @@ export function MarketSection() {
                       display: 'inline-flex', 
                       alignItems: 'center', 
                       gap: '0.25rem',
-                      padding: '0.25rem 0.55rem', 
+                      padding: '0.2rem 0.5rem', 
                       borderRadius: '6px', 
-                      fontSize: '0.75rem', 
+                      fontSize: '0.74rem', 
                       fontWeight: 700,
-                      background: item.isPositive ? 'rgba(22, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
-                      color: item.isPositive ? '#16B981' : '#ef4444'
+                      background: item.isPositive ? 'rgba(22, 185, 129, 0.1)' : 'rgba(220, 38, 38, 0.1)',
+                      color: item.isPositive ? '#16B981' : '#dc2626'
                     }}
                   >
-                    {item.isPositive ? <TrendingUp size={13} /> : <TrendingDown size={13} />}
+                    {item.isPositive ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
                     <span>{item.percent}</span>
                   </div>
                 </div>
 
                 {/* Primary Metric */}
-                <div style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--color-primary)', letterSpacing: '-0.02em', marginBottom: '0.35rem' }}>
+                <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', letterSpacing: '-0.02em', marginBottom: '0.25rem' }}>
                   {item.value}
                 </div>
 
-                <div style={{ fontSize: '0.82rem', color: item.isPositive ? '#16B981' : '#ef4444', fontWeight: 600, marginBottom: '1.25rem' }}>
+                <div style={{ fontSize: '0.8rem', color: item.isPositive ? '#16B981' : '#dc2626', fontWeight: 600, marginBottom: '1rem' }}>
                   {item.change} ({item.percent}) Today
                 </div>
 
-                {/* Mini SVG Trend Curve */}
-                <div style={{ height: '36px', width: '100%', marginBottom: '1.25rem' }}>
-                  <svg width="100%" height="100%" viewBox="0 0 200 36" fill="none">
+                {/* Mini SVG Trend Line (Thin, Calm) */}
+                <div style={{ height: '32px', width: '100%', marginBottom: '1rem' }}>
+                  <svg width="100%" height="100%" viewBox="0 0 200 32" fill="none">
                     <path 
-                      d={item.isPositive ? "M0 30 Q 50 25, 100 18 T 160 12 T 200 4" : "M0 6 Q 50 12, 100 20 T 160 26 T 200 32"} 
-                      stroke={item.isPositive ? "#16B981" : "#ef4444"} 
-                      strokeWidth="2" 
+                      d={item.isPositive ? "M0 26 Q 50 20, 100 15 T 160 10 T 200 4" : "M0 6 Q 50 12, 100 18 T 160 22 T 200 28"} 
+                      stroke={item.isPositive ? "#16B981" : "#dc2626"} 
+                      strokeWidth="1.75" 
                       fill="none" 
                     />
                   </svg>
                 </div>
 
-                {/* Explanation */}
-                <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', lineHeight: 1.5, margin: 0, marginBottom: '1rem' }}>
+                {/* Description */}
+                <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', lineHeight: 1.5, margin: 0, marginBottom: '0.85rem' }}>
                   {item.description}
                 </p>
               </div>
 
               {/* Range Context Footer */}
-              <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '0.75rem', fontSize: '0.72rem', color: 'var(--color-text-secondary)' }}>
+              <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '0.65rem', fontSize: '0.72rem', color: 'var(--color-muted)' }}>
                 {item.highLow}
               </div>
             </div>
@@ -194,7 +160,7 @@ export function MarketSection() {
         </div>
 
         {/* Disclaimer Footer */}
-        <div style={{ marginTop: '2.5rem', textAlign: 'center', fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>
+        <div style={{ marginTop: '2.5rem', textAlign: 'center', fontSize: '0.75rem', color: 'var(--color-muted)' }}>
           *Note: Market levels displayed above represent indicative reference snapshots for investor education. We advocate systematic goal-based mutual fund investing rather than short-term market timing.
         </div>
 

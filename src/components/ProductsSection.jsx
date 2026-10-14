@@ -7,13 +7,13 @@ import {
 import { PRODUCTS_DATA } from '../data/websiteData';
 
 const PRODUCT_ICONS = {
-  'mutual-funds': '/assets/mutual.png',
-  'fixed-deposits': '/assets/vault.png',
-  'bonds': '/assets/bank.png',
-  'life-insurance': '/assets/insuranse.png',
-  'general-insurance': '/assets/insuranse.png',
-  'tax-saving': '/assets/tax-calculate.png',
-  'pms-aif': '/assets/data-analytics.png'
+  'mutual-funds': TrendingUp,
+  'fixed-deposits': Landmark,
+  'bonds': ShieldCheck,
+  'life-insurance': HeartPulse,
+  'general-insurance': ShieldAlert,
+  'tax-saving': Receipt,
+  'pms-aif': Briefcase
 };
 
 export function ProductsSection({ onOpenModal, onNavigate }) {
@@ -26,49 +26,25 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
       id="solutions" 
       style={{ 
         background: 'var(--color-bg)', 
-        padding: '6.5rem 0',
+        padding: 'var(--section-pad-desktop) 0',
         borderBottom: '1px solid var(--color-border)'
       }}
+      className="section-pad"
     >
       <div className="container">
         
         {/* Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 3.75rem auto' }}>
-          <div 
-            style={{ 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              gap: '0.5rem', 
-              background: 'rgba(22, 185, 129, 0.1)', 
-              color: 'var(--color-accent)', 
-              border: '1px solid rgba(22, 185, 129, 0.25)', 
-              padding: '0.35rem 0.95rem', 
-              borderRadius: '100px', 
-              fontSize: '0.78rem', 
-              fontWeight: 800, 
-              letterSpacing: '0.04em', 
-              textTransform: 'uppercase', 
-              marginBottom: '1rem' 
-            }}
-          >
-            <Sparkles size={13} color="var(--color-accent)" />
-            <span>Comprehensive Product Suite</span>
+        <div className="section-header-center">
+          <div className="eyebrow-pill emerald">
+            <Sparkles size={13} />
+            <span>Comprehensive Wealth Suite</span>
           </div>
 
-          <h2 
-            style={{ 
-              fontSize: '2.6rem', 
-              fontWeight: 800, 
-              color: 'var(--color-primary)', 
-              letterSpacing: '-0.02em', 
-              marginBottom: '1rem',
-              lineHeight: 1.2
-            }}
-          >
+          <h2>
             Everything You Need to <span style={{ color: 'var(--color-accent)' }}>Build Your Wealth</span>
           </h2>
 
-          <p style={{ fontSize: '1.08rem', color: 'var(--color-text-secondary)', lineHeight: 1.6, margin: 0 }}>
+          <p>
             Explore investment and financial solutions designed around your goals.
           </p>
         </div>
@@ -84,22 +60,22 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
         >
           {PRODUCTS_DATA.map((prod) => {
             const isSelected = selectedProduct === prod.id;
-            const iconImg = PRODUCT_ICONS[prod.id] || '/assets/mutual.png';
+            const Icon = PRODUCT_ICONS[prod.id] || TrendingUp;
 
             return (
               <div
                 key={prod.id}
                 onClick={() => setSelectedProduct(isSelected ? null : prod.id)}
-                className="fintech-card"
+                className="fintech-card solution-card"
                 style={{
                   cursor: 'pointer',
                   borderColor: isSelected ? 'var(--color-accent)' : 'var(--color-border)',
-                  background: isSelected ? '#ffffff' : '#ffffff',
-                  boxShadow: isSelected ? '0 12px 32px rgba(22, 185, 129, 0.15)' : 'var(--shadow-card)',
+                  background: '#ffffff',
+                  boxShadow: isSelected ? '0 12px 28px rgba(22, 185, 129, 0.12)' : 'var(--shadow-card)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  padding: '2.25rem'
+                  padding: '2rem'
                 }}
               >
                 <div>
@@ -107,29 +83,25 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
                     <div 
                       style={{ 
-                        width: '52px', 
-                        height: '52px', 
-                        borderRadius: '14px', 
-                        background: 'var(--color-bg)', 
+                        width: '46px', 
+                        height: '46px', 
+                        borderRadius: '12px', 
+                        background: 'rgba(7, 26, 47, 0.04)', 
                         border: '1px solid var(--color-border)',
                         display: 'flex', 
                         alignItems: 'center', 
                         justifyContent: 'center',
-                        padding: '10px'
+                        color: 'var(--color-primary)'
                       }}
+                      className="card-icon-wrap"
                     >
-                      <img 
-                        src={iconImg} 
-                        alt={prod.title} 
-                        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                        onError={(e) => { e.target.style.display = 'none'; }}
-                      />
+                      <Icon size={22} strokeWidth={1.8} />
                     </div>
 
                     <span 
                       style={{ 
                         fontSize: '0.72rem', 
-                        fontWeight: 800, 
+                        fontWeight: 700, 
                         color: 'var(--color-primary)', 
                         background: 'var(--color-bg)', 
                         padding: '0.25rem 0.65rem', 
@@ -139,129 +111,151 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
                         letterSpacing: '0.04em'
                       }}
                     >
-                      {prod.id.replace('-', ' ')}
+                      {prod.subcategories ? prod.subcategories[0] : 'Wealth Solution'}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'var(--color-primary)', marginBottom: '0.65rem', letterSpacing: '-0.01em' }}>
+                  <h3 
+                    style={{ 
+                      fontSize: '1.35rem', 
+                      fontWeight: 700, 
+                      color: 'var(--color-primary)', 
+                      letterSpacing: '-0.02em', 
+                      marginBottom: '0.65rem' 
+                    }}
+                  >
                     {prod.title}
                   </h3>
 
                   {/* Short Description */}
-                  <p style={{ fontSize: '0.92rem', color: 'var(--color-text-secondary)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                    {prod.summary.slice(0, 125)}...
+                  <p 
+                    style={{ 
+                      fontSize: '0.92rem', 
+                      color: 'var(--color-text-secondary)', 
+                      lineHeight: 1.6, 
+                      margin: 0,
+                      marginBottom: '1.5rem' 
+                    }}
+                  >
+                    {prod.summary}
                   </p>
                 </div>
 
-                {/* Bottom Action: Arrow interaction */}
+                {/* Bottom CTA Action (Section 10 & 21) */}
                 <div 
                   style={{ 
+                    borderTop: '1px solid var(--color-border)', 
+                    paddingTop: '1rem', 
                     display: 'flex', 
                     alignItems: 'center', 
                     justifyContent: 'space-between',
-                    paddingTop: '1rem',
-                    borderTop: '1px solid var(--color-border)',
                     fontSize: '0.88rem',
-                    fontWeight: 700,
-                    color: isSelected ? 'var(--color-accent)' : 'var(--color-primary)'
+                    fontWeight: 600,
+                    color: isSelected ? 'var(--color-accent)' : 'var(--color-primary)',
+                    transition: 'color 0.2s ease'
                   }}
+                  className="card-action-row"
                 >
-                  <span>{isSelected ? "Hide Details" : "Explore Solution"}</span>
-                  <ArrowRight size={17} style={{ transform: isSelected ? 'rotate(90deg)' : 'none', transition: 'transform 0.2s' }} />
+                  <span>{isSelected ? "Close Blueprint" : "Explore Solution"}</span>
+                  <div className="arrow-container">
+                    <ArrowRight size={16} strokeWidth={2} />
+                  </div>
                 </div>
-
               </div>
             );
           })}
         </div>
 
-        {/* Selected Product Interactive Overview Drawer */}
+        {/* Selected Product Blueprint Drawer */}
         {active && (
           <div 
             style={{ 
               background: '#ffffff', 
               borderRadius: '24px', 
               border: '1.5px solid var(--color-accent)', 
-              boxShadow: '0 20px 50px rgba(7, 26, 47, 0.08)',
-              padding: '3rem',
-              animation: 'fadeIn 0.25s ease'
+              padding: 'clamp(1.75rem, 4vw, 3rem)',
+              boxShadow: '0 20px 45px -10px rgba(7, 26, 47, 0.12)',
+              marginTop: '2rem'
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
               <div>
-                <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                  Solution Blueprint
+                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  Architecture & Allocation Blueprint
                 </span>
-                <h3 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--color-primary)', marginTop: '0.2rem' }}>
+                <h3 style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: '0.25rem 0' }}>
                   {active.title}
                 </h3>
-                <div style={{ fontSize: '1.05rem', color: 'var(--color-text-secondary)', fontWeight: 600, marginTop: '0.25rem' }}>
+                <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem', margin: 0 }}>
                   {active.tagline}
-                </div>
+                </p>
               </div>
 
               <button 
                 onClick={() => setSelectedProduct(null)}
-                style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-text-secondary)', padding: '0.4rem 0.85rem', borderRadius: '8px', background: 'var(--color-bg)', border: '1px solid var(--color-border)', cursor: 'pointer' }}
+                style={{ 
+                  background: 'var(--color-bg)', 
+                  border: '1px solid var(--color-border)', 
+                  padding: '0.4rem 0.9rem', 
+                  borderRadius: '8px', 
+                  fontSize: '0.82rem', 
+                  fontWeight: 600, 
+                  cursor: 'pointer',
+                  color: 'var(--color-primary)' 
+                }}
               >
-                ✕ Close Preview
+                Close Blueprint ✕
               </button>
             </div>
 
-            <p style={{ fontSize: '1rem', color: 'var(--color-text-secondary)', lineHeight: 1.7, maxWidth: '840px', marginBottom: '2rem' }}>
-              {active.summary}
-            </p>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem', marginBottom: '2rem' }}>
-              <div style={{ background: 'var(--color-bg)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--color-border)' }}>
-                <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--color-primary)', marginBottom: '0.75rem' }}>
-                  Key Advantages & Coverage
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-                  {active.details.map((detail, idx) => (
-                    <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                      <CheckCircle2 size={16} color="var(--color-accent)" style={{ flexShrink: 0, marginTop: '2px' }} />
-                      <span style={{ fontSize: '0.85rem', color: 'var(--color-text)', lineHeight: 1.5 }}>{detail}</span>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: '2rem' }}>
+              {/* Left Column: Key Features */}
+              <div>
+                <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-primary)', marginBottom: '1rem' }}>
+                  Core Investment Characteristics
+                </h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {active.details && active.details.map((detail, idx) => (
+                    <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
+                      <CheckCircle2 size={16} color="var(--color-accent)" style={{ flexShrink: 0, marginTop: '3px' }} />
+                      <span style={{ fontSize: '0.88rem', color: 'var(--color-text)', lineHeight: 1.5 }}>
+                        {detail}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div style={{ background: 'var(--color-bg)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--color-border)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              {/* Right Column: Highlight & Advisory Notice */}
+              <div style={{ background: 'var(--color-bg)', borderRadius: '16px', padding: '1.5rem', border: '1px solid var(--color-border)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--color-primary)', marginBottom: '0.5rem' }}>
-                    Available Sub-Categories
-                  </div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', marginBottom: '1.5rem' }}>
-                    {active.subcategories.map((sub, idx) => (
-                      <span key={idx} style={{ background: '#ffffff', border: '1px solid var(--color-border)', padding: '0.35rem 0.75rem', borderRadius: '8px', fontSize: '0.78rem', fontWeight: 600, color: 'var(--color-primary)' }}>
-                        {sub}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div style={{ background: '#ecfdf5', border: '1px solid #a7f3d0', padding: '0.85rem 1rem', borderRadius: '12px' }}>
-                    <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#047857', textTransform: 'uppercase' }}>Fiduciary Highlight</div>
-                    <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#065f46', marginTop: '2px' }}>{active.highlight}</div>
-                  </div>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-primary)', textTransform: 'uppercase' }}>
+                    Strategic Advantage
+                  </span>
+                  <p style={{ fontSize: '0.92rem', color: 'var(--color-text)', fontWeight: 600, margin: '0.5rem 0 1rem 0' }}>
+                    {active.highlight}
+                  </p>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', lineHeight: 1.5, margin: 0 }}>
+                    Our advisors help evaluate scheme expense ratios, portfolio overlap, and tracking error before onboarding.
+                  </p>
                 </div>
 
-                <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
+                <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                   <button 
-                    onClick={() => onOpenModal('consultation')}
+                    onClick={() => onOpenModal && onOpenModal('consultation')}
                     className="btn-primary-emerald"
-                    style={{ minHeight: '46px', padding: '0 1.5rem', fontSize: '0.9rem' }}
+                    style={{ fontSize: '0.9rem', height: '46px', padding: '0 1.25rem' }}
                   >
-                    <span>Invest in {active.title}</span>
-                    <ArrowRight size={15} />
+                    <span>Request Portfolio Advice →</span>
                   </button>
+
                   <button 
-                    onClick={() => onNavigate(`products/${active.id}`)}
+                    onClick={() => onNavigate && onNavigate(`products/${active.id}`)}
                     className="btn-outline-navy"
-                    style={{ minHeight: '46px', padding: '0 1.5rem', fontSize: '0.9rem' }}
+                    style={{ fontSize: '0.9rem', height: '46px', padding: '0 1.25rem' }}
                   >
-                    <span>Full Product Guide</span>
+                    <span>View All Schemes</span>
                   </button>
                 </div>
               </div>
@@ -271,6 +265,32 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
         )}
 
       </div>
+
+      {/* Card Micro-Interaction Styles (Section 10) */}
+      <style>{`
+        .solution-card {
+          transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+        }
+        .solution-card:hover {
+          transform: translateY(-4px);
+          border-color: #cbd5e1;
+        }
+        .solution-card:hover .arrow-container svg {
+          transform: translateX(5px);
+          color: var(--color-accent);
+        }
+        .solution-card:hover .card-icon-wrap {
+          color: var(--color-accent);
+          background-color: rgba(22, 185, 129, 0.08);
+          border-color: rgba(22, 185, 129, 0.25);
+        }
+        .arrow-container svg {
+          transition: transform 300ms ease, color 300ms ease;
+        }
+        .card-icon-wrap {
+          transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease;
+        }
+      `}</style>
     </section>
   );
 }

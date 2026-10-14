@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Phone, Mail, MapPin, Clock, Send, CheckCircle2, 
-  MessageSquare, ExternalLink, ShieldCheck 
+  MessageSquare, ExternalLink, ShieldCheck, Sparkles 
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/websiteData';
 
@@ -25,300 +25,250 @@ export function ContactSection({ theme = "light" }) {
     setIsSent(true);
   };
 
-  const inputStyle = {
-    width: '100%',
-    padding: '0.75rem',
-    borderRadius: '10px',
-    border: isDark ? '1px solid #334155' : '1px solid #cbd5e1',
-    background: isDark ? '#0f172a' : '#ffffff',
-    color: isDark ? '#ffffff' : '#0f172a',
-    outline: 'none'
-  };
-
-  const labelStyle = {
-    fontSize: '0.85rem',
-    fontWeight: 600,
-    color: isDark ? '#cbd5e1' : '#334155',
-    display: 'block',
-    marginBottom: '0.35rem'
-  };
-
   return (
     <section 
       id="contact" 
-      className={isDark ? "section-dark-navy section-wrapper" : "section-wrapper"} 
       style={{ 
-        background: isDark ? '#0b1120' : '#f8fafc',
-        borderTop: isDark ? '1px solid rgba(255,255,255,0.08)' : 'none'
+        background: isDark ? 'var(--color-primary)' : 'var(--color-bg)',
+        padding: 'var(--section-pad-desktop) 0',
+        borderTop: isDark ? '1px solid rgba(255,255,255,0.08)' : 'none',
+        color: isDark ? '#ffffff' : 'var(--color-text)'
       }}
+      className="section-pad"
     >
       <div className="container">
         
         {/* Section Header */}
-        <div className="section-title-wrap">
-          <div className="badge-tag">Get In Touch</div>
-          <h2 className="section-heading" style={{ color: isDark ? '#ffffff' : '#0f172a' }}>
-            Visit Our Office or <span className="gradient-text">Schedule a Consultation</span>
+        <div className="section-header-center">
+          <div className="eyebrow-pill emerald">
+            <Sparkles size={13} />
+            <span>Lucknow Advisory Headquarters</span>
+          </div>
+
+          <h2 style={{ color: isDark ? '#ffffff' : 'var(--color-primary)' }}>
+            Visit Our Office or <span style={{ color: 'var(--color-accent)' }}>Schedule a Consultation</span>
           </h2>
-          <p className="section-subheading" style={{ color: isDark ? '#cbd5e1' : '#475569' }}>
-            Whether you want to start your first ₹1,000 SIP, rebalance an existing portfolio, or explore corporate FDs, our certified advisors are here to help.
+
+          <p style={{ color: isDark ? '#94a3b8' : 'var(--color-text-secondary)' }}>
+            Whether you want to start a disciplined SIP, rebalance an existing portfolio, or explore corporate FDs, our certified advisors are here to help.
           </p>
         </div>
 
         {/* 2-Column Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2.5rem' }} className="contact-grid">
-          
-          {/* Left Column: Office & Direct Communication Details */}
-          <div>
-            <div style={{ 
-              background: isDark ? 'rgba(30, 41, 59, 0.75)' : '#ffffff', 
-              borderRadius: '24px', 
-              padding: '2.5rem', 
-              border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid #e2e8f0', 
-              boxShadow: 'var(--shadow-card)', 
-              height: '100%', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              justifyContent: 'space-between' 
-            }}>
-              
-              <div>
-                <h3 style={{ fontSize: '1.6rem', color: isDark ? '#ffffff' : '#0f172a', fontWeight: 800, marginBottom: '1.5rem' }}>
-                  Assure Securities Headquarters
-                </h3>
+        <div 
+          style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+            gap: '2.5rem',
+            alignItems: 'stretch'
+          }}
+        >
+          {/* Left Column: Direct Credentials & Location */}
+          <div 
+            className={isDark ? "fintech-card-dark" : "fintech-card"}
+            style={{ 
+              padding: 'clamp(2rem, 3.5vw, 2.75rem)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between'
+            }}
+          >
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: 'var(--color-accent)', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                <ShieldCheck size={16} />
+                <span>AMFI Registered ARN-182137</span>
+              </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '2rem' }}>
-                  {/* Address */}
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-                    <div style={{ background: isDark ? 'rgba(37,99,235,0.2)' : '#eff6ff', padding: '0.75rem', borderRadius: '12px', marginTop: '2px' }}>
-                      <MapPin size={22} color={isDark ? "#38bdf8" : "#2563eb"} />
-                    </div>
-                    <div>
-                      <h4 style={{ fontSize: '1rem', color: isDark ? '#ffffff' : '#0f172a', fontWeight: 700, marginBottom: '0.2rem' }}>Office Address</h4>
-                      <p style={{ fontSize: '0.92rem', color: isDark ? '#94a3b8' : '#475569', lineHeight: 1.5, margin: 0 }}>
-                        {COMPANY_INFO.address}
-                      </p>
-                      <a 
-                        href={COMPANY_INFO.googleMapsUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.82rem', fontWeight: 700, color: '#38bdf8', marginTop: '0.4rem' }}
-                      >
-                        <span>View on Google Maps</span>
-                        <ExternalLink size={13} />
-                      </a>
-                    </div>
-                  </div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: isDark ? '#ffffff' : 'var(--color-primary)', marginBottom: '0.75rem' }}>
+                Assure Securities Corporate Desk
+              </h3>
 
-                  {/* Phone Hotlines */}
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-                    <div style={{ background: isDark ? 'rgba(16,185,129,0.2)' : '#ecfdf5', padding: '0.75rem', borderRadius: '12px', marginTop: '2px' }}>
-                      <Phone size={22} color="#10b981" />
-                    </div>
-                    <div>
-                      <h4 style={{ fontSize: '1rem', color: isDark ? '#ffffff' : '#0f172a', fontWeight: 700, marginBottom: '0.2rem' }}>Phone & Mobile Hotlines</h4>
-                      <p style={{ fontSize: '0.92rem', color: isDark ? '#94a3b8' : '#475569', margin: 0 }}>
-                        Mobile: <a href={`tel:${COMPANY_INFO.phone}`} style={{ fontWeight: 700, color: isDark ? '#38bdf8' : '#2563eb' }}>{COMPANY_INFO.phone}</a>
-                      </p>
-                      <p style={{ fontSize: '0.92rem', color: isDark ? '#94a3b8' : '#475569', margin: 0 }}>
-                        Office Landline: <a href={`tel:${COMPANY_INFO.officePhone}`} style={{ fontWeight: 600, color: isDark ? '#cbd5e1' : '#334155' }}>{COMPANY_INFO.officePhone}</a>
-                      </p>
-                    </div>
-                  </div>
+              <p style={{ fontSize: '0.95rem', color: isDark ? '#94a3b8' : 'var(--color-text-secondary)', lineHeight: 1.6, marginBottom: '2rem' }}>
+                We maintain direct empanelment across 40+ leading AMCs with paperless KYC and automated mandate generation for families across India.
+              </p>
 
-                  {/* Email */}
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-                    <div style={{ background: isDark ? 'rgba(245,158,11,0.2)' : '#fef3c7', padding: '0.75rem', borderRadius: '12px', marginTop: '2px' }}>
-                      <Mail size={22} color="#f59e0b" />
-                    </div>
-                    <div>
-                      <h4 style={{ fontSize: '1rem', color: isDark ? '#ffffff' : '#0f172a', fontWeight: 700, marginBottom: '0.2rem' }}>Email Support</h4>
-                      <p style={{ fontSize: '0.92rem', color: isDark ? '#94a3b8' : '#475569', margin: 0 }}>
-                        <a href={`mailto:${COMPANY_INFO.email}`} style={{ fontWeight: 600, color: isDark ? '#38bdf8' : '#2563eb' }}>{COMPANY_INFO.email}</a>
-                      </p>
-                      <span style={{ fontSize: '0.78rem', color: isDark ? '#64748b' : '#64748b' }}>Response within 4 business hours</span>
-                    </div>
-                  </div>
-
-                  {/* Working Hours */}
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-                    <div style={{ background: isDark ? 'rgba(139,92,246,0.2)' : '#f3e8ff', padding: '0.75rem', borderRadius: '12px', marginTop: '2px' }}>
-                      <Clock size={22} color="#a78bfa" />
-                    </div>
-                    <div>
-                      <h4 style={{ fontSize: '1rem', color: isDark ? '#ffffff' : '#0f172a', fontWeight: 700, marginBottom: '0.2rem' }}>Advisory Desk Hours</h4>
-                      <p style={{ fontSize: '0.92rem', color: isDark ? '#94a3b8' : '#475569', margin: 0 }}>
-                        Monday – Saturday: 9:30 AM to 6:30 PM (IST)
-                      </p>
-                      <span style={{ fontSize: '0.78rem', color: isDark ? '#64748b' : '#64748b' }}>Sunday: Prior appointments only</span>
-                    </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '2.5rem' }}>
+                <div style={{ display: 'flex', gap: '0.75rem' }}>
+                  <MapPin size={20} color="var(--color-accent)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 600, color: isDark ? '#ffffff' : 'var(--color-primary)' }}>Registered Office</div>
+                    <div style={{ fontSize: '0.88rem', color: isDark ? '#cbd5e1' : 'var(--color-text-secondary)', lineHeight: 1.5 }}>{COMPANY_INFO.address}</div>
                   </div>
                 </div>
 
-              </div>
+                <div style={{ display: 'flex', gap: '0.75rem' }}>
+                  <Phone size={20} color="var(--color-accent)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 600, color: isDark ? '#ffffff' : 'var(--color-primary)' }}>Phone Assistance</div>
+                    <div style={{ fontSize: '0.88rem', color: isDark ? '#cbd5e1' : 'var(--color-text-secondary)' }}>{COMPANY_INFO.phone} • {COMPANY_INFO.officePhone}</div>
+                  </div>
+                </div>
 
-              {/* Instant WhatsApp Support Button */}
-              <div style={{ 
-                background: isDark ? 'rgba(22, 101, 52, 0.25)' : '#f0fdf4', 
-                padding: '1.25rem', 
+                <div style={{ display: 'flex', gap: '0.75rem' }}>
+                  <Mail size={20} color="var(--color-accent)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 600, color: isDark ? '#ffffff' : 'var(--color-primary)' }}>Official Support Email</div>
+                    <div style={{ fontSize: '0.88rem', color: isDark ? '#cbd5e1' : 'var(--color-text-secondary)' }}>{COMPANY_INFO.email}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Instant WhatsApp Support */}
+            <div 
+              style={{ 
+                background: isDark ? 'rgba(22, 185, 129, 0.1)' : '#f0fdf4', 
+                border: '1px solid rgba(22, 185, 129, 0.25)', 
                 borderRadius: '16px', 
-                border: isDark ? '1px solid rgba(34, 197, 94, 0.3)' : '1px solid #bbf7d0', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'space-between', 
-                flexWrap: 'wrap', 
-                gap: '1rem' 
-              }}>
-                <div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: isDark ? '#4ade80' : '#166534' }}>Chat with us on WhatsApp</div>
-                  <div style={{ fontSize: '0.78rem', color: isDark ? '#86efac' : '#15803d' }}>Instant portfolio review & scheme questions</div>
-                </div>
-                <a 
-                  href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=Hello%20Assure%20Securities,%20I%20would%20like%20to%20know%20more%20about%20your%20services.`} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn-emerald"
-                  style={{ padding: '0.55rem 1.25rem', fontSize: '0.85rem' }}
-                >
-                  <MessageSquare size={15} />
-                  <span>Open WhatsApp</span>
-                </a>
+                padding: '1.25rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '1rem'
+              }}
+            >
+              <div>
+                <div style={{ fontSize: '0.9rem', fontWeight: 700, color: isDark ? '#ffffff' : '#065f46' }}>Quick WhatsApp Support</div>
+                <div style={{ fontSize: '0.78rem', color: isDark ? '#94a3b8' : '#047857' }}>Instant scheme questions & appointment booking</div>
               </div>
 
+              <a 
+                href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=Hello%20Assure%20Securities,%20I%20would%20like%20to%20consult%20an%20advisor.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary-emerald"
+                style={{ height: '42px', padding: '0 1.15rem', fontSize: '0.85rem' }}
+              >
+                <MessageSquare size={14} />
+                <span>Chat on WhatsApp</span>
+              </a>
             </div>
           </div>
 
-          {/* Right Column: Interactive Consultation & Query Form */}
-          <div>
-            <div style={{ 
-              background: isDark ? 'rgba(30, 41, 59, 0.75)' : '#ffffff', 
-              borderRadius: '24px', 
-              padding: '2.5rem', 
-              border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid #e2e8f0', 
-              boxShadow: 'var(--shadow-card)' 
-            }}>
-              
-              {isSent ? (
-                <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
-                  <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: isDark ? 'rgba(16,185,129,0.2)' : '#ecfdf5', color: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem auto' }}>
-                    <CheckCircle2 size={36} />
-                  </div>
-                  <h3 style={{ fontSize: '1.6rem', color: isDark ? '#ffffff' : '#0f172a', fontWeight: 800, marginBottom: '0.5rem' }}>Message Received!</h3>
-                  <p style={{ color: isDark ? '#cbd5e1' : '#475569', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                    Thank you, <strong>{contactForm.name}</strong>. An authorized representative of Assure Securities will call you on <strong>{contactForm.phone}</strong> to guide you through your requirements.
-                  </p>
-                  <button 
-                    onClick={() => { setIsSent(false); setContactForm({ name: '', email: '', phone: '', service: 'Mutual Funds', query: '' }); }}
-                    className="btn-secondary"
-                  >
-                    Send Another Message
-                  </button>
+          {/* Right Column: Section 23 Form UI */}
+          <div 
+            className="fintech-card"
+            style={{ 
+              background: '#ffffff',
+              padding: 'clamp(2rem, 3.5vw, 2.75rem)'
+            }}
+          >
+            {isSent ? (
+              <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
+                <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'rgba(22, 185, 129, 0.15)', color: 'var(--color-accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem auto' }}>
+                  <CheckCircle2 size={32} />
                 </div>
-              ) : (
-                <form onSubmit={handleSend}>
-                  <div style={{ marginBottom: '1.5rem' }}>
-                    <span className="badge-tag" style={{ margin: 0 }}>Free Advisory</span>
-                    <h3 style={{ fontSize: '1.6rem', color: isDark ? '#ffffff' : '#0f172a', fontWeight: 800, marginTop: '0.4rem' }}>
-                      Send Us Your Query
-                    </h3>
-                    <p style={{ fontSize: '0.88rem', color: isDark ? '#94a3b8' : '#64748b', marginTop: '0.2rem' }}>
-                      Fill out this quick form, and we will get back to you promptly.
-                    </p>
-                  </div>
+                <h3 style={{ fontSize: '1.5rem', color: 'var(--color-primary)', fontWeight: 700, marginBottom: '0.5rem' }}>Callback Request Received</h3>
+                <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                  Thank you, <strong>{contactForm.name}</strong>. An authorized representative of Assure Securities will call you on <strong>{contactForm.phone}</strong> to guide you through your requirements.
+                </p>
+                <button 
+                  onClick={() => { setIsSent(false); setContactForm({ name: '', email: '', phone: '', service: 'Mutual Funds', query: '' }); }}
+                  className="btn-outline-navy"
+                  style={{ height: '44px', fontSize: '0.88rem' }}
+                >
+                  Send Another Inquiry
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSend}>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                    Unbiased Client Guidance
+                  </span>
+                  <h3 style={{ fontSize: '1.5rem', color: 'var(--color-primary)', fontWeight: 700, marginTop: '0.25rem' }}>
+                    Request Advisory Call
+                  </h3>
+                  <p style={{ fontSize: '0.88rem', color: 'var(--color-text-secondary)', marginTop: '0.2rem' }}>
+                    Fill out this form, and our Lucknow investment desk will connect with you promptly.
+                  </p>
+                </div>
 
-                  <div style={{ marginBottom: '1.25rem' }}>
-                    <label style={labelStyle}>Full Name *</label>
+                <div style={{ marginBottom: '1.25rem' }}>
+                  <label className="fintech-label">Full Name *</label>
+                  <input 
+                    type="text" 
+                    required 
+                    placeholder="e.g. Anand Trivedi"
+                    value={contactForm.name}
+                    onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                    className="fintech-input"
+                  />
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '1rem', marginBottom: '1.25rem' }}>
+                  <div>
+                    <label className="fintech-label">Mobile Number *</label>
                     <input 
-                      type="text" 
+                      type="tel" 
                       required 
-                      placeholder="e.g. Anand Trivedi"
-                      value={contactForm.name}
-                      onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                      style={inputStyle}
+                      placeholder="10-digit number"
+                      value={contactForm.phone}
+                      onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
+                      className="fintech-input"
                     />
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
-                    <div>
-                      <label style={labelStyle}>Mobile Number *</label>
-                      <input 
-                        type="tel" 
-                        required 
-                        placeholder="10-digit number"
-                        value={contactForm.phone}
-                        onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
-                        style={inputStyle}
-                      />
-                    </div>
-                    <div>
-                      <label style={labelStyle}>Email Address</label>
-                      <input 
-                        type="email" 
-                        placeholder="name@example.com"
-                        value={contactForm.email}
-                        onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                        style={inputStyle}
-                      />
-                    </div>
-                  </div>
-
-                  <div style={{ marginBottom: '1.25rem' }}>
-                    <label style={labelStyle}>Primary Product of Interest</label>
-                    <select 
-                      value={contactForm.service}
-                      onChange={(e) => setContactForm({ ...contactForm, service: e.target.value })}
-                      style={{ ...inputStyle, cursor: 'pointer' }}
-                    >
-                      <option value="Mutual Funds (SIP / Lumpsum)" style={{ background: isDark ? '#0f172a' : '#fff', color: isDark ? '#fff' : '#000' }}>Mutual Funds (SIP / Lumpsum)</option>
-                      <option value="Corporate Fixed Deposits" style={{ background: isDark ? '#0f172a' : '#fff', color: isDark ? '#fff' : '#000' }}>Corporate Fixed Deposits</option>
-                      <option value="Bonds & Sovereign Gold" style={{ background: isDark ? '#0f172a' : '#fff', color: isDark ? '#fff' : '#000' }}>Bonds & Sovereign Gold</option>
-                      <option value="Life & Term Insurance" style={{ background: isDark ? '#0f172a' : '#fff', color: isDark ? '#fff' : '#000' }}>Life & Term Insurance</option>
-                      <option value="General & Health Insurance" style={{ background: isDark ? '#0f172a' : '#fff', color: isDark ? '#fff' : '#000' }}>General & Health Insurance</option>
-                      <option value="Tax Saving Solutions (ELSS / 80C)" style={{ background: isDark ? '#0f172a' : '#fff', color: isDark ? '#fff' : '#000' }}>Tax Saving Solutions (ELSS / 80C)</option>
-                      <option value="PMS & AIF for HNIs" style={{ background: isDark ? '#0f172a' : '#fff', color: isDark ? '#fff' : '#000' }}>PMS & AIF for HNIs</option>
-                      <option value="Sub-Broker / Partnership Opportunity" style={{ background: isDark ? '#0f172a' : '#fff', color: isDark ? '#fff' : '#000' }}>Sub-Broker / Partnership Opportunity</option>
-                    </select>
-                  </div>
-
-                  <div style={{ marginBottom: '1.5rem' }}>
-                    <label style={labelStyle}>Your Message / Financial Goal</label>
-                    <textarea 
-                      rows={3}
-                      placeholder="Share details such as target amount, retirement age, or queries..."
-                      value={contactForm.query}
-                      onChange={(e) => setContactForm({ ...contactForm, query: e.target.value })}
-                      style={{ ...inputStyle, resize: 'vertical' }}
+                  <div>
+                    <label className="fintech-label">Email Address</label>
+                    <input 
+                      type="email" 
+                      placeholder="name@example.com"
+                      value={contactForm.email}
+                      onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                      className="fintech-input"
                     />
                   </div>
+                </div>
 
-                  <button 
-                    type="submit"
-                    className="btn-primary"
-                    style={{ width: '100%', padding: '0.9rem', fontSize: '1rem', justifyContent: 'center' }}
+                <div style={{ marginBottom: '1.25rem' }}>
+                  <label className="fintech-label">Area of Interest</label>
+                  <select 
+                    value={contactForm.service}
+                    onChange={(e) => setContactForm({ ...contactForm, service: e.target.value })}
+                    className="fintech-input"
+                    style={{ cursor: 'pointer' }}
                   >
-                    <span>Submit Query to Assure Team</span>
-                    <Send size={16} />
-                  </button>
+                    <option value="Mutual Funds">Mutual Funds (SIP & Lumpsum)</option>
+                    <option value="Fixed Deposits">Corporate Fixed Deposits (AAA)</option>
+                    <option value="Bonds">Sovereign Gold Bonds & 54EC</option>
+                    <option value="Portfolio Review">Comprehensive Portfolio Health-Check</option>
+                    <option value="Insurance">Life & Health Insurance</option>
+                  </select>
+                </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', justifyContent: 'center', marginTop: '1rem', fontSize: '0.75rem', color: isDark ? '#94a3b8' : '#64748b' }}>
-                    <ShieldCheck size={14} color="#10b981" />
-                    <span>Your contact details are 100% confidential. No spam ever.</span>
-                  </div>
-                </form>
-              )}
+                <div style={{ marginBottom: '1.75rem' }}>
+                  <label className="fintech-label">Message / Goal Summary</label>
+                  <textarea 
+                    rows="3"
+                    placeholder="Share any specific milestones or questions..."
+                    value={contactForm.query}
+                    onChange={(e) => setContactForm({ ...contactForm, query: e.target.value })}
+                    className="fintech-input"
+                    style={{ height: 'auto', padding: '0.85rem 1.1rem', resize: 'vertical' }}
+                  />
+                </div>
 
-            </div>
+                {/* Submit CTA (Section 21 Microcopy: "Request a Callback") */}
+                <button 
+                  type="submit" 
+                  className="btn-primary-emerald"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                >
+                  <span>Request a Callback →</span>
+                </button>
+
+                <p style={{ textAlign: 'center', fontSize: '0.74rem', color: 'var(--color-muted)', marginTop: '0.85rem' }}>
+                  Zero spam guaranteed. Your data is strictly protected under AMFI statutory compliance.
+                </p>
+              </form>
+            )}
           </div>
 
         </div>
 
       </div>
-
-      <style>{`
-        @media (min-width: 992px) {
-          .contact-grid { grid-template-columns: 1fr 1fr !important; }
-        }
-      `}</style>
     </section>
   );
 }

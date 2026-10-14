@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Smartphone, Check, ArrowRight, ShieldCheck, TrendingUp, 
-  PieChart, Download, Sparkles, Bell 
+  PieChart, Download, Sparkles, Bell, FileText, CheckCircle2 
 } from 'lucide-react';
 
 const APP_FEATURES = [
@@ -19,15 +19,16 @@ export function AppSection({ onOpenModal }) {
     <section 
       id="mobile-app"
       style={{ 
-        padding: '7rem 0', 
+        padding: 'var(--section-pad-desktop) 0', 
         background: 'var(--color-primary)', 
         color: '#ffffff',
         position: 'relative',
         overflow: 'hidden',
         borderBottom: '1px solid rgba(255,255,255,0.08)'
       }}
+      className="section-pad"
     >
-      {/* Subtle background glow */}
+      {/* Subtle Ambient Radial Lighting */}
       <div 
         style={{ 
           position: 'absolute', 
@@ -36,7 +37,7 @@ export function AppSection({ onOpenModal }) {
           width: '500px', 
           height: '500px', 
           borderRadius: '50%', 
-          background: 'radial-gradient(circle, rgba(22, 185, 129, 0.12) 0%, transparent 70%)', 
+          background: 'radial-gradient(circle, rgba(22, 185, 129, 0.08) 0%, transparent 70%)', 
           pointerEvents: 'none' 
         }} 
       />
@@ -51,135 +52,170 @@ export function AppSection({ onOpenModal }) {
           }}
         >
           
-          {/* LEFT: Phone Mockup */}
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          {/* LEFT: Phone Mockup with Floating Cards (Section 15) */}
+          <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
+            
+            {/* Main Phone Frame */}
             <div 
               style={{ 
-                width: '320px', 
-                height: '620px', 
-                background: '#0a0f1d', 
-                borderRadius: '44px', 
-                border: '9px solid #1e293b', 
-                boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.6), 0 0 40px rgba(22, 185, 129, 0.15)',
+                width: '310px', 
+                height: '610px', 
+                background: '#090f1d', 
+                borderRadius: '40px', 
+                border: '8px solid #1a2536', 
+                boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.65), 0 0 35px rgba(22, 185, 129, 0.1)',
                 position: 'relative',
                 overflow: 'hidden',
                 display: 'flex',
                 flexDirection: 'column'
               }}
+              className="phone-mockup-frame"
             >
-              {/* Phone Dynamic Island / Notch */}
+              {/* Phone Dynamic Island */}
               <div 
                 style={{ 
                   position: 'absolute', 
                   top: '12px', 
                   left: '50%', 
                   transform: 'translateX(-50%)', 
-                  width: '96px', 
-                  height: '22px', 
-                  background: '#1e293b', 
-                  borderRadius: '16px',
+                  width: '90px', 
+                  height: '20px', 
+                  background: '#1a2536', 
+                  borderRadius: '14px',
                   zIndex: 20
                 }} 
               />
 
               {/* Mobile Screen Header */}
-              <div style={{ padding: '42px 18px 14px 18px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+              <div style={{ padding: '40px 18px 12px 18px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: '#16B981', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '0.75rem', color: '#071A2F' }}>
+                    <div style={{ width: '26px', height: '26px', borderRadius: '50%', background: '#16B981', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '0.72rem', color: '#071A2F' }}>
                       AS
                     </div>
                     <div>
-                      <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>Portfolio Dashboard</div>
-                      <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#ffffff' }}>Assure Client</div>
+                      <div style={{ fontSize: '0.62rem', color: '#94a3b8' }}>Portfolio Console</div>
+                      <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#ffffff' }}>Assure Client</div>
                     </div>
                   </div>
-                  <Bell size={16} color="#94a3b8" />
+                  <Bell size={15} color="#94a3b8" />
                 </div>
               </div>
 
               {/* Inside Phone: Live Portfolio Content */}
-              <div style={{ padding: '16px', flex: 1, display: 'flex', flexDirection: 'column', gap: '14px', overflowY: 'auto' }}>
+              <div style={{ padding: '16px', flex: 1, display: 'flex', flexDirection: 'column', gap: '12px', overflowY: 'auto' }}>
                 
                 {/* Net Worth Card */}
-                <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '18px', padding: '16px' }}>
-                  <span style={{ fontSize: '0.68rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Consolidated Net Worth</span>
-                  <div style={{ fontSize: '1.65rem', fontWeight: 800, color: '#ffffff', margin: '4px 0', letterSpacing: '-0.02em' }}>
+                <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '16px', padding: '14px' }}>
+                  <span style={{ fontSize: '0.65rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Consolidated Net Worth</span>
+                  <div style={{ fontSize: '1.6rem', fontWeight: 700, color: '#ffffff', margin: '3px 0', letterSpacing: '-0.02em' }}>
                     ₹24,80,000
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <span style={{ color: '#16B981', fontSize: '0.75rem', fontWeight: 700 }}>+18.6%</span>
-                    <span style={{ color: '#64748b', fontSize: '0.68rem' }}>1-Yr Returns (Demo)</span>
+                    <span style={{ color: '#64748b', fontSize: '0.65rem' }}>1-Yr CAGR (Demo)</span>
                   </div>
                 </div>
 
-                {/* Mini SVG Trend Line */}
-                <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '14px', padding: '12px', border: '1px solid rgba(255,255,255,0.06)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: '#94a3b8', marginBottom: '8px' }}>
+                {/* Growth SVG Trend */}
+                <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '14px', padding: '10px 14px', border: '1px solid rgba(255,255,255,0.06)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', color: '#94a3b8', marginBottom: '6px' }}>
                     <span>Growth Trajectory</span>
                     <span style={{ color: '#16B981' }}>Disciplined SIP</span>
                   </div>
-                  <svg width="100%" height="45" viewBox="0 0 240 45" fill="none">
-                    <path d="M0 40 Q 60 30, 110 24 T 180 12 T 240 4" stroke="#16B981" strokeWidth="2.5" fill="none" />
+                  <svg width="100%" height="40" viewBox="0 0 240 40" fill="none">
+                    <path d="M0 35 Q 60 28, 110 20 T 180 12 T 240 4" stroke="#16B981" strokeWidth="2.2" fill="none" />
                   </svg>
                 </div>
 
                 {/* Active SIP Pill */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(22, 185, 129, 0.08)', border: '1px solid rgba(22, 185, 129, 0.25)', borderRadius: '12px', padding: '10px 14px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(22, 185, 129, 0.08)', border: '1px solid rgba(22, 185, 129, 0.25)', borderRadius: '12px', padding: '10px 12px' }}>
                   <div>
-                    <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#ffffff' }}>Active Monthly SIP</div>
-                    <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>Next debit: 5th of month</div>
+                    <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#ffffff' }}>Active SIP Mandate</div>
+                    <div style={{ fontSize: '0.62rem', color: '#94a3b8' }}>Next debit: 5th of month</div>
                   </div>
-                  <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#16B981' }}>₹25,000</span>
+                  <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#16B981' }}>₹25,000</span>
                 </div>
 
                 {/* Quick Shortcuts */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                   <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '10px', padding: '10px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.06)' }}>
-                    <TrendingUp size={16} color="#38bdf8" style={{ margin: '0 auto 4px auto' }} />
+                    <TrendingUp size={15} color="#38bdf8" style={{ margin: '0 auto 4px auto' }} />
                     <span style={{ fontSize: '0.68rem', color: '#cbd5e1', display: 'block' }}>Transact Funds</span>
                   </div>
                   <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '10px', padding: '10px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.06)' }}>
-                    <PieChart size={16} color="#16B981" style={{ margin: '0 auto 4px auto' }} />
-                    <span style={{ fontSize: '0.68rem', color: '#cbd5e1', display: 'block' }}>Tax Report</span>
+                    <PieChart size={15} color="#16B981" style={{ margin: '0 auto 4px auto' }} />
+                    <span style={{ fontSize: '0.68rem', color: '#cbd5e1', display: 'block' }}>Tax Summary</span>
                   </div>
                 </div>
 
               </div>
 
               {/* Bottom Phone Bar */}
-              <div style={{ padding: '10px 0 14px 0', display: 'flex', justifyContent: 'center' }}>
-                <div style={{ width: '100px', height: '4px', background: 'rgba(255,255,255,0.25)', borderRadius: '4px' }} />
+              <div style={{ padding: '8px 0 12px 0', display: 'flex', justifyContent: 'center' }}>
+                <div style={{ width: '90px', height: '4px', background: 'rgba(255,255,255,0.2)', borderRadius: '4px' }} />
               </div>
             </div>
+
+            {/* Small Floating Card 1: Top Right (Portfolio) */}
+            <div 
+              style={{
+                position: 'absolute',
+                top: '40px',
+                right: '-25px',
+                background: 'rgba(13, 41, 69, 0.95)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                backdropFilter: 'blur(10px)',
+                borderRadius: '14px',
+                padding: '0.75rem 1rem',
+                boxShadow: '0 12px 28px rgba(0,0,0,0.4)',
+                zIndex: 10
+              }}
+              className="d-none-mobile"
+            >
+              <div style={{ fontSize: '0.68rem', color: '#94a3b8', textTransform: 'uppercase' }}>Consolidated Folios</div>
+              <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#ffffff' }}>All AMCs Integrated</div>
+            </div>
+
+            {/* Small Floating Card 2: Bottom Left (Reports) */}
+            <div 
+              style={{
+                position: 'absolute',
+                bottom: '60px',
+                left: '-25px',
+                background: 'rgba(13, 41, 69, 0.95)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                backdropFilter: 'blur(10px)',
+                borderRadius: '14px',
+                padding: '0.75rem 1rem',
+                boxShadow: '0 12px 28px rgba(0,0,0,0.4)',
+                zIndex: 10,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}
+              className="d-none-mobile"
+            >
+              <FileText size={16} color="var(--color-accent)" />
+              <div>
+                <div style={{ fontSize: '0.68rem', color: '#94a3b8' }}>Capital Gains</div>
+                <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#ffffff' }}>FY 2026-27 Ready</div>
+              </div>
+            </div>
+
           </div>
 
           {/* RIGHT: Content & Features */}
           <div>
-            <div 
-              style={{ 
-                display: 'inline-flex', 
-                alignItems: 'center', 
-                gap: '0.5rem', 
-                background: 'rgba(22, 185, 129, 0.12)', 
-                color: 'var(--color-accent)', 
-                padding: '0.4rem 1rem', 
-                borderRadius: '100px', 
-                fontSize: '0.8rem', 
-                fontWeight: 700, 
-                letterSpacing: '0.06em', 
-                textTransform: 'uppercase', 
-                marginBottom: '1.25rem' 
-              }}
-            >
-              <Smartphone size={14} />
+            <div className="eyebrow-pill emerald">
+              <Smartphone size={13} />
               <span>Mobile Wealth Suite</span>
             </div>
 
             <h2 
               style={{ 
-                fontSize: 'clamp(2.4rem, 4.5vw, 3.5rem)', 
-                fontWeight: 800, 
+                fontSize: 'clamp(2.4rem, 4.5vw, 3.4rem)', 
+                fontWeight: 700, 
                 color: '#ffffff', 
                 letterSpacing: '-0.03em', 
                 lineHeight: 1.15, 
@@ -207,15 +243,15 @@ export function AppSection({ onOpenModal }) {
                 display: 'grid', 
                 gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', 
                 gap: '1rem',
-                marginBottom: '3rem'
+                marginBottom: '2.5rem'
               }}
             >
               {APP_FEATURES.map((feature, idx) => (
                 <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <div 
                     style={{ 
-                      width: '22px', 
-                      height: '22px', 
+                      width: '20px', 
+                      height: '20px', 
                       borderRadius: '50%', 
                       background: 'rgba(22, 185, 129, 0.15)', 
                       display: 'flex', 
@@ -225,9 +261,9 @@ export function AppSection({ onOpenModal }) {
                       flexShrink: 0
                     }}
                   >
-                    <Check size={14} strokeWidth={3} />
+                    <Check size={12} strokeWidth={3} />
                   </div>
-                  <span style={{ fontSize: '0.92rem', color: '#e2e8f0', fontWeight: 500 }}>
+                  <span style={{ fontSize: '0.9rem', color: '#e2e8f0', fontWeight: 500 }}>
                     {feature}
                   </span>
                 </div>
@@ -239,13 +275,12 @@ export function AppSection({ onOpenModal }) {
               <button 
                 onClick={() => onOpenModal && onOpenModal('client-login')}
                 className="btn-primary-emerald"
-                style={{ fontSize: '1rem', padding: '0.9rem 1.85rem' }}
               >
                 <span>Explore the App →</span>
               </button>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#94a3b8', fontSize: '0.85rem' }}>
-                <ShieldCheck size={18} color="var(--color-accent)" />
+                <ShieldCheck size={16} color="var(--color-accent)" />
                 <span>256-bit Bank Grade Security</span>
               </div>
             </div>
