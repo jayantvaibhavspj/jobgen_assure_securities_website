@@ -37,9 +37,9 @@ export function Footer({ onOpenModal }) {
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <img 
-              src="/assets/new-logo.jpg" 
+              src="/assets/assure-logo.png" 
               alt="Assure Securities Logo" 
-              style={{ height: '46px', background: '#ffffff', padding: '4px 8px', borderRadius: '8px' }}
+              style={{ height: '52px', background: '#ffffff', padding: '6px 12px', borderRadius: '10px', objectFit: 'contain' }}
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = '/assets/logo.png';

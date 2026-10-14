@@ -15,7 +15,7 @@ import { PartnerPage } from './pages/PartnerPage';
 import { ContactPage } from './pages/ContactPage';
 import { LegalPage } from './pages/LegalPage';
 
-import { MessageSquare } from 'lucide-react';
+import Chatbot from './components/Chatbot';
 import { COMPANY_INFO } from './data/websiteData';
 
 export function App() {
@@ -89,34 +89,8 @@ export function App() {
         {/* Global Footer */}
         <Footer onOpenModal={setActiveModal} />
 
-        {/* Floating Quick WhatsApp Action Button */}
-        <a
-          href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=Hi%20Assure%20Securities,%20I%20would%20like%20to%20consult%20with%20an%20advisor.`}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            position: 'fixed',
-            bottom: '24px',
-            right: '24px',
-            zIndex: 900,
-            background: '#25D366',
-            color: '#ffffff',
-            width: '56px',
-            height: '56px',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 8px 24px rgba(37, 211, 102, 0.45)',
-            transition: 'all 0.25s ease',
-            cursor: 'pointer'
-          }}
-          title="Chat on WhatsApp"
-          onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-          onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-        >
-          <MessageSquare size={26} />
-        </a>
+        {/* Global 24/7 AI Financial Assistant Chatbot & Quick Actions */}
+        <Chatbot onOpenModal={setActiveModal} />
 
         {/* Global Interactive Modals */}
         <Modals 

@@ -118,15 +118,20 @@ export function Header({ onOpenModal }) {
             style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.85rem' }}
           >
             <img 
-              src="/assets/new-logo.jpg" 
-              alt="Assure Securities Logo" 
-              style={{ height: isScrolled ? '40px' : '46px', objectFit: 'contain', borderRadius: '8px', transition: 'height 0.3s ease' }}
+              src="/assets/assure-logo.png" 
+              alt="Assure Securities - Digital Wealth Management" 
+              style={{ 
+                height: isScrolled ? '46px' : '54px', 
+                maxWidth: '220px',
+                objectFit: 'contain', 
+                transition: 'height 0.3s ease' 
+              }}
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = '/assets/logo.png';
               }}
             />
-            <div style={{ borderLeft: '1.5px solid var(--color-border)', paddingLeft: '0.85rem' }}>
+            <div className="brand-text-desktop" style={{ borderLeft: '1.5px solid var(--color-border)', paddingLeft: '0.85rem' }}>
               <div style={{ fontSize: '1.22rem', fontWeight: 800, color: 'var(--color-primary)', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
                 ASSURE <span style={{ color: 'var(--color-accent)' }}>SECURITIES</span>
               </div>
@@ -366,6 +371,19 @@ export function Header({ onOpenModal }) {
           display: 'flex', flexDirection: 'column', justifyContent: 'space-between'
         }}>
           <div>
+            {/* Mobile Drawer Brand Header */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.75rem', paddingBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+              <img 
+                src="/assets/assure-logo.png" 
+                alt="Assure Securities Logo" 
+                style={{ height: '44px', background: '#ffffff', padding: '4px 8px', borderRadius: '8px', objectFit: 'contain' }}
+              />
+              <div>
+                <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#ffffff' }}>ASSURE <span style={{ color: 'var(--color-accent)' }}>SECURITIES</span></div>
+                <div style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 600 }}>ARN-182137 • AMFI Registered</div>
+              </div>
+            </div>
+
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', fontSize: '1.15rem', fontWeight: 700 }}>
               <div onClick={() => handleNavClick('/')} style={{ cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.75rem' }}>
                 Home
@@ -421,6 +439,9 @@ export function Header({ onOpenModal }) {
           .desktop-nav { display: none !important; }
           .desktop-actions { display: none !important; }
           .mobile-menu-btn { display: block !important; }
+        }
+        @media (max-width: 576px) {
+          .brand-text-desktop { display: none !important; }
         }
         @media (min-width: 768px) {
           .d-md-inline { display: inline !important; }
