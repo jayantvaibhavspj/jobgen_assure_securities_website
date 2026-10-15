@@ -93,11 +93,78 @@ export function WhyAssureSection({ onOpenModal }) {
                 fontSize: '0.95rem', 
                 color: 'var(--color-text-secondary)', 
                 lineHeight: 1.65, 
-                marginBottom: '2.5rem' 
+                marginBottom: '1.75rem' 
               }}
             >
               Unlike automated robo-advisors or aggressive trading brokers, Assure Securities acts as your dedicated wealth custodian and financial sounding board—bringing fifteen years of institutional discipline to private families.
             </p>
+
+            {/* Authentic Photographic Advisory Anchor (Visual Storytelling Upgrade) */}
+            <div 
+              style={{
+                position: 'relative',
+                borderRadius: '20px',
+                overflow: 'hidden',
+                border: '1px solid var(--color-border)',
+                boxShadow: '0 16px 36px -10px rgba(7, 26, 47, 0.15)',
+                marginBottom: '2rem'
+              }}
+            >
+              <img 
+                src="/assets/why-assure-advisory.jpg" 
+                alt="Assure Securities Dedicated Advisory Session" 
+                loading="lazy"
+                decoding="async"
+                style={{
+                  width: '100%',
+                  height: '240px',
+                  objectFit: 'cover',
+                  display: 'block'
+                }}
+              />
+              {/* Subtle Gradient Vignette */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(to top, rgba(7, 26, 47, 0.88) 0%, rgba(7, 26, 47, 0.1) 60%)'
+                }} 
+              />
+              
+              {/* Floating Credential Pill on Image */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  bottom: '14px',
+                  left: '16px',
+                  right: '16px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  gap: '0.5rem'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#16B981' }} />
+                  <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#ffffff' }}>Dedicated Wealth Relationship Desk</span>
+                </div>
+                <span 
+                  style={{
+                    fontSize: '0.7rem',
+                    fontWeight: 700,
+                    background: 'rgba(255, 255, 255, 0.18)',
+                    backdropFilter: 'blur(6px)',
+                    color: '#ffffff',
+                    padding: '0.2rem 0.55rem',
+                    borderRadius: '4px',
+                    border: '1px solid rgba(255, 255, 255, 0.25)'
+                  }}
+                >
+                  AMFI ARN-182137
+                </span>
+              </div>
+            </div>
 
             <button 
               onClick={() => onOpenModal && onOpenModal('consultation')}

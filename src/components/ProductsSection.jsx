@@ -16,6 +16,16 @@ const PRODUCT_ICONS = {
   'pms-aif': Briefcase
 };
 
+const PRODUCT_IMAGES = {
+  'mutual-funds': '/assets/child.jpg',
+  'fixed-deposits': '/assets/b1-2.jpg',
+  'bonds': '/assets/hero-city-poster.jpg',
+  'life-insurance': '/assets/b2-1.jpg',
+  'general-insurance': '/assets/img_se.png',
+  'tax-saving': '/assets/b4-2.jpg',
+  'pms-aif': '/assets/why-assure-advisory.jpg'
+};
+
 export function ProductsSection({ onOpenModal, onNavigate }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -54,13 +64,14 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
           style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-            gap: '1.5rem',
+            gap: '1.75rem',
             marginBottom: selectedProduct ? '2.5rem' : '0'
           }}
         >
           {PRODUCTS_DATA.map((prod, index) => {
             const isSelected = selectedProduct === prod.id;
             const Icon = PRODUCT_ICONS[prod.id] || TrendingUp;
+            const cardImg = PRODUCT_IMAGES[prod.id] || '/assets/b1-2.jpg';
 
             return (
               <div
@@ -71,42 +82,63 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
                   cursor: 'pointer',
                   borderColor: isSelected ? 'var(--color-accent)' : 'var(--color-border)',
                   background: '#ffffff',
-                  boxShadow: isSelected ? '0 12px 28px rgba(22, 185, 129, 0.12)' : 'var(--shadow-card)',
+                  boxShadow: isSelected ? '0 16px 36px rgba(22, 185, 129, 0.16)' : 'var(--shadow-card)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  padding: '2rem'
+                  padding: 0,
+                  overflow: 'hidden',
+                  borderRadius: '20px',
+                  transform: isSelected ? 'translateY(-4px)' : 'none',
+                  transition: 'all 300ms cubic-bezier(0.16, 1, 0.3, 1)'
                 }}
               >
-                <div>
-                  {/* Top Bar: Icon & Category */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
-                    <div 
-                      style={{ 
-                        width: '46px', 
-                        height: '46px', 
-                        borderRadius: '12px', 
-                        background: 'rgba(7, 26, 47, 0.04)', 
-                        border: '1px solid var(--color-border)',
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center',
-                        color: 'var(--color-primary)'
-                      }}
-                      className="card-icon-wrap"
-                    >
-                      <Icon size={22} strokeWidth={1.8} />
-                    </div>
+                {/* Visual Header Image Banner */}
+                <div 
+                  style={{
+                    position: 'relative',
+                    height: '140px',
+                    overflow: 'hidden',
+                    background: '#071A2F'
+                  }}
+                >
+                  <img 
+                    src={cardImg} 
+                    alt={prod.title}
+                    loading="lazy"
+                    decoding="async"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      opacity: 0.85,
+                      transition: 'transform 0.5s ease',
+                      transform: isSelected ? 'scale(1.08)' : 'scale(1.0)'
+                    }}
+                    className="solution-card-img"
+                    onError={(e) => { e.target.style.display = 'none'; }}
+                  />
+                  {/* Subtle Gradient Scrim */}
+                  <div 
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background: 'linear-gradient(to top, rgba(7, 26, 47, 0.9) 0%, rgba(7, 26, 47, 0.3) 60%, rgba(7, 26, 47, 0.5) 100%)'
+                    }} 
+                  />
 
+                  {/* Category Pill on top right */}
+                  <div style={{ position: 'absolute', top: '12px', right: '12px', zIndex: 2 }}>
                     <span 
                       style={{ 
-                        fontSize: '0.72rem', 
+                        fontSize: '0.68rem', 
                         fontWeight: 700, 
-                        color: 'var(--color-primary)', 
-                        background: 'var(--color-bg)', 
-                        padding: '0.25rem 0.65rem', 
+                        color: '#ffffff', 
+                        background: 'rgba(7, 26, 47, 0.75)', 
+                        backdropFilter: 'blur(8px)',
+                        padding: '0.22rem 0.6rem', 
                         borderRadius: '6px',
-                        border: '1px solid var(--color-border)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
                         textTransform: 'uppercase',
                         letterSpacing: '0.04em'
                       }}
@@ -115,51 +147,86 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
                     </span>
                   </div>
 
-                  {/* Title */}
-                  <h3 
-                    style={{ 
-                      fontSize: '1.35rem', 
-                      fontWeight: 700, 
-                      color: 'var(--color-primary)', 
-                      letterSpacing: '-0.02em', 
-                      marginBottom: '0.65rem' 
+                  {/* Overlapping Icon at bottom left */}
+                  <div 
+                    style={{
+                      position: 'absolute',
+                      bottom: '12px',
+                      left: '16px',
+                      zIndex: 2,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.65rem'
                     }}
                   >
-                    {prod.title}
-                  </h3>
-
-                  {/* Short Description */}
-                  <p 
-                    style={{ 
-                      fontSize: '0.92rem', 
-                      color: 'var(--color-text-secondary)', 
-                      lineHeight: 1.6, 
-                      margin: 0,
-                      marginBottom: '1.5rem' 
-                    }}
-                  >
-                    {prod.summary}
-                  </p>
+                    <div 
+                      style={{ 
+                        width: '40px', 
+                        height: '40px', 
+                        borderRadius: '10px', 
+                        background: '#ffffff', 
+                        boxShadow: '0 4px 14px rgba(0,0,0,0.25)',
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center',
+                        color: 'var(--color-primary)'
+                      }}
+                      className="card-icon-wrap"
+                    >
+                      <Icon size={20} strokeWidth={2} />
+                    </div>
+                  </div>
                 </div>
 
-                {/* Bottom CTA Action (Section 10 & 21) */}
-                <div 
-                  style={{ 
-                    borderTop: '1px solid var(--color-border)', 
-                    paddingTop: '1rem', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'space-between',
-                    fontSize: '0.88rem',
-                    fontWeight: 600,
-                    color: isSelected ? 'var(--color-accent)' : 'var(--color-primary)',
-                    transition: 'color 0.2s ease'
-                  }}
-                  className="card-action-row"
-                >
-                  <span>{isSelected ? "Close Blueprint" : "Explore Solution"}</span>
-                  <div className="arrow-container">
-                    <ArrowRight size={16} strokeWidth={2} />
+                {/* Card Text & Information */}
+                <div style={{ padding: '1.25rem 1.5rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
+                  <div>
+                    {/* Title */}
+                    <h3 
+                      style={{ 
+                        fontSize: '1.3rem', 
+                        fontWeight: 700, 
+                        color: 'var(--color-primary)', 
+                        letterSpacing: '-0.02em', 
+                        marginBottom: '0.5rem' 
+                      }}
+                    >
+                      {prod.title}
+                    </h3>
+
+                    {/* Short Description */}
+                    <p 
+                      style={{ 
+                        fontSize: '0.88rem', 
+                        color: 'var(--color-text-secondary)', 
+                        lineHeight: 1.55, 
+                        margin: 0,
+                        marginBottom: '1.25rem' 
+                      }}
+                    >
+                      {prod.summary}
+                    </p>
+                  </div>
+
+                  {/* Bottom CTA Action (Section 10 & 21) */}
+                  <div 
+                    style={{ 
+                      borderTop: '1px solid var(--color-border)', 
+                      paddingTop: '0.85rem', 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'space-between',
+                      fontSize: '0.84rem',
+                      fontWeight: 600,
+                      color: isSelected ? 'var(--color-accent)' : 'var(--color-primary)',
+                      transition: 'color 0.2s ease'
+                    }}
+                    className="card-action-row"
+                  >
+                    <span>{isSelected ? "Close Blueprint ✕" : "Explore Solution"}</span>
+                    <div className="arrow-container">
+                      <ArrowRight size={16} strokeWidth={2} />
+                    </div>
                   </div>
                 </div>
               </div>

@@ -16,6 +16,40 @@ export function FinalCtaSection({ onOpenModal, onNavigate }) {
       }}
       className="section-pad"
     >
+      {/* Cinematic Skyline Backdrop Image (Visual Storytelling Upgrade) */}
+      <div 
+        style={{
+          position: 'absolute',
+          inset: 0,
+          overflow: 'hidden',
+          zIndex: 0,
+          pointerEvents: 'none'
+        }}
+        aria-hidden="true"
+      >
+        <img 
+          src="/assets/hero-city-poster.jpg" 
+          alt="" 
+          loading="lazy"
+          decoding="async"
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            opacity: 0.22,
+            filter: 'brightness(0.7) contrast(1.2)'
+          }}
+        />
+        <div 
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(135deg, rgba(7, 26, 47, 0.94) 0%, rgba(7, 26, 47, 0.84) 50%, rgba(7, 26, 47, 0.94) 100%)'
+          }} 
+        />
+      </div>
+
       {/* Subtle Background Radial & Financial Grid */}
       <div 
         style={{ 

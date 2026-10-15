@@ -81,18 +81,25 @@ export function AboutPage({ onOpenModal }) {
             </div>
 
             <div style={{ textAlign: 'center' }}>
-              <div className="cinematic-image-wrap" style={{ background: 'var(--color-bg)', padding: '2rem', borderRadius: '24px', border: '1px solid var(--color-border)', boxShadow: 'var(--shadow-card)' }}>
-                <img 
-                  src="/assets/img_se.png" 
-                  alt="Assure Securities Services Illustration"
-                  loading="lazy"
-                  decoding="async"
-                  className="cinematic-reveal"
-                  style={{ width: '100%', maxHeight: '320px', objectFit: 'contain' }}
-                  onError={(e) => { e.target.style.display = 'none'; }}
-                />
-                <div style={{ marginTop: '1.25rem', fontSize: '0.85rem', color: 'var(--color-text-secondary)', fontWeight: 600 }}>
-                  AMFI Registered Mutual Fund Distributor • ARN-182137
+              <div className="cinematic-image-wrap" style={{ background: '#ffffff', borderRadius: '24px', border: '1px solid var(--color-border)', boxShadow: '0 16px 36px -8px rgba(7, 26, 47, 0.12)', overflow: 'hidden' }}>
+                <div style={{ position: 'relative', height: '280px', overflow: 'hidden' }}>
+                  <img 
+                    src="/assets/why-assure-advisory.jpg" 
+                    alt="Assure Securities Client Advisory"
+                    loading="lazy"
+                    decoding="async"
+                    className="cinematic-reveal"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    onError={(e) => { e.target.src = '/assets/img_se.png'; }}
+                  />
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(7, 26, 47, 0.8) 0%, transparent 60%)' }} />
+                  <div style={{ position: 'absolute', bottom: '12px', left: '16px', right: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#ffffff' }}>Dedicated Wealth Relationship Desk</span>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#16B981', background: 'rgba(7, 26, 47, 0.85)', padding: '0.2rem 0.55rem', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.15)' }}>ARN-182137</span>
+                  </div>
+                </div>
+                <div style={{ padding: '1.15rem', fontSize: '0.85rem', color: 'var(--color-text-secondary)', fontWeight: 600, background: 'var(--color-bg)' }}>
+                  AMFI Registered Mutual Fund Distributor • 15+ Years Industry Discipline
                 </div>
               </div>
             </div>

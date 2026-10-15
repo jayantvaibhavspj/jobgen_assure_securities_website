@@ -31,6 +31,57 @@ export function Hero({ onOpenModal, onNavigate }) {
         }}
         className="hero-section"
       >
+        {/* Cinematic Financial Skyline Background Video (Visual Storytelling Upgrade) */}
+        <div 
+          style={{
+            position: 'absolute',
+            inset: 0,
+            overflow: 'hidden',
+            zIndex: 0,
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/assets/hero-city-poster.jpg"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              minWidth: '100%',
+              minHeight: '100%',
+              width: 'auto',
+              height: 'auto',
+              transform: 'translate(-50%, -50%)',
+              objectFit: 'cover',
+              opacity: 0.26,
+              filter: 'brightness(0.8) contrast(1.2)'
+            }}
+          >
+            <source src="/assets/hero-city-skyline.webm" type="video/webm" />
+          </video>
+          {/* Multi-layered dark navy & radial vignette overlay for pristine text readability */}
+          <div 
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(7, 26, 47, 0.94) 0%, rgba(7, 26, 47, 0.82) 50%, rgba(7, 26, 47, 0.92) 100%)'
+            }} 
+          />
+          <div 
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'radial-gradient(ellipse at 75% 25%, rgba(22, 185, 129, 0.1) 0%, transparent 65%)'
+            }} 
+          />
+        </div>
+
         {/* Subtle Radial Glow & Background Grid Texture (Phase 5 Ambient Motion) */}
         <div 
           className="ambient-glow-drift"
