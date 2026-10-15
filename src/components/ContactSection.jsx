@@ -53,7 +53,7 @@ export function ContactSection({ theme = "light" }) {
       <div className="container">
         
         {/* Section Header */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal-on-scroll">
           <div className="eyebrow-pill emerald">
             <Sparkles size={13} />
             <span>Lucknow Advisory Headquarters</span>
@@ -79,7 +79,7 @@ export function ContactSection({ theme = "light" }) {
         >
           {/* Left Column: Direct Credentials & Location */}
           <div 
-            className={isDark ? "fintech-card-dark" : "fintech-card"}
+            className={`${isDark ? "fintech-card-dark" : "fintech-card"} reveal-on-scroll stagger-1`}
             style={{ 
               padding: 'clamp(2rem, 3.5vw, 2.75rem)',
               display: 'flex',
@@ -162,7 +162,7 @@ export function ContactSection({ theme = "light" }) {
 
           {/* Right Column: Section 23 Form UI */}
           <div 
-            className="fintech-card"
+            className="fintech-card reveal-on-scroll stagger-2"
             style={{ 
               background: '#ffffff',
               padding: 'clamp(2rem, 3.5vw, 2.75rem)'

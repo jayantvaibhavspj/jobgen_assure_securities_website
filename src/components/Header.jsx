@@ -67,16 +67,17 @@ export function Header({ onOpenModal }) {
 
   return (
     <header 
+      className="site-navbar-header"
       style={{ 
         position: 'sticky', 
         top: 0, 
         zIndex: 1000, 
-        background: isScrolled ? 'rgba(255, 255, 255, 0.95)' : '#ffffff', 
-        backdropFilter: isScrolled ? 'blur(14px)' : 'none',
-        WebkitBackdropFilter: isScrolled ? 'blur(14px)' : 'none',
-        borderBottom: '1px solid var(--color-border)',
-        boxShadow: isScrolled ? '0 8px 24px rgba(7, 26, 47, 0.06)' : 'none',
-        transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+        background: isScrolled ? 'rgba(255, 255, 255, 0.94)' : '#ffffff', 
+        backdropFilter: isScrolled ? 'blur(16px)' : 'none',
+        WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
+        borderBottom: isScrolled ? '1px solid rgba(7, 26, 47, 0.08)' : '1px solid var(--color-border)',
+        boxShadow: isScrolled ? '0 10px 30px rgba(7, 26, 47, 0.06)' : 'none',
+        transition: 'background 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
       }}
     >
       {/* Top Utility Strip (Sleek Market Status & Compliance) */}

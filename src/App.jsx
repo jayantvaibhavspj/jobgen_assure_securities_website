@@ -1,5 +1,5 @@
 import React, { useState, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Modals } from './components/Modals';
@@ -30,22 +30,22 @@ function PageLoadingFallback() {
   );
 }
 
-export function App() {
+function AppContent() {
   const [activeModal, setActiveModal] = useState(null);
+  const location = useLocation();
 
   return (
-    <BrowserRouter>
-      <div className="app-root" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        
-        {/* Scroll to Top and Scroll Storytelling Engine */}
-        <ScrollToTop />
-        <ScrollStorytelling />
+    <div className="app-root" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      
+      {/* Scroll to Top and Scroll Storytelling Engine */}
+      <ScrollToTop />
+      <ScrollStorytelling />
 
-        {/* Global Navigation Header */}
-        <Header onOpenModal={setActiveModal} />
+      {/* Global Navigation Header */}
+      <Header onOpenModal={setActiveModal} />
 
-        {/* Page by Page Routing with Code Splitting */}
-        <main style={{ flex: 1 }}>
+      {/* Page by Page Routing with Smooth Page Transition (Requirement 25) */}
+      <main style={{ flex: 1 }} key={location.pathname} className="page-fade-enter">
           <Suspense fallback={<PageLoadingFallback />}>
             <Routes>
               {/* 1. Home Page */}
@@ -114,6 +114,13 @@ export function App() {
         />
 
       </div>
+  );
+}
+
+export function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }

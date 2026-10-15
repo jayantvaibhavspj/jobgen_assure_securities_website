@@ -120,7 +120,7 @@ export function PartnerSection({ theme = "light" }) {
           </div>
 
           {/* Right Column: Interactive Partner Onboarding Form */}
-          <div>
+          <div className="reveal-on-scroll stagger-2">
             <div style={{ 
               background: isDark ? '#1e293b' : '#ffffff', 
               borderRadius: '24px', 

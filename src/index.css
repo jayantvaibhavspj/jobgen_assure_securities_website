@@ -807,11 +807,11 @@ input[type="range"]::-moz-range-thumb {
   50% { r: 6.5; opacity: 0.8; }
 }
 
-/* 6. Scroll Storytelling & Cinematic Image Reveals (Requirements 2 & 3) */
+/* 6. Scroll Storytelling & Text Reveals (Requirements 1, 3 & 4) */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -820,7 +820,20 @@ input[type="range"]::-moz-range-thumb {
   transform: translateY(0);
 }
 
-/* Cinematic Image Reveal (Requirement 3: initial scale 1.04, then scale 1) */
+/* Subtle Line Reveal for Major Headings (Requirement 3) */
+.reveal-heading {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-heading.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Cinematic Masked & Scaled Image Reveal (Requirement 6) */
 .cinematic-image-wrap {
   position: relative;
   overflow: hidden;
@@ -829,8 +842,8 @@ input[type="range"]::-moz-range-thumb {
 
 .cinematic-reveal {
   opacity: 0;
-  transform: scale(1.04);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1.06);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -839,33 +852,176 @@ input[type="range"]::-moz-range-thumb {
   transform: scale(1);
 }
 
-/* Image hover micro-interaction */
+/* Image Card Hover Micro-Interactions (Requirement 7 & 13) */
 @media (hover: hover) and (pointer: fine) {
   .cinematic-reveal.is-revealed:hover {
-    transform: scale(1.018);
+    transform: scale(1.035);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .goal-card .goal-card-img,
+  .solution-card .solution-card-img {
     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  .goal-card:hover .goal-card-img,
+  .solution-card:hover .solution-card-img {
+    transform: scale(1.04) !important;
+  }
+
+  .goal-card:hover,
+  .solution-card:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(22, 185, 129, 0.4) !important;
+    box-shadow: 0 16px 36px -4px rgba(7, 26, 47, 0.12), 0 4px 12px rgba(22, 185, 129, 0.08) !important;
+  }
+
+  .goal-card:hover .card-action-row,
+  .solution-card:hover .card-action-row {
+    transform: translateY(-2px);
+  }
+
+  .goal-card:hover .arrow-container svg,
+  .solution-card:hover .arrow-container svg {
+    transform: translateX(5px);
+    color: var(--color-accent);
   }
 }
 
-/* Stagger Delays for Cards & Grids (Requirement 2) */
-.stagger-1 { transition-delay: 0.05s; }
-.stagger-2 { transition-delay: 0.10s; }
-.stagger-3 { transition-delay: 0.15s; }
-.stagger-4 { transition-delay: 0.20s; }
-.stagger-5 { transition-delay: 0.25s; }
-.stagger-6 { transition-delay: 0.30s; }
+/* Stagger Delays for Grids & Columns (Requirement 5: 80ms increments) */
+.stagger-1 { transition-delay: 0.00s; }
+.stagger-2 { transition-delay: 0.08s; }
+.stagger-3 { transition-delay: 0.16s; }
+.stagger-4 { transition-delay: 0.24s; }
+.stagger-5 { transition-delay: 0.32s; }
+.stagger-6 { transition-delay: 0.40s; }
 
-/* 7. Desktop Cursor Interactions & Card Glow (Requirement 6: Desktop only) */
+/* 7. Button Micro-Interactions (Requirement 14) */
+.btn-primary-emerald,
+.btn-primary-navy,
+.btn-outline-white,
+.btn-outline-navy {
+  position: relative;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary-emerald:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(22, 185, 129, 0.35);
+  }
+
+  .btn-primary-navy:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(7, 26, 47, 0.35);
+  }
+
+  .btn-outline-white:hover,
+  .btn-outline-navy:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Button Click / Active Scale (Requirement 14: scale 1 -> 0.98 -> 1) */
+.btn-primary-emerald:active,
+.btn-primary-navy:active,
+.btn-outline-white:active,
+.btn-outline-navy:active {
+  transform: scale(0.98) translateY(0) !important;
+  transition: transform 0.12s ease-out !important;
+}
+
+/* 8. Financial Chart Draw Animation (Requirement 12) */
+.svg-chart-path {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: drawChartPath 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+.svg-phone-trend {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: drawChartPath 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+@keyframes drawChartPath {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 9. App Section Phone Mockup Entrance (Requirement 19) */
+.phone-mockup-frame.reveal-on-scroll {
+  transform: scale(0.94) translateY(30px);
+}
+
+.phone-mockup-frame.reveal-on-scroll.is-revealed {
+  transform: scale(1) translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 10. Why Assure Expanding Accent Line (Requirement 20) */
+.advantage-accent-line {
+  width: 0%;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+  border-radius: 2px;
+  margin-top: 0.5rem;
+}
+
+.advantage-row.is-revealed .advantage-accent-line {
+  width: 48px;
+}
+
+/* 11. Ultra-Thin Scroll Progress Bar (Requirement 26) */
+#scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background: var(--color-accent);
+  transform-origin: 0% 50%;
+  transform: scaleX(0);
+  z-index: 9999;
+  pointer-events: none;
+  box-shadow: 0 0 8px rgba(22, 185, 129, 0.6);
+  transition: transform 0.08s ease-out;
+}
+
+/* 12. Page Transition Engine (Requirement 25: 200-350ms) */
+.page-fade-enter {
+  animation: pageFadeSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pageFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 13. Desktop Card Glow & Transitions */
 @media (hover: hover) and (pointer: fine) {
   .fintech-card {
-    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 0.28s ease;
   }
   
   .fintech-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 14px 30px -4px rgba(7, 26, 47, 0.08), 0 4px 10px -2px rgba(7, 26, 47, 0.03);
+    box-shadow: 0 16px 36px -4px rgba(7, 26, 47, 0.09), 0 4px 10px -2px rgba(7, 26, 47, 0.03);
   }
 
   .interactive-glow-card {
@@ -891,7 +1047,7 @@ input[type="range"]::-moz-range-thumb {
   }
 }
 
-/* 8. Subtle Background Financial Wave Motion (Requirement 8) */
+/* 14. Subtle Background Financial Wave Motion */
 @keyframes waveDrift {
   0% { transform: translateX(0); }
   50% { transform: translateX(-24px); }
@@ -903,14 +1059,23 @@ input[type="range"]::-moz-range-thumb {
   will-change: transform;
 }
 
-/* 9. Visual Section Separator Accents (Requirement 9) */
-.section-separator-accent {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--color-border) 20%, var(--color-border) 80%, transparent 100%);
+/* 15. Subtle Parallax Helper (Requirement 8) */
+.parallax-subtle {
+  will-change: transform;
+  transition: transform 0.15s cubic-bezier(0, 0, 0.2, 1);
 }
 
-/* 10. Mobile Motion Simplification (Requirement 10: Mobile must be simpler) */
+/* 17. Navbar Entrance (Requirement 15) */
+.site-navbar-header {
+  animation: headerFadeDown 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes headerFadeDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 18. Mobile Motion Simplification (Requirement 28: Mobile must be simpler) */
 @media (max-width: 768px) {
   .float-card-1,
   .float-card-2,

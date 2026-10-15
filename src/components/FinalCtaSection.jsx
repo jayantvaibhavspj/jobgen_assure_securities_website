@@ -128,13 +128,14 @@ export function FinalCtaSection({ onOpenModal, onNavigate }) {
       <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '780px' }}>
         
         {/* Eyebrow */}
-        <div className="eyebrow-pill emerald" style={{ marginBottom: '1.25rem' }}>
+        <div className="eyebrow-pill emerald reveal-on-scroll stagger-1" style={{ marginBottom: '1.25rem' }}>
           <Sparkles size={13} />
           <span>Your Wealth Architecture Starts Here</span>
         </div>
 
         {/* Heading (Section 18) */}
         <h2 
+          className="reveal-on-scroll stagger-2"
           style={{ 
             fontSize: 'clamp(2.4rem, 4.5vw, 3.6rem)', 
             fontWeight: 700, 
@@ -150,6 +151,7 @@ export function FinalCtaSection({ onOpenModal, onNavigate }) {
 
         {/* Supporting Copy */}
         <p 
+          className="reveal-on-scroll stagger-3"
           style={{ 
             fontSize: '1.12rem', 
             color: '#94a3b8', 
@@ -163,6 +165,7 @@ export function FinalCtaSection({ onOpenModal, onNavigate }) {
 
         {/* Action Buttons (Section 18 & 22) */}
         <div 
+          className="reveal-on-scroll stagger-4"
           style={{ 
             display: 'flex', 
             justifyContent: 'center', 

@@ -70,7 +70,7 @@ export function AppSection({ onOpenModal }) {
                 display: 'flex',
                 flexDirection: 'column'
               }}
-              className="phone-mockup-frame"
+              className="phone-mockup-frame reveal-on-scroll parallax-subtle"
             >
               {/* Phone Dynamic Island */}
               <div 
@@ -178,7 +178,7 @@ export function AppSection({ onOpenModal }) {
                 boxShadow: '0 12px 28px rgba(0,0,0,0.4)',
                 zIndex: 10
               }}
-              className="d-none-mobile float-card-1"
+              className="d-none-mobile float-card-1 reveal-on-scroll stagger-1"
             >
               <div style={{ fontSize: '0.68rem', color: '#94a3b8', textTransform: 'uppercase' }}>Consolidated Folios</div>
               <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#ffffff' }}>All AMCs Integrated</div>
@@ -201,7 +201,7 @@ export function AppSection({ onOpenModal }) {
                 alignItems: 'center',
                 gap: '0.5rem'
               }}
-              className="d-none-mobile float-card-2"
+              className="d-none-mobile float-card-2 reveal-on-scroll stagger-2"
             >
               <FileText size={16} color="var(--color-accent)" />
               <div>
@@ -227,7 +227,7 @@ export function AppSection({ onOpenModal }) {
                 alignItems: 'center',
                 gap: '0.5rem'
               }}
-              className="d-none-mobile float-card-4"
+              className="d-none-mobile float-card-4 reveal-on-scroll stagger-3"
             >
               <TrendingUp size={16} color="var(--color-accent)" />
               <div>
@@ -253,7 +253,7 @@ export function AppSection({ onOpenModal }) {
                 alignItems: 'center',
                 gap: '0.5rem'
               }}
-              className="d-none-mobile float-card-5"
+              className="d-none-mobile float-card-5 reveal-on-scroll stagger-4"
             >
               <CheckCircle2 size={16} color="#38bdf8" />
               <div>

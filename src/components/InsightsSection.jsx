@@ -86,7 +86,9 @@ export function InsightsSection({ onOpenModal }) {
           <div 
             className="fintech-card interactive-glow-card reveal-on-scroll stagger-1"
             style={{ 
-              padding: 'clamp(2rem, 3.5vw, 2.75rem)',
+              padding: 0,
+              overflow: 'hidden',
+              borderRadius: '20px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
@@ -95,15 +97,25 @@ export function InsightsSection({ onOpenModal }) {
               position: 'relative'
             }}
           >
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
+            {/* Featured Article Image Banner (Requirement 21) */}
+            <div style={{ position: 'relative', height: '175px', overflow: 'hidden', background: '#071A2F' }}>
+              <img 
+                src="/assets/b1-2.jpg" 
+                alt={featured.title} 
+                className="cinematic-reveal"
+                loading="lazy"
+                decoding="async"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(7, 26, 47, 0.85) 0%, transparent 60%)' }} />
+              <div style={{ position: 'absolute', bottom: '12px', left: '16px', right: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span 
                   style={{ 
                     fontSize: '0.72rem', 
                     fontWeight: 700, 
                     color: 'var(--color-accent)', 
-                    background: 'rgba(22, 185, 129, 0.1)', 
-                    padding: '0.25rem 0.65rem', 
+                    background: 'rgba(7, 26, 47, 0.75)', 
+                    padding: '0.22rem 0.65rem', 
                     borderRadius: '6px', 
                     textTransform: 'uppercase', 
                     letterSpacing: '0.04em' 
@@ -112,11 +124,14 @@ export function InsightsSection({ onOpenModal }) {
                   Featured • {featured.category}
                 </span>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.78rem', color: 'var(--color-text-secondary)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.78rem', color: '#cbd5e1' }}>
                   <Clock size={13} />
                   <span>{featured.readTime}</span>
                 </div>
               </div>
+            </div>
+
+            <div style={{ padding: 'clamp(1.5rem, 2.8vw, 2.25rem)' }}>
 
               <h3 
                 style={{ 

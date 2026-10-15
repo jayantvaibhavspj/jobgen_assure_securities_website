@@ -216,9 +216,12 @@ export function WhyAssureSection({ onOpenModal }) {
                       </h3>
                     </div>
 
-                    <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-accent)', marginBottom: '0.65rem' }}>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-accent)', marginBottom: '0.45rem' }}>
                       {adv.subtitle}
                     </div>
+
+                    {/* Expanding Accent Line (Requirement 20) */}
+                    <div className="advantage-accent-line" style={{ marginBottom: '0.75rem' }} />
 
                     <p style={{ fontSize: '0.92rem', color: 'var(--color-text-secondary)', lineHeight: 1.65, margin: 0 }}>
                       {adv.description}

@@ -34,7 +34,7 @@ export function EducationalVideos({ onOpenModal, showInsights = true }) {
       <div className="container">
         
         {/* Section Header */}
-        <div className="section-title-wrap">
+        <div className="section-title-wrap reveal-on-scroll">
           <div className="badge-tag">
             <Video size={13} />
             <span>Official Video Library</span>

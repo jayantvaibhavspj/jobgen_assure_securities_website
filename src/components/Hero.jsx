@@ -49,6 +49,7 @@ export function Hero({ onOpenModal, onNavigate }) {
             playsInline
             preload="auto"
             poster="/assets/hero-city-poster.jpg"
+            className="hero-bg-video parallax-subtle"
             style={{
               position: 'absolute',
               top: '50%',
@@ -171,8 +172,9 @@ export function Hero({ onOpenModal, onNavigate }) {
             
             {/* LEFT COLUMN: 55% High-Conviction Typography & CTAs */}
             <div className="hero-left-content">
-              {/* Small Eyebrow */}
+              {/* Step 2: Small Eyebrow (150ms) */}
               <div 
+                className="hero-eyebrow"
                 style={{ 
                   display: 'inline-flex', 
                   alignItems: 'center', 
@@ -193,7 +195,7 @@ export function Hero({ onOpenModal, onNavigate }) {
                 <span>SMARTER WEALTH. BETTER FUTURE.</span>
               </div>
 
-              {/* Large Headline */}
+              {/* Step 3: Large Headline (300ms line reveal) */}
               <h1 
                 style={{ 
                   fontSize: 'clamp(2.5rem, 4.8vw, 3.8rem)', 
@@ -209,8 +211,9 @@ export function Hero({ onOpenModal, onNavigate }) {
                 <span style={{ color: 'var(--color-accent)' }}>Invest With Confidence.</span>
               </h1>
 
-              {/* Supporting Copy (under 2-3 lines) */}
+              {/* Step 4: Supporting Copy (450ms) */}
               <p 
+                className="hero-desc"
                 style={{ 
                   fontSize: '1.12rem', 
                   color: '#94a3b8', 
@@ -222,31 +225,33 @@ export function Hero({ onOpenModal, onNavigate }) {
                 Smart investment solutions, expert guidance and digital tools designed around your financial goals.
               </p>
 
-              {/* Primary & Secondary Action Buttons */}
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '1.5rem' }}>
-                <button 
-                  onClick={() => onOpenModal && onOpenModal('consultation')}
-                  className="btn-primary-emerald"
-                >
-                  <span>Start Investing →</span>
-                </button>
+              {/* Step 5: Primary & Secondary Action Buttons (600ms) */}
+              <div className="hero-cta-group" style={{ marginBottom: '1.75rem' }}>
+                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '1rem' }}>
+                  <button 
+                    onClick={() => onOpenModal && onOpenModal('consultation')}
+                    className="btn-primary-emerald"
+                  >
+                    <span>Start Investing →</span>
+                  </button>
 
-                <button 
-                  onClick={() => onNavigate && onNavigate('products')}
-                  className="btn-outline-white"
-                >
-                  <span>Explore Solutions</span>
-                </button>
+                  <button 
+                    onClick={() => onNavigate && onNavigate('products')}
+                    className="btn-outline-white"
+                  >
+                    <span>Explore Solutions</span>
+                  </button>
+                </div>
+
+                {/* Subtle Trust Statement Below Buttons */}
+                <div style={{ fontSize: '0.88rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <CheckCircle2 size={15} color="var(--color-accent)" />
+                  <span>Investment solutions designed around your goals.</span>
+                </div>
               </div>
 
-              {/* Subtle Trust Statement Below Buttons (Section 6) */}
-              <div style={{ fontSize: '0.88rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
-                <CheckCircle2 size={15} color="var(--color-accent)" />
-                <span>Investment solutions designed around your goals.</span>
-              </div>
-
-              {/* Regulatory Assurance Strip */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1.25rem' }}>
+              {/* Step 7: Regulatory Assurance Strip (900ms) */}
+              <div className="hero-trust-strip" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', color: '#cbd5e1' }}>
                   <ShieldCheck size={15} color="var(--color-accent)" />
                   <span>AMFI Reg. ARN-182137</span>
@@ -602,7 +607,7 @@ export function Hero({ onOpenModal, onNavigate }) {
         </div>
       </section>
 
-      {/* Responsive & Animation Styles */}
+      {/* Responsive & Animation Styles (Requirement 2 & 9) */}
       <style>{`
         @media (min-width: 992px) {
           .hero-grid {
@@ -617,19 +622,55 @@ export function Hero({ onOpenModal, onNavigate }) {
             padding-top: 1rem !important;
           }
         }
-        .hero-left-content {
-          animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+        /* 6-Step Hero Staggered Entrance (Within ~1 second) */
+        .hero-bg-video {
+          animation: heroBgVideoDrift 28s ease-in-out infinite alternate;
+          will-change: transform;
         }
+
+        .hero-eyebrow {
+          animation: heroFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+        }
+
+        .hero-headline {
+          animation: heroLineReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.30s both;
+        }
+
+        .hero-desc {
+          animation: heroFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+        }
+
+        .hero-cta-group {
+          animation: heroFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.60s both;
+        }
+
         .hero-right-visual {
-          animation: heroFadeScale 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation: heroVisualEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.75s both;
         }
-        @keyframes heroFadeUp {
-          from { opacity: 0; transform: translateY(18px); }
+
+        .hero-trust-strip {
+          animation: heroFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.90s both;
+        }
+
+        @keyframes heroFade {
+          from { opacity: 0; transform: translateY(16px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes heroFadeScale {
-          from { opacity: 0; transform: scale(0.97) translateY(12px); }
+
+        @keyframes heroLineReveal {
+          from { opacity: 0; transform: translateY(26px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heroVisualEntrance {
+          from { opacity: 0; transform: scale(0.96) translateY(20px); }
           to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes heroBgVideoDrift {
+          0% { transform: translate(-50%, -50%) scale(1); }
+          100% { transform: translate(-50%, -50%) scale(1.025); }
         }
       `}</style>
     </div>

@@ -333,10 +333,11 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
                         style={{ 
                           width: `${Math.min(100, Math.max(8, Math.round((sipInvested / sipTotalValue) * 100)))}%`, 
                           background: '#64748b', 
-                          height: '100%' 
+                          height: '100%',
+                          transition: 'width 0.35s cubic-bezier(0.16, 1, 0.3, 1)'
                         }} 
                       />
-                      <div style={{ flex: 1, background: '#16B981', height: '100%' }} />
+                      <div style={{ flex: 1, background: '#16B981', height: '100%', transition: 'background-color 0.3s ease' }} />
                     </div>
 
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginTop: '6px' }}>
