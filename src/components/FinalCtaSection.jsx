@@ -195,16 +195,18 @@ export function FinalCtaSection({ onOpenModal, onNavigate }) {
 
         {/* Trust Badges Bar */}
         <div 
+          className="glass-surface-dark-subtle"
           style={{ 
-            display: 'flex', 
+            display: 'inline-flex', 
             justifyContent: 'center', 
             alignItems: 'center', 
             gap: 'clamp(1rem, 3vw, 2.5rem)', 
             flexWrap: 'wrap',
             fontSize: '0.82rem',
-            color: '#94a3b8',
-            borderTop: '1px solid rgba(255,255,255,0.08)',
-            paddingTop: '1.75rem'
+            color: '#cbd5e1',
+            borderRadius: '100px',
+            padding: '0.9rem 2rem',
+            marginTop: '0.5rem'
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>

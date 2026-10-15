@@ -83,6 +83,9 @@ export function Hero({ onOpenModal, onNavigate }) {
           />
         </div>
 
+        {/* Aurora Mesh Gradient (Requirement 8) */}
+        <div className="aurora-mesh-bg" aria-hidden="true" style={{ opacity: 0.85 }} />
+
         {/* Subtle Radial Glow & Background Grid Texture (Phase 5 Ambient Motion) */}
         <div 
           className="ambient-glow-drift"
@@ -271,15 +274,12 @@ export function Hero({ onOpenModal, onNavigate }) {
             {/* RIGHT COLUMN: 45% Premium Financial Visualization */}
             <div style={{ position: 'relative' }} className="hero-right-visual">
               
-              {/* Main Financial Dashboard Card */}
+              {/* Main Financial Dashboard Card (Requirement 3: Floating Glass Dashboard) */}
               <div 
+                className="glass-surface-dark"
                 style={{ 
-                  background: 'var(--color-secondary)', 
                   borderRadius: '24px', 
-                  border: '1px solid rgba(255, 255, 255, 0.1)', 
                   padding: 'clamp(1.75rem, 3.5vw, 2.25rem)', 
-                  boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.55)',
-                  backdropFilter: 'blur(16px)',
                   position: 'relative',
                   zIndex: 2
                 }}
@@ -287,7 +287,7 @@ export function Hero({ onOpenModal, onNavigate }) {
                 {/* Header with Demo Label */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
                   <div>
-                    <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                       Wealth Management Dashboard
                     </div>
                     <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#ffffff', marginTop: '2px' }}>
@@ -296,47 +296,45 @@ export function Hero({ onOpenModal, onNavigate }) {
                   </div>
 
                   <span 
+                    className="glass-badge-dark"
                     style={{ 
                       fontSize: '0.68rem', 
-                      fontWeight: 700, 
                       padding: '0.2rem 0.55rem', 
-                      borderRadius: '6px', 
-                      background: 'rgba(255, 255, 255, 0.08)', 
-                      color: '#94a3b8',
-                      border: '1px solid rgba(255, 255, 255, 0.12)' 
+                      borderRadius: '6px'
                     }}
                   >
                     Illustrative Demo
                   </span>
                 </div>
 
-                {/* Portfolio Value & Growth Rate */}
+                {/* Portfolio Value & Growth Rate (Requirement 3: ₹12,48,520 & +12.84%) */}
                 <div style={{ marginBottom: '1.5rem' }}>
                   <div style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Portfolio Value</div>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.75rem', marginTop: '0.25rem', flexWrap: 'wrap' }}>
                     <div style={{ fontSize: 'clamp(2.2rem, 3.5vw, 2.75rem)', fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums' }}>
-                      ₹24,80,000
+                      ₹12,48,520
                     </div>
                     <div style={{ 
                       display: 'inline-flex', 
                       alignItems: 'center', 
                       gap: '0.3rem', 
-                      background: 'rgba(22, 185, 129, 0.15)', 
+                      background: 'rgba(22, 185, 129, 0.16)', 
                       color: 'var(--color-accent)', 
                       padding: '0.25rem 0.6rem', 
                       borderRadius: '6px', 
                       fontSize: '0.82rem', 
                       fontWeight: 700,
-                      border: '1px solid rgba(22, 185, 129, 0.3)' 
+                      border: '1px solid rgba(22, 185, 129, 0.35)',
+                      boxShadow: '0 0 12px rgba(22, 185, 129, 0.2)'
                     }}>
                       <TrendingUp size={13} />
-                      <span>+18.6%</span>
+                      <span>+12.84%</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Smooth Portfolio Growth Line Chart (SVG) */}
-                <div style={{ marginBottom: '1.5rem', background: 'rgba(7, 26, 47, 0.6)', padding: '1rem', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                {/* Smooth Portfolio Growth Line Chart (SVG with Glow) */}
+                <div style={{ marginBottom: '1.5rem', background: 'rgba(7, 26, 47, 0.55)', padding: '1rem', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
                     <span style={{ fontSize: '0.73rem', color: '#94a3b8', fontWeight: 600 }}>Portfolio Growth</span>
                     <div style={{ display: 'flex', gap: '0.25rem' }}>
@@ -352,7 +350,8 @@ export function Hero({ onOpenModal, onNavigate }) {
                             background: selectedRange === r ? 'var(--color-accent)' : 'transparent',
                             color: selectedRange === r ? '#071A2F' : '#94a3b8',
                             border: 'none',
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            transition: 'all 0.2s ease'
                           }}
                         >
                           {r}
@@ -365,15 +364,18 @@ export function Hero({ onOpenModal, onNavigate }) {
                   <svg viewBox="0 0 360 140" style={{ width: '100%', height: '95px', overflow: 'visible' }}>
                     <defs>
                       <linearGradient id="chartGradientHero" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#16B981" stopOpacity="0.3" />
+                        <stop offset="0%" stopColor="#16B981" stopOpacity="0.35" />
                         <stop offset="100%" stopColor="#16B981" stopOpacity="0.0" />
                       </linearGradient>
+                      <filter id="glowChartLine" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#16B981" floodOpacity="0.5" />
+                      </filter>
                     </defs>
 
                     {/* Subtle grid lines */}
-                    <line x1="0" y1="35" x2="360" y2="35" stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
-                    <line x1="0" y1="80" x2="360" y2="80" stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
-                    <line x1="0" y1="125" x2="360" y2="125" stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
+                    <line x1="0" y1="35" x2="360" y2="35" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
+                    <line x1="0" y1="80" x2="360" y2="80" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
+                    <line x1="0" y1="125" x2="360" y2="125" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
 
                     {/* Gradient Area Fill */}
                     <path
@@ -381,13 +383,14 @@ export function Hero({ onOpenModal, onNavigate }) {
                       fill="url(#chartGradientHero)"
                     />
 
-                    {/* Smooth Line Path (Phase 5 Progressive Draw) */}
+                    {/* Smooth Line Path (Phase 5 Progressive Draw + Glow) */}
                     <path
                       d="M 20 130 Q 100 115 180 90 T 260 60 T 340 25"
                       fill="none"
                       stroke="#16B981"
                       strokeWidth="3"
                       strokeLinecap="round"
+                      filter="url(#glowChartLine)"
                       className="svg-chart-path"
                     />
 
@@ -400,9 +403,9 @@ export function Hero({ onOpenModal, onNavigate }) {
                             <circle
                               cx={pt.x}
                               cy={pt.y - 10}
-                              r="7"
+                              r="8"
                               fill="none"
-                              stroke="rgba(22, 185, 129, 0.45)"
+                              stroke="rgba(22, 185, 129, 0.55)"
                               strokeWidth="1.5"
                               className="chart-terminal-dot"
                             />
@@ -414,112 +417,118 @@ export function Hero({ onOpenModal, onNavigate }) {
                   </svg>
                 </div>
 
-                {/* Asset Allocation Breakdown */}
+                {/* Asset Allocation Breakdown (Requirement 3: Equity / Debt / Hybrid) */}
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                     <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                       Asset Allocation
                     </span>
-                    <span style={{ fontSize: '0.72rem', color: 'var(--color-accent)', fontWeight: 600 }}>Optimal Balance</span>
+                    <span style={{ fontSize: '0.72rem', color: 'var(--color-accent)', fontWeight: 600 }}>Optimized Wealth Ratio</span>
                   </div>
 
                   {/* Multi-segmented Allocation Bar */}
                   <div style={{ height: '7px', width: '100%', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '100px', display: 'flex', overflow: 'hidden', marginBottom: '0.65rem' }}>
-                    <div style={{ width: '60%', background: '#16B981', transition: 'width 1s ease' }} title="Mutual Funds 60%" />
-                    <div style={{ width: '25%', background: '#38BDF8', transition: 'width 1s ease' }} title="Equity 25%" />
-                    <div style={{ width: '15%', background: '#F59E0B', transition: 'width 1s ease' }} title="Bonds 15%" />
+                    <div style={{ width: '62%', background: '#16B981', transition: 'width 1s ease' }} title="Equity 62%" />
+                    <div style={{ width: '28%', background: '#38BDF8', transition: 'width 1s ease' }} title="Debt 28%" />
+                    <div style={{ width: '10%', background: '#F59E0B', transition: 'width 1s ease' }} title="Hybrid 10%" />
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.65rem', fontSize: '0.74rem' }}>
-                    <span style={{ color: '#cbd5e1' }}><strong style={{ color: '#16B981' }}>●</strong> Mutual Funds (60%)</span>
-                    <span style={{ color: '#cbd5e1' }}><strong style={{ color: '#38BDF8' }}>●</strong> Equity (25%)</span>
-                    <span style={{ color: '#cbd5e1' }}><strong style={{ color: '#F59E0B' }}>●</strong> Bonds (15%)</span>
+                    <span style={{ color: '#cbd5e1' }}><strong style={{ color: '#16B981' }}>●</strong> Equity (62%)</span>
+                    <span style={{ color: '#cbd5e1' }}><strong style={{ color: '#38BDF8' }}>●</strong> Debt (28%)</span>
+                    <span style={{ color: '#cbd5e1' }}><strong style={{ color: '#F59E0B' }}>●</strong> Hybrid (10%)</span>
                   </div>
                 </div>
 
               </div>
 
-              {/* Floating Badge 1: Top Right (Monthly SIP Active - Phase 5 float-card-1) */}
+              {/* Floating Glass Card 1: Top Right (Requirement 3: "SIP Active") */}
               <div 
                 style={{
                   position: 'absolute',
                   top: '-15px',
-                  right: '-15px',
-                  background: '#ffffff',
-                  color: 'var(--color-primary)',
-                  borderRadius: '14px',
-                  padding: '0.75rem 1rem',
-                  boxShadow: '0 12px 28px rgba(0, 0, 0, 0.25)',
-                  border: '1px solid var(--color-border)',
+                  right: '-18px',
+                  background: 'rgba(7, 26, 47, 0.82)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  color: '#ffffff',
+                  borderRadius: '16px',
+                  padding: '0.75rem 1.1rem',
+                  boxShadow: '0 16px 36px rgba(0, 0, 0, 0.45), 0 0 16px rgba(22, 185, 129, 0.15)',
+                  border: '1px solid rgba(255, 255, 255, 0.14)',
                   zIndex: 3,
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.65rem'
+                  gap: '0.75rem'
                 }}
                 className="d-none-mobile float-card-1"
               >
-                <div style={{ background: '#ecfdf5', padding: '0.45rem', borderRadius: '8px' }}>
-                  <TrendingUp size={18} color="#059669" />
+                <div style={{ width: '34px', height: '34px', borderRadius: '10px', background: 'rgba(22, 185, 129, 0.15)', border: '1px solid rgba(22, 185, 129, 0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <TrendingUp size={16} color="#16B981" />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.68rem', color: 'var(--color-text-secondary)', fontWeight: 700, textTransform: 'uppercase' }}>Monthly Systematic Plan</div>
-                  <div style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--color-primary)' }}>₹25,000 / month</div>
+                  <div style={{ fontSize: '0.68rem', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>SIP Active</div>
+                  <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#ffffff' }}>₹15,000 / month</div>
                 </div>
               </div>
 
-              {/* Floating Badge 2: Bottom Left (Zero Custody Direct AMC - Phase 5 float-card-2) */}
+              {/* Floating Glass Card 2: Bottom Left (Requirement 3: "Portfolio Growth") */}
               <div 
                 style={{
                   position: 'absolute',
                   bottom: '-18px',
                   left: '-18px',
-                  background: '#ffffff',
-                  color: 'var(--color-primary)',
-                  borderRadius: '14px',
-                  padding: '0.75rem 1rem',
-                  boxShadow: '0 12px 28px rgba(0, 0, 0, 0.25)',
-                  border: '1px solid var(--color-border)',
+                  background: 'rgba(7, 26, 47, 0.82)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  color: '#ffffff',
+                  borderRadius: '16px',
+                  padding: '0.75rem 1.1rem',
+                  boxShadow: '0 16px 36px rgba(0, 0, 0, 0.45), 0 0 16px rgba(56, 189, 248, 0.15)',
+                  border: '1px solid rgba(255, 255, 255, 0.14)',
                   zIndex: 3,
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.65rem'
+                  gap: '0.75rem'
                 }}
                 className="d-none-mobile float-card-2"
               >
-                <div style={{ background: '#eff6ff', padding: '0.45rem', borderRadius: '8px' }}>
-                  <ShieldCheck size={18} color="#2563eb" />
+                <div style={{ width: '34px', height: '34px', borderRadius: '10px', background: 'rgba(56, 189, 248, 0.15)', border: '1px solid rgba(56, 189, 248, 0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <ShieldCheck size={16} color="#38bdf8" />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.68rem', color: 'var(--color-text-secondary)', fontWeight: 700, textTransform: 'uppercase' }}>Fiduciary Safety</div>
-                  <div style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--color-primary)' }}>Direct AMC Settlement</div>
+                  <div style={{ fontSize: '0.68rem', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Portfolio Growth</div>
+                  <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#ffffff' }}>+₹3,84,500 Gain</div>
                 </div>
               </div>
 
-              {/* Floating Badge 3: Mid Right (Milestone Goal - Phase 5 float-card-3) */}
+              {/* Floating Glass Card 3: Mid Right (Requirement 3: "Goal Progress") */}
               <div 
                 style={{
                   position: 'absolute',
                   bottom: '85px',
                   right: '-28px',
-                  background: '#ffffff',
-                  color: 'var(--color-primary)',
-                  borderRadius: '14px',
-                  padding: '0.65rem 0.9rem',
-                  boxShadow: '0 10px 24px rgba(0, 0, 0, 0.22)',
-                  border: '1px solid var(--color-border)',
+                  background: 'rgba(7, 26, 47, 0.82)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  color: '#ffffff',
+                  borderRadius: '16px',
+                  padding: '0.7rem 1rem',
+                  boxShadow: '0 14px 32px rgba(0, 0, 0, 0.45)',
+                  border: '1px solid rgba(255, 255, 255, 0.14)',
                   zIndex: 3,
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.55rem'
+                  gap: '0.65rem'
                 }}
                 className="d-none-mobile float-card-3"
               >
-                <div style={{ background: 'rgba(22, 185, 129, 0.12)', padding: '0.4rem', borderRadius: '8px' }}>
-                  <PieChart size={16} color="var(--color-accent)" />
+                <div style={{ width: '30px', height: '30px', borderRadius: '8px', background: 'rgba(22, 185, 129, 0.15)', border: '1px solid rgba(22, 185, 129, 0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <PieChart size={15} color="#16B981" />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.65rem', color: 'var(--color-text-secondary)', fontWeight: 700, textTransform: 'uppercase' }}>Portfolio Health</div>
-                  <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--color-primary)' }}>Optimal Allocation</div>
+                  <div style={{ fontSize: '0.65rem', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Goal Progress</div>
+                  <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#ffffff' }}>Retirement: 74%</div>
                 </div>
               </div>
 

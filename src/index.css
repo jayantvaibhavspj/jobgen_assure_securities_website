@@ -558,6 +558,226 @@ input[type="range"]::-moz-range-thumb {
 }
 
 /* ==========================================================================
+   PREMIUM FINANCIAL GLASS — 2026 VISUAL DESIGN SYSTEM
+   Luxury Wealth Management × Modern Fintech × Apple-level UI Polish
+   Balance: 70% Clean UI + 15% Glassmorphism + 10% Bento + 5% Soft 3D
+   ========================================================================== */
+
+/* 1. Aurora / Mesh Gradient Engine (Requirement 8) */
+.aurora-mesh-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(22, 185, 129, 0.16) 0%, transparent 40%),
+    radial-gradient(circle at 82% 28%, rgba(56, 189, 248, 0.14) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+    #071A2F;
+  animation: auroraMeshDrift 18s ease-in-out infinite alternate;
+  will-change: background-position, opacity;
+}
+
+@keyframes auroraMeshDrift {
+  0% {
+    filter: hue-rotate(0deg) brightness(1);
+    transform: scale(1);
+  }
+  50% {
+    filter: hue-rotate(8deg) brightness(1.05);
+    transform: scale(1.02);
+  }
+  100% {
+    filter: hue-rotate(-6deg) brightness(0.98);
+    transform: scale(1);
+  }
+}
+
+/* 2. Frosted Glass Surfaces (Requirement 2 & 18: Depth Level 3) */
+.glass-surface-dark {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.glass-surface-dark-subtle {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.glass-surface-light {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 16px 36px -8px rgba(7, 26, 47, 0.06), 0 2px 6px rgba(7, 26, 47, 0.02);
+}
+
+/* Floating Glass Pill Badges */
+.glass-badge-dark {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 0.25rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.glass-badge-light {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(229, 234, 240, 0.85);
+  color: var(--color-primary);
+  padding: 0.25rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* 3. Bento Grid System (Requirements 4, 5 & 10) */
+.bento-grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+.bento-card-light {
+  border-radius: 24px;
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+  box-shadow: 0 4px 20px -2px rgba(7, 26, 47, 0.04);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-card-light:hover {
+  transform: translateY(-4px);
+  border-color: rgba(22, 185, 129, 0.35);
+  box-shadow: 0 20px 40px -10px rgba(7, 26, 47, 0.1), 0 0 20px rgba(22, 185, 129, 0.08);
+}
+
+.bento-card-dark {
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-card-dark:hover {
+  transform: translateY(-4px);
+  border-color: rgba(22, 185, 129, 0.4);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65), 0 0 24px rgba(22, 185, 129, 0.18);
+}
+
+/* 4. Soft 3D & Subtle Neumorphic Fintech Controls (Requirements 6, 7 & 11) */
+.soft-3d-surface {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  box-shadow: inset 0 2px 4px rgba(7, 26, 47, 0.04), 0 1px 2px rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+}
+
+.soft-3d-button {
+  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 2px 5px rgba(7, 26, 47, 0.06), inset 0 1px 0 #ffffff;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.soft-3d-button:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+  box-shadow: 0 4px 10px rgba(7, 26, 47, 0.08), inset 0 1px 0 #ffffff;
+}
+
+.soft-3d-button:active {
+  box-shadow: inset 0 2px 4px rgba(7, 26, 47, 0.1);
+  transform: translateY(1px);
+}
+
+/* Modern 3D Range Slider for Calculators */
+input[type=range].fintech-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 7px;
+  background: #e2e8f0;
+  border-radius: 100px;
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(7, 26, 47, 0.12);
+  cursor: pointer;
+}
+
+input[type=range].fintech-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #16B981;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(22, 185, 129, 0.35), 0 2px 4px rgba(7, 26, 47, 0.12);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+input[type=range].fintech-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 14px rgba(22, 185, 129, 0.45), 0 0 0 4px rgba(22, 185, 129, 0.12);
+}
+
+/* 5. Micro Glows (Requirement 17) */
+.micro-glow-emerald {
+  box-shadow: 0 0 16px rgba(22, 185, 129, 0.35);
+}
+
+.micro-glow-dot {
+  box-shadow: 0 0 8px #16B981, 0 0 16px rgba(22, 185, 129, 0.4);
+}
+
+/* 6. Visual Depth Levels (Requirement 18) */
+.depth-level-1 {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+}
+
+.depth-level-2 {
+  background: #ffffff;
+  border: 1px solid rgba(229, 234, 240, 0.9);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px -10px rgba(7, 26, 47, 0.07);
+}
+
+.depth-level-3 {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
    Phase 5: Advanced Motion & Visual Storytelling System
    Calm • Cinematic • Purposeful • Hierarchy-Driven
    ========================================================================== */

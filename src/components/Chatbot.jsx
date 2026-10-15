@@ -930,10 +930,12 @@ export default function Chatbot({ onOpenModal }) {
         <div 
           style={{
             ...getChatWindowStyle(),
-            background: '#ffffff',
+            background: 'rgba(255, 255, 255, 0.96)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
             borderRadius: isMobile ? '20px 20px 0 0' : '20px',
-            boxShadow: '0 24px 60px rgba(7, 26, 47, 0.3), 0 4px 16px rgba(0,0,0,0.08)',
-            border: '1px solid rgba(229, 234, 240, 0.9)',
+            boxShadow: '0 24px 60px rgba(7, 26, 47, 0.28), 0 4px 20px rgba(0,0,0,0.06)',
+            border: '1px solid rgba(229, 234, 240, 0.85)',
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
@@ -943,7 +945,7 @@ export default function Chatbot({ onOpenModal }) {
           {/* Header */}
           <div 
             style={{
-              background: '#071A2F',
+              background: 'linear-gradient(135deg, #071A2F 0%, #0d2746 100%)',
               color: '#ffffff',
               padding: '0.95rem 1.15rem',
               display: 'flex',

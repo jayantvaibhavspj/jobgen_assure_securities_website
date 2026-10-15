@@ -164,101 +164,92 @@ export function AppSection({ onOpenModal }) {
               </div>
             </div>
 
-            {/* Small Floating Card 1: Top Right (Portfolio - Phase 5 float-card-1) */}
+            {/* Panel 1: Top Right (Requirement 12: "+₹24,850 Growth") */}
             <div 
               style={{
                 position: 'absolute',
                 top: '40px',
-                right: '-25px',
-                background: 'rgba(13, 41, 69, 0.95)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: '14px',
-                padding: '0.75rem 1rem',
-                boxShadow: '0 12px 28px rgba(0,0,0,0.4)',
-                zIndex: 10
-              }}
-              className="d-none-mobile float-card-1 reveal-on-scroll stagger-1"
-            >
-              <div style={{ fontSize: '0.68rem', color: '#94a3b8', textTransform: 'uppercase' }}>Consolidated Folios</div>
-              <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#ffffff' }}>All AMCs Integrated</div>
-            </div>
-
-            {/* Small Floating Card 2: Bottom Left (Reports - Phase 5 float-card-2) */}
-            <div 
-              style={{
-                position: 'absolute',
-                bottom: '50px',
-                left: '-25px',
-                background: 'rgba(13, 41, 69, 0.95)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: '14px',
-                padding: '0.75rem 1rem',
-                boxShadow: '0 12px 28px rgba(0,0,0,0.4)',
+                right: '-28px',
+                background: 'rgba(255, 255, 255, 0.08)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255, 255, 255, 0.16)',
+                borderRadius: '16px',
+                padding: '0.75rem 1.15rem',
+                boxShadow: '0 18px 40px rgba(0,0,0,0.5), 0 0 16px rgba(22, 185, 129, 0.18)',
                 zIndex: 10,
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.5rem'
+                gap: '0.65rem'
               }}
-              className="d-none-mobile float-card-2 reveal-on-scroll stagger-2"
+              className="d-none-mobile float-card-1 reveal-on-scroll stagger-1"
             >
-              <FileText size={16} color="var(--color-accent)" />
+              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(22, 185, 129, 0.2)', border: '1px solid rgba(22, 185, 129, 0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <TrendingUp size={16} color="#16B981" />
+              </div>
               <div>
-                <div style={{ fontSize: '0.68rem', color: '#94a3b8' }}>Tax Reports</div>
-                <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#ffffff' }}>Capital Gains Ready</div>
+                <div style={{ fontSize: '0.65rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Daily Performance</div>
+                <div style={{ fontSize: '0.96rem', fontWeight: 700, color: '#16B981' }}>+₹24,850 Growth</div>
               </div>
             </div>
 
-            {/* Small Floating Card 3: Mid Left (SIP - Phase 5 float-card-4) */}
+            {/* Panel 2: Mid Left (Requirement 12: "SIP ₹10,000/month") */}
             <div 
               style={{
                 position: 'absolute',
                 top: '220px',
                 left: '-32px',
-                background: 'rgba(13, 41, 69, 0.95)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: '14px',
-                padding: '0.65rem 0.95rem',
-                boxShadow: '0 12px 28px rgba(0,0,0,0.4)',
+                background: 'rgba(255, 255, 255, 0.08)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255, 255, 255, 0.16)',
+                borderRadius: '16px',
+                padding: '0.75rem 1.15rem',
+                boxShadow: '0 18px 40px rgba(0,0,0,0.5)',
                 zIndex: 10,
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.5rem'
+                gap: '0.65rem'
               }}
-              className="d-none-mobile float-card-4 reveal-on-scroll stagger-3"
+              className="d-none-mobile float-card-4 reveal-on-scroll stagger-2"
             >
-              <TrendingUp size={16} color="var(--color-accent)" />
+              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(56, 189, 248, 0.2)', border: '1px solid rgba(56, 189, 248, 0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <CheckCircle2 size={16} color="#38bdf8" />
+              </div>
               <div>
-                <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>Automated SIP</div>
-                <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#ffffff' }}>₹25,000 / mo Active</div>
+                <div style={{ fontSize: '0.65rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Automated Mandate</div>
+                <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#ffffff' }}>SIP ₹10,000/month</div>
               </div>
             </div>
 
-            {/* Small Floating Card 4: Mid Right (Goal - Phase 5 float-card-5) */}
+            {/* Panel 3: Bottom Right (Requirement 12: "Goal 72% Complete") */}
             <div 
               style={{
                 position: 'absolute',
-                bottom: '180px',
-                right: '-32px',
-                background: 'rgba(13, 41, 69, 0.95)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: '14px',
-                padding: '0.65rem 0.95rem',
-                boxShadow: '0 12px 28px rgba(0,0,0,0.4)',
+                bottom: '60px',
+                right: '-28px',
+                background: 'rgba(255, 255, 255, 0.08)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255, 255, 255, 0.16)',
+                borderRadius: '16px',
+                padding: '0.75rem 1.15rem',
+                boxShadow: '0 18px 40px rgba(0,0,0,0.5)',
                 zIndex: 10,
                 display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem'
+                flexDirection: 'column',
+                gap: '0.45rem',
+                minWidth: '170px'
               }}
-              className="d-none-mobile float-card-5 reveal-on-scroll stagger-4"
+              className="d-none-mobile float-card-5 reveal-on-scroll stagger-3"
             >
-              <CheckCircle2 size={16} color="#38bdf8" />
-              <div>
-                <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>Goal Tracking</div>
-                <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#ffffff' }}>Retirement On-Track</div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '0.65rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Child Education</span>
+                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#16B981' }}>72%</span>
+              </div>
+              <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#ffffff' }}>Goal 72% Complete</div>
+              <div style={{ height: '4px', width: '100%', background: 'rgba(255,255,255,0.15)', borderRadius: '100px', overflow: 'hidden' }}>
+                <div style={{ width: '72%', height: '100%', background: '#16B981', borderRadius: '100px' }} />
               </div>
             </div>
 

@@ -129,12 +129,13 @@ export function GoalInvestingSection({ onOpenModal }) {
           </p>
         </div>
 
-        {/* 6 Visual Milestone Storytelling Cards Grid */}
+        {/* Modern Bento Story Layout (Requirement 10: Asymmetric Bento Composition) */}
         <div 
+          className="goal-bento-grid"
           style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-            gap: '1.75rem',
+            gridTemplateColumns: 'repeat(12, 1fr)', 
+            gap: '1.5rem',
             marginBottom: '3rem'
           }}
         >
@@ -142,30 +143,58 @@ export function GoalInvestingSection({ onOpenModal }) {
             const Icon = goal.icon;
             const isSelected = selectedGoal.id === goal.id;
 
+            // Compute bento grid span per requirement
+            let colSpan = 'span 6';
+            let tileClass = 'goal-tile-compact';
+            let imgHeight = '185px';
+
+            if (goal.id === 'retirement') {
+              colSpan = 'span 7';
+              tileClass = 'goal-tile-retirement';
+              imgHeight = '230px';
+            } else if (goal.id === 'child-education') {
+              colSpan = 'span 5';
+              tileClass = 'goal-tile-child';
+              imgHeight = '185px';
+            } else if (goal.id === 'dream-home') {
+              colSpan = 'span 5';
+              tileClass = 'goal-tile-home';
+              imgHeight = '185px';
+            } else if (goal.id === 'wealth-creation') {
+              colSpan = 'span 7';
+              tileClass = 'goal-tile-wealth';
+              imgHeight = '195px';
+            } else if (goal.id === 'emergency-fund' || goal.id === 'vacation') {
+              colSpan = 'span 6';
+              tileClass = 'goal-tile-compact';
+              imgHeight = '160px';
+            }
+
             return (
               <div
                 key={goal.id}
                 onClick={() => setSelectedGoal(goal)}
-                className={`fintech-card goal-card interactive-glow-card reveal-on-scroll stagger-${(index % 3) + 1}`}
+                className={`bento-card-light goal-card interactive-glow-card reveal-on-scroll stagger-${(index % 4) + 1} ${tileClass}`}
                 style={{
+                  gridColumn: colSpan,
                   padding: 0,
                   overflow: 'hidden',
                   cursor: 'pointer',
                   borderColor: isSelected ? 'var(--color-accent)' : 'var(--color-border)',
                   background: isSelected ? '#fafbfd' : '#ffffff',
-                  boxShadow: isSelected ? '0 16px 36px -6px rgba(22, 185, 129, 0.2)' : 'var(--shadow-card)',
+                  boxShadow: isSelected ? '0 20px 40px -6px rgba(22, 185, 129, 0.22)' : '0 4px 20px -2px rgba(7, 26, 47, 0.05)',
                   transform: isSelected ? 'translateY(-4px)' : 'none',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  transition: 'all 320ms cubic-bezier(0.16, 1, 0.3, 1)'
+                  transition: 'all 350ms cubic-bezier(0.16, 1, 0.3, 1)'
                 }}
               >
-                {/* Visual Photography Header */}
+                {/* Visual Photography Header with Micro-Interaction */}
                 <div 
                   style={{ 
                     position: 'relative', 
-                    height: '175px', 
+                    height: imgHeight, 
                     overflow: 'hidden', 
                     background: '#071A2F' 
                   }}
@@ -180,7 +209,7 @@ export function GoalInvestingSection({ onOpenModal }) {
                       height: '100%',
                       objectFit: 'cover',
                       transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-                      transform: isSelected ? 'scale(1.08)' : 'scale(1.0)'
+                      transform: isSelected ? 'scale(1.06)' : 'scale(1.0)'
                     }}
                     className="goal-card-img"
                     onError={(e) => {
@@ -192,11 +221,11 @@ export function GoalInvestingSection({ onOpenModal }) {
                     style={{
                       position: 'absolute',
                       inset: 0,
-                      background: 'linear-gradient(to top, rgba(7, 26, 47, 0.92) 0%, rgba(7, 26, 47, 0.35) 55%, rgba(7, 26, 47, 0.45) 100%)'
+                      background: 'linear-gradient(to top, rgba(7, 26, 47, 0.94) 0%, rgba(7, 26, 47, 0.35) 55%, rgba(7, 26, 47, 0.4) 100%)'
                     }} 
                   />
 
-                  {/* Top Badges */}
+                  {/* Top Glass Badges */}
                   <div 
                     style={{
                       position: 'absolute',
@@ -210,28 +239,19 @@ export function GoalInvestingSection({ onOpenModal }) {
                     }}
                   >
                     <span 
-                      style={{
-                        background: 'rgba(7, 26, 47, 0.75)',
-                        backdropFilter: 'blur(8px)',
-                        color: '#ffffff',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        padding: '0.22rem 0.65rem',
-                        borderRadius: '6px',
-                        fontSize: '0.72rem',
-                        fontWeight: 700,
-                        letterSpacing: '0.03em'
-                      }}
+                      className="glass-badge-dark"
                     >
                       Target: {goal.time}
                     </span>
                     <span 
                       style={{
-                        background: isSelected ? 'var(--color-accent)' : 'rgba(255, 255, 255, 0.9)',
+                        background: isSelected ? 'var(--color-accent)' : 'rgba(255, 255, 255, 0.92)',
                         color: isSelected ? '#071A2F' : 'var(--color-primary)',
-                        padding: '0.2rem 0.55rem',
+                        padding: '0.2rem 0.6rem',
                         borderRadius: '6px',
-                        fontSize: '0.68rem',
-                        fontWeight: 700
+                        fontSize: '0.7rem',
+                        fontWeight: 700,
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
                       }}
                     >
                       {goal.rate.split(' ')[0]} CAGR
@@ -253,11 +273,11 @@ export function GoalInvestingSection({ onOpenModal }) {
                   >
                     <div 
                       style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '10px',
+                        width: '42px',
+                        height: '42px',
+                        borderRadius: '12px',
                         background: '#ffffff',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+                        boxShadow: '0 6px 16px rgba(0,0,0,0.3)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -268,7 +288,7 @@ export function GoalInvestingSection({ onOpenModal }) {
                       <Icon size={20} strokeWidth={2} />
                     </div>
                     <div>
-                      <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#ffffff', margin: 0, textShadow: '0 2px 4px rgba(0,0,0,0.6)' }}>
+                      <h3 style={{ fontSize: goal.id === 'retirement' ? '1.45rem' : '1.25rem', fontWeight: 700, color: '#ffffff', margin: 0, textShadow: '0 2px 4px rgba(0,0,0,0.6)' }}>
                         {goal.title}
                       </h3>
                     </div>
@@ -276,9 +296,9 @@ export function GoalInvestingSection({ onOpenModal }) {
                 </div>
 
                 {/* Card Content Body */}
-                <div style={{ padding: '1.25rem 1.5rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
+                <div style={{ padding: '1.35rem 1.6rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
                   <div>
-                    <div style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--color-accent)', marginBottom: '0.65rem' }}>
+                    <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--color-accent)', marginBottom: '0.65rem' }}>
                       "{goal.subtitle}"
                     </div>
 
@@ -288,26 +308,24 @@ export function GoalInvestingSection({ onOpenModal }) {
                   </div>
 
                   <div>
-                    {/* Compact Metrics Row */}
+                    {/* Soft 3D Metrics Row */}
                     <div 
+                      className="soft-3d-surface"
                       style={{
-                        background: 'var(--color-bg)',
-                        border: '1px solid var(--color-border)',
-                        borderRadius: '10px',
-                        padding: '0.65rem 0.85rem',
+                        padding: '0.75rem 1rem',
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
-                        marginBottom: '0.85rem'
+                        marginBottom: '0.95rem'
                       }}
                     >
                       <div>
-                        <div style={{ fontSize: '0.65rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: 600 }}>Target Corpus</div>
-                        <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--color-primary)' }}>{goal.target}</div>
+                        <div style={{ fontSize: '0.68rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: 600 }}>Target Corpus</div>
+                        <div style={{ fontSize: '1.12rem', fontWeight: 700, color: 'var(--color-primary)' }}>{goal.target}</div>
                       </div>
                       <div style={{ textAlign: 'right' }}>
-                        <div style={{ fontSize: '0.65rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: 600 }}>Approx. SIP</div>
-                        <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--color-accent)' }}>{goal.monthly.split(' ')[0]}/mo</div>
+                        <div style={{ fontSize: '0.68rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: 600 }}>Approx. SIP</div>
+                        <div style={{ fontSize: '1.12rem', fontWeight: 700, color: 'var(--color-accent)' }}>{goal.monthly.split(' ')[0]}/mo</div>
                       </div>
                     </div>
 
@@ -315,7 +333,7 @@ export function GoalInvestingSection({ onOpenModal }) {
                     <div 
                       style={{ 
                         borderTop: '1px solid var(--color-border)', 
-                        paddingTop: '0.75rem', 
+                        paddingTop: '0.85rem', 
                         display: 'flex', 
                         justifyContent: 'space-between', 
                         alignItems: 'center',
@@ -325,7 +343,9 @@ export function GoalInvestingSection({ onOpenModal }) {
                       }}
                     >
                       <span>{isSelected ? "● Active Blueprint" : "Click to Explore"}</span>
-                      <span style={{ color: 'var(--color-primary)', fontWeight: 700 }}>Select Plan →</span>
+                      <span style={{ color: 'var(--color-primary)', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        Select Plan <ArrowRight size={14} />
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -333,6 +353,28 @@ export function GoalInvestingSection({ onOpenModal }) {
             );
           })}
         </div>
+
+        <style>{`
+          @media (max-width: 991px) {
+            .goal-bento-grid {
+              grid-template-columns: 1fr 1fr !important;
+            }
+            .goal-bento-grid > div {
+              grid-column: span 1 !important;
+            }
+            .goal-bento-grid > .goal-tile-wealth {
+              grid-column: span 2 !important;
+            }
+          }
+          @media (max-width: 680px) {
+            .goal-bento-grid {
+              grid-template-columns: 1fr !important;
+            }
+            .goal-bento-grid > div {
+              grid-column: span 1 !important;
+            }
+          }
+        `}</style>
 
         {/* Selected Goal Planning Panel (Section 10 & 12) with Preview Thumbnail */}
         <div 

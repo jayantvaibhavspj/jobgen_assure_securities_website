@@ -158,14 +158,13 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
           })}
         </div>
 
-        {/* Main Calculator Box */}
+        {/* Main Calculator Box (Requirement 11: Light Glass Surface & Soft 3D Controls) */}
         <div 
-          className="fintech-card"
+          className="glass-surface-light"
           style={{ 
-            background: 'var(--color-bg)', 
             padding: 'clamp(1.75rem, 4vw, 3rem)',
             borderRadius: '24px',
-            border: '1px solid var(--color-border)'
+            border: '1px solid rgba(229, 234, 240, 0.9)'
           }}
         >
           {/* TAB 1: SIP CALCULATOR */}
@@ -198,12 +197,13 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
                     <label style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                       Monthly Investment
                     </label>
-                    <div style={{ display: 'inline-flex', alignItems: 'center', background: '#ffffff', border: '1.5px solid var(--color-border)', borderRadius: '8px', padding: '0.2rem 0.65rem' }}>
+                    <div className="soft-3d-surface" style={{ display: 'inline-flex', alignItems: 'center', padding: '0.2rem 0.65rem' }}>
                       <span style={{ fontWeight: 700, color: 'var(--color-primary)', fontSize: '1.15rem' }}>{formatINR(sipAmount)}</span>
                     </div>
                   </div>
                   <input 
                     type="range" 
+                    className="fintech-slider"
                     min="1000" 
                     max="200000" 
                     step="1000" 
@@ -236,12 +236,13 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
                     <label style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                       Expected Rate of Return (p.a)
                     </label>
-                    <div style={{ background: '#ffffff', border: '1px solid var(--color-border)', borderRadius: '8px', padding: '0.3rem 0.75rem' }}>
+                    <div className="soft-3d-surface" style={{ padding: '0.2rem 0.65rem' }}>
                       <span style={{ fontWeight: 700, color: 'var(--color-accent)', fontSize: '1.15rem' }}>{sipRate}%</span>
                     </div>
                   </div>
                   <input 
                     type="range" 
+                    className="fintech-slider"
                     min="6" 
                     max="22" 
                     step="0.5" 
@@ -273,12 +274,13 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
                     <label style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                       Investment Period
                     </label>
-                    <div style={{ background: '#ffffff', border: '1px solid var(--color-border)', borderRadius: '8px', padding: '0.3rem 0.75rem' }}>
+                    <div className="soft-3d-surface" style={{ padding: '0.2rem 0.65rem' }}>
                       <span style={{ fontWeight: 700, color: 'var(--color-primary)', fontSize: '1.15rem' }}>{sipYears} Years</span>
                     </div>
                   </div>
                   <input 
                     type="range" 
+                    className="fintech-slider"
                     min="1" 
                     max="35" 
                     step="1" 
@@ -303,10 +305,10 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
 
               {/* Result Column (Section 13: Visually Dominant Result Card) */}
               <div 
-                className="fintech-card-dark"
+                className="bento-card-dark"
                 style={{ 
                   padding: '2.5rem', 
-                  borderRadius: '20px', 
+                  borderRadius: '24px', 
                   display: 'flex', 
                   flexDirection: 'column', 
                   justifyContent: 'space-between'

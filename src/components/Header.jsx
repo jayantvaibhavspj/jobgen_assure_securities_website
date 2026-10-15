@@ -72,12 +72,12 @@ export function Header({ onOpenModal }) {
         position: 'sticky', 
         top: 0, 
         zIndex: 1000, 
-        background: isScrolled ? 'rgba(255, 255, 255, 0.94)' : '#ffffff', 
-        backdropFilter: isScrolled ? 'blur(16px)' : 'none',
-        WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
-        borderBottom: isScrolled ? '1px solid rgba(7, 26, 47, 0.08)' : '1px solid var(--color-border)',
-        boxShadow: isScrolled ? '0 10px 30px rgba(7, 26, 47, 0.06)' : 'none',
-        transition: 'background 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+        background: isScrolled ? 'rgba(255, 255, 255, 0.92)' : 'rgba(255, 255, 255, 0.82)', 
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderBottom: isScrolled ? '1px solid rgba(7, 26, 47, 0.08)' : '1px solid rgba(229, 234, 240, 0.8)',
+        boxShadow: isScrolled ? '0 12px 32px rgba(7, 26, 47, 0.08)' : '0 4px 16px rgba(7, 26, 47, 0.03)',
+        transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
       }}
     >
       {/* Top Utility Strip (Sleek Market Status & Compliance) */}
@@ -197,8 +197,14 @@ export function Header({ onOpenModal }) {
               {investDropdown && (
                 <div style={{
                   position: 'absolute', top: '100%', left: '-15px', width: '280px',
-                  background: '#ffffff', borderRadius: '16px', boxShadow: '0 20px 40px -10px rgba(7, 26, 47, 0.15)',
-                  border: '1px solid var(--color-border)', padding: '0.75rem', zIndex: 100,
+                  background: 'rgba(255, 255, 255, 0.94)', 
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  borderRadius: '20px', 
+                  boxShadow: '0 20px 45px -10px rgba(7, 26, 47, 0.18)',
+                  border: '1px solid rgba(229, 234, 240, 0.9)', 
+                  padding: '0.75rem', 
+                  zIndex: 100,
                   animation: 'fadeIn 0.2s ease-out'
                 }}>
                   {[
@@ -252,8 +258,14 @@ export function Header({ onOpenModal }) {
               {wealthDropdown && (
                 <div style={{
                   position: 'absolute', top: '100%', left: '-80px', width: '320px',
-                  background: '#ffffff', borderRadius: '16px', boxShadow: '0 20px 40px -10px rgba(7, 26, 47, 0.15)',
-                  border: '1px solid var(--color-border)', padding: '0.75rem', zIndex: 100,
+                  background: 'rgba(255, 255, 255, 0.94)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  borderRadius: '20px', 
+                  boxShadow: '0 20px 45px -10px rgba(7, 26, 47, 0.18)',
+                  border: '1px solid rgba(229, 234, 240, 0.9)', 
+                  padding: '0.75rem', 
+                  zIndex: 100,
                   animation: 'fadeIn 0.2s ease-out'
                 }}>
                   {PRODUCTS_DATA.map((p) => (
@@ -297,8 +309,14 @@ export function Header({ onOpenModal }) {
               {toolsDropdown && (
                 <div style={{
                   position: 'absolute', top: '100%', left: '-50px', width: '270px',
-                  background: '#ffffff', borderRadius: '16px', boxShadow: '0 20px 40px -10px rgba(7, 26, 47, 0.15)',
-                  border: '1px solid var(--color-border)', padding: '0.75rem', zIndex: 100,
+                  background: 'rgba(255, 255, 255, 0.94)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  borderRadius: '20px', 
+                  boxShadow: '0 20px 45px -10px rgba(7, 26, 47, 0.18)',
+                  border: '1px solid rgba(229, 234, 240, 0.9)', 
+                  padding: '0.75rem', 
+                  zIndex: 100,
                   animation: 'fadeIn 0.2s ease-out'
                 }}>
                   {[

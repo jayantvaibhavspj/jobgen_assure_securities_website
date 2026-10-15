@@ -59,12 +59,13 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
           </p>
         </div>
 
-        {/* 2 to 4 Column Responsive Grid */}
+        {/* Asymmetric Bento Grid System (Requirement 4 & 5) */}
         <div 
+          className="products-bento-grid"
           style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-            gap: '1.75rem',
+            gridTemplateColumns: 'repeat(12, 1fr)', 
+            gap: '1.5rem',
             marginBottom: selectedProduct ? '2.5rem' : '0'
           }}
         >
@@ -73,31 +74,46 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
             const Icon = PRODUCT_ICONS[prod.id] || TrendingUp;
             const cardImg = PRODUCT_IMAGES[prod.id] || '/assets/b1-2.jpg';
 
+            // Compute bento grid span per requirement
+            let colSpan = 'span 4';
+            let imgHeight = '145px';
+            if (prod.id === 'mutual-funds') {
+              colSpan = 'span 7';
+              imgHeight = '185px';
+            } else if (prod.id === 'fixed-deposits') {
+              colSpan = 'span 5';
+              imgHeight = '185px';
+            } else if (prod.id === 'life-insurance' || prod.id === 'general-insurance') {
+              colSpan = 'span 6';
+              imgHeight = '150px';
+            }
+
             return (
               <div
                 key={prod.id}
                 onClick={() => setSelectedProduct(isSelected ? null : prod.id)}
-                className={`fintech-card solution-card interactive-glow-card reveal-on-scroll stagger-${(index % 4) + 1}`}
+                className={`bento-card-light solution-card interactive-glow-card reveal-on-scroll stagger-${(index % 4) + 1}`}
                 style={{
+                  gridColumn: colSpan,
                   cursor: 'pointer',
                   borderColor: isSelected ? 'var(--color-accent)' : 'var(--color-border)',
-                  background: '#ffffff',
-                  boxShadow: isSelected ? '0 16px 36px rgba(22, 185, 129, 0.16)' : 'var(--shadow-card)',
+                  background: isSelected ? '#fafbfd' : '#ffffff',
+                  boxShadow: isSelected ? '0 20px 40px rgba(22, 185, 129, 0.2)' : '0 4px 20px -2px rgba(7, 26, 47, 0.05)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   padding: 0,
                   overflow: 'hidden',
-                  borderRadius: '20px',
+                  borderRadius: '24px',
                   transform: isSelected ? 'translateY(-4px)' : 'none',
-                  transition: 'all 300ms cubic-bezier(0.16, 1, 0.3, 1)'
+                  transition: 'all 350ms cubic-bezier(0.16, 1, 0.3, 1)'
                 }}
               >
-                {/* Visual Header Image Banner */}
+                {/* Visual Header Image Banner with Micro-Interactions */}
                 <div 
                   style={{
                     position: 'relative',
-                    height: '140px',
+                    height: imgHeight,
                     overflow: 'hidden',
                     background: '#071A2F'
                   }}
@@ -111,9 +127,9 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      opacity: 0.85,
-                      transition: 'transform 0.5s ease',
-                      transform: isSelected ? 'scale(1.08)' : 'scale(1.0)'
+                      opacity: 0.88,
+                      transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+                      transform: isSelected ? 'scale(1.06)' : 'scale(1.0)'
                     }}
                     className="solution-card-img"
                     onError={(e) => { e.target.style.display = 'none'; }}
@@ -123,25 +139,15 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
                     style={{
                       position: 'absolute',
                       inset: 0,
-                      background: 'linear-gradient(to top, rgba(7, 26, 47, 0.9) 0%, rgba(7, 26, 47, 0.3) 60%, rgba(7, 26, 47, 0.5) 100%)'
+                      background: 'linear-gradient(to top, rgba(7, 26, 47, 0.94) 0%, rgba(7, 26, 47, 0.3) 60%, rgba(7, 26, 47, 0.45) 100%)'
                     }} 
                   />
 
                   {/* Category Pill on top right */}
                   <div style={{ position: 'absolute', top: '12px', right: '12px', zIndex: 2 }}>
                     <span 
-                      style={{ 
-                        fontSize: '0.68rem', 
-                        fontWeight: 700, 
-                        color: '#ffffff', 
-                        background: 'rgba(7, 26, 47, 0.75)', 
-                        backdropFilter: 'blur(8px)',
-                        padding: '0.22rem 0.6rem', 
-                        borderRadius: '6px',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.04em'
-                      }}
+                      className="glass-badge-dark"
+                      style={{ textTransform: 'uppercase', letterSpacing: '0.04em' }}
                     >
                       {prod.subcategories ? prod.subcategories[0] : 'Wealth Solution'}
                     </span>
@@ -233,6 +239,28 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
             );
           })}
         </div>
+
+        <style>{`
+          @media (max-width: 991px) {
+            .products-bento-grid {
+              grid-template-columns: 1fr 1fr !important;
+            }
+            .products-bento-grid > div {
+              grid-column: span 1 !important;
+            }
+            .products-bento-grid > div:first-child {
+              grid-column: span 2 !important;
+            }
+          }
+          @media (max-width: 680px) {
+            .products-bento-grid {
+              grid-template-columns: 1fr !important;
+            }
+            .products-bento-grid > div {
+              grid-column: span 1 !important;
+            }
+          }
+        `}</style>
 
         {/* Selected Product Blueprint Drawer */}
         {active && (

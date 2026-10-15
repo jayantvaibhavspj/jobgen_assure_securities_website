@@ -174,41 +174,65 @@ export function WhyAssureSection({ onOpenModal }) {
             </button>
           </div>
 
-          {/* RIGHT: Editorial Stack (01, 02, 03, 04 with Thin Separators) */}
+          {/* RIGHT: Editorial Stack with Glass Numerical Indicators (Requirement 13) */}
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {ADVANTAGES.map((adv, idx) => {
               const Icon = adv.icon;
+              const isLast = idx === ADVANTAGES.length - 1;
 
               return (
                 <div 
                   key={adv.num}
                   style={{ 
-                    paddingTop: idx === 0 ? '0' : '2.5rem',
-                    paddingBottom: '2.5rem',
-                    borderBottom: idx === ADVANTAGES.length - 1 ? 'none' : '1px solid var(--color-border)',
+                    paddingTop: idx === 0 ? '0' : '2.25rem',
+                    paddingBottom: isLast ? '0' : '2.25rem',
                     display: 'flex',
                     gap: '1.75rem',
-                    alignItems: 'flex-start'
+                    alignItems: 'flex-start',
+                    position: 'relative'
                   }}
                   className={`advantage-row reveal-on-scroll stagger-${idx + 1}`}
                 >
-                  {/* Large Number */}
-                  <div 
-                    style={{ 
-                      fontSize: 'clamp(2.2rem, 3.5vw, 2.75rem)', 
-                      fontWeight: 700, 
-                      color: 'var(--color-primary)', 
-                      lineHeight: 1, 
-                      opacity: 0.85,
-                      fontFamily: 'var(--font-family)',
-                      minWidth: '55px'
-                    }}
-                  >
-                    {adv.num}
+                  {/* Glass Numerical Indicator Column with Connective Line (Requirement 13) */}
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
+                    <div 
+                      className="glass-surface-light"
+                      style={{ 
+                        width: '60px', 
+                        height: '60px', 
+                        borderRadius: '18px',
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center',
+                        fontSize: '1.35rem', 
+                        fontWeight: 800, 
+                        color: 'var(--color-primary)', 
+                        lineHeight: 1, 
+                        boxShadow: '0 8px 24px -4px rgba(7, 26, 47, 0.08), 0 0 16px rgba(22, 185, 129, 0.12)',
+                        border: '1.5px solid rgba(22, 185, 129, 0.25)',
+                        position: 'relative',
+                        zIndex: 2
+                      }}
+                    >
+                      {adv.num}
+                    </div>
+
+                    {/* Thin Connective Emerald Line Between Numbers */}
+                    {!isLast && (
+                      <div 
+                        style={{ 
+                          width: '2px', 
+                          minHeight: '75px', 
+                          background: 'linear-gradient(to bottom, #16B981 0%, rgba(22, 185, 129, 0.25) 100%)',
+                          margin: '6px 0',
+                          borderRadius: '2px'
+                        }} 
+                      />
+                    )}
                   </div>
 
                   {/* Advantage Content */}
-                  <div style={{ flex: 1 }}>
+                  <div style={{ flex: 1, paddingTop: '4px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.35rem' }}>
                       <Icon size={16} color="var(--color-accent)" />
                       <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0 }}>
@@ -220,7 +244,7 @@ export function WhyAssureSection({ onOpenModal }) {
                       {adv.subtitle}
                     </div>
 
-                    {/* Expanding Accent Line (Requirement 20) */}
+                    {/* Expanding Accent Line */}
                     <div className="advantage-accent-line" style={{ marginBottom: '0.75rem' }} />
 
                     <p style={{ fontSize: '0.92rem', color: 'var(--color-text-secondary)', lineHeight: 1.65, margin: 0 }}>

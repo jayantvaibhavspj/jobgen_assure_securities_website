@@ -84,21 +84,21 @@ export function InsightsSection({ onOpenModal }) {
         >
           {/* Large Featured Article (approx 50% width on desktop) */}
           <div 
-            className="fintech-card interactive-glow-card reveal-on-scroll stagger-1"
+            className="bento-card-light interactive-glow-card reveal-on-scroll stagger-1"
             style={{ 
               padding: 0,
               overflow: 'hidden',
-              borderRadius: '20px',
+              borderRadius: '24px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
-              background: '#fafbfd',
+              background: '#ffffff',
               border: '1px solid var(--color-border)',
               position: 'relative'
             }}
           >
             {/* Featured Article Image Banner (Requirement 21) */}
-            <div style={{ position: 'relative', height: '175px', overflow: 'hidden', background: '#071A2F' }}>
+            <div style={{ position: 'relative', height: '190px', overflow: 'hidden', background: '#071A2F' }}>
               <img 
                 src="/assets/b1-2.jpg" 
                 alt={featured.title} 
@@ -107,16 +107,12 @@ export function InsightsSection({ onOpenModal }) {
                 decoding="async"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(7, 26, 47, 0.85) 0%, transparent 60%)' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(7, 26, 47, 0.9) 0%, transparent 60%)' }} />
               <div style={{ position: 'absolute', bottom: '12px', left: '16px', right: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span 
+                  className="glass-badge-dark"
                   style={{ 
                     fontSize: '0.72rem', 
-                    fontWeight: 700, 
-                    color: 'var(--color-accent)', 
-                    background: 'rgba(7, 26, 47, 0.75)', 
-                    padding: '0.22rem 0.65rem', 
-                    borderRadius: '6px', 
                     textTransform: 'uppercase', 
                     letterSpacing: '0.04em' 
                   }}
@@ -181,9 +177,10 @@ export function InsightsSection({ onOpenModal }) {
             {secondaryArticles.map((art, aIdx) => (
               <div
                 key={art.id}
-                className={`fintech-card interactive-glow-card reveal-on-scroll stagger-${aIdx + 2}`}
+                className={`bento-card-light interactive-glow-card reveal-on-scroll stagger-${aIdx + 2}`}
                 style={{
                   padding: '1.75rem',
+                  borderRadius: '24px',
                   background: '#ffffff',
                   border: '1px solid var(--color-border)',
                   display: 'flex',
@@ -195,13 +192,9 @@ export function InsightsSection({ onOpenModal }) {
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
                     <span 
+                      className="glass-badge-light"
                       style={{ 
                         fontSize: '0.7rem', 
-                        fontWeight: 700, 
-                        color: 'var(--color-primary)', 
-                        background: 'var(--color-bg)', 
-                        padding: '0.2rem 0.55rem', 
-                        borderRadius: '6px', 
                         textTransform: 'uppercase' 
                       }}
                     >
