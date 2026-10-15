@@ -28,8 +28,9 @@ export function AppSection({ onOpenModal }) {
       }}
       className="section-pad"
     >
-      {/* Subtle Ambient Radial Lighting */}
+      {/* Subtle Ambient Radial Lighting (Phase 5 Ambient Motion) */}
       <div 
+        className="ambient-glow-drift"
         style={{ 
           position: 'absolute', 
           top: '-15%', 
@@ -37,7 +38,7 @@ export function AppSection({ onOpenModal }) {
           width: '500px', 
           height: '500px', 
           borderRadius: '50%', 
-          background: 'radial-gradient(circle, rgba(22, 185, 129, 0.08) 0%, transparent 70%)', 
+          background: 'radial-gradient(circle, rgba(22, 185, 129, 0.1) 0%, transparent 70%)', 
           pointerEvents: 'none' 
         }} 
       />
@@ -124,7 +125,13 @@ export function AppSection({ onOpenModal }) {
                     <span style={{ color: '#16B981' }}>Disciplined SIP</span>
                   </div>
                   <svg width="100%" height="40" viewBox="0 0 240 40" fill="none">
-                    <path d="M0 35 Q 60 28, 110 20 T 180 12 T 240 4" stroke="#16B981" strokeWidth="2.2" fill="none" />
+                    <path 
+                      d="M0 35 Q 60 28, 110 20 T 180 12 T 240 4" 
+                      stroke="#16B981" 
+                      strokeWidth="2.2" 
+                      fill="none" 
+                      className="svg-phone-trend"
+                    />
                   </svg>
                 </div>
 
@@ -157,7 +164,7 @@ export function AppSection({ onOpenModal }) {
               </div>
             </div>
 
-            {/* Small Floating Card 1: Top Right (Portfolio) */}
+            {/* Small Floating Card 1: Top Right (Portfolio - Phase 5 float-card-1) */}
             <div 
               style={{
                 position: 'absolute',
@@ -171,17 +178,17 @@ export function AppSection({ onOpenModal }) {
                 boxShadow: '0 12px 28px rgba(0,0,0,0.4)',
                 zIndex: 10
               }}
-              className="d-none-mobile"
+              className="d-none-mobile float-card-1"
             >
               <div style={{ fontSize: '0.68rem', color: '#94a3b8', textTransform: 'uppercase' }}>Consolidated Folios</div>
               <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#ffffff' }}>All AMCs Integrated</div>
             </div>
 
-            {/* Small Floating Card 2: Bottom Left (Reports) */}
+            {/* Small Floating Card 2: Bottom Left (Reports - Phase 5 float-card-2) */}
             <div 
               style={{
                 position: 'absolute',
-                bottom: '60px',
+                bottom: '50px',
                 left: '-25px',
                 background: 'rgba(13, 41, 69, 0.95)',
                 border: '1px solid rgba(255, 255, 255, 0.15)',
@@ -194,12 +201,64 @@ export function AppSection({ onOpenModal }) {
                 alignItems: 'center',
                 gap: '0.5rem'
               }}
-              className="d-none-mobile"
+              className="d-none-mobile float-card-2"
             >
               <FileText size={16} color="var(--color-accent)" />
               <div>
-                <div style={{ fontSize: '0.68rem', color: '#94a3b8' }}>Capital Gains</div>
-                <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#ffffff' }}>FY 2026-27 Ready</div>
+                <div style={{ fontSize: '0.68rem', color: '#94a3b8' }}>Tax Reports</div>
+                <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#ffffff' }}>Capital Gains Ready</div>
+              </div>
+            </div>
+
+            {/* Small Floating Card 3: Mid Left (SIP - Phase 5 float-card-4) */}
+            <div 
+              style={{
+                position: 'absolute',
+                top: '220px',
+                left: '-32px',
+                background: 'rgba(13, 41, 69, 0.95)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                backdropFilter: 'blur(10px)',
+                borderRadius: '14px',
+                padding: '0.65rem 0.95rem',
+                boxShadow: '0 12px 28px rgba(0,0,0,0.4)',
+                zIndex: 10,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}
+              className="d-none-mobile float-card-4"
+            >
+              <TrendingUp size={16} color="var(--color-accent)" />
+              <div>
+                <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>Automated SIP</div>
+                <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#ffffff' }}>₹25,000 / mo Active</div>
+              </div>
+            </div>
+
+            {/* Small Floating Card 4: Mid Right (Goal - Phase 5 float-card-5) */}
+            <div 
+              style={{
+                position: 'absolute',
+                bottom: '180px',
+                right: '-32px',
+                background: 'rgba(13, 41, 69, 0.95)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                backdropFilter: 'blur(10px)',
+                borderRadius: '14px',
+                padding: '0.65rem 0.95rem',
+                boxShadow: '0 12px 28px rgba(0,0,0,0.4)',
+                zIndex: 10,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}
+              className="d-none-mobile float-card-5"
+            >
+              <CheckCircle2 size={16} color="#38bdf8" />
+              <div>
+                <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>Goal Tracking</div>
+                <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#ffffff' }}>Retirement On-Track</div>
               </div>
             </div>
 

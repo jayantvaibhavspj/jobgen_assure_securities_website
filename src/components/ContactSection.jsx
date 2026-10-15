@@ -14,15 +14,29 @@ export function ContactSection({ theme = "light" }) {
     service: 'Mutual Funds',
     query: ''
   });
+  const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
   const handleSend = (e) => {
     e.preventDefault();
-    if (!contactForm.name || !contactForm.phone) {
-      alert('Please provide your name and phone number.');
+    setError('');
+
+    if (contactForm.name.trim().length < 2) {
+      setError('Please provide your full name.');
       return;
     }
-    setIsSent(true);
+    const cleanPhone = contactForm.phone.replace(/[\s-]/g, '');
+    if (!/^[6-9]\d{9}$/.test(cleanPhone)) {
+      setError('Please enter a valid 10-digit Indian mobile number.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSent(true);
+    }, 600);
   };
 
   return (
@@ -192,8 +206,8 @@ export function ContactSection({ theme = "light" }) {
                     required 
                     placeholder="e.g. Anand Trivedi"
                     value={contactForm.name}
-                    onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                    className="fintech-input"
+                    onChange={(e) => { setContactForm({ ...contactForm, name: e.target.value }); setError(''); }}
+                    className={`fintech-input ${error && contactForm.name.trim().length < 2 ? 'input-error' : ''}`}
                   />
                 </div>
 
@@ -205,8 +219,8 @@ export function ContactSection({ theme = "light" }) {
                       required 
                       placeholder="10-digit number"
                       value={contactForm.phone}
-                      onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
-                      className="fintech-input"
+                      onChange={(e) => { setContactForm({ ...contactForm, phone: e.target.value }); setError(''); }}
+                      className={`fintech-input ${error && !/^[6-9]\d{9}$/.test(contactForm.phone.replace(/[\s-]/g, '')) ? 'input-error' : ''}`}
                     />
                   </div>
 
@@ -238,7 +252,7 @@ export function ContactSection({ theme = "light" }) {
                   </select>
                 </div>
 
-                <div style={{ marginBottom: '1.75rem' }}>
+                <div style={{ marginBottom: '1.5rem' }}>
                   <label className="fintech-label">Message / Goal Summary</label>
                   <textarea 
                     rows="3"
@@ -250,13 +264,27 @@ export function ContactSection({ theme = "light" }) {
                   />
                 </div>
 
-                {/* Submit CTA (Section 21 Microcopy: "Request a Callback") */}
+                {error && (
+                  <div className="form-error-msg" style={{ marginBottom: '1.25rem', background: '#fef2f2', padding: '0.65rem 0.85rem', borderRadius: '8px' }}>
+                    <ShieldCheck size={15} color="#dc2626" style={{ flexShrink: 0 }} />
+                    <span>{error}</span>
+                  </div>
+                )}
+
+                {/* Submit CTA */}
                 <button 
                   type="submit" 
+                  disabled={isSubmitting}
                   className="btn-primary-emerald"
-                  style={{ width: '100%', justifyContent: 'center' }}
+                  style={{ width: '100%', justifyContent: 'center', opacity: isSubmitting ? 0.75 : 1 }}
                 >
-                  <span>Request a Callback →</span>
+                  {isSubmitting ? (
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span className="pulse-dot-green" /> Sending Request...
+                    </span>
+                  ) : (
+                    <span>Request a Callback →</span>
+                  )}
                 </button>
 
                 <p style={{ textAlign: 'center', fontSize: '0.74rem', color: 'var(--color-muted)', marginTop: '0.85rem' }}>

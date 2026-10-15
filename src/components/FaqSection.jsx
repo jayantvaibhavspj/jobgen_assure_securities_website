@@ -48,7 +48,7 @@ export function FaqSection({ onOpenModal }) {
       <div className="container" style={{ maxWidth: '840px' }}>
         
         {/* Section Header */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal-on-scroll">
           <div className="eyebrow-pill emerald">
             <HelpCircle size={13} />
             <span>Clarity & Regulatory Compliance</span>
@@ -71,6 +71,7 @@ export function FaqSection({ onOpenModal }) {
             return (
               <div
                 key={idx}
+                className={`reveal-on-scroll stagger-${(idx % 4) + 1}`}
                 style={{
                   background: '#ffffff',
                   borderRadius: '16px',

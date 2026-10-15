@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { 
   MessageSquare, X, Send, Bot, User, Calculator, TrendingUp, 
   ShieldCheck, Phone, ArrowRight, RotateCcw, Sparkles, 
-  CheckCircle2, Building2, ExternalLink 
+  CheckCircle2, Building2, ExternalLink, HelpCircle
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/websiteData';
 
@@ -11,7 +11,7 @@ const INITIAL_MESSAGES = [
   {
     id: 'welcome-1',
     sender: 'bot',
-    text: `Hello! 👋 I'm **Assure Wealth Assistant**, your personal financial companion from **Assure Securities** (AMFI Reg. ARN-182137).`,
+    text: `Hello! 👋 I'm **Assure AI**, your intelligent wealth companion from **Assure Securities** (AMFI Reg. ARN-182137).`,
     timestamp: 'Just now'
   },
   {
@@ -30,6 +30,152 @@ const INITIAL_MESSAGES = [
   }
 ];
 
+// Helper to clamp values
+const clamp = (val, min, max) => Math.max(min, Math.min(val, max));
+
+/**
+ * Stylized AI Brain & Neural Network Visual
+ * Integrated with the official Assure brand emblem at the core
+ */
+function AIBrainVisual({ isTyping, isDragging }) {
+  return (
+    <div 
+      className={`assure-brain-container ${isTyping ? 'brain-active' : ''} ${isDragging ? 'brain-dragging' : ''}`}
+      style={{
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: '50%',
+        overflow: 'hidden',
+        background: 'radial-gradient(circle at 35% 35%, #0F2A4A 0%, #071A2F 65%, #030D18 100%)',
+        boxShadow: isDragging 
+          ? '0 20px 45px rgba(7, 26, 47, 0.6), 0 0 25px rgba(22, 185, 129, 0.45)' 
+          : '0 10px 28px rgba(7, 26, 47, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.15)',
+        border: '1.5px solid rgba(22, 185, 129, 0.55)',
+        transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+      }}
+    >
+      {/* Background Neural Circuitry SVG */}
+      <svg 
+        viewBox="0 0 64 64" 
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none'
+        }}
+      >
+        <defs>
+          <linearGradient id="brainSynapseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#10B981" stopOpacity="0.8" />
+          </linearGradient>
+          <radialGradient id="brainCoreGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="rgba(22, 185, 129, 0.35)" />
+            <stop offset="100%" stopColor="rgba(7, 26, 47, 0)" />
+          </radialGradient>
+        </defs>
+
+        {/* Ambient Core Radial Halo */}
+        <circle cx="32" cy="32" r="28" fill="url(#brainCoreGlow)" />
+
+        {/* Left Cerebral Lobe Circuitry */}
+        <path 
+          d="M 22 13 C 14 13 9 19 9 27 C 9 34 13 41 18 47 C 22 51 25 53 26 54" 
+          fill="none" 
+          stroke="rgba(56, 189, 248, 0.45)" 
+          strokeWidth="1.4" 
+          strokeLinecap="round" 
+        />
+        {/* Right Cerebral Lobe Circuitry */}
+        <path 
+          d="M 42 13 C 50 13 55 19 55 27 C 55 34 51 41 46 47 C 42 51 39 53 38 54" 
+          fill="none" 
+          stroke="rgba(16, 185, 129, 0.45)" 
+          strokeWidth="1.4" 
+          strokeLinecap="round" 
+        />
+
+        {/* Synaptic Radiating Connectors */}
+        <path d="M 14 23 L 23 27 L 32 32" fill="none" stroke="rgba(56, 189, 248, 0.35)" strokeWidth="1" strokeDasharray={isTyping ? "3,2" : "none"} className={isTyping ? "synapse-flow" : ""} />
+        <path d="M 50 23 L 41 27 L 32 32" fill="none" stroke="rgba(16, 185, 129, 0.35)" strokeWidth="1" strokeDasharray={isTyping ? "3,2" : "none"} className={isTyping ? "synapse-flow" : ""} />
+        <path d="M 11 34 L 20 34 L 32 32" fill="none" stroke="rgba(56, 189, 248, 0.35)" strokeWidth="1" />
+        <path d="M 53 34 L 44 34 L 32 32" fill="none" stroke="rgba(16, 185, 129, 0.35)" strokeWidth="1" />
+        <path d="M 18 45 L 25 41 L 32 32" fill="none" stroke="rgba(56, 189, 248, 0.35)" strokeWidth="1" />
+        <path d="M 46 45 L 39 41 L 32 32" fill="none" stroke="rgba(16, 185, 129, 0.35)" strokeWidth="1" />
+
+        {/* Synaptic Neural Nodes */}
+        <circle cx="14" cy="23" r="2.2" fill="#38BDF8" className="neural-node pulse-node-1" />
+        <circle cx="50" cy="23" r="2.2" fill="#10B981" className="neural-node pulse-node-2" />
+        <circle cx="11" cy="34" r="2" fill="#38BDF8" className="neural-node pulse-node-3" />
+        <circle cx="53" cy="34" r="2" fill="#10B981" className="neural-node pulse-node-1" />
+        <circle cx="18" cy="45" r="2.2" fill="#38BDF8" className="neural-node pulse-node-2" />
+        <circle cx="46" cy="45" r="2.2" fill="#10B981" className="neural-node pulse-node-3" />
+        <circle cx="23" cy="27" r="1.6" fill="#A7F3D0" />
+        <circle cx="41" cy="27" r="1.6" fill="#BAE6FD" />
+        <circle cx="25" cy="41" r="1.6" fill="#BAE6FD" />
+        <circle cx="39" cy="41" r="1.6" fill="#A7F3D0" />
+
+        {/* Active Thought Flow Ring */}
+        {isTyping && (
+          <circle 
+            cx="32" 
+            cy="32" 
+            r="16" 
+            fill="none" 
+            stroke="url(#brainSynapseGrad)" 
+            strokeWidth="1.5" 
+            strokeDasharray="14 10" 
+            className="brain-pulse-ring" 
+          />
+        )}
+      </svg>
+
+      {/* Central Assure Brand Core Emblem */}
+      <div 
+        style={{
+          width: '28px',
+          height: '28px',
+          borderRadius: '50%',
+          background: 'rgba(7, 26, 47, 0.85)',
+          backdropFilter: 'blur(4px)',
+          border: '1.5px solid rgba(22, 185, 129, 0.7)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 0 12px rgba(22, 185, 129, 0.4), inset 0 0 6px rgba(56, 189, 248, 0.3)',
+          zIndex: 2,
+          position: 'relative'
+        }}
+      >
+        <img 
+          src="/assets/favicon.png" 
+          alt="Assure Securities Logo" 
+          style={{
+            width: '18px',
+            height: '18px',
+            objectFit: 'contain',
+            borderRadius: '4px',
+            filter: 'brightness(1.1)'
+          }}
+          onError={(e) => {
+            // Elegant SVG fallback if favicon image takes time
+            e.currentTarget.style.display = 'none';
+          }}
+        />
+      </div>
+
+      {/* Subtle Breathing Glow Aura */}
+      <div className="brain-idle-aura" />
+    </div>
+  );
+}
+
 export default function Chatbot({ onOpenModal }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState(() => {
@@ -42,8 +188,13 @@ export default function Chatbot({ onOpenModal }) {
   });
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [showNotificationBadge, setShowNotificationBadge] = useState(true);
-  const [showTooltip, setShowTooltip] = useState(true);
+
+  // Position & Dragging State
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [isMounted, setIsMounted] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [showIntroPopup, setShowIntroPopup] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   // Quick Mini Calculator State inside chat
   const [calcState, setCalcState] = useState({ amount: 10000, rate: 12, years: 10 });
@@ -56,6 +207,85 @@ export default function Chatbot({ onOpenModal }) {
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
+  // Drag Pointer Tracking Ref
+  const pointerState = useRef({
+    isDown: false,
+    startX: 0,
+    startY: 0,
+    initialX: 0,
+    initialY: 0,
+    moved: false,
+    pointerId: null
+  });
+
+  // Calculate safe initial position and load from localStorage
+  useEffect(() => {
+    const isMobile = window.innerWidth < 640;
+    const btnSize = isMobile ? 60 : 64;
+    const defaultX = window.innerWidth - btnSize - 24;
+    const defaultY = window.innerHeight - btnSize - 88; // 88px leaves room for WhatsApp at bottom: 24
+
+    try {
+      const saved = localStorage.getItem('assure_ai_brain_pos');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        const minX = isMobile ? 12 : 20;
+        const maxX = window.innerWidth - btnSize - minX;
+        const minY = window.innerWidth < 768 ? 60 : 70;
+        const maxY = window.innerHeight - btnSize - minX;
+
+        setPos({
+          x: clamp(parsed.x, minX, maxX),
+          y: clamp(parsed.y, minY, maxY)
+        });
+      } else {
+        setPos({ x: defaultX, y: defaultY });
+      }
+    } catch {
+      setPos({ x: defaultX, y: defaultY });
+    }
+
+    setIsMounted(true);
+
+    // Initial Intro Popup: Show once per session for 5 seconds
+    const hasSeenIntro = sessionStorage.getItem('assure_ai_intro_seen');
+    if (!hasSeenIntro) {
+      const introTimer = setTimeout(() => {
+        setShowIntroPopup(true);
+      }, 700);
+
+      const hideTimer = setTimeout(() => {
+        setShowIntroPopup(false);
+        sessionStorage.setItem('assure_ai_intro_seen', 'true');
+      }, 5700);
+
+      return () => {
+        clearTimeout(introTimer);
+        clearTimeout(hideTimer);
+      };
+    }
+  }, []);
+
+  // Handle Window Resize (Clamp Position)
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 640;
+      const btnSize = isMobile ? 60 : 64;
+      const minX = isMobile ? 12 : 20;
+      const maxX = window.innerWidth - btnSize - minX;
+      const minY = window.innerWidth < 768 ? 60 : 70;
+      const maxY = window.innerHeight - btnSize - minX;
+
+      setPos(prev => ({
+        x: clamp(prev.x, minX, maxX),
+        y: clamp(prev.y, minY, maxY)
+      }));
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Auto-scroll to bottom of chat
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -64,8 +294,7 @@ export default function Chatbot({ onOpenModal }) {
   useEffect(() => {
     if (isOpen) {
       scrollToBottom();
-      setShowNotificationBadge(false);
-      setShowTooltip(false);
+      setShowIntroPopup(false);
       setTimeout(() => inputRef.current?.focus(), 300);
     }
   }, [isOpen, messages, isTyping]);
@@ -74,10 +303,19 @@ export default function Chatbot({ onOpenModal }) {
   useEffect(() => {
     try {
       sessionStorage.setItem('assure_chat_messages', JSON.stringify(messages));
-    } catch {
-      // Ignore storage errors
-    }
+    } catch {}
   }, [messages]);
+
+  // Keyboard accessibility: Escape closes chat
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
 
   // Play subtle sound using Web Audio API
   const playChime = () => {
@@ -94,9 +332,7 @@ export default function Chatbot({ onOpenModal }) {
       gain.connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.25);
-    } catch {
-      // AudioContext unavailable or muted
-    }
+    } catch {}
   };
 
   // Reset chat
@@ -319,156 +555,385 @@ export default function Chatbot({ onOpenModal }) {
     }, 500);
   };
 
+  // POINTER EVENT DRAG & CLICK CONTROLLERS
+  const handlePointerDown = (e) => {
+    if (e.button !== undefined && e.button !== 0) return; // Left click / touch only
+    pointerState.current = {
+      isDown: true,
+      startX: e.clientX,
+      startY: e.clientY,
+      initialX: pos.x,
+      initialY: pos.y,
+      moved: false,
+      pointerId: e.pointerId
+    };
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {}
+  };
+
+  const handlePointerMove = (e) => {
+    if (!pointerState.current.isDown) return;
+    const dx = e.clientX - pointerState.current.startX;
+    const dy = e.clientY - pointerState.current.startY;
+    const distance = Math.hypot(dx, dy);
+
+    // Movement threshold of 7px to distinguish drag vs click
+    if (distance > 7) {
+      if (!pointerState.current.moved) {
+        pointerState.current.moved = true;
+        setIsDragging(true);
+        setShowIntroPopup(false);
+      }
+
+      const isMobile = window.innerWidth < 640;
+      const btnSize = isMobile ? 60 : 64;
+      const minX = isMobile ? 12 : 20;
+      const maxX = window.innerWidth - btnSize - minX;
+      const minY = window.innerWidth < 768 ? 60 : 70;
+      const maxY = window.innerHeight - btnSize - minX;
+
+      let targetX = pointerState.current.initialX + dx;
+      let targetY = pointerState.current.initialY + dy;
+
+      targetX = clamp(targetX, minX, maxX);
+      targetY = clamp(targetY, minY, maxY);
+
+      // WhatsApp safety clearance (WhatsApp is at bottom: 24, right: 24)
+      const waX = window.innerWidth - 76;
+      const waY = window.innerHeight - 76;
+      if (Math.abs(targetX - waX) < 55 && Math.abs(targetY - waY) < 55) {
+        if (targetY > waY - 58) {
+          targetY = Math.max(minY, waY - 68);
+        }
+      }
+
+      setPos({ x: targetX, y: targetY });
+    }
+  };
+
+  const handlePointerUp = (e) => {
+    if (!pointerState.current.isDown) return;
+    pointerState.current.isDown = false;
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {}
+
+    if (pointerState.current.moved) {
+      // Snap gently to nearest edge if close
+      const isMobile = window.innerWidth < 640;
+      const btnSize = isMobile ? 60 : 64;
+      const minX = isMobile ? 12 : 20;
+      const maxX = window.innerWidth - btnSize - minX;
+      let finalX = pos.x;
+
+      if (finalX < minX + 35) finalX = minX;
+      else if (finalX > maxX - 35) finalX = maxX;
+
+      setPos(prev => ({ ...prev, x: finalX }));
+
+      try {
+        localStorage.setItem('assure_ai_brain_pos', JSON.stringify({ x: finalX, y: pos.y }));
+      } catch {}
+
+      setTimeout(() => setIsDragging(false), 80);
+    } else {
+      // Regular Click detected
+      setIsDragging(false);
+      setIsOpen(prev => !prev);
+    }
+  };
+
+  const handlePointerCancel = () => {
+    pointerState.current.isDown = false;
+    setIsDragging(false);
+  };
+
+  // Keyboard navigation for trigger
+  const handleKeyDownTrigger = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setIsOpen(prev => !prev);
+    }
+  };
+
+  // Compute dynamic position for chat window relative to the brain button
+  const getChatWindowStyle = () => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+    const btnSize = isMobile ? 60 : 64;
+
+    if (isMobile) {
+      return {
+        position: 'fixed',
+        left: '10px',
+        right: '10px',
+        bottom: '10px',
+        width: 'calc(100vw - 20px)',
+        height: 'min(580px, calc(100vh - 85px))',
+        maxWidth: '100%',
+        zIndex: 1200
+      };
+    }
+
+    const winW = 416;
+    const winH = 580;
+    const screenW = window.innerWidth;
+    const screenH = window.innerHeight;
+
+    const centerX = pos.x + btnSize / 2;
+    const centerY = pos.y + btnSize / 2;
+
+    const style = {
+      position: 'fixed',
+      width: `${winW}px`,
+      height: `min(${winH}px, calc(100vh - 100px))`,
+      zIndex: 1600
+    };
+
+    // Horizontal logic
+    if (centerX > screenW / 2) {
+      // Brain is on the right side: align right edge near brain or to left
+      const rightEdgeDist = screenW - (pos.x + btnSize);
+      style.right = `${clamp(rightEdgeDist, 16, screenW - winW - 16)}px`;
+    } else {
+      // Brain is on the left side: align left edge near brain
+      style.left = `${clamp(pos.x, 16, screenW - winW - 16)}px`;
+    }
+
+    // Vertical logic
+    if (centerY > screenH / 2) {
+      // Brain is in bottom half: open above button
+      const bottomDist = screenH - pos.y + 12;
+      style.bottom = `${clamp(bottomDist, 16, screenH - winH - 16)}px`;
+    } else {
+      // Brain is in top half: open below button
+      const topDist = pos.y + btnSize + 12;
+      style.top = `${clamp(topDist, 70, screenH - winH - 16)}px`;
+    }
+
+    return style;
+  };
+
+  // Do not render before mount to prevent hydration mismatch
+  if (!isMounted) return null;
+
+  const isMobile = window.innerWidth < 640;
+  const btnSize = isMobile ? 60 : 64;
+  const isRightHalf = pos.x > window.innerWidth / 2;
+  const isBottomHalf = pos.y > window.innerHeight / 2;
+
   return (
     <>
-      {/* Floating Trigger Container */}
-      <div 
+      {/* 1. Independent Floating WhatsApp Button */}
+      <a
+        href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=Hi%20Assure%20Securities,%20I%20would%20like%20to%20consult%20with%20an%20advisor.`}
+        target="_blank"
+        rel="noopener noreferrer"
         style={{
           position: 'fixed',
           bottom: '24px',
           right: '24px',
-          zIndex: 990,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-end',
-          gap: '12px',
-          pointerEvents: 'none'
+          width: '46px',
+          height: '46px',
+          borderRadius: '50%',
+          background: '#25D366',
+          color: '#ffffff',
+          display: isMobile && isOpen ? 'none' : 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 16px rgba(37, 211, 102, 0.45)',
+          zIndex: 980,
+          cursor: 'pointer',
+          textDecoration: 'none',
+          transition: 'transform 0.25s ease'
+        }}
+        title="Connect on WhatsApp"
+        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+        aria-label="Connect with Assure Securities on WhatsApp"
+      >
+        <Phone size={20} />
+      </a>
+
+      {/* 2. Draggable AI Brain Button Anchor */}
+      <div 
+        style={{
+          position: 'fixed',
+          left: `${pos.x}px`,
+          top: `${pos.y}px`,
+          width: `${btnSize}px`,
+          height: `${btnSize}px`,
+          zIndex: 1500,
+          touchAction: 'none',
+          userSelect: 'none',
+          WebkitUserSelect: 'none'
         }}
       >
-        {/* First-load speech bubble tooltip */}
-        {showTooltip && !isOpen && (
+        {/* Intro Greeting Speech Card (Phase 8 Premium Floating AI Assistant) */}
+        {showIntroPopup && !isOpen && !isDragging && (
           <div 
             style={{
+              position: 'absolute',
+              bottom: isBottomHalf ? `${btnSize + 12}px` : 'auto',
+              top: !isBottomHalf ? `${btnSize + 12}px` : 'auto',
+              right: isRightHalf ? '0' : 'auto',
+              left: !isRightHalf ? '0' : 'auto',
+              minWidth: '220px',
+              maxWidth: '260px',
+              background: '#ffffff',
+              borderRadius: '16px',
+              padding: '12px 14px',
+              boxShadow: '0 16px 36px -4px rgba(7, 26, 47, 0.25), 0 4px 12px rgba(0,0,0,0.06)',
+              border: '1px solid #E2E8F0',
+              animation: 'introCardFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
               pointerEvents: 'auto',
-              background: '#071A2F',
-              color: '#ffffff',
-              padding: '10px 14px',
-              borderRadius: '12px',
-              boxShadow: '0 8px 24px rgba(7, 26, 47, 0.35)',
-              border: '1px solid rgba(22, 185, 129, 0.4)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              maxWidth: '280px',
-              animation: 'chatBubbleFloat 3s ease-in-out infinite'
+              zIndex: 1650
             }}
           >
-            <div style={{ background: '#16B981', borderRadius: '50%', padding: '4px', display: 'flex' }}>
-              <Sparkles size={14} color="#ffffff" />
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px' }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span style={{ fontSize: '1rem' }}>👋</span>
+                  <span style={{ fontWeight: 800, fontSize: '0.9rem', color: '#071A2F', letterSpacing: '-0.01em' }}>Hi, I'm Assure AI</span>
+                </div>
+                <div style={{ fontSize: '0.8rem', color: '#334155', fontWeight: 600, marginTop: '2px' }}>
+                  How can I help you?
+                </div>
+              </div>
+              <button 
+                onClick={(e) => { e.stopPropagation(); setShowIntroPopup(false); sessionStorage.setItem('assure_ai_intro_seen', 'true'); }}
+                style={{ background: 'rgba(0,0,0,0.04)', border: 'none', color: '#64748b', cursor: 'pointer', padding: '3px', display: 'flex', borderRadius: '50%', transition: 'background 0.2s' }}
+                aria-label="Close greeting"
+                title="Dismiss greeting"
+              >
+                <X size={13} />
+              </button>
             </div>
-            <div style={{ fontSize: '0.82rem', lineHeight: 1.35, fontWeight: 500 }}>
-              <span style={{ fontWeight: 700, color: '#16B981' }}>Need investment advice?</span>
-              <br />Ask Assure Wealth Assistant 24/7!
+            
+            <div style={{ marginTop: '8px', paddingTop: '6px', borderTop: '1px solid #f1f5f9', fontSize: '0.72rem', color: '#10B981', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <span>Ask about SIPs, Funds, or drag me anywhere!</span>
             </div>
-            <button 
-              onClick={(e) => { e.stopPropagation(); setShowTooltip(false); }}
-              style={{ background: 'transparent', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: '2px' }}
-              aria-label="Dismiss tooltip"
-            >
-              <X size={14} />
-            </button>
+
+            {/* Speech bubble pointer notch */}
+            <div 
+              style={{
+                position: 'absolute',
+                [isBottomHalf ? 'bottom' : 'top']: '-5px',
+                [isRightHalf ? 'right' : 'left']: `${Math.min(btnSize / 2 - 4, 30)}px`,
+                width: '10px',
+                height: '10px',
+                background: '#ffffff',
+                borderRight: '1px solid #E2E8F0',
+                borderBottom: isBottomHalf ? '1px solid #E2E8F0' : 'none',
+                borderTop: !isBottomHalf ? '1px solid #E2E8F0' : 'none',
+                transform: 'rotate(45deg)',
+                pointerEvents: 'none'
+              }}
+            />
           </div>
         )}
 
-        {/* Action Trigger Buttons Stack */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', pointerEvents: 'auto' }}>
-          
-          {/* Quick WhatsApp Action Icon (Compact) */}
-          {!isOpen && (
-            <a
-              href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=Hi%20Assure%20Securities,%20I%20would%20like%20to%20consult%20with%20an%20advisor.`}
-              target="_blank"
-              rel="noopener noreferrer"
+        {/* Hover Tooltip (Desktop) */}
+        {!isMobile && isHovered && !showIntroPopup && !isOpen && !isDragging && (
+          <div 
+            style={{
+              position: 'absolute',
+              bottom: '100%',
+              left: '50%',
+              transform: 'translateX(-50%) translateY(-8px)',
+              background: '#071A2F',
+              color: '#ffffff',
+              padding: '4px 10px',
+              borderRadius: '8px',
+              fontSize: '0.72rem',
+              fontWeight: 600,
+              whiteSpace: 'nowrap',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+              border: '1px solid rgba(22, 185, 129, 0.4)',
+              pointerEvents: 'none',
+              animation: 'tooltipFade 0.2s ease-out'
+            }}
+          >
+            Assure AI • Drag or Click to Chat
+          </div>
+        )}
+
+        {/* Main Circular AI Brain Trigger */}
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label={isOpen ? "Close Assure AI assistant" : "Open Assure AI assistant (Draggable)"}
+          aria-expanded={isOpen}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerCancel}
+          onKeyDown={handleKeyDownTrigger}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          style={{
+            width: '100%',
+            height: '100%',
+            cursor: isDragging ? 'grabbing' : 'grab',
+            position: 'relative',
+            outline: 'none',
+            transform: isDragging ? 'scale(1.08)' : isHovered ? 'scale(1.04)' : 'scale(1)',
+            transition: isDragging ? 'none' : 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+            filter: isDragging ? 'drop-shadow(0 15px 25px rgba(7, 26, 47, 0.5))' : 'none'
+          }}
+        >
+          {isOpen ? (
+            <div 
               style={{
-                background: '#25D366',
-                color: '#ffffff',
-                width: '46px',
-                height: '46px',
+                width: '100%',
+                height: '100%',
                 borderRadius: '50%',
+                background: '#071A2F',
+                border: '1.5px solid #16B981',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 4px 16px rgba(37, 211, 102, 0.4)',
-                transition: 'all 0.25s ease',
-                cursor: 'pointer',
-                textDecoration: 'none'
+                boxShadow: '0 8px 24px rgba(7, 26, 47, 0.4)'
               }}
-              title="Chat on WhatsApp"
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
             >
-              <Phone size={20} />
-            </a>
-          )}
+              <X size={24} color="#16B981" />
+            </div>
+          ) : (
+            <>
+              <AIBrainVisual isTyping={isTyping} isDragging={isDragging} />
 
-          {/* Primary Chatbot Toggle Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            style={{
-              background: isOpen ? '#071A2F' : 'linear-gradient(135deg, #071A2F 0%, #0B223D 100%)',
-              color: '#ffffff',
-              height: '56px',
-              padding: isOpen ? '0 18px' : '0 20px',
-              borderRadius: '28px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              boxShadow: '0 10px 30px rgba(7, 26, 47, 0.4)',
-              border: '2px solid rgba(22, 185, 129, 0.7)',
-              transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-              cursor: 'pointer',
-              fontWeight: 700,
-              fontSize: '0.92rem'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-3px)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            aria-label={isOpen ? "Close Wealth Assistant" : "Open Wealth Assistant"}
-          >
-            {isOpen ? (
-              <>
-                <X size={20} color="#16B981" />
-                <span>Close Chat</span>
-              </>
-            ) : (
-              <>
-                <div style={{ position: 'relative', display: 'flex' }}>
-                  <Bot size={22} color="#16B981" />
-                  {showNotificationBadge && (
-                    <span 
-                      style={{
-                        position: 'absolute',
-                        top: '-3px',
-                        right: '-3px',
-                        width: '9px',
-                        height: '9px',
-                        background: '#16B981',
-                        borderRadius: '50%',
-                        boxShadow: '0 0 8px #16B981'
-                      }}
-                    />
-                  )}
-                </div>
-                <span>Ask Assure AI</span>
-              </>
-            )}
-          </button>
+              {/* Online Ready Indicator Dot */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  top: '2px',
+                  right: '2px',
+                  width: '11px',
+                  height: '11px',
+                  background: '#10B981',
+                  borderRadius: '50%',
+                  border: '2px solid #071A2F',
+                  boxShadow: '0 0 8px #10B981',
+                  zIndex: 4
+                }}
+                title="Assure AI: Online & Ready"
+              >
+                <span className="live-status-ping" />
+              </div>
+            </>
+          )}
         </div>
       </div>
 
-      {/* Main Chatbot Window */}
+      {/* 3. Intelligently Positioned Chatbot Window */}
       {isOpen && (
         <div 
           style={{
-            position: 'fixed',
-            bottom: '84px',
-            right: '24px',
-            width: 'min(410px, calc(100vw - 32px))',
-            height: 'min(560px, calc(100vh - 130px))',
+            ...getChatWindowStyle(),
             background: '#ffffff',
-            borderRadius: '20px',
+            borderRadius: isMobile ? '20px 20px 0 0' : '20px',
             boxShadow: '0 24px 60px rgba(7, 26, 47, 0.3), 0 4px 16px rgba(0,0,0,0.08)',
             border: '1px solid rgba(229, 234, 240, 0.9)',
-            zIndex: 1200,
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
@@ -480,7 +945,7 @@ export default function Chatbot({ onOpenModal }) {
             style={{
               background: '#071A2F',
               color: '#ffffff',
-              padding: '1rem 1.25rem',
+              padding: '0.95rem 1.15rem',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -490,28 +955,34 @@ export default function Chatbot({ onOpenModal }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <div 
                 style={{
-                  width: '38px',
-                  height: '38px',
-                  borderRadius: '10px',
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '50%',
                   background: 'rgba(22, 185, 129, 0.15)',
                   border: '1.5px solid #16B981',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
+                  position: 'relative'
                 }}
               >
-                <Bot size={22} color="#16B981" />
+                <img 
+                  src="/assets/favicon.png" 
+                  alt="Assure" 
+                  style={{ width: '18px', height: '18px', objectFit: 'contain' }}
+                  onError={(e) => e.currentTarget.style.display = 'none'} 
+                />
               </div>
               <div>
-                <div style={{ fontSize: '0.96rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span>Assure Wealth Assistant</span>
+                <div style={{ fontSize: '0.95rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span>Assure AI</span>
                   <span style={{ fontSize: '0.62rem', background: 'rgba(22, 185, 129, 0.2)', color: '#16B981', padding: '1px 6px', borderRadius: '4px', fontWeight: 800 }}>
-                    AI 2.0
+                    FINTECH 2026
                   </span>
                 </div>
                 <div style={{ fontSize: '0.72rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '6px', marginTop: '1px' }}>
                   <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#16B981', display: 'inline-block', boxShadow: '0 0 6px #16B981' }} />
-                  <span>ARN-182137 Certified • Online</span>
+                  <span>ARN-182137 Certified • Ready</span>
                 </div>
               </div>
             </div>
@@ -535,6 +1006,7 @@ export default function Chatbot({ onOpenModal }) {
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
                 onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}
+                aria-label="Reset conversation"
               >
                 <RotateCcw size={15} />
               </button>
@@ -556,13 +1028,14 @@ export default function Chatbot({ onOpenModal }) {
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
                 onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}
+                aria-label="Close chat window"
               >
                 <X size={16} />
               </button>
             </div>
           </div>
 
-          {/* Quick Announcement Strip */}
+          {/* Direct AMC Settlement Strip */}
           <div 
             style={{
               background: '#F0FDF4',
@@ -634,7 +1107,8 @@ export default function Chatbot({ onOpenModal }) {
                         alignItems: 'center',
                         justifyContent: 'center',
                         flexShrink: 0,
-                        marginTop: '2px'
+                        marginTop: '2px',
+                        border: isBot ? '1px solid rgba(22, 185, 129, 0.4)' : 'none'
                       }}
                     >
                       {isBot ? <Bot size={15} color="#16B981" /> : <User size={15} color="#ffffff" />}
@@ -656,7 +1130,6 @@ export default function Chatbot({ onOpenModal }) {
                       }}
                     >
                       {msg.text.split('\n').map((paragraph, idx) => {
-                        // Simple bold parsing for **text**
                         const parts = paragraph.split(/(\*\*.*?\*\*)/g);
                         return (
                           <p key={idx} style={{ margin: idx === 0 ? 0 : '0.45rem 0 0 0' }}>
@@ -984,21 +1457,83 @@ export default function Chatbot({ onOpenModal }) {
         </div>
       )}
 
-      {/* Embedded Animations */}
+      {/* Embedded Animations for Brain, Synapses, and Windows */}
       <style>{`
-        @keyframes chatBubbleFloat {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-4px); }
+        @keyframes introCardFadeIn {
+          0% { opacity: 0; transform: translateY(8px) scale(0.96); }
+          100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes tooltipFade {
+          0% { opacity: 0; transform: translateX(-50%) translateY(-2px); }
+          100% { opacity: 1; transform: translateX(-50%) translateY(-8px); }
         }
         @keyframes chatWindowPop {
-          0% { opacity: 0; transform: scale(0.95) translateY(12px); }
+          0% { opacity: 0; transform: scale(0.96) translateY(8px); }
           100% { opacity: 1; transform: scale(1) translateY(0); }
         }
         @keyframes bounceDot {
           0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; }
           40% { transform: scale(1.1); opacity: 1; }
         }
+        @keyframes livePing {
+          0% { transform: scale(1); opacity: 0.8; }
+          100% { transform: scale(2.4); opacity: 0; }
+        }
+        @keyframes brainAuraBreathing {
+          0%, 100% { opacity: 0.35; transform: scale(1); }
+          50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        @keyframes nodePulseGlow {
+          0%, 100% { opacity: 0.6; transform: scale(0.9); }
+          50% { opacity: 1; transform: scale(1.2); }
+        }
+        @keyframes activeSynapseSpin {
+          0% { stroke-dashoffset: 0; transform: rotate(0deg); }
+          100% { stroke-dashoffset: 48; transform: rotate(360deg); }
+        }
+
+        .live-status-ping {
+          position: absolute;
+          inset: -2px;
+          border-radius: 50%;
+          border: 1.5px solid #10B981;
+          animation: livePing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        .brain-idle-aura {
+          position: absolute;
+          inset: -4px;
+          border-radius: 50%;
+          border: 1px solid rgba(22, 185, 129, 0.25);
+          animation: brainAuraBreathing 4s ease-in-out infinite;
+          pointer-events: none;
+        }
+
+        .neural-node {
+          transform-origin: center;
+        }
+        .pulse-node-1 { animation: nodePulseGlow 3s ease-in-out infinite 0s; }
+        .pulse-node-2 { animation: nodePulseGlow 3s ease-in-out infinite 1s; }
+        .pulse-node-3 { animation: nodePulseGlow 3s ease-in-out infinite 2s; }
+
+        .brain-pulse-ring {
+          transform-origin: 32px 32px;
+          animation: activeSynapseSpin 3s linear infinite;
+        }
+
+        /* Reduced Motion Compliance */
+        @media (prefers-reduced-motion: reduce) {
+          .live-status-ping,
+          .brain-idle-aura,
+          .pulse-node-1,
+          .pulse-node-2,
+          .pulse-node-3,
+          .brain-pulse-ring {
+            animation: none !important;
+          }
+        }
       `}</style>
     </>
   );
 }
+

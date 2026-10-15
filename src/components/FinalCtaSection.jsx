@@ -28,8 +28,39 @@ export function FinalCtaSection({ onOpenModal, onNavigate }) {
         }} 
       />
 
-      {/* Abstract Financial-Line Artwork (Section 18) */}
+      {/* Ambient Radial Glow (Phase 5 Ambient Motion) */}
       <div 
+        className="ambient-glow-drift"
+        style={{
+          position: 'absolute',
+          top: '-10%',
+          right: '15%',
+          width: '500px',
+          height: '500px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(22, 185, 129, 0.12) 0%, transparent 70%)',
+          filter: 'blur(70px)',
+          pointerEvents: 'none'
+        }}
+      />
+      <div 
+        className="ambient-glow-drift-reverse"
+        style={{
+          position: 'absolute',
+          bottom: '-15%',
+          left: '10%',
+          width: '450px',
+          height: '450px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(13, 41, 69, 0.45) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+          pointerEvents: 'none'
+        }}
+      />
+
+      {/* Abstract Financial-Line Artwork (Section 18 & Phase 5 Wave Motion) */}
+      <div 
+        className="moving-financial-wave"
         style={{ 
           position: 'absolute', 
           bottom: '0', 
@@ -37,7 +68,7 @@ export function FinalCtaSection({ onOpenModal, onNavigate }) {
           right: '0', 
           height: '160px', 
           pointerEvents: 'none',
-          opacity: 0.2
+          opacity: 0.25
         }}
       >
         <svg width="100%" height="100%" viewBox="0 0 1200 160" preserveAspectRatio="none">

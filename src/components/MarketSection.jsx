@@ -58,7 +58,7 @@ export function MarketSection() {
       <div className="container">
         
         {/* Section Header */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal-on-scroll">
           <div className="eyebrow-pill navy">
             <Clock size={13} color="var(--color-accent)" />
             <span>Indicative Snapshot • Educational Overview</span>
@@ -84,7 +84,7 @@ export function MarketSection() {
           {MARKET_INDICES.map((item, idx) => (
             <div
               key={idx}
-              className="fintech-card"
+              className={`fintech-card interactive-glow-card reveal-on-scroll stagger-${(idx % 4) + 1}`}
               style={{
                 padding: '1.75rem',
                 background: '#ffffff',
@@ -133,10 +133,11 @@ export function MarketSection() {
                   {item.change} ({item.percent}) Today
                 </div>
 
-                {/* Mini SVG Trend Line (Thin, Calm) */}
+                {/* Mini SVG Trend Line (Thin, Calm, Animated Draw) */}
                 <div style={{ height: '32px', width: '100%', marginBottom: '1rem' }}>
                   <svg width="100%" height="100%" viewBox="0 0 200 32" fill="none">
                     <path 
+                      className="svg-chart-path"
                       d={item.isPositive ? "M0 26 Q 50 20, 100 15 T 160 10 T 200 4" : "M0 6 Q 50 12, 100 18 T 160 22 T 200 28"} 
                       stroke={item.isPositive ? "#16B981" : "#dc2626"} 
                       strokeWidth="1.75" 
@@ -160,7 +161,7 @@ export function MarketSection() {
         </div>
 
         {/* Disclaimer Footer */}
-        <div style={{ marginTop: '2.5rem', textAlign: 'center', fontSize: '0.75rem', color: 'var(--color-muted)' }}>
+        <div className="reveal-on-scroll stagger-3" style={{ marginTop: '2.5rem', textAlign: 'center', fontSize: '0.75rem', color: 'var(--color-muted)' }}>
           *Note: Market levels displayed above represent indicative reference snapshots for investor education. We advocate systematic goal-based mutual fund investing rather than short-term market timing.
         </div>
 

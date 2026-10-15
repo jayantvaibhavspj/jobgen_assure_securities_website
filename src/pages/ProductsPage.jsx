@@ -107,6 +107,8 @@ export function ProductsPage({ onOpenModal, defaultProduct }) {
                     <img 
                       src={iconImg} 
                       alt={prod.title} 
+                      loading="lazy"
+                      decoding="async"
                       style={{ width: '22px', height: '22px', objectFit: 'contain' }}
                       onError={(e) => { e.target.style.display = 'none'; }}
                     />
@@ -135,6 +137,8 @@ export function ProductsPage({ onOpenModal, defaultProduct }) {
                   <img 
                     src={PRODUCT_ICONS[current.id] || '/assets/mutual.png'} 
                     alt={current.title} 
+                    loading="lazy"
+                    decoding="async"
                     style={{ width: '56px', height: '56px', objectFit: 'contain', background: '#ffffff', padding: '8px', borderRadius: '14px', border: '1px solid #e2e8f0' }}
                   />
                   <div>
@@ -223,10 +227,13 @@ export function ProductsPage({ onOpenModal, defaultProduct }) {
                 </div>
 
                 {/* Original Illustration Card */}
-                <div style={{ background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0', padding: '1rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div className="cinematic-image-wrap" style={{ background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0', padding: '1rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
                   <img 
                     src="/assets/3_what_we_do.png" 
                     alt="What We Do Illustration" 
+                    loading="lazy"
+                    decoding="async"
+                    className="cinematic-reveal"
                     style={{ width: '80px', height: '80px', objectFit: 'contain' }}
                     onError={(e) => { e.target.style.display = 'none'; }}
                   />
@@ -284,6 +291,8 @@ export function ProductsPage({ onOpenModal, defaultProduct }) {
                       <img 
                         src={PRODUCT_ICONS[p.id] || '/assets/mutual.png'} 
                         alt={p.title} 
+                        loading="lazy"
+                        decoding="async"
                         style={{ width: '36px', height: '36px', objectFit: 'contain' }}
                       />
                     </div>

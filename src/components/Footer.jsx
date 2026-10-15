@@ -179,15 +179,16 @@ export function Footer({ onOpenModal }) {
             <h4 style={{ fontSize: '0.82rem', color: '#ffffff', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
               Legal & Address
             </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.84rem', color: '#cbd5e1' }}>
-              <div style={{ display: 'flex', gap: '0.45rem', marginBottom: '0.4rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.84rem' }}>
+              <div style={{ display: 'flex', gap: '0.45rem', marginBottom: '0.4rem', color: '#cbd5e1' }}>
                 <MapPin size={15} color="var(--color-accent)" style={{ flexShrink: 0, marginTop: '2px' }} />
                 <span>2/163 Vishal Khand, Gomtinagar, Lucknow - 226010, U.P.</span>
               </div>
-              <a href="#legal-terms" style={{ color: '#94a3b8' }}>Privacy Policy</a>
-              <a href="#legal-terms" style={{ color: '#94a3b8' }}>Terms of Service</a>
-              <a href="#legal-terms" style={{ color: '#94a3b8' }}>SEBI Commission Disclosures</a>
-              <a href="#legal-terms" style={{ color: '#94a3b8' }}>Statutory Risk Factors</a>
+              <Link to="/privacy-policy" style={{ color: '#cbd5e1' }}>Privacy Policy</Link>
+              <Link to="/disclaimer" style={{ color: '#cbd5e1' }}>Terms & Disclaimer</Link>
+              <Link to="/disclosure" style={{ color: '#cbd5e1' }}>Commission Disclosures</Link>
+              <Link to="/risk-factors" style={{ color: '#cbd5e1' }}>Statutory Risk Factors</Link>
+              <Link to="/code-of-conduct" style={{ color: '#cbd5e1' }}>AMFI Code of Conduct</Link>
             </div>
           </div>
 

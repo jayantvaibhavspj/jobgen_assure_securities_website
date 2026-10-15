@@ -112,7 +112,7 @@ export function QuickToolsBar({ onOpenModal, onSelectTool }) {
       <div className="container">
         
         {/* Section Header (Section 11) */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal-on-scroll">
           <div className="eyebrow-pill emerald">
             <Sparkles size={13} />
             <span>Smart Financial Decision Tools</span>
@@ -135,7 +135,7 @@ export function QuickToolsBar({ onOpenModal, onSelectTool }) {
             gap: '1.5rem' 
           }}
         >
-          {FINANCIAL_TOOLS.map((tool) => {
+          {FINANCIAL_TOOLS.map((tool, idx) => {
             const Icon = tool.icon;
             const isHovered = hoveredTool === tool.id;
 
@@ -145,7 +145,7 @@ export function QuickToolsBar({ onOpenModal, onSelectTool }) {
                 onClick={() => handleToolClick(tool)}
                 onMouseEnter={() => setHoveredTool(tool.id)}
                 onMouseLeave={() => setHoveredTool(null)}
-                className="fintech-card"
+                className={`fintech-card interactive-glow-card reveal-on-scroll stagger-${(idx % 4) + 1}`}
                 style={{
                   padding: '1.75rem',
                   display: 'flex',

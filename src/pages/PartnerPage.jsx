@@ -74,7 +74,7 @@ export function PartnerPage() {
             ].map((item, idx) => (
               <div 
                 key={idx}
-                className="glass-card"
+                className={`glass-card reveal-on-scroll stagger-${idx + 1}`}
                 style={{
                   padding: '2rem',
                   borderRadius: '20px',

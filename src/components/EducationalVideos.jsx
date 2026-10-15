@@ -1,10 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Play, Sparkles, BookOpen, Clock, ArrowRight, X, ExternalLink, Video } from 'lucide-react';
 import { EDUCATIONAL_VIDEOS, RECENT_INSIGHTS } from '../data/websiteData';
 
 export function EducationalVideos({ onOpenModal, showInsights = true }) {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [activeFilter, setActiveFilter] = useState('All');
+
+  // Lock body scroll and close on Escape key when video modal is open
+  useEffect(() => {
+    if (!selectedVideo) return;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedVideo(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedVideo]);
 
   const categories = ['All', 'Mutual Fund Basics', 'SIP Compounding', 'Tax Saving', 'Financial Planning'];
 
@@ -54,106 +71,136 @@ export function EducationalVideos({ onOpenModal, showInsights = true }) {
           ))}
         </div>
 
-        {/* Video Cards Grid with Authentic Thumbnails */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.75rem', marginBottom: '3.5rem' }}>
-          {filteredVideos.map((vid) => (
-            <div 
-              key={vid.id}
-              className="glass-card"
-              style={{ overflow: 'hidden', background: '#ffffff', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column' }}
-            >
-              {/* Video Thumbnail with Hover Zoom & Play Button */}
-              <div 
-                onClick={() => setSelectedVideo(vid)}
-                style={{
-                  position: 'relative',
-                  height: '190px',
-                  background: '#0f172a',
-                  overflow: 'hidden',
-                  cursor: 'pointer'
-                }}
-                className="video-thumb-container"
-              >
-                {/* Authentic Thumbnail Image */}
-                <img 
-                  src={vid.thumbnail} 
-                  alt={vid.title}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    transition: 'transform 0.35s ease'
-                  }}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = vid.remoteThumbnail;
-                  }}
-                  onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                />
-
-                {/* Dark Vignette Overlay */}
-                <div style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(to top, rgba(15,23,42,0.8) 0%, rgba(15,23,42,0.2) 60%, rgba(15,23,42,0.1) 100%)',
-                  pointerEvents: 'none'
-                }} />
-
-                {/* Red Circular Play Button */}
-                <div style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: '50%',
-                  background: '#ef4444',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 8px 24px rgba(239,68,68,0.6)',
-                  pointerEvents: 'none',
-                  transition: 'transform 0.2s ease'
-                }}>
-                  <Play size={24} color="#ffffff" fill="#ffffff" style={{ marginLeft: '3px' }} />
-                </div>
-
-                {/* Duration Badge */}
-                <div style={{ position: 'absolute', bottom: '10px', right: '12px', background: 'rgba(0,0,0,0.8)', color: '#ffffff', fontSize: '0.75rem', fontWeight: 600, padding: '0.2rem 0.5rem', borderRadius: '4px' }}>
-                  {vid.duration}
-                </div>
-
-                {/* Category Badge */}
-                <div style={{ position: 'absolute', top: '10px', left: '12px', background: 'rgba(37,99,235,0.9)', color: '#ffffff', fontSize: '0.72rem', fontWeight: 700, padding: '0.25rem 0.65rem', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                  {vid.category}
-                </div>
-              </div>
-
-              {/* Video Content */}
-              <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1 }}>
-                <div>
-                  <h3 style={{ fontSize: '1.05rem', color: '#0f172a', fontWeight: 700, marginBottom: '0.5rem', lineHeight: 1.4 }}>
-                    {vid.title}
-                  </h3>
-                  <p style={{ fontSize: '0.85rem', color: '#64748b', lineHeight: 1.5, marginBottom: '1.25rem' }}>
-                    {vid.description}
-                  </p>
-                </div>
-
-                <button 
-                  onClick={() => setSelectedVideo(vid)}
-                  style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#2563eb', fontWeight: 700, fontSize: '0.88rem' }}
-                >
-                  <span>Watch Video</span>
-                  <Play size={14} fill="#2563eb" />
-                </button>
-              </div>
-
+        {/* Video Cards Grid with Authentic Thumbnails / Empty State */}
+        {filteredVideos.length === 0 ? (
+          <div 
+            style={{ 
+              textAlign: 'center', 
+              padding: '4rem 2rem', 
+              background: '#ffffff', 
+              borderRadius: '20px', 
+              border: '1.5px dashed #cbd5e1', 
+              marginBottom: '3.5rem' 
+            }}
+          >
+            <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'rgba(37,99,235,0.08)', color: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem auto' }}>
+              <Video size={26} />
             </div>
-          ))}
-        </div>
+            <h3 style={{ fontSize: '1.25rem', color: '#0f172a', fontWeight: 700, marginBottom: '0.4rem' }}>
+              No Masterclasses In This Category
+            </h3>
+            <p style={{ color: '#64748b', fontSize: '0.92rem', maxWidth: '440px', margin: '0 auto 1.5rem auto', lineHeight: 1.6 }}>
+              We regularly publish new research modules. You can explore all available masterclasses or request an advisory consultation on this topic.
+            </p>
+            <button 
+              onClick={() => setActiveFilter('All')} 
+              className="btn-secondary"
+              style={{ fontSize: '0.88rem', padding: '0.65rem 1.5rem' }}
+            >
+              View All Masterclasses
+            </button>
+          </div>
+        ) : (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.75rem', marginBottom: '3.5rem' }}>
+            {filteredVideos.map((vid, idx) => (
+              <div 
+                key={vid.id}
+                className={`glass-card fintech-card interactive-glow-card reveal-on-scroll stagger-${(idx % 4) + 1}`}
+                style={{ overflow: 'hidden', background: '#ffffff', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column' }}
+              >
+                {/* Video Thumbnail with Hover Zoom & Play Button */}
+                <div 
+                  onClick={() => setSelectedVideo(vid)}
+                  style={{
+                    position: 'relative',
+                    height: '190px',
+                    background: '#0f172a',
+                    overflow: 'hidden',
+                    cursor: 'pointer'
+                  }}
+                  className="video-thumb-container cinematic-image-wrap"
+                >
+                  {/* Authentic Thumbnail Image (Cinematic Reveal - Requirement 3) */}
+                  <img 
+                    src={vid.thumbnail} 
+                    alt={vid.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="cinematic-reveal"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover'
+                    }}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = vid.remoteThumbnail;
+                    }}
+                  />
+
+                  {/* Dark Vignette Overlay */}
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(to top, rgba(15,23,42,0.8) 0%, rgba(15,23,42,0.2) 60%, rgba(15,23,42,0.1) 100%)',
+                    pointerEvents: 'none'
+                  }} />
+
+                  {/* Red Circular Play Button */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '56px',
+                    height: '56px',
+                    borderRadius: '50%',
+                    background: '#ef4444',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 8px 24px rgba(239,68,68,0.6)',
+                    pointerEvents: 'none',
+                    transition: 'transform 0.2s ease'
+                  }}>
+                    <Play size={24} color="#ffffff" fill="#ffffff" style={{ marginLeft: '3px' }} />
+                  </div>
+
+                  {/* Duration Badge */}
+                  <div style={{ position: 'absolute', bottom: '10px', right: '12px', background: 'rgba(0,0,0,0.8)', color: '#ffffff', fontSize: '0.75rem', fontWeight: 600, padding: '0.2rem 0.5rem', borderRadius: '4px' }}>
+                    {vid.duration}
+                  </div>
+
+                  {/* Category Badge */}
+                  <div style={{ position: 'absolute', top: '10px', left: '12px', background: 'rgba(37,99,235,0.9)', color: '#ffffff', fontSize: '0.72rem', fontWeight: 700, padding: '0.25rem 0.65rem', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                    {vid.category}
+                  </div>
+                </div>
+
+                {/* Video Content */}
+                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1 }}>
+                  <div>
+                    <h3 style={{ fontSize: '1.05rem', color: '#0f172a', fontWeight: 700, marginBottom: '0.5rem', lineHeight: 1.4 }}>
+                      {vid.title}
+                    </h3>
+                    <p style={{ fontSize: '0.85rem', color: '#64748b', lineHeight: 1.5, marginBottom: '1.25rem' }}>
+                      {vid.description}
+                    </p>
+                  </div>
+
+                  <button 
+                    onClick={() => setSelectedVideo(vid)}
+                    style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#2563eb', fontWeight: 700, fontSize: '0.88rem' }}
+                  >
+                    <span>Watch Video</span>
+                    <Play size={14} fill="#2563eb" />
+                  </button>
+                </div>
+
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Latest Insights & Articles */}
         {showInsights && (
@@ -201,11 +248,14 @@ export function EducationalVideos({ onOpenModal, showInsights = true }) {
 
       </div>
 
-      {/* Video Modal Player */}
+      {/* Video Modal Player (Accessible & Touch Friendly) */}
       {selectedVideo && (
-        <div className="modal-overlay" onClick={() => setSelectedVideo(null)}>
+        <div className="modal-overlay" onClick={() => setSelectedVideo(null)} role="presentation">
           <div 
             className="modal-content" 
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Educational video: ${selectedVideo.title}`}
             style={{ maxWidth: '820px', padding: '1.5rem', background: '#0f172a', color: '#ffffff' }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -216,7 +266,20 @@ export function EducationalVideos({ onOpenModal, showInsights = true }) {
               </div>
               <button 
                 onClick={() => setSelectedVideo(null)}
-                style={{ color: '#94a3b8', background: 'rgba(255,255,255,0.1)', padding: '0.4rem', borderRadius: '50%' }}
+                style={{ 
+                  color: '#94a3b8', 
+                  background: 'rgba(255,255,255,0.1)', 
+                  minWidth: '44px', 
+                  minHeight: '44px', 
+                  borderRadius: '50%', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  border: 'none',
+                  touchAction: 'manipulation'
+                }}
+                aria-label="Close video player"
               >
                 <X size={20} />
               </button>
@@ -225,8 +288,9 @@ export function EducationalVideos({ onOpenModal, showInsights = true }) {
             {/* Video Frame */}
             <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: '12px', background: '#000000', marginBottom: '1rem' }}>
               <iframe
-                src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1`}
+                src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1&playsinline=1&rel=0`}
                 title={selectedVideo.title}
+                loading="lazy"
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

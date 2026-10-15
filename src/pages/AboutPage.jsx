@@ -63,28 +63,31 @@ export function AboutPage({ onOpenModal }) {
                 As an investor, you can either spend endless hours deciphering complex market fluctuations yourself or hire a disciplined, dedicated professional firm with 15+ years of market wisdom. Meeting your life's aspirations is our primary objective.
               </p>
 
-              {/* Quick Stat Highlights */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '1rem' }}>
+              {/* Quick Stat Highlights with Live Counter Animation */}
+              <div className="reveal-on-scroll stagger-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '1rem' }}>
                 <div style={{ background: 'var(--color-bg)', padding: '1.25rem', borderRadius: '14px', border: '1px solid var(--color-border)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)' }}>15+</div>
+                  <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--color-primary)' }}>ARN-182137</div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: 600 }}>AMFI Reg.</div>
+                </div>
+                <div style={{ background: 'var(--color-bg)', padding: '1.25rem', borderRadius: '14px', border: '1px solid var(--color-border)', textAlign: 'center' }}>
+                  <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-accent)' }} data-counter-target="15" data-counter-suffix="+">15+</div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: 600 }}>Years of Trust</div>
                 </div>
                 <div style={{ background: 'var(--color-bg)', padding: '1.25rem', borderRadius: '14px', border: '1px solid var(--color-border)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-accent)' }}>1,500+</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: 600 }}>Happy Families</div>
-                </div>
-                <div style={{ background: 'var(--color-bg)', padding: '1.25rem', borderRadius: '14px', border: '1px solid var(--color-border)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)' }}>₹250+ Cr</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: 600 }}>Assets Guided</div>
+                  <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)' }} data-counter-target="40" data-counter-suffix="+">40+</div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: 600 }}>Empaneled AMCs</div>
                 </div>
               </div>
             </div>
 
             <div style={{ textAlign: 'center' }}>
-              <div style={{ background: 'var(--color-bg)', padding: '2rem', borderRadius: '24px', border: '1px solid var(--color-border)', boxShadow: 'var(--shadow-card)' }}>
+              <div className="cinematic-image-wrap" style={{ background: 'var(--color-bg)', padding: '2rem', borderRadius: '24px', border: '1px solid var(--color-border)', boxShadow: 'var(--shadow-card)' }}>
                 <img 
                   src="/assets/img_se.png" 
                   alt="Assure Securities Services Illustration"
+                  loading="lazy"
+                  decoding="async"
+                  className="cinematic-reveal"
                   style={{ width: '100%', maxHeight: '320px', objectFit: 'contain' }}
                   onError={(e) => { e.target.style.display = 'none'; }}
                 />
@@ -101,7 +104,7 @@ export function AboutPage({ onOpenModal }) {
       {/* Mission & Vision (Light Gray #F7F9FC) */}
       <section style={{ padding: 'var(--section-pad-desktop) 0', background: 'var(--color-bg)', borderBottom: '1px solid var(--color-border)' }} className="section-pad">
         <div className="container">
-          <div className="section-header-center">
+          <div className="section-header-center reveal-on-scroll">
             <div className="eyebrow-pill emerald">
               <Sparkles size={13} />
               <span>Core Philosophy & Ambition</span>
@@ -120,7 +123,7 @@ export function AboutPage({ onOpenModal }) {
             
             {/* Mission Card */}
             <div 
-              className="fintech-card" 
+              className="fintech-card interactive-glow-card reveal-on-scroll stagger-1" 
               style={{ 
                 padding: '2.5rem', 
                 background: '#ffffff', 
@@ -145,7 +148,7 @@ export function AboutPage({ onOpenModal }) {
 
             {/* Vision Card */}
             <div 
-              className="fintech-card" 
+              className="fintech-card interactive-glow-card reveal-on-scroll stagger-2" 
               style={{ 
                 padding: '2.5rem', 
                 background: '#ffffff', 

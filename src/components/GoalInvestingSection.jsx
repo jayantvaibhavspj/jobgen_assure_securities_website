@@ -108,7 +108,7 @@ export function GoalInvestingSection({ onOpenModal }) {
       <div className="container">
         
         {/* Section Header (Section 12: "Invest For What Matters Most.") */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal-on-scroll">
           <div className="eyebrow-pill emerald">
             <Sparkles size={13} />
             <span>Milestone Architecture</span>
@@ -132,7 +132,7 @@ export function GoalInvestingSection({ onOpenModal }) {
             marginBottom: '3rem'
           }}
         >
-          {GOALS.map((goal) => {
+          {GOALS.map((goal, index) => {
             const Icon = goal.icon;
             const isSelected = selectedGoal.id === goal.id;
 
@@ -140,7 +140,7 @@ export function GoalInvestingSection({ onOpenModal }) {
               <div
                 key={goal.id}
                 onClick={() => setSelectedGoal(goal)}
-                className="fintech-card goal-card"
+                className={`fintech-card goal-card interactive-glow-card reveal-on-scroll stagger-${(index % 3) + 1}`}
                 style={{
                   padding: '2rem',
                   cursor: 'pointer',

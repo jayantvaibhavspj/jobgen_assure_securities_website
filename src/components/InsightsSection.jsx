@@ -57,7 +57,7 @@ export function InsightsSection({ onOpenModal }) {
       <div className="container">
         
         {/* Section Header */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal-on-scroll">
           <div className="eyebrow-pill emerald">
             <BookOpen size={13} />
             <span>Research & Wealth Intelligence</span>
@@ -84,7 +84,7 @@ export function InsightsSection({ onOpenModal }) {
         >
           {/* Large Featured Article (approx 50% width on desktop) */}
           <div 
-            className="fintech-card"
+            className="fintech-card interactive-glow-card reveal-on-scroll stagger-1"
             style={{ 
               padding: 'clamp(2rem, 3.5vw, 2.75rem)',
               display: 'flex',
@@ -163,10 +163,10 @@ export function InsightsSection({ onOpenModal }) {
 
           {/* Two Smaller Articles Stacked Vertically */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            {secondaryArticles.map((art) => (
+            {secondaryArticles.map((art, aIdx) => (
               <div
                 key={art.id}
-                className="fintech-card"
+                className={`fintech-card interactive-glow-card reveal-on-scroll stagger-${aIdx + 2}`}
                 style={{
                   padding: '1.75rem',
                   background: '#ffffff',

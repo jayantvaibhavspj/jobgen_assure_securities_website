@@ -12,15 +12,29 @@ export function PartnerSection({ theme = "light" }) {
     currentProfession: '',
     message: ''
   });
+  const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) {
-      alert('Please fill in your Name and Mobile Number.');
+    setError('');
+
+    if (formData.name.trim().length < 2) {
+      setError('Please provide your full name.');
       return;
     }
-    setSubmitted(true);
+    const cleanPhone = formData.phone.replace(/[\s-]/g, '');
+    if (!/^[6-9]\d{9}$/.test(cleanPhone)) {
+      setError('Please enter a valid 10-digit Indian mobile number.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }, 600);
   };
 
   return (
@@ -35,7 +49,7 @@ export function PartnerSection({ theme = "light" }) {
       <div className="container">
         
         {/* Header */}
-        <div className="section-title-wrap">
+        <div className="section-title-wrap reveal-on-scroll">
           <div className="badge-tag" style={{ background: isDark ? 'rgba(56, 189, 248, 0.15)' : '#e0f2fe', borderColor: isDark ? 'rgba(56, 189, 248, 0.3)' : '#7dd3fc', color: isDark ? '#38bdf8' : '#0369a1' }}>
             <Award size={13} />
             <span>Sub-Broker & Associate Program</span>
@@ -52,7 +66,7 @@ export function PartnerSection({ theme = "light" }) {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '3rem', alignItems: 'center' }} className="partner-grid">
           
           {/* Left Column: Partnership Perks */}
-          <div>
+          <div className="reveal-on-scroll stagger-1">
             <h3 style={{ fontSize: '1.8rem', color: isDark ? '#ffffff' : '#0f172a', fontWeight: 800, marginBottom: '1rem' }}>
               Why Become an Assure Associate?
             </h3>
@@ -267,13 +281,29 @@ export function PartnerSection({ theme = "light" }) {
                     />
                   </div>
 
+                  {error && (
+                    <div style={{ marginBottom: '1.25rem', background: '#fef2f2', border: '1px solid #fee2e2', color: '#dc2626', padding: '0.65rem 0.85rem', borderRadius: '8px', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <CheckCircle2 size={15} color="#dc2626" style={{ flexShrink: 0 }} />
+                      <span>{error}</span>
+                    </div>
+                  )}
+
                   <button 
                     type="submit"
+                    disabled={isSubmitting}
                     className="btn-primary"
-                    style={{ width: '100%', padding: '0.9rem', fontSize: '1rem', justifyContent: 'center' }}
+                    style={{ width: '100%', padding: '0.9rem', fontSize: '1rem', justifyContent: 'center', opacity: isSubmitting ? 0.75 : 1 }}
                   >
-                    <span>Submit Partner Application</span>
-                    <Send size={16} />
+                    {isSubmitting ? (
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <span className="pulse-dot-green" /> Processing Application...
+                      </span>
+                    ) : (
+                      <>
+                        <span>Submit Partner Application</span>
+                        <Send size={16} />
+                      </>
+                    )}
                   </button>
                 </form>
               )}

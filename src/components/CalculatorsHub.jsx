@@ -101,7 +101,7 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
       <div className="container">
         
         {/* Section Header */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal-on-scroll">
           <div className="eyebrow-pill emerald">
             <Sparkles size={13} />
             <span>Interactive Financial Architecture</span>
@@ -118,6 +118,7 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
 
         {/* Tab Selection (Clean, Calm Pills) */}
         <div 
+          className="reveal-on-scroll stagger-1"
           style={{ 
             display: 'flex', 
             gap: '0.65rem', 
@@ -193,11 +194,11 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
 
                 {/* Input 1: Monthly Investment */}
                 <div style={{ marginBottom: '1.75rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <label style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                       Monthly Investment
                     </label>
-                    <div style={{ background: '#ffffff', border: '1px solid var(--color-border)', borderRadius: '8px', padding: '0.3rem 0.75rem' }}>
+                    <div style={{ display: 'inline-flex', alignItems: 'center', background: '#ffffff', border: '1.5px solid var(--color-border)', borderRadius: '8px', padding: '0.2rem 0.65rem' }}>
                       <span style={{ fontWeight: 700, color: 'var(--color-primary)', fontSize: '1.15rem' }}>{formatINR(sipAmount)}</span>
                     </div>
                   </div>
@@ -208,11 +209,24 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
                     step="1000" 
                     value={sipAmount} 
                     onChange={(e) => setSipAmount(Number(e.target.value))} 
+                    aria-label="Monthly SIP Amount Slider"
                   />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--color-muted)', marginTop: '5px' }}>
-                    <span>₹1,000</span>
-                    <span>₹50,000</span>
-                    <span>₹2,00,000 / mo</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.35rem' }}>
+                    <span style={{ fontSize: '0.72rem', color: 'var(--color-muted)' }}>Min: ₹1,000</span>
+                    <span style={{ fontSize: '0.72rem', color: 'var(--color-muted)' }}>Max: ₹2,00,000</span>
+                  </div>
+                  {/* Quick Preset Amount Pills */}
+                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: '0.65rem' }}>
+                    {[5000, 10000, 25000, 50000, 100000].map((amt) => (
+                      <button
+                        type="button"
+                        key={amt}
+                        onClick={() => setSipAmount(amt)}
+                        className={`calc-preset-pill ${sipAmount === amt ? 'active' : ''}`}
+                      >
+                        {formatINR(amt)}
+                      </button>
+                    ))}
                   </div>
                 </div>
 
@@ -234,10 +248,22 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
                     value={sipRate} 
                     onChange={(e) => setSipRate(Number(e.target.value))} 
                   />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--color-muted)', marginTop: '5px' }}>
-                    <span>6% (Conservative)</span>
-                    <span>12% (Balanced Equity)</span>
-                    <span>22% (High Alpha)</span>
+                  {/* Quick Preset Rate Pills */}
+                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: '0.65rem' }}>
+                    {[
+                      { r: 8, label: '8% Conservative' },
+                      { r: 12, label: '12% Balanced Equity' },
+                      { r: 15, label: '15% Growth Equity' }
+                    ].map((item) => (
+                      <button
+                        type="button"
+                        key={item.r}
+                        onClick={() => setSipRate(item.r)}
+                        className={`calc-preset-pill ${sipRate === item.r ? 'active' : ''}`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
                   </div>
                 </div>
 
@@ -259,10 +285,18 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
                     value={sipYears} 
                     onChange={(e) => setSipYears(Number(e.target.value))} 
                   />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--color-muted)', marginTop: '5px' }}>
-                    <span>1 Year</span>
-                    <span>15 Years</span>
-                    <span>35 Years</span>
+                  {/* Quick Preset Tenure Pills */}
+                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: '0.65rem' }}>
+                    {[5, 10, 15, 20, 25].map((yr) => (
+                      <button
+                        type="button"
+                        key={yr}
+                        onClick={() => setSipYears(yr)}
+                        className={`calc-preset-pill ${sipYears === yr ? 'active' : ''}`}
+                      >
+                        {yr} Yrs
+                      </button>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -364,11 +398,40 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
                 </div>
 
                 <div style={{ marginBottom: '1.75rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                    <label style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-secondary)', textTransform: 'uppercase' }}>Total Investment</label>
-                    <span style={{ fontWeight: 700, color: 'var(--color-primary)', fontSize: '1.15rem' }}>{formatINR(lumpAmount)}</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                    <label style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                      Total Investment
+                    </label>
+                    <div style={{ display: 'inline-flex', alignItems: 'center', background: '#ffffff', border: '1.5px solid var(--color-border)', borderRadius: '8px', padding: '0.2rem 0.65rem' }}>
+                      <span style={{ fontWeight: 700, color: 'var(--color-primary)', fontSize: '1.15rem' }}>{formatINR(lumpAmount)}</span>
+                    </div>
                   </div>
-                  <input type="range" min="10000" max="2500000" step="10000" value={lumpAmount} onChange={(e) => setLumpAmount(Number(e.target.value))} />
+                  <input 
+                    type="range" 
+                    min="10000" 
+                    max="2500000" 
+                    step="10000" 
+                    value={lumpAmount} 
+                    onChange={(e) => setLumpAmount(Number(e.target.value))} 
+                    aria-label="Total Lumpsum Investment Slider"
+                  />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.35rem' }}>
+                    <span style={{ fontSize: '0.72rem', color: 'var(--color-muted)' }}>Min: ₹10,000</span>
+                    <span style={{ fontSize: '0.72rem', color: 'var(--color-muted)' }}>Max: ₹25,00,000</span>
+                  </div>
+                  {/* Quick Preset Amount Pills */}
+                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: '0.65rem' }}>
+                    {[50000, 100000, 250000, 500000, 1000000].map((amt) => (
+                      <button
+                        type="button"
+                        key={amt}
+                        onClick={() => setLumpAmount(amt)}
+                        className={`calc-preset-pill ${lumpAmount === amt ? 'active' : ''}`}
+                      >
+                        {formatINR(amt)}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 <div style={{ marginBottom: '1.75rem' }}>
@@ -377,6 +440,22 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
                     <span style={{ fontWeight: 700, color: 'var(--color-accent)', fontSize: '1.15rem' }}>{lumpRate}%</span>
                   </div>
                   <input type="range" min="6" max="20" step="0.5" value={lumpRate} onChange={(e) => setLumpRate(Number(e.target.value))} />
+                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: '0.65rem' }}>
+                    {[
+                      { r: 8, label: '8% Fixed Income' },
+                      { r: 12, label: '12% Multi-Cap' },
+                      { r: 15, label: '15% High Growth' }
+                    ].map((item) => (
+                      <button
+                        type="button"
+                        key={item.r}
+                        onClick={() => setLumpRate(item.r)}
+                        className={`calc-preset-pill ${lumpRate === item.r ? 'active' : ''}`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 <div style={{ marginBottom: '1.5rem' }}>
@@ -385,6 +464,18 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
                     <span style={{ fontWeight: 700, color: 'var(--color-primary)', fontSize: '1.15rem' }}>{lumpYears} Years</span>
                   </div>
                   <input type="range" min="1" max="30" step="1" value={lumpYears} onChange={(e) => setLumpYears(Number(e.target.value))} />
+                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: '0.65rem' }}>
+                    {[3, 5, 10, 15, 20].map((yr) => (
+                      <button
+                        type="button"
+                        key={yr}
+                        onClick={() => setLumpYears(yr)}
+                        className={`calc-preset-pill ${lumpYears === yr ? 'active' : ''}`}
+                      >
+                        {yr} Yrs
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
 
@@ -409,7 +500,7 @@ export function CalculatorsHub({ onOpenModal, initialTab = 'sip' }) {
                 </div>
                 <div style={{ marginTop: '2rem' }}>
                   <button onClick={() => onOpenModal && onOpenModal('consultation')} className="btn-primary-emerald" style={{ width: '100%', justifyContent: 'center' }}>
-                    Deploy Lumpsum With Advisor →
+                    <span>Deploy Lumpsum With Advisor →</span>
                   </button>
                   <p style={{ textAlign: 'center', fontSize: '0.72rem', color: '#94a3b8', margin: '0.75rem 0 0 0' }}>
                     Illustrative calculation. Actual returns may vary.

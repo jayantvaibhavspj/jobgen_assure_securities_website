@@ -34,7 +34,7 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
       <div className="container">
         
         {/* Section Header */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal-on-scroll">
           <div className="eyebrow-pill emerald">
             <Sparkles size={13} />
             <span>Comprehensive Wealth Suite</span>
@@ -58,7 +58,7 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
             marginBottom: selectedProduct ? '2.5rem' : '0'
           }}
         >
-          {PRODUCTS_DATA.map((prod) => {
+          {PRODUCTS_DATA.map((prod, index) => {
             const isSelected = selectedProduct === prod.id;
             const Icon = PRODUCT_ICONS[prod.id] || TrendingUp;
 
@@ -66,7 +66,7 @@ export function ProductsSection({ onOpenModal, onNavigate }) {
               <div
                 key={prod.id}
                 onClick={() => setSelectedProduct(isSelected ? null : prod.id)}
-                className="fintech-card solution-card"
+                className={`fintech-card solution-card interactive-glow-card reveal-on-scroll stagger-${(index % 4) + 1}`}
                 style={{
                   cursor: 'pointer',
                   borderColor: isSelected ? 'var(--color-accent)' : 'var(--color-border)',

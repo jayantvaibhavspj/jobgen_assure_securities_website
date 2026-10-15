@@ -8,7 +8,7 @@ export function AboutSection({ onOpenModal }) {
       <div className="container">
         
         {/* Section Header */}
-        <div className="section-title-wrap" style={{ marginBottom: '3.5rem' }}>
+        <div className="section-title-wrap reveal-on-scroll" style={{ marginBottom: '3.5rem' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#ecfdf5', color: '#047857', border: '1px solid #a7f3d0', padding: '0.35rem 0.95rem', borderRadius: '100px', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '1rem' }}>
             <ShieldCheck size={14} color="#059669" />
             <span>Fiduciary Standards • AMFI ARN-182137</span>
@@ -22,25 +22,33 @@ export function AboutSection({ onOpenModal }) {
         </div>
 
         {/* 4-Stat High-Status Private Wealth Bar */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-          gap: '1.25rem',
-          marginBottom: '3rem',
-          background: '#ffffff',
-          padding: '1.75rem',
-          borderRadius: '20px',
-          border: '1px solid #e2e8f0',
-          boxShadow: '0 10px 30px -10px rgba(15,23,42,0.06)'
-        }}>
+        <div 
+          className="reveal-on-scroll"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '1.25rem',
+            marginBottom: '3rem',
+            background: '#ffffff',
+            padding: '1.75rem',
+            borderRadius: '20px',
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 10px 30px -10px rgba(15,23,42,0.06)'
+          }}
+        >
           {[
-            { metric: "₹250+ Cr", label: "Client Assets Advised", sub: "Equities, Fixed Income & Hybrid" },
-            { metric: "1,200+", label: "Private Client Portfolios", sub: "Corporate Leaders, NRIs & Families" },
-            { metric: "15+ Years", label: "Multi-Cycle Proven Record", sub: "Navigated 2008 & 2020 Market Cycles" },
-            { metric: "40+ AMCs", label: "Direct Institutional Access", sub: "Direct Routing via CAMS & KFintech" }
+            { metric: COMPANY_INFO.arn, label: "AMFI Registered", sub: "ARN-182137 • Valid till July 2027" },
+            { metric: "15+ Years", target: "15", suffix: "+ Years", label: "Industry Experience", sub: "Navigated bull & bear cycles" },
+            { metric: "40+ AMCs", target: "40", suffix: "+ AMCs", label: "Direct Empanelment", sub: "Direct routing via CAMS & KFintech" },
+            { metric: "Zero Custody", label: "Direct AMC Settlement", sub: "Investor funds never transit distributor accounts" }
           ].map((stat, i) => (
-            <div key={i} style={{ borderRight: i < 3 ? '1px solid #f1f5f9' : 'none', padding: '0.5rem 1rem' }}>
-              <div style={{ fontSize: '2rem', fontWeight: 800, color: '#0f172a', fontFamily: 'var(--font-heading)', letterSpacing: '-0.02em' }}>
+            <div key={i} style={{ borderRight: i < 3 ? '1px solid #f1f5f9' : 'none', padding: '0.5rem 1rem' }} className={`stagger-${i + 1}`}>
+              <div 
+                style={{ fontSize: '2rem', fontWeight: 800, color: '#0f172a', fontFamily: 'var(--font-heading)', letterSpacing: '-0.02em' }}
+                data-counter-target={stat.target || ''}
+                data-counter-prefix={stat.prefix || ''}
+                data-counter-suffix={stat.suffix || ''}
+              >
                 {stat.metric}
               </div>
               <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#2563eb', marginTop: '0.15rem' }}>
@@ -87,12 +95,15 @@ export function AboutSection({ onOpenModal }) {
                   </div>
                 </div>
 
-                {/* Original Illustration from Assure Site */}
-                <div style={{ textAlign: 'center', marginBottom: '1.75rem', background: '#f8fafc', padding: '1.25rem', borderRadius: '18px', border: '1px solid #e2e8f0' }}>
+                {/* Original Illustration from Assure Site (Cinematic Image Reveal - Requirement 3) */}
+                <div className="cinematic-image-wrap" style={{ textAlign: 'center', marginBottom: '1.75rem', background: '#f8fafc', padding: '1.25rem', borderRadius: '18px', border: '1px solid #e2e8f0' }}>
                   <img 
                     src="/assets/img_se.png" 
                     alt="Assure Securities Services & Relationship"
-                    style={{ maxHeight: '200px', width: 'auto', objectFit: 'contain', margin: '0 auto' }}
+                    loading="lazy"
+                    decoding="async"
+                    className="cinematic-reveal"
+                    style={{ maxHeight: '200px', width: 'auto', objectFit: 'contain', margin: '0 auto', display: 'block' }}
                     onError={(e) => { e.target.style.display = 'none'; }}
                   />
                 </div>

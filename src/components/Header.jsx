@@ -29,6 +29,32 @@ export function Header({ onOpenModal }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent background scrolling when mobile drawer is open (Requirement 2)
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
+
+  // Accessibility: Close drawer and dropdowns on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        if (mobileMenuOpen) setMobileMenuOpen(false);
+        setInvestDropdown(false);
+        setWealthDropdown(false);
+        setToolsDropdown(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
   const handleNavClick = (path) => {
     setMobileMenuOpen(false);
     setInvestDropdown(false);
@@ -200,7 +226,7 @@ export function Header({ onOpenModal }) {
               )}
             </div>
 
-            {/* 2. Wealth Solutions Dropdown */}
+            {/* 2. Solutions Dropdown */}
             <div 
               style={{ position: 'relative' }}
               onMouseEnter={() => setWealthDropdown(true)}
@@ -218,7 +244,7 @@ export function Header({ onOpenModal }) {
                   padding: '0.4rem 0'
                 }}
               >
-                <span>Wealth Solutions</span>
+                <span>Solutions</span>
                 <ChevronDown size={14} style={{ transform: wealthDropdown ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
               </Link>
 
@@ -345,7 +371,7 @@ export function Header({ onOpenModal }) {
               className="btn-primary-emerald"
               style={{ minHeight: '44px', padding: '0 1.35rem', fontSize: '0.9rem' }}
             >
-              <span>Get Started</span>
+              <span>Book a Consultation</span>
               <ArrowRight size={15} />
             </button>
           </div>
@@ -353,82 +379,161 @@ export function Header({ onOpenModal }) {
           {/* Mobile Hamburger Trigger */}
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={{ display: 'none', padding: '0.5rem', color: 'var(--color-primary)' }}
+            style={{ 
+              display: 'none', 
+              minWidth: '48px', 
+              minHeight: '48px', 
+              padding: '0.6rem', 
+              color: 'var(--color-primary)', 
+              borderRadius: '10px', 
+              cursor: 'pointer',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: mobileMenuOpen ? 'rgba(7, 26, 47, 0.06)' : 'transparent',
+              border: '1px solid var(--color-border)',
+              touchAction: 'manipulation'
+            }}
             className="mobile-menu-btn"
-            aria-label="Toggle Navigation Menu"
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-drawer"
           >
-            {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Drawer Navigation (Phase 7 Premium Mobile UX) */}
       {mobileMenuOpen && (
-        <div style={{
-          position: 'fixed', inset: 0, top: '65px', background: 'rgba(7, 26, 47, 0.98)',
-          color: '#ffffff', padding: '2rem 1.5rem', zIndex: 999, overflowY: 'auto',
-          display: 'flex', flexDirection: 'column', justifyContent: 'space-between'
-        }}>
+        <div 
+          id="mobile-nav-drawer"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation Menu"
+          style={{
+            position: 'fixed', 
+            inset: 0, 
+            top: 0, 
+            background: 'rgba(7, 26, 47, 0.98)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            color: '#ffffff', 
+            padding: '1.5rem', 
+            zIndex: 2000, 
+            overflowY: 'auto',
+            display: 'flex', 
+            flexDirection: 'column', 
+            justifyContent: 'space-between',
+            animation: 'drawerSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1)'
+          }}
+        >
           <div>
-            {/* Mobile Drawer Brand Header */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.75rem', paddingBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-              <img 
-                src="/assets/assure-logo.png" 
-                alt="Assure Securities Logo" 
-                style={{ height: '44px', background: '#ffffff', padding: '4px 8px', borderRadius: '8px', objectFit: 'contain' }}
-              />
-              <div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#ffffff' }}>ASSURE <span style={{ color: 'var(--color-accent)' }}>SECURITIES</span></div>
-                <div style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 600 }}>ARN-182137 • AMFI Registered</div>
+            {/* Mobile Drawer Brand Header & Close Button */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', paddingBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <img 
+                  src="/assets/assure-logo.png" 
+                  alt="Assure Securities Logo" 
+                  style={{ height: '42px', background: '#ffffff', padding: '4px 8px', borderRadius: '8px', objectFit: 'contain' }}
+                />
+                <div>
+                  <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em' }}>
+                    ASSURE <span style={{ color: 'var(--color-accent)' }}>SECURITIES</span>
+                  </div>
+                  <div style={{ fontSize: '0.68rem', color: '#94a3b8', fontWeight: 600 }}>ARN-182137 • AMFI Registered</div>
+                </div>
               </div>
+
+              <button 
+                onClick={() => setMobileMenuOpen(false)}
+                style={{ 
+                  width: '44px', 
+                  height: '44px', 
+                  borderRadius: '50%', 
+                  background: 'rgba(255,255,255,0.08)', 
+                  border: '1px solid rgba(255,255,255,0.15)', 
+                  color: '#ffffff', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  cursor: 'pointer' 
+                }}
+                aria-label="Close menu"
+              >
+                <X size={20} />
+              </button>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', fontSize: '1.15rem', fontWeight: 700 }}>
-              <div onClick={() => handleNavClick('/')} style={{ cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.75rem' }}>
-                Home
-              </div>
-              <div onClick={() => handleNavClick('/products')} style={{ cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.75rem' }}>
-                Invest & Wealth Solutions
-              </div>
-              <div onClick={() => handleNavClick('/calculators')} style={{ cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.75rem' }}>
-                Smart Financial Tools
-              </div>
-              <div onClick={() => handleNavClick('/educational-videos')} style={{ cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.75rem' }}>
-                Insights & Masterclasses
-              </div>
-              <div onClick={() => handleNavClick('/about-us')} style={{ cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.75rem' }}>
-                About Assure Securities
-              </div>
-              <div onClick={() => handleNavClick('/contact-us')} style={{ cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.75rem' }}>
-                Contact Lucknow Office
-              </div>
-            </div>
+            {/* Nav Links with Large Touch Targets (Min 48px) & Icons */}
+            <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              {[
+                { path: '/', label: 'Home', desc: 'Overview & Highlights' },
+                { path: '/products/mutual-funds', label: 'Invest in Mutual Funds', desc: 'Equity, Debt, Hybrid & ELSS' },
+                { path: '/products', label: 'All Investment Solutions', desc: 'FDs, Bonds, Insurance & PMS' },
+                { path: '/calculators', label: 'Financial Tools & Calculators', desc: 'SIP, Lumpsum, Retirement & Child' },
+                { path: '/educational-videos', label: 'Insights & Masterclasses', desc: 'Educational Video Library' },
+                { path: '/about-us', label: 'About Assure Securities', desc: '15+ Years Trust & Credentials' },
+                { path: '/become-a-partner', label: 'Partner Program', desc: 'Sub-broker & Associate Network' },
+                { path: '/contact-us', label: 'Contact & Advisory Desk', desc: 'Direct Relationship Manager' }
+              ].map((item) => (
+                <button
+                  key={item.path}
+                  onClick={() => handleNavClick(item.path)}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                    justifyContent: 'center',
+                    minHeight: '48px',
+                    padding: '0.65rem 0.85rem',
+                    borderRadius: '10px',
+                    background: location.pathname === item.path ? 'rgba(22, 185, 129, 0.12)' : 'transparent',
+                    borderLeft: location.pathname === item.path ? '3px solid var(--color-accent)' : '3px solid transparent',
+                    color: '#ffffff',
+                    textAlign: 'left',
+                    width: '100%',
+                    cursor: 'pointer',
+                    transition: 'background 0.2s ease',
+                    touchAction: 'manipulation'
+                  }}
+                >
+                  <span style={{ fontSize: '1.02rem', fontWeight: 700, color: location.pathname === item.path ? 'var(--color-accent)' : '#ffffff' }}>
+                    {item.label}
+                  </span>
+                  <span style={{ fontSize: '0.74rem', color: '#94a3b8', marginTop: '2px' }}>
+                    {item.desc}
+                  </span>
+                </button>
+              ))}
+            </nav>
 
-            <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+            {/* Visible CTAs */}
+            <div style={{ marginTop: '1.75rem', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+              <button 
+                onClick={() => { setMobileMenuOpen(false); onOpenModal('consultation'); }}
+                className="btn-primary-emerald"
+                style={{ width: '100%', justifyContent: 'center', height: '50px', fontSize: '0.95rem' }}
+              >
+                <span>Book a Consultation</span>
+                <ArrowRight size={16} />
+              </button>
+
               <button 
                 onClick={() => { setMobileMenuOpen(false); onOpenModal('client-login'); }}
                 className="btn-outline-white"
-                style={{ width: '100%', justifyContent: 'center' }}
+                style={{ width: '100%', justifyContent: 'center', height: '50px', fontSize: '0.95rem' }}
               >
                 <LogIn size={16} />
                 <span>Client Portfolio Login</span>
               </button>
-
-              <button 
-                onClick={() => { setMobileMenuOpen(false); onOpenModal('consultation'); }}
-                className="btn-primary-emerald"
-                style={{ width: '100%', justifyContent: 'center' }}
-              >
-                <span>Get Started With Advisor</span>
-                <ArrowRight size={16} />
-              </button>
             </div>
           </div>
 
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1.25rem', marginTop: '2rem', fontSize: '0.8rem', color: '#94a3b8' }}>
-            <div>AMFI ARN-182137 | Registered Mutual Fund Distributor</div>
-            <div style={{ marginTop: '4px' }}>Desk: +91 9455555742 • care@assuresecurities.in</div>
+          {/* Regulatory Strip inside Drawer */}
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1.25rem', marginTop: '1.5rem', fontSize: '0.78rem', color: '#94a3b8' }}>
+            <div style={{ fontWeight: 600, color: '#e2e8f0' }}>AMFI Registered Mutual Fund Distributor • ARN-182137</div>
+            <div style={{ marginTop: '3px' }}>Helpline: {COMPANY_INFO.phone} • {COMPANY_INFO.email}</div>
           </div>
         </div>
       )}

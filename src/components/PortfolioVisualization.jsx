@@ -26,7 +26,7 @@ export function PortfolioVisualization({ onOpenModal }) {
       <div className="container">
         
         {/* Section Header */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal-on-scroll">
           <div className="eyebrow-pill emerald">
             <Sparkles size={13} />
             <span>Consolidated Net Worth Intelligence</span>
@@ -43,7 +43,7 @@ export function PortfolioVisualization({ onOpenModal }) {
 
         {/* Dashboard Frame (Section 14 & 15: Clean, Elegant, Soft Grid) */}
         <div 
-          className="fintech-card"
+          className="fintech-card reveal-on-scroll"
           style={{ 
             background: '#ffffff', 
             borderRadius: '24px', 
@@ -73,7 +73,11 @@ export function PortfolioVisualization({ onOpenModal }) {
                   DEMO PREVIEW
                 </span>
               </div>
-              <div style={{ fontSize: 'clamp(2rem, 3.5vw, 2.6rem)', fontWeight: 700, color: 'var(--color-primary)', letterSpacing: '-0.02em', margin: '0.2rem 0' }}>
+              <div 
+                style={{ fontSize: 'clamp(2rem, 3.5vw, 2.6rem)', fontWeight: 700, color: 'var(--color-primary)', letterSpacing: '-0.02em', margin: '0.2rem 0' }}
+                data-counter-target="28,45,000"
+                data-counter-prefix="₹"
+              >
                 ₹28,45,000
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}>
@@ -175,17 +179,30 @@ export function PortfolioVisualization({ onOpenModal }) {
                       fill="url(#chartGradientPort)" 
                     />
 
-                    {/* Portfolio Growth Curve (Thin, Elegant Line) */}
+                    {/* Portfolio Growth Curve (Thin, Elegant Line - Phase 5 Progressive Draw) */}
                     <path 
                       d="M 0 150 Q 120 140 200 100 T 360 48 T 500 18" 
                       fill="none" 
                       stroke="#16B981" 
                       strokeWidth="2.5" 
+                      strokeLinecap="round"
+                      className="svg-chart-path-portfolio"
                     />
 
-                    {/* Data Point Dots */}
+                    {/* Data Point Dots & Pulsing Terminal Node */}
                     <circle cx="200" cy="100" r="4" fill="#16B981" stroke="#ffffff" strokeWidth="2" />
                     <circle cx="360" cy="48" r="4" fill="#16B981" stroke="#ffffff" strokeWidth="2" />
+                    
+                    {/* Animated Pulsing Halo on Current Net Worth Node */}
+                    <circle 
+                      cx="500" 
+                      cy="18" 
+                      r="9" 
+                      fill="none" 
+                      stroke="rgba(22, 185, 129, 0.4)" 
+                      strokeWidth="2" 
+                      className="chart-terminal-dot" 
+                    />
                     <circle cx="500" cy="18" r="5" fill="#16B981" stroke="#ffffff" strokeWidth="2" />
                   </svg>
                 </div>

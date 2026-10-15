@@ -38,7 +38,7 @@ export function WhyAssureSection({ onOpenModal }) {
       id="why-assure"
       style={{ 
         padding: 'var(--section-pad-desktop) 0', 
-        background: '#ffffff',
+        background: 'var(--color-bg)',
         borderBottom: '1px solid var(--color-border)' 
       }}
       className="section-pad"
@@ -57,7 +57,7 @@ export function WhyAssureSection({ onOpenModal }) {
         >
           
           {/* LEFT: Large Statement & Fiduciary Manifesto */}
-          <div style={{ position: 'sticky', top: '100px' }}>
+          <div style={{ position: 'sticky', top: '100px' }} className="reveal-on-scroll">
             <div className="eyebrow-pill emerald">
               <ShieldCheck size={13} />
               <span>The Assure Advantage</span>
@@ -70,7 +70,7 @@ export function WhyAssureSection({ onOpenModal }) {
                 color: 'var(--color-primary)', 
                 letterSpacing: '-0.03em', 
                 lineHeight: 1.2,
-                marginBottom: '1.5rem'
+                marginBottom: '1.5rem' 
               }}
             >
               Why Investors Choose Assure
@@ -123,7 +123,7 @@ export function WhyAssureSection({ onOpenModal }) {
                     gap: '1.75rem',
                     alignItems: 'flex-start'
                   }}
-                  className="advantage-row"
+                  className={`advantage-row reveal-on-scroll stagger-${idx + 1}`}
                 >
                   {/* Large Number */}
                   <div 

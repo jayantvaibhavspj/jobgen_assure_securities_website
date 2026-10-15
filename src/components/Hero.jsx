@@ -31,8 +31,9 @@ export function Hero({ onOpenModal, onNavigate }) {
         }}
         className="hero-section"
       >
-        {/* Subtle Radial Glow & Background Grid Texture */}
+        {/* Subtle Radial Glow & Background Grid Texture (Phase 5 Ambient Motion) */}
         <div 
+          className="ambient-glow-drift"
           style={{
             position: 'absolute',
             top: '-20%',
@@ -40,20 +41,21 @@ export function Hero({ onOpenModal, onNavigate }) {
             width: '600px',
             height: '600px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(22, 185, 129, 0.1) 0%, rgba(7, 26, 47, 0) 70%)',
-            filter: 'blur(60px)',
+            background: 'radial-gradient(circle, rgba(22, 185, 129, 0.12) 0%, rgba(7, 26, 47, 0) 70%)',
+            filter: 'blur(70px)',
             pointerEvents: 'none'
           }} 
         />
         <div 
+          className="ambient-glow-drift-reverse"
           style={{
             position: 'absolute',
             bottom: '-20%',
             left: '-10%',
-            width: '500px',
-            height: '500px',
+            width: '520px',
+            height: '520px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(13, 41, 69, 0.4) 0%, rgba(7, 26, 47, 0) 70%)',
+            background: 'radial-gradient(circle, rgba(13, 41, 69, 0.45) 0%, rgba(7, 26, 47, 0) 70%)',
             filter: 'blur(60px)',
             pointerEvents: 'none'
           }} 
@@ -72,6 +74,38 @@ export function Hero({ onOpenModal, onNavigate }) {
             pointerEvents: 'none'
           }} 
         />
+
+        {/* Subtle Moving Financial Curve (Phase 5 Cinematic Storytelling) */}
+        <div 
+          className="moving-financial-wave"
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: '-10%',
+            width: '120%',
+            height: '180px',
+            pointerEvents: 'none',
+            opacity: 0.14
+          }}
+        >
+          <svg viewBox="0 0 1200 180" width="100%" height="100%" preserveAspectRatio="none">
+            <path
+              d="M 0 160 Q 300 40 600 120 T 1200 30"
+              fill="none"
+              stroke="#16B981"
+              strokeWidth="1.5"
+              strokeDasharray="4 6"
+            />
+          </svg>
+        </div>
+
+        {/* Subtle Floating Data Particles (Phase 5 Requirement 1) */}
+        <div className="hero-particles-container">
+          <div className="hero-particle hero-particle-1" />
+          <div className="hero-particle hero-particle-2" />
+          <div className="hero-particle hero-particle-3" />
+          <div className="hero-particle hero-particle-4" />
+        </div>
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div 
@@ -291,21 +325,36 @@ export function Hero({ onOpenModal, onNavigate }) {
                       fill="url(#chartGradientHero)"
                     />
 
-                    {/* Smooth Line Path */}
+                    {/* Smooth Line Path (Phase 5 Progressive Draw) */}
                     <path
                       d="M 20 130 Q 100 115 180 90 T 260 60 T 340 25"
                       fill="none"
                       stroke="#16B981"
                       strokeWidth="3"
                       strokeLinecap="round"
+                      className="svg-chart-path"
                     />
 
-                    {/* Data Points */}
-                    {chartPoints.map((pt, i) => (
-                      <g key={i}>
-                        <circle cx={pt.x} cy={pt.y - 10} r="3.5" fill="#071A2F" stroke="#16B981" strokeWidth="2" />
-                      </g>
-                    ))}
+                    {/* Data Points & Pulsing Terminal Node */}
+                    {chartPoints.map((pt, i) => {
+                      const isLast = i === chartPoints.length - 1;
+                      return (
+                        <g key={i}>
+                          {isLast && (
+                            <circle
+                              cx={pt.x}
+                              cy={pt.y - 10}
+                              r="7"
+                              fill="none"
+                              stroke="rgba(22, 185, 129, 0.45)"
+                              strokeWidth="1.5"
+                              className="chart-terminal-dot"
+                            />
+                          )}
+                          <circle cx={pt.x} cy={pt.y - 10} r="3.5" fill="#071A2F" stroke="#16B981" strokeWidth="2" />
+                        </g>
+                      );
+                    })}
                   </svg>
                 </div>
 
@@ -320,9 +369,9 @@ export function Hero({ onOpenModal, onNavigate }) {
 
                   {/* Multi-segmented Allocation Bar */}
                   <div style={{ height: '7px', width: '100%', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '100px', display: 'flex', overflow: 'hidden', marginBottom: '0.65rem' }}>
-                    <div style={{ width: '60%', background: '#16B981' }} title="Mutual Funds 60%" />
-                    <div style={{ width: '25%', background: '#38BDF8' }} title="Equity 25%" />
-                    <div style={{ width: '15%', background: '#F59E0B' }} title="Bonds 15%" />
+                    <div style={{ width: '60%', background: '#16B981', transition: 'width 1s ease' }} title="Mutual Funds 60%" />
+                    <div style={{ width: '25%', background: '#38BDF8', transition: 'width 1s ease' }} title="Equity 25%" />
+                    <div style={{ width: '15%', background: '#F59E0B', transition: 'width 1s ease' }} title="Bonds 15%" />
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.65rem', fontSize: '0.74rem' }}>
@@ -334,7 +383,7 @@ export function Hero({ onOpenModal, onNavigate }) {
 
               </div>
 
-              {/* Floating Badge 1: Top Right (Monthly SIP Active) */}
+              {/* Floating Badge 1: Top Right (Monthly SIP Active - Phase 5 float-card-1) */}
               <div 
                 style={{
                   position: 'absolute',
@@ -351,7 +400,7 @@ export function Hero({ onOpenModal, onNavigate }) {
                   alignItems: 'center',
                   gap: '0.65rem'
                 }}
-                className="d-none-mobile"
+                className="d-none-mobile float-card-1"
               >
                 <div style={{ background: '#ecfdf5', padding: '0.45rem', borderRadius: '8px' }}>
                   <TrendingUp size={18} color="#059669" />
@@ -362,7 +411,7 @@ export function Hero({ onOpenModal, onNavigate }) {
                 </div>
               </div>
 
-              {/* Floating Badge 2: Bottom Left (Zero Custody Direct AMC) */}
+              {/* Floating Badge 2: Bottom Left (Zero Custody Direct AMC - Phase 5 float-card-2) */}
               <div 
                 style={{
                   position: 'absolute',
@@ -379,7 +428,7 @@ export function Hero({ onOpenModal, onNavigate }) {
                   alignItems: 'center',
                   gap: '0.65rem'
                 }}
-                className="d-none-mobile"
+                className="d-none-mobile float-card-2"
               >
                 <div style={{ background: '#eff6ff', padding: '0.45rem', borderRadius: '8px' }}>
                   <ShieldCheck size={18} color="#2563eb" />
@@ -387,6 +436,34 @@ export function Hero({ onOpenModal, onNavigate }) {
                 <div>
                   <div style={{ fontSize: '0.68rem', color: 'var(--color-text-secondary)', fontWeight: 700, textTransform: 'uppercase' }}>Fiduciary Safety</div>
                   <div style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--color-primary)' }}>Direct AMC Settlement</div>
+                </div>
+              </div>
+
+              {/* Floating Badge 3: Mid Right (Milestone Goal - Phase 5 float-card-3) */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  bottom: '85px',
+                  right: '-28px',
+                  background: '#ffffff',
+                  color: 'var(--color-primary)',
+                  borderRadius: '14px',
+                  padding: '0.65rem 0.9rem',
+                  boxShadow: '0 10px 24px rgba(0, 0, 0, 0.22)',
+                  border: '1px solid var(--color-border)',
+                  zIndex: 3,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.55rem'
+                }}
+                className="d-none-mobile float-card-3"
+              >
+                <div style={{ background: 'rgba(22, 185, 129, 0.12)', padding: '0.4rem', borderRadius: '8px' }}>
+                  <PieChart size={16} color="var(--color-accent)" />
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.65rem', color: 'var(--color-text-secondary)', fontWeight: 700, textTransform: 'uppercase' }}>Portfolio Health</div>
+                  <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--color-primary)' }}>Optimal Allocation</div>
                 </div>
               </div>
 
@@ -418,27 +495,31 @@ export function Hero({ onOpenModal, onNavigate }) {
               { 
                 metric: COMPANY_INFO.arn, 
                 label: "AMFI Registered", 
-                sub: "Valid till July 2027" 
+                sub: "ARN-182137 • Valid till 2027" 
               },
               { 
                 metric: "15+ Years", 
-                label: "Market Wisdom", 
-                sub: "Navigated bull & bear cycles" 
-              },
-              { 
-                metric: "₹250+ Crore", 
-                label: "Client Assets Guided", 
-                sub: "Equities, Fixed Income & Hybrid" 
+                target: "15",
+                suffix: "+ Years",
+                label: "Industry Experience", 
+                sub: "Disciplined market stewardship" 
               },
               { 
                 metric: "40+ AMCs", 
+                target: "40",
+                suffix: "+ AMCs",
                 label: "Direct Empanelment", 
-                sub: "BSE StAR MF Execution" 
+                sub: "All major fund houses accessible" 
+              },
+              { 
+                metric: "BSE StAR MF", 
+                label: "Exchange Execution", 
+                sub: "Direct institutional trade routing" 
               },
               { 
                 metric: "Zero Custody", 
-                label: "100% Fund Safety", 
-                sub: "Direct-to-AMC Settlement" 
+                label: "100% Investor Safety", 
+                sub: "Direct-to-AMC bank settlement" 
               }
             ].map((stat, i) => (
               <div 
@@ -448,9 +529,14 @@ export function Hero({ onOpenModal, onNavigate }) {
                   padding: '0.75rem 1rem',
                   borderLeft: i > 0 ? '1px solid var(--color-border)' : 'none'
                 }}
-                className={i > 0 ? "border-left-responsive" : ""}
+                className={`reveal-on-scroll stagger-${i + 1} ${i > 0 ? "border-left-responsive" : ""}`}
               >
-                <div style={{ fontSize: '1.45rem', fontWeight: 700, color: 'var(--color-primary)', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+                <div 
+                  style={{ fontSize: '1.45rem', fontWeight: 700, color: 'var(--color-primary)', letterSpacing: '-0.02em', lineHeight: 1.2 }}
+                  data-counter-target={stat.target || ''}
+                  data-counter-prefix={stat.prefix || ''}
+                  data-counter-suffix={stat.suffix || ''}
+                >
                   {stat.metric}
                 </div>
                 <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-accent)', marginTop: '0.15rem' }}>

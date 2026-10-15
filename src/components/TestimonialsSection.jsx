@@ -27,7 +27,7 @@ export function TestimonialsSection({ theme = "dark" }) {
       <div className="container">
         
         {/* Section Title */}
-        <div className="section-title-wrap">
+        <div className="section-title-wrap reveal-on-scroll">
           <div className="badge-tag accent-emerald">
             <CheckCircle2 size={13} />
             <span>Verified Client Endorsements</span>
@@ -43,7 +43,7 @@ export function TestimonialsSection({ theme = "dark" }) {
         {/* Featured Testimonial Spotlight */}
         <div style={{ maxWidth: '920px', margin: '0 auto 4rem auto' }}>
           <div 
-            className="glass-card" 
+            className="glass-card fintech-card reveal-on-scroll" 
             style={{ 
               padding: '3rem', 
               background: isDark ? 'rgba(30, 41, 59, 0.85)' : '#ffffff', 
@@ -84,6 +84,8 @@ export function TestimonialsSection({ theme = "dark" }) {
                 <img 
                   src={activeReview.image} 
                   alt={activeReview.name}
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: '64px', height: '64px', borderRadius: '50%', objectFit: 'cover', border: '3px solid #38bdf8' }}
                   onError={(e) => {
                     e.target.onerror = null;
