@@ -1,18 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Hero } from '../components/Hero';
+import { AboutSection } from '../components/AboutSection';
 import { ProductsSection } from '../components/ProductsSection';
-import { GoalInvestingSection } from '../components/GoalInvestingSection';
-import { QuickToolsBar } from '../components/QuickToolsBar';
-import { CalculatorsHub } from '../components/CalculatorsHub';
 import { WhyAssureSection } from '../components/WhyAssureSection';
-import { AppSection } from '../components/AppSection';
+import { GoalInvestingSection } from '../components/GoalInvestingSection';
 import { PortfolioVisualization } from '../components/PortfolioVisualization';
-import { MarketSection } from '../components/MarketSection';
+import { MutualFundsSection } from '../components/MutualFundsSection';
+import { CalculatorsHub } from '../components/CalculatorsHub';
 import { InsightsSection } from '../components/InsightsSection';
-import { EducationalVideos } from '../components/EducationalVideos';
 import { TestimonialsSection } from '../components/TestimonialsSection';
-import { FaqSection } from '../components/FaqSection';
 import { FinalCtaSection } from '../components/FinalCtaSection';
 
 export function HomePage({ onOpenModal }) {
@@ -31,74 +28,80 @@ export function HomePage({ onOpenModal }) {
 
   return (
     <div className="homepage-wrapper">
-      {/* 1. HERO + TRUST STRIP (Section 6, 7 & 8) */}
+      
+      {/* 1. CINEMATIC FULL-SCREEN HERO (DARK) */}
       <Hero 
         onOpenModal={onOpenModal} 
         onNavigate={handleNavigate} 
       />
 
-      {/* 2. INVESTMENT SOLUTIONS (Section 9) */}
+      {/* 2. 01 — EDITORIAL ABOUT ASSURE SECTION (DARK LUXURY) */}
+      <AboutSection 
+        onOpenModal={onOpenModal} 
+        theme="dark"
+      />
+
+      {/* 3. 02 — INVESTMENT SOLUTIONS HORIZONTAL ROWS (DARK) */}
       <ProductsSection 
         onOpenModal={onOpenModal} 
         onNavigate={handleNavigate} 
+        theme="dark"
       />
 
-      {/* 3. GOAL-BASED INVESTING (Section 10) */}
-      <GoalInvestingSection 
-        onOpenModal={onOpenModal}
-      />
-
-      {/* 4. FINANCIAL TOOLS OVERVIEW (Section 11) */}
-      <QuickToolsBar 
-        onOpenModal={onOpenModal} 
-      />
-
-      {/* 5. INTERACTIVE CALCULATORS HUB (Section 12) */}
-      <CalculatorsHub 
-        onOpenModal={onOpenModal} 
-      />
-
-      {/* 6. WHY ASSURE EDITORIAL SECTION (Section 13) */}
+      {/* 4. 03 — WHY INVESTORS CHOOSE ASSURE (LIGHT) */}
       <WhyAssureSection 
         onOpenModal={onOpenModal} 
+        theme="light"
       />
 
-      {/* 7. APP SECTION (Section 14) */}
-      <AppSection 
+      {/* 5. 04 — INVESTMENT ROADMAP (DARK) */}
+      <GoalInvestingSection 
         onOpenModal={onOpenModal} 
+        theme="dark"
       />
 
-      {/* 8. PORTFOLIO VISUALIZATION (Section 15) */}
-      <PortfolioVisualization 
-        onOpenModal={onOpenModal} 
-      />
+      {/* 6. 05 — WEALTH INTELLIGENCE PORTFOLIO (LIGHT) */}
+      <div className="section-theme-light" style={{ borderBottom: '1px solid var(--color-border)' }}>
+        <PortfolioVisualization 
+          onOpenModal={onOpenModal} 
+          theme="light"
+          embedded={true}
+        />
+      </div>
 
-      {/* 9. MARKET SECTION (Section 16) */}
-      <MarketSection />
-
-      {/* 10. INSIGHTS SECTION (Section 17) */}
-      <InsightsSection 
-        onOpenModal={onOpenModal} 
-      />
-
-      {/* 11. EDUCATIONAL VIDEO MASTERCLASSES */}
-      <EducationalVideos 
-        onOpenModal={onOpenModal} 
-      />
-
-      {/* 12. VERIFIED REVIEWS & 40+ AMCS PARTNERS (Section 18) */}
-      <TestimonialsSection />
-
-      {/* 13. FAQ ACCORDION (Section 19) */}
-      <FaqSection 
-        onOpenModal={onOpenModal} 
-      />
-
-      {/* 14. FINAL CLOSING CTA (Section 20) */}
-      <FinalCtaSection 
+      {/* 7. 06 — MUTUAL FUNDS INTELLIGENCE SPOTLIGHT (HOME FEATURE PREVIEW) */}
+      <MutualFundsSection 
+        variant="home"
         onOpenModal={onOpenModal} 
         onNavigate={handleNavigate} 
       />
+
+      {/* 7. 06 — REDESIGNED FINANCIAL CALCULATORS HUB (DARK) */}
+      <CalculatorsHub 
+        onOpenModal={onOpenModal} 
+        theme="dark"
+      />
+
+      {/* 8. 07 — EDITORIAL RESEARCH & INSIGHTS PUBLICATION (LIGHT) */}
+      <InsightsSection 
+        onOpenModal={onOpenModal} 
+        theme="light"
+      />
+
+      {/* 9. 08 — VERIFIED CLIENT TESTIMONIALS & 40+ AMCS (DARK) */}
+      <TestimonialsSection 
+        theme="dark"
+      />
+
+      {/* 10. 09 — DRAMATIC FULL-WIDTH CLOSING CTA (LIGHT) */}
+      <FinalCtaSection 
+        onOpenModal={onOpenModal} 
+        onNavigate={handleNavigate} 
+        theme="light"
+      />
+
     </div>
   );
 }
+
+export default HomePage;

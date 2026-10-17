@@ -1,352 +1,311 @@
 import React, { useState } from 'react';
-import { BookOpen, Clock, ArrowRight, Sparkles, Tag, ChevronRight, X } from 'lucide-react';
+import { BookOpen, Clock, ArrowRight, ArrowUpRight, X, Sparkles, Filter, CheckCircle2 } from 'lucide-react';
 import { RECENT_INSIGHTS } from '../data/websiteData';
 
 const ARTICLES = [
   {
     id: 1,
-    featured: true,
     category: "Asset Allocation",
-    title: "How to Architect a Resilient Multi-Asset Portfolio Across Market Volatility",
-    excerpt: "Reviewing your asset mix annually ensures that outsized gains from equity rallies are systematically rebalanced into high-safety debt instruments, protecting your family corpus from unexpected drawdowns while compounding securely.",
+    categoryColor: "#10B981",
+    date: "OCTOBER 2026",
+    readTime: "6 MIN READ",
     author: "Assure Research Desk",
-    date: "October 2026",
-    readTime: "6 min read",
-    content: "Asset allocation is empirically proven to dictate more than 90% of long-term portfolio return variance, far outweighing individual stock or scheme selection. In periods of high market valuations, equities tend to expand as a percentage of overall net worth, inadvertently elevating risk. Disciplined rebalancing restores your target equilibrium between growth assets (Equity Mutual Funds) and stability assets (AAA Corporate FDs, Sovereign Gold Bonds). Regular systematic rebalancing enforces the cardinal rule of wealth creation: buy low and sell high automatically without emotional interference."
+    image: "/assets/principle-compounding.jpg",
+    headline: "How to Architect a Resilient Multi-Asset Portfolio Across Market Cycles",
+    description: "Asset allocation is empirically proven to dictate over 90% of long-term return variance. In elevated equity markets, systematic rebalancing into high-grade debt and sovereign gold shields gains from drawdowns while allowing compounding to compound securely.",
+    fullContent: `Asset allocation is empirically proven to dictate more than 90% of long-term portfolio return variance, far outweighing individual stock or scheme selection. In periods of high market valuations, equities tend to expand as a percentage of overall net worth, inadvertently elevating risk. 
+
+Disciplined rebalancing restores your target equilibrium between growth assets (Equity Mutual Funds) and stability assets (AAA Corporate FDs, Sovereign Gold Bonds). Regular systematic rebalancing enforces the cardinal rule of wealth creation: buy low and sell high automatically without emotional interference.
+
+Key Fiduciary Takeaways:
+1. Rebalance annually or when equity deviation exceeds 5% of target allocation.
+2. Pair market-cap diversified equity funds with target-maturity sovereign debt.
+3. Keep 6 to 12 months of family cash flows in ultra-liquid overnight funds.`
   },
   {
     id: 2,
-    featured: false,
     category: "Tax Optimization",
-    title: "Maximizing Section 80C, 80D & 80CCD Deductions Ahead of Year End",
-    excerpt: "Why waiting until March leads to suboptimal investments. Discover how structured ELSS SIPs save taxes without straining your monthly liquidity.",
+    categoryColor: "#38BDF8",
+    date: "OCTOBER 2026",
+    readTime: "4 MIN READ",
     author: "Tax Advisory Wing",
-    date: "October 2026",
-    readTime: "4 min read",
-    content: "Last-minute tax planning often forces investors into illiquid products with poor long-term returns. By utilizing ELSS (Equity Linked Savings Schemes) via systematic monthly SIPs, you not only exhaust your ₹1,50,000 Section 80C limit comfortably, but also capitalize on rupee-cost averaging across the entire financial year with the shortest 3-year lock-in period among all 80C options."
+    image: "/assets/principle-transparency.jpg",
+    headline: "Maximizing Section 80C, 80D & 80CCD Deductions Ahead of Year End",
+    description: "Why waiting until March leads to suboptimal investments. Discover how structured ELSS SIPs save taxes without straining your monthly liquidity, paired with the shortest 3-year lock-in across Indian tax instruments.",
+    fullContent: `Last-minute tax planning often forces investors into illiquid products with poor long-term returns. By utilizing ELSS (Equity Linked Savings Schemes) via systematic monthly SIPs, you not only exhaust your ₹1,50,000 Section 80C limit comfortably, but also capitalize on rupee-cost averaging across the entire financial year with the shortest 3-year lock-in period among all 80C options.
+
+Pairing this with Section 80D health insurance tax savings and the exclusive ₹50,000 deduction under Section 80CCD(1B) provides unmatched tax efficiency.`
   },
   {
     id: 3,
-    featured: false,
     category: "Fixed Income",
-    title: "Navigating Interest Rate Plateaus: Corporate FDs vs Debt Funds",
-    excerpt: "Locking into attractive AAA-rated corporate fixed deposits and target-maturity instruments during peak interest rate plateaus.",
+    categoryColor: "#F59E0B",
+    date: "SEPTEMBER 2026",
+    readTime: "5 MIN READ",
     author: "Fixed Income Desk",
-    date: "October 2026",
-    readTime: "5 min read",
-    content: "When central banks pause rate cycles, corporate fixed deposits from AAA/AA+ rated institutions offer exceptional risk-reward opportunities with yields significantly surpassing traditional bank savings. Pairing these with conservative hybrid or target maturity debt funds builds an unassailable defensive moat for your core capital."
+    image: "/assets/principle-trust.jpg",
+    headline: "Navigating Interest Rate Plateaus: Corporate FDs vs Debt Funds",
+    description: "Locking into attractive AAA-rated corporate fixed deposits and target-maturity instruments during peak interest rate plateaus to secure predictable sovereign & corporate yields for years ahead.",
+    fullContent: `When central banks pause rate cycles, corporate fixed deposits from AAA/AA+ rated institutions offer exceptional risk-reward opportunities with yields significantly surpassing traditional bank savings. Pairing these with conservative hybrid or target maturity debt funds builds an unassailable defensive moat for your core capital.
+
+Assure Securities conducts rigorous credit evaluations before empaneling any corporate FD issuer to ensure prompt coupon payouts and zero default risk.`
+  },
+  {
+    id: 4,
+    category: "Behavioral Finance",
+    categoryColor: "#818CF8",
+    date: "SEPTEMBER 2026",
+    readTime: "5 MIN READ",
+    author: "Wealth Strategy Wing",
+    image: "/assets/goal-retirement.jpg",
+    headline: "The Cost of Timing the Market: Why Patience Outperforms Volatility",
+    description: "Examining 20 years of Indian market history: missing just the 10 best trading days reduces portfolio returns by more than half. Staying systematically invested through automated SIPs remains the ultimate compounding strategy.",
+    fullContent: `Historical quantitative market data consistently reveals that attempting to time market peaks and troughs is the fastest destroyer of retail capital. Nearly 70% of market gains occur in rapid, unpredictable bursts during high-anxiety bear market recoveries. 
+
+Investors who remain committed to disciplined SIPs benefit from rupee-cost averaging, acquiring more units at distressed valuations and generating outsized terminal wealth.`
   }
 ];
 
-export function InsightsSection({ onOpenModal }) {
-  const [selectedArticle, setSelectedArticle] = useState(null);
+export function InsightsSection({ onOpenModal, theme = 'light' }) {
+  const [activeArticle, setActiveArticle] = useState(null);
+  const [selectedFilter, setSelectedFilter] = useState("All");
 
-  const featured = ARTICLES[0];
-  const secondaryArticles = ARTICLES.slice(1);
+  const themeClass = theme === 'dark' ? 'section-theme-dark' : 'section-theme-light';
+
+  const filterOptions = ["All", "Asset Allocation", "Tax Optimization", "Fixed Income", "Behavioral Finance"];
+
+  const filteredArticles = selectedFilter === "All" 
+    ? ARTICLES 
+    : ARTICLES.filter(a => a.category.toLowerCase() === selectedFilter.toLowerCase());
 
   return (
-    <section 
-      id="insights"
-      style={{ 
-        padding: 'var(--section-pad-desktop) 0', 
-        background: '#ffffff',
-        borderBottom: '1px solid var(--color-border)' 
-      }}
-      className="section-pad"
-    >
-      <div className="container">
+    <section id="insights" className={`insights-section ${themeClass}`} style={{ position: 'relative', overflow: 'hidden' }}>
+      
+      {/* Background Decorative Ambient Radial Glow */}
+      <div 
+        style={{
+          position: 'absolute',
+          left: '-10%',
+          top: '20%',
+          width: '500px',
+          height: '500px',
+          background: 'radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(16, 185, 129, 0.04) 50%, transparent 70%)',
+          filter: 'blur(80px)',
+          pointerEvents: 'none'
+        }}
+      />
+
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         
         {/* Section Header */}
-        <div className="section-header-center reveal-on-scroll">
-          <div className="eyebrow-pill emerald">
-            <BookOpen size={13} />
-            <span>Research & Wealth Intelligence</span>
+        <div className="section-header-editorial">
+          <div className="eyebrow-label">
+            <span>08 — PERSPECTIVES</span>
           </div>
 
-          <h2>
-            Insights For Smarter <span style={{ color: 'var(--color-accent)' }}>Financial Decisions</span>
-          </h2>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '2rem' }}>
+            <h2 style={{ fontSize: 'clamp(2.4rem, 4.2vw, 3.6rem)', color: 'var(--color-text)', maxWidth: '650px', lineHeight: 1.12 }}>
+              Perspectives for <span className="text-blue">better decisions</span>
+              <br />
+              <span className="text-red" style={{ fontStyle: 'italic' }}>
+                & long-term growth.
+              </span>
+            </h2>
 
-          <p>
-            Institutional analysis, asset allocation frameworks, and actionable financial planning guides to elevate your investment perspective.
-          </p>
+            <p style={{ maxWidth: '440px', fontSize: '0.96rem', color: 'var(--color-text-secondary)', lineHeight: 1.65 }}>
+              Institutional financial research, market valuation frameworks, and behavioral insights curated by the Assure Advisory Desk.
+            </p>
+          </div>
         </div>
 
-        {/* Editorial Layout: ONE large featured article (approx 50%), TWO smaller articles (Section 17) */}
-        <div 
-          style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-            gap: '2rem',
-            alignItems: 'stretch'
-          }}
-          className="insights-editorial-grid"
-        >
-          {/* Large Featured Article (approx 50% width on desktop) */}
-          <div 
-            className="bento-card-light interactive-glow-card reveal-on-scroll stagger-1"
-            style={{ 
-              padding: 0,
-              overflow: 'hidden',
-              borderRadius: '24px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              background: '#ffffff',
-              border: '1px solid var(--color-border)',
-              position: 'relative'
-            }}
-          >
-            {/* Featured Article Image Banner (Requirement 21) */}
-            <div style={{ position: 'relative', height: '190px', overflow: 'hidden', background: '#071A2F' }}>
-              <img 
-                src="/assets/b1-2.jpg" 
-                alt={featured.title} 
-                className="cinematic-reveal"
-                loading="lazy"
-                decoding="async"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(7, 26, 47, 0.9) 0%, transparent 60%)' }} />
-              <div style={{ position: 'absolute', bottom: '12px', left: '16px', right: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span 
-                  className="glass-badge-dark"
-                  style={{ 
-                    fontSize: '0.72rem', 
-                    textTransform: 'uppercase', 
-                    letterSpacing: '0.04em' 
-                  }}
-                >
-                  Featured • {featured.category}
-                </span>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.78rem', color: '#cbd5e1' }}>
-                  <Clock size={13} />
-                  <span>{featured.readTime}</span>
-                </div>
-              </div>
-            </div>
-
-            <div style={{ padding: 'clamp(1.5rem, 2.8vw, 2.25rem)' }}>
-
-              <h3 
-                style={{ 
-                  fontSize: 'clamp(1.5rem, 2.4vw, 1.85rem)', 
-                  fontWeight: 700, 
-                  color: 'var(--color-primary)', 
-                  letterSpacing: '-0.02em', 
-                  lineHeight: 1.3, 
-                  marginBottom: '1rem' 
-                }}
-              >
-                {featured.title}
-              </h3>
-
-              <p 
-                style={{ 
-                  fontSize: '0.95rem', 
-                  color: 'var(--color-text-secondary)', 
-                  lineHeight: 1.65, 
-                  marginBottom: '1.75rem' 
-                }}
-              >
-                {featured.excerpt}
-              </p>
-            </div>
-
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--color-border)', paddingTop: '1.25rem' }}>
-                <div>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-primary)' }}>{featured.author}</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--color-muted)' }}>{featured.date}</div>
-                </div>
-
-                <button 
-                  onClick={() => setSelectedArticle(featured)}
-                  className="btn-primary-navy"
-                  style={{ height: '44px', fontSize: '0.85rem', padding: '0 1.25rem' }}
-                >
-                  <span>Read Article →</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Two Smaller Articles Stacked Vertically */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            {secondaryArticles.map((art, aIdx) => (
-              <div
-                key={art.id}
-                className={`bento-card-light interactive-glow-card reveal-on-scroll stagger-${aIdx + 2}`}
+        {/* Filter Pills Bar */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginTop: '2.5rem', marginBottom: '0.5rem' }}>
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            {filterOptions.map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setSelectedFilter(filter)}
                 style={{
-                  padding: '1.75rem',
-                  borderRadius: '24px',
-                  background: '#ffffff',
-                  border: '1px solid var(--color-border)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  flex: 1
+                  padding: '6px 14px',
+                  borderRadius: '20px',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.74rem',
+                  fontWeight: 600,
+                  border: '1px solid',
+                  borderColor: selectedFilter === filter ? '#0284C7' : 'var(--color-border)',
+                  background: selectedFilter === filter ? 'rgba(2, 132, 199, 0.12)' : 'var(--color-bg-card)',
+                  color: selectedFilter === filter ? '#0284C7' : 'var(--color-text-secondary)',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s ease',
+                  boxShadow: selectedFilter === filter ? '0 2px 8px rgba(2, 132, 199, 0.25)' : 'none'
                 }}
               >
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                    <span 
-                      className="glass-badge-light"
-                      style={{ 
-                        fontSize: '0.7rem', 
-                        textTransform: 'uppercase' 
-                      }}
-                    >
-                      {art.category}
-                    </span>
-
-                    <span style={{ fontSize: '0.73rem', color: 'var(--color-muted)' }}>
-                      {art.readTime}
-                    </span>
-                  </div>
-
-                  <h4 
-                    style={{ 
-                      fontSize: '1.18rem', 
-                      fontWeight: 700, 
-                      color: 'var(--color-primary)', 
-                      letterSpacing: '-0.01em', 
-                      lineHeight: 1.35, 
-                      marginBottom: '0.65rem' 
-                    }}
-                  >
-                    {art.title}
-                  </h4>
-
-                  <p 
-                    style={{ 
-                      fontSize: '0.88rem', 
-                      color: 'var(--color-text-secondary)', 
-                      lineHeight: 1.55, 
-                      margin: 0,
-                      marginBottom: '1rem' 
-                    }}
-                  >
-                    {art.excerpt}
-                  </p>
-                </div>
-
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--color-border)', paddingTop: '0.75rem' }}>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--color-muted)' }}>{art.author}</span>
-                  <button 
-                    onClick={() => setSelectedArticle(art)}
-                    style={{ 
-                      background: 'none', 
-                      border: 'none', 
-                      color: 'var(--color-accent)', 
-                      fontWeight: 700, 
-                      fontSize: '0.85rem', 
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.25rem'
-                    }}
-                  >
-                    <span>Read →</span>
-                  </button>
-                </div>
-              </div>
+                {filter === "All" ? "All Perspectives (4)" : filter}
+              </button>
             ))}
           </div>
+
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.74rem', color: 'var(--color-gold)', fontFamily: 'var(--font-mono)' }}>
+            <Sparkles size={13} />
+            <span>Curated by Chartered Wealth Advisors</span>
+          </div>
         </div>
 
-        {/* Modal for Article Reading */}
-        {selectedArticle && (
-          <div 
-            style={{ 
-              position: 'fixed', 
-              inset: 0, 
-              background: 'rgba(7, 26, 47, 0.75)', 
-              backdropFilter: 'blur(8px)', 
-              zIndex: 9999, 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              padding: '1.5rem' 
-            }}
-          >
+        {/* Luxury Editorial Cards Grid */}
+        <div className="insights-editorial-grid">
+          {filteredArticles.map((article) => (
             <div 
-              style={{ 
-                background: '#ffffff', 
-                borderRadius: '24px', 
-                maxWidth: '680px', 
-                width: '100%', 
-                maxHeight: '90vh', 
-                overflowY: 'auto', 
-                padding: 'clamp(1.5rem, 4vw, 2.75rem)',
-                boxShadow: '0 25px 60px rgba(0, 0, 0, 0.3)',
-                position: 'relative'
-              }}
+              key={article.id} 
+              className="insight-editorial-card"
+              onClick={() => setActiveArticle(article)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter') setActiveArticle(article); }}
             >
-              <button 
-                onClick={() => setSelectedArticle(null)}
-                style={{ 
-                  position: 'absolute', 
-                  top: '1.25rem', 
-                  right: '1.25rem', 
-                  background: 'var(--color-bg)', 
-                  border: '1px solid var(--color-border)', 
-                  borderRadius: '50%', 
-                  width: '36px', 
-                  height: '36px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  cursor: 'pointer',
-                  color: 'var(--color-primary)'
-                }}
-              >
-                <X size={18} />
-              </button>
+              {/* Shimmer light bar on hover */}
+              <div className="insight-card-shimmer" />
 
-              <div style={{ marginBottom: '1rem' }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-accent)', textTransform: 'uppercase' }}>
-                  {selectedArticle.category} • {selectedArticle.readTime}
-                </span>
-                <h3 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'var(--color-primary)', marginTop: '0.5rem', lineHeight: 1.25 }}>
-                  {selectedArticle.title}
-                </h3>
-                <div style={{ fontSize: '0.82rem', color: 'var(--color-muted)', marginTop: '0.4rem' }}>
-                  Authored by {selectedArticle.author} • Published {selectedArticle.date}
+              {/* Card Media Container */}
+              <div className="insight-image-wrap">
+                <img 
+                  src={article.image} 
+                  alt={article.headline} 
+                  className="insight-card-img"
+                  loading="lazy"
+                />
+                <div className="insight-image-scrim" />
+
+                {/* Overlaid Top Header Pills */}
+                <div className="insight-image-topbar">
+                  <span 
+                    className="insight-category-pill"
+                    style={{ background: article.categoryColor }}
+                  >
+                    {article.category}
+                  </span>
+
+                  <span className="insight-readtime-pill">
+                    <Clock size={11} />
+                    {article.readTime}
+                  </span>
                 </div>
               </div>
 
-              <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '1.5rem', fontSize: '0.98rem', color: 'var(--color-text)', lineHeight: 1.75 }}>
-                <p style={{ fontWeight: 600, color: 'var(--color-primary)', marginBottom: '1.25rem' }}>
-                  {selectedArticle.excerpt}
+              {/* Card Content Body */}
+              <div className="insight-content-body">
+                <div className="insight-date-meta">
+                  {article.date} • {article.author}
+                </div>
+
+                <h3 className="insight-headline">
+                  {article.headline}
+                </h3>
+
+                <p className="insight-excerpt">
+                  {article.description}
                 </p>
-                <p>
-                  {selectedArticle.content}
-                </p>
+
+                <div className="insight-card-footer">
+                  <span style={{ fontWeight: 600 }}>Read Full Perspective</span>
+                  <div className="insight-arrow-btn">
+                    <ArrowRight size={13} />
+                  </div>
+                </div>
               </div>
 
-              <div style={{ marginTop: '2.5rem', display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
-                <button 
-                  onClick={() => { setSelectedArticle(null); onOpenModal && onOpenModal('consultation'); }}
-                  className="btn-primary-emerald"
-                >
-                  Consult an Advisor on This Topic →
-                </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Research Article Reader Modal */}
+        {activeArticle && (
+          <div className="modal-overlay" onClick={() => setActiveArticle(null)}>
+            <div 
+              className="modal-content" 
+              style={{ maxWidth: '820px', padding: 0, overflow: 'hidden', borderRadius: '16px' }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Hero Banner */}
+              <div style={{ position: 'relative', width: '100%', height: '220px', overflow: 'hidden' }}>
+                <img 
+                  src={activeArticle.image} 
+                  alt={activeArticle.headline}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #0B0F17 0%, rgba(11, 15, 23, 0.4) 60%, rgba(11, 15, 23, 0.8) 100%)' }} />
+
+                <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 10 }}>
+                  <button 
+                    onClick={() => setActiveArticle(null)}
+                    style={{ background: 'rgba(0, 0, 0, 0.6)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all 0.2s' }}
+                    aria-label="Close article"
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
+
+                <div style={{ position: 'absolute', bottom: 16, left: 24, right: 24 }}>
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                    <span style={{ background: activeArticle.categoryColor, color: '#ffffff', padding: '3px 10px', borderRadius: '12px', fontSize: '0.72rem', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>
+                      {activeArticle.category}
+                    </span>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '0.74rem', fontFamily: 'var(--font-mono)' }}>
+                      {activeArticle.date} • {activeArticle.readTime}
+                    </span>
+                  </div>
+                  <h2 style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.85rem)', color: '#ffffff', fontFamily: 'var(--font-serif)', lineHeight: 1.25, fontWeight: 700 }}>
+                    {activeArticle.headline}
+                  </h2>
+                </div>
               </div>
+
+              {/* Modal Body */}
+              <div style={{ padding: 'clamp(1.5rem, 3vw, 2.5rem)', maxHeight: '60vh', overflowY: 'auto' }}>
+                <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.98rem', lineHeight: 1.85, whiteSpace: 'pre-line', marginBottom: '2rem' }}>
+                  {activeArticle.fullContent}
+                </div>
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid var(--color-border)', paddingTop: '1.5rem' }}>
+                  <div>
+                    <div style={{ fontSize: '0.76rem', color: 'var(--color-gold)', fontFamily: 'var(--font-mono)', fontWeight: 600 }}>
+                      AUTHORED BY {activeArticle.author.toUpperCase()}
+                    </div>
+                    <div style={{ fontSize: '0.74rem', color: 'var(--color-text-muted)' }}>
+                      Assure Securities • AMFI Registered Mutual Fund Distributor ARN-182137
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '0.75rem' }}>
+                    <button 
+                      onClick={() => {
+                        setActiveArticle(null);
+                        if (onOpenModal) onOpenModal('consultation');
+                      }}
+                      className="btn-gold"
+                      style={{ height: '42px', fontSize: '0.8rem', padding: '0 1.25rem', borderRadius: '8px' }}
+                    >
+                      <span>Discuss with an Advisor</span>
+                      <ArrowRight size={13} />
+                    </button>
+
+                    <button 
+                      onClick={() => setActiveArticle(null)}
+                      className="btn-outline"
+                      style={{ height: '42px', fontSize: '0.8rem', padding: '0 1.25rem', borderRadius: '8px' }}
+                    >
+                      <span>Close</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         )}
 
       </div>
-
-      <style>{`
-        @media (min-width: 992px) {
-          .insights-editorial-grid {
-            grid-template-columns: 1fr 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }
+
+export default InsightsSection;

@@ -1,268 +1,354 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Phone, Mail, MapPin, Shield, AlertTriangle, ArrowUp, ExternalLink, Sparkles 
-} from 'lucide-react';
+import { Phone, Mail, MapPin, AlertTriangle } from 'lucide-react';
 import { COMPANY_INFO, LEGAL_DISCLOSURES } from '../data/websiteData';
 
+// Authentic Colorful Social Media Channels
+const SOCIAL_LINKS = [
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com/AssureSecurities",
+    bg: "#1877F2",
+    shadow: "rgba(24, 119, 242, 0.4)",
+    hoverShadow: "0 6px 18px rgba(24, 119, 242, 0.65)",
+    icon: (
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="#ffffff">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+      </svg>
+    )
+  },
+  {
+    name: "Twitter",
+    url: "https://twitter.com/Assure2010",
+    bg: "#1DA1F2",
+    shadow: "rgba(29, 161, 242, 0.4)",
+    hoverShadow: "0 6px 18px rgba(29, 161, 242, 0.65)",
+    icon: (
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="#ffffff">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+    )
+  },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/assuresecurities/",
+    bg: "linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%)",
+    shadow: "rgba(225, 48, 108, 0.4)",
+    hoverShadow: "0 6px 18px rgba(225, 48, 108, 0.7)",
+    icon: (
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </svg>
+    )
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/company/assure-securitieslko/",
+    bg: "#0A66C2",
+    shadow: "rgba(10, 102, 194, 0.4)",
+    hoverShadow: "0 6px 18px rgba(10, 102, 194, 0.65)",
+    icon: (
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="#ffffff">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+      </svg>
+    )
+  },
+  {
+    name: "YouTube",
+    url: "https://www.youtube.com/@AssureSecurities",
+    bg: "#FF0000",
+    shadow: "rgba(255, 0, 0, 0.45)",
+    hoverShadow: "0 6px 18px rgba(255, 0, 0, 0.7)",
+    icon: (
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="#ffffff">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+      </svg>
+    )
+  }
+];
+
 export function Footer({ onOpenModal }) {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <footer 
-      style={{ 
-        background: 'var(--color-primary)', 
-        color: '#94a3b8', 
-        borderTop: '1px solid rgba(255,255,255,0.08)', 
-        position: 'relative' 
-      }}
-    >
-      {/* Upper Footer Links */}
-      <div className="container" style={{ padding: 'clamp(4.5rem, 6vw, 5.5rem) 1.5rem 3.5rem 1.5rem' }}>
+    <footer className="footer-luxury">
+      <div className="container">
         
-        {/* Brand & Contact Strip (Section 19: Large Logo, Short Statement) */}
-        <div 
-          style={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            flexWrap: 'wrap', 
-            gap: '1.5rem',
-            paddingBottom: '2.5rem',
-            borderBottom: '1px solid rgba(255,255,255,0.08)',
-            marginBottom: '3.5rem'
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <img 
-              src="/assets/assure-logo.png" 
-              alt="Assure Securities Logo" 
-              style={{ height: '52px', background: '#ffffff', padding: '6px 12px', borderRadius: '10px', objectFit: 'contain' }}
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/assets/logo.png';
-              }}
-            />
+        {/* Main 5-Column Institutional Footer Grid */}
+        <div className="footer-grid">
+          
+          {/* Col 1: Brand & Standing */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <div>
-              <div style={{ fontSize: '1.25rem', fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>
-                ASSURE <span style={{ color: 'var(--color-accent)' }}>SECURITIES</span>
+              <div style={{ marginBottom: '1.25rem' }}>
+                <div 
+                  style={{ 
+                    background: '#ffffff',
+                    padding: '6px 14px',
+                    borderRadius: '6px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.25)',
+                    marginBottom: '0.75rem'
+                  }}
+                >
+                  <img 
+                    src="/assets/assure-official-logo.png" 
+                    alt="Assure Securities" 
+                    style={{ height: '38px', width: 'auto', display: 'block' }} 
+                  />
+                </div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--color-gold)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 600 }}>
+                  AMFI Registered ARN-182137 • Wealth Management
+                </div>
               </div>
-              <div style={{ fontSize: '0.73rem', color: '#94a3b8', fontWeight: 600 }}>
-                AMFI Registered Mutual Fund Distributor • ARN-182137
+
+              <p style={{ fontSize: '0.86rem', color: 'var(--color-text-muted)', lineHeight: 1.7, marginBottom: '1.25rem', maxWidth: '340px' }}>
+                Institutional wealth management and mutual fund distribution. Dedicated to safeguarding and compounding family wealth with fiduciary discipline across market cycles.
+              </p>
+
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.35rem', marginBottom: '1.5rem' }}>
+                <div>Registration: <strong style={{ color: 'var(--color-gold)' }}>ARN-182137</strong></div>
+                <div>Validity: <strong>20 July 2021 – 19 July 2027</strong></div>
+              </div>
+            </div>
+
+            {/* Social Media Links */}
+            <div>
+              <div style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem', fontWeight: 600 }}>
+                Official Channels
+              </div>
+              <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                {SOCIAL_LINKS.map((s, idx) => (
+                  <a
+                    key={idx}
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={`Assure Securities on ${s.name}`}
+                    aria-label={`Assure Securities on ${s.name}`}
+                    style={{
+                      width: '38px',
+                      height: '38px',
+                      borderRadius: '9px',
+                      background: s.bg,
+                      boxShadow: `0 3px 10px ${s.shadow}`,
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#ffffff',
+                      transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease',
+                      textDecoration: 'none'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-3px) scale(1.08)';
+                      e.currentTarget.style.boxShadow = s.hoverShadow;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                      e.currentTarget.style.boxShadow = `0 3px 10px ${s.shadow}`;
+                    }}
+                  >
+                    {s.icon}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#cbd5e1', fontSize: '0.88rem' }}>
-              <Phone size={15} color="var(--color-accent)" />
-              <a href={`tel:${COMPANY_INFO.phone}`} style={{ color: 'inherit' }}>{COMPANY_INFO.phone}</a>
-            </div>
+          {/* Col 2: Navigation */}
+          <div>
+            <div className="footer-col-title">Navigation</div>
+            <ul className="footer-link-list">
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/about-us">About Assure</Link></li>
+              <li><Link to="/mutual-funds">Mutual Funds</Link></li>
+              <li><Link to="/products">Investment Solutions</Link></li>
+              <li><Link to="/educational-videos">Perspectives & Insights</Link></li>
+              <li><Link to="/contact-us">Contact Advisory Desk</Link></li>
+            </ul>
+          </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#cbd5e1', fontSize: '0.88rem' }}>
-              <Mail size={15} color="var(--color-accent)" />
-              <a href={`mailto:${COMPANY_INFO.email}`} style={{ color: 'inherit' }}>{COMPANY_INFO.email}</a>
-            </div>
+          {/* Col 3: Solutions */}
+          <div>
+            <div className="footer-col-title">Solutions</div>
+            <ul className="footer-link-list">
+              <li><Link to="/products/mutual-funds">Equity & Debt Funds</Link></li>
+              <li><Link to="/products/fixed-deposits">Corporate Fixed Deposits</Link></li>
+              <li><Link to="/products/bonds">Bonds & Sovereign G-Secs</Link></li>
+              <li><Link to="/products/life-insurance">Term & Life Insurance</Link></li>
+              <li><Link to="/products/general-insurance">Health & General Insurance</Link></li>
+              <li><Link to="/products/tax-saving">Tax Saving (ELSS & NPS)</Link></li>
+              <li><Link to="/products/pms-aif">PMS & AIF for HNIs</Link></li>
+            </ul>
+          </div>
 
-            {/* Small & Understated Social Icons (Section 19) */}
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <a 
-                href={COMPANY_INFO.social.facebook} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1', transition: '0.2s' }}
-                title="Facebook"
-              >
-                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
-              </a>
-              <a 
-                href={COMPANY_INFO.social.twitter} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1', transition: '0.2s' }}
-                title="Twitter / X"
-              >
-                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              </a>
-              <a 
-                href={COMPANY_INFO.social.instagram} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1', transition: '0.2s' }}
-                title="Instagram"
-              >
-                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-              </a>
-              <a 
-                href={COMPANY_INFO.social.linkedin} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1', transition: '0.2s' }}
-                title="LinkedIn"
-              >
-                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.76-1.75 1.76m1.39 9.74v-8.37H5.07v8.37h2.78z"/></svg>
-              </a>
+          {/* Col 4: Resources */}
+          <div>
+            <div className="footer-col-title">Resources</div>
+            <ul className="footer-link-list">
+              <li><Link to="/calculators">SIP Calculator</Link></li>
+              <li><Link to="/calculators">Lumpsum Calculator</Link></li>
+              <li><Link to="/calculators">Retirement Planner</Link></li>
+              <li><Link to="/investor-zone">Check KYC Status</Link></li>
+              <li><Link to="/investor-zone">PAN-Aadhaar Link</Link></li>
+              <li><Link to="/educational-videos">Video Masterclasses</Link></li>
+              <li><Link to="/become-a-partner">Partner Network</Link></li>
+            </ul>
+          </div>
+
+          {/* Col 5: Contact Coordinates */}
+          <div>
+            <div className="footer-col-title">Advisory Office</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.95rem', fontSize: '0.84rem' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
+                <MapPin size={16} color="var(--color-gold)" style={{ flexShrink: 0, marginTop: '3px' }} />
+                <span style={{ color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>
+                  {COMPANY_INFO.address}
+                </span>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                <Phone size={15} color="var(--color-gold)" style={{ flexShrink: 0 }} />
+                <a href={`tel:${COMPANY_INFO.phone}`} style={{ color: 'var(--color-text-secondary)', textDecoration: 'none' }}>
+                  {COMPANY_INFO.phone}
+                </a>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                <Mail size={15} color="var(--color-gold)" style={{ flexShrink: 0 }} />
+                <a href={`mailto:${COMPANY_INFO.email}`} style={{ color: 'var(--color-text-secondary)', textDecoration: 'none' }}>
+                  {COMPANY_INFO.email}
+                </a>
+              </div>
+
+              <div style={{ marginTop: '0.75rem' }}>
+                <button
+                  onClick={() => onOpenModal && onOpenModal('contact-consult')}
+                  className="btn-gold"
+                  style={{ 
+                    height: '38px', 
+                    fontSize: '0.78rem', 
+                    fontWeight: 600,
+                    padding: '0 1.15rem',
+                    borderRadius: '6px',
+                    textTransform: 'none',
+                    width: '100%',
+                    justifyContent: 'center',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Book Private Meeting
+                </button>
+              </div>
             </div>
           </div>
+
         </div>
 
-        {/* 5 Distinct Columns (Section 19 & 21) */}
-        <div 
-          style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(175px, 1fr))', 
-            gap: '2.5rem',
-            marginBottom: '3.5rem'
-          }}
-        >
-          {/* Col 1: COMPANY */}
-          <div>
-            <h4 style={{ fontSize: '0.82rem', color: '#ffffff', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
-              Company
-            </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', fontSize: '0.88rem' }}>
-              <Link to="/about-us" style={{ color: '#cbd5e1' }}>About Assure</Link>
-              <Link to="/contact-us" style={{ color: '#cbd5e1' }}>Contact Office</Link>
-              <Link to="/become-a-partner" style={{ color: '#cbd5e1' }}>Careers & Partnerships</Link>
-              <button onClick={() => onOpenModal && onOpenModal('client-login')} style={{ textAlign: 'left', background: 'none', border: 'none', padding: 0, color: 'var(--color-accent)', cursor: 'pointer', fontSize: '0.88rem' }}>
-                Client Portal Login
-              </button>
-            </div>
-          </div>
-
-          {/* Col 2: INVESTMENTS */}
-          <div>
-            <h4 style={{ fontSize: '0.82rem', color: '#ffffff', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
-              Investments
-            </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', fontSize: '0.88rem' }}>
-              <Link to="/products/mutual-funds" style={{ color: '#cbd5e1' }}>Mutual Funds (SIP & Lumpsum)</Link>
-              <Link to="/products/fixed-deposits" style={{ color: '#cbd5e1' }}>Corporate Fixed Deposits (AAA)</Link>
-              <Link to="/products/bonds" style={{ color: '#cbd5e1' }}>Sovereign Gold Bonds</Link>
-              <Link to="/products/pms-aif" style={{ color: '#cbd5e1' }}>PMS / AIF Solutions</Link>
-              <Link to="/products/life-insurance" style={{ color: '#cbd5e1' }}>Term & Health Insurance</Link>
-            </div>
-          </div>
-
-          {/* Col 3: TOOLS */}
-          <div>
-            <h4 style={{ fontSize: '0.82rem', color: '#ffffff', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
-              Tools
-            </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', fontSize: '0.88rem' }}>
-              <Link to="/calculators" style={{ color: '#cbd5e1' }}>SIP Calculator</Link>
-              <Link to="/calculators" style={{ color: '#cbd5e1' }}>Step-Up SIP Modeler</Link>
-              <Link to="/calculators" style={{ color: '#cbd5e1' }}>Retirement Calculator</Link>
-              <Link to="/investor-zone" style={{ color: '#cbd5e1' }}>Fund Comparison Tool</Link>
-              <Link to="/investor-zone" style={{ color: '#cbd5e1' }}>Daily NAV Tracker</Link>
-            </div>
-          </div>
-
-          {/* Col 4: RESOURCES */}
-          <div>
-            <h4 style={{ fontSize: '0.82rem', color: '#ffffff', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
-              Resources
-            </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', fontSize: '0.88rem' }}>
-              <a href="#insights" style={{ color: '#cbd5e1' }}>Insights & Research</a>
-              <Link to="/educational-videos" style={{ color: '#cbd5e1' }}>Video Masterclasses</Link>
-              <Link to="/investor-zone" style={{ color: '#cbd5e1' }}>AMC Download Center</Link>
-              <a href="#faq-section" style={{ color: '#cbd5e1' }}>Investor FAQs</a>
-              <Link to="/investor-zone" style={{ color: '#cbd5e1' }}>KYC Onboarding Guides</Link>
-            </div>
-          </div>
-
-          {/* Col 5: LEGAL & OFFICE */}
-          <div>
-            <h4 style={{ fontSize: '0.82rem', color: '#ffffff', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
-              Legal & Address
-            </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.84rem' }}>
-              <div style={{ display: 'flex', gap: '0.45rem', marginBottom: '0.4rem', color: '#cbd5e1' }}>
-                <MapPin size={15} color="var(--color-accent)" style={{ flexShrink: 0, marginTop: '2px' }} />
-                <span>2/163 Vishal Khand, Gomtinagar, Lucknow - 226010, U.P.</span>
-              </div>
-              <Link to="/privacy-policy" style={{ color: '#cbd5e1' }}>Privacy Policy</Link>
-              <Link to="/disclaimer" style={{ color: '#cbd5e1' }}>Terms & Disclaimer</Link>
-              <Link to="/disclosure" style={{ color: '#cbd5e1' }}>Commission Disclosures</Link>
-              <Link to="/risk-factors" style={{ color: '#cbd5e1' }}>Statutory Risk Factors</Link>
-              <Link to="/code-of-conduct" style={{ color: '#cbd5e1' }}>AMFI Code of Conduct</Link>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Regulatory Disclosures Box - PRESERVED COMPLETELY */}
-        <div 
-          id="legal-terms"
-          style={{ 
-            background: 'rgba(255, 255, 255, 0.03)', 
-            border: '1px solid rgba(255, 255, 255, 0.06)', 
-            borderRadius: '16px', 
-            padding: '1.75rem', 
-            marginBottom: '2.5rem' 
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.65rem', color: '#f59e0b', fontSize: '0.82rem', fontWeight: 700 }}>
+        {/* Mandatory Regulatory Disclosures */}
+        <div className="regulatory-disclosure-box">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', color: 'var(--color-gold)' }}>
             <AlertTriangle size={15} />
-            <span>Statutory Risk Disclosure & Regulatory Transparency</span>
+            <span style={{ fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', fontSize: '0.76rem' }}>
+              Mandatory Statutory & Commission Disclosures
+            </span>
           </div>
 
-          <p style={{ fontSize: '0.78rem', color: '#94a3b8', lineHeight: 1.6, margin: '0 0 0.75rem 0' }}>
+          <p style={{ fontSize: '0.76rem', color: 'var(--color-text-muted)', lineHeight: 1.7, marginBottom: '0.75rem' }}>
+            <strong style={{ color: 'var(--color-text-secondary)' }}>Risk Factors: </strong> 
             {LEGAL_DISCLOSURES.riskFactor}
           </p>
 
-          <p style={{ fontSize: '0.78rem', color: '#94a3b8', lineHeight: 1.6, margin: '0 0 0.75rem 0' }}>
+          <p style={{ fontSize: '0.76rem', color: 'var(--color-text-muted)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--color-text-secondary)' }}>Commission Disclosure: </strong> 
             {LEGAL_DISCLOSURES.commissionDisclosure}
-          </p>
-
-          <p style={{ fontSize: '0.76rem', color: '#64748b', lineHeight: 1.5, margin: 0 }}>
-            <strong>Disclaimer:</strong> {LEGAL_DISCLOSURES.disclaimerText}
           </p>
         </div>
 
-        {/* Copyright & AMFI Strip */}
+        {/* Legal Policy Links Bar */}
         <div 
           style={{ 
             display: 'flex', 
-            justifyContent: 'space-between', 
+            justifyContent: 'center', 
             alignItems: 'center', 
             flexWrap: 'wrap', 
-            gap: '1rem',
+            gap: '1rem 1.75rem',
             paddingTop: '1.5rem',
-            borderTop: '1px solid rgba(255,255,255,0.06)',
-            fontSize: '0.8rem',
-            color: '#64748b'
+            paddingBottom: '1.25rem',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+            fontSize: '0.76rem',
+            letterSpacing: '0.01em'
           }}
         >
-          <div>
-            © {new Date().getFullYear()} Assure Securities. All Rights Reserved. • ARN-182137 (AMFI Reg. 20-Jul-2021 to 19-Jul-2027)
+          <Link to="/privacy-policy" style={{ color: '#94a3b8', textDecoration: 'none', transition: 'color 0.2s' }}>Privacy Policy</Link>
+          <span style={{ opacity: 0.25, color: '#94a3b8' }}>•</span>
+          <Link to="/disclaimer" style={{ color: '#94a3b8', textDecoration: 'none', transition: 'color 0.2s' }}>Disclaimer</Link>
+          <span style={{ opacity: 0.25, color: '#94a3b8' }}>•</span>
+          <Link to="/disclosure" style={{ color: '#94a3b8', textDecoration: 'none', transition: 'color 0.2s' }}>Commission Disclosure</Link>
+          <span style={{ opacity: 0.25, color: '#94a3b8' }}>•</span>
+          <Link to="/risk-factors" style={{ color: '#94a3b8', textDecoration: 'none', transition: 'color 0.2s' }}>Risk Factors</Link>
+          <span style={{ opacity: 0.25, color: '#94a3b8' }}>•</span>
+          <Link to="/code-of-conduct" style={{ color: '#94a3b8', textDecoration: 'none', transition: 'color 0.2s' }}>Code of Conduct</Link>
+        </div>
+
+        {/* Bottom Bar: Clean & Minimal Presentation */}
+        <div 
+          className="footer-bottom-bar"
+          style={{ 
+            fontSize: '0.78rem',
+            color: '#94a3b8',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '1rem',
+            paddingTop: '1.5rem',
+            paddingBottom: '0.5rem',
+            lineHeight: 1.6
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.4rem' }}>
+            <span>&copy; {new Date().getFullYear()} Assure Securities. All Rights Reserved.</span>
+            <span style={{ opacity: 0.3 }}>•</span>
+            <span style={{ color: '#cbd5e1' }}>AMFI Registered ARN-182137</span>
           </div>
 
-          <button 
-            onClick={scrollToTop}
-            style={{ 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              gap: '0.35rem', 
-              background: 'rgba(255,255,255,0.06)', 
-              color: '#cbd5e1', 
-              border: 'none', 
-              padding: '0.35rem 0.8rem', 
-              borderRadius: '8px', 
-              cursor: 'pointer',
-              fontSize: '0.78rem',
-              fontWeight: 600
-            }}
-          >
-            <span>Back to Top</span>
-            <ArrowUp size={13} />
-          </button>
+          {/* Simple and Clean Powered by jobgen.ai */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.78rem' }}>
+            <span style={{ color: '#64748b' }}>Powered by</span>
+            <a 
+              href="https://jobgen.ai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{
+                color: '#38bdf8',
+                textDecoration: 'none',
+                fontWeight: 500,
+                letterSpacing: '0.02em',
+                transition: 'all 0.2s ease',
+                opacity: 0.9
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#7dd3fc';
+                e.currentTarget.style.opacity = '1';
+                e.currentTarget.style.textDecoration = 'underline';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = '#38bdf8';
+                e.currentTarget.style.opacity = '0.9';
+                e.currentTarget.style.textDecoration = 'none';
+              }}
+            >
+              jobgen.ai
+            </a>
+          </div>
         </div>
 
       </div>
     </footer>
   );
 }
+
+export default Footer;

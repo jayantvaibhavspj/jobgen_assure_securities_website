@@ -1,53 +1,61 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CalculatorsHub } from '../components/CalculatorsHub';
-import { Calculator, Sparkles, TrendingUp, ShieldCheck, ArrowRight, Phone } from 'lucide-react';
+import { Calculator, ArrowRight, ShieldCheck, Phone } from 'lucide-react';
 import { COMPANY_INFO } from '../data/websiteData';
 
 export function CalculatorsPage({ onOpenModal }) {
   return (
-    <div>
-      {/* Page Header Banner */}
-      <section style={{ background: 'var(--color-primary)', color: '#ffffff', padding: '4.5rem 0 3.5rem 0', position: 'relative', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-        <div className="container">
-          <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '1.25rem' }}>
-            <Link to="/" style={{ color: '#cbd5e1' }}>Home</Link>
-            <span>/</span>
-            <span style={{ color: '#94a3b8' }}>Investor Zone</span>
-            <span>/</span>
-            <span style={{ color: 'var(--color-accent)', fontWeight: 600 }}>Calculators</span>
+    <div style={{ minHeight: '100vh', paddingTop: '80px' }}>
+      
+      {/* 1. Editorial Page Header (LIGHT) */}
+      <section className="section-theme-light" style={{ padding: 'clamp(5rem, 8vw, 7rem) 0 clamp(2.5rem, 4vw, 3.5rem) 0', borderBottom: '1px solid var(--color-border)', position: 'relative', overflow: 'hidden' }}>
+        {/* Subtle Quantitative Modeling Architecture Watermark */}
+        <div 
+          style={{
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            bottom: 0,
+            width: '45%',
+            backgroundImage: 'url(/assets/hero-finance-bg.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.08,
+            maskImage: 'linear-gradient(to right, transparent, black 80%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 80%)',
+            pointerEvents: 'none'
+          }}
+        />
+
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          
+          <div className="eyebrow-label">
+            <span>WEALTH ENGINES • QUANTITATIVE MODELING</span>
           </div>
 
-          <div className="eyebrow-pill emerald">
-            <Sparkles size={13} />
-            <span>Interactive Goal Engines</span>
-          </div>
-
-          <h1 style={{ fontSize: 'clamp(2.4rem, 4.2vw, 3.4rem)', fontWeight: 700, color: '#ffffff', marginBottom: '1rem', letterSpacing: '-0.03em' }}>
-            Financial Calculators & <span style={{ color: 'var(--color-accent)' }}>Goal Architecture</span>
+          <h1 style={{ fontSize: 'clamp(2.8rem, 5.2vw, 4.4rem)', color: 'var(--color-text)', marginBottom: '1.25rem', lineHeight: 1.1 }}>
+            Financial <span className="text-blue">Calculators</span> & <span className="text-red">Goal Architecture</span>
           </h1>
 
-          <p style={{ fontSize: '1.1rem', color: '#94a3b8', maxWidth: '680px', lineHeight: 1.6, margin: 0 }}>
-            Model compounding trajectories with inflation adjustments. Plan for your child's higher education, wedding milestones, and retirement independence.
+          <p style={{ fontSize: 'clamp(1.05rem, 1.4vw, 1.25rem)', color: 'var(--color-text-secondary)', maxWidth: '720px', lineHeight: 1.65 }}>
+            Model compounding trajectories with inflation adjustments. Plan for your child's higher education, wedding milestones, and retirement independence with mathematical precision.
           </p>
         </div>
       </section>
 
-      {/* Interactive Calculators Hub */}
-      <div style={{ background: '#ffffff' }}>
-        <CalculatorsHub onOpenModal={onOpenModal} />
-      </div>
+      {/* 2. Interactive Calculators Hub Component (DARK) */}
+      <CalculatorsHub onOpenModal={onOpenModal} theme="dark" />
 
-      {/* Advisory Consultation Strip */}
-      <section style={{ padding: '4.5rem 0', background: 'var(--color-primary)', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+      {/* 3. Advisory Consultation Strip (LIGHT) */}
+      <section className="section-theme-light" style={{ padding: '4.5rem 0', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
         <div className="container">
           <div 
             style={{ 
-              background: 'var(--color-secondary)', 
-              borderRadius: '24px', 
-              padding: 'clamp(2rem, 4vw, 3rem)', 
-              border: '1px solid rgba(255,255,255,0.1)', 
-              boxShadow: '0 20px 40px rgba(0,0,0,0.4)', 
+              background: 'var(--color-bg-card)', 
+              borderRadius: '2px', 
+              padding: 'clamp(2rem, 4vw, 3.5rem)', 
+              border: '1px solid var(--color-border)', 
               display: 'flex', 
               alignItems: 'center', 
               justifyContent: 'space-between', 
@@ -56,36 +64,42 @@ export function CalculatorsPage({ onOpenModal }) {
             }}
           >
             <div>
-              <div className="eyebrow-pill emerald">
-                <ShieldCheck size={13} />
-                <span>Custom Strategy Blueprint</span>
+              <div className="eyebrow-label">
+                <span>BESPOKE WEALTH ARCHITECTURE</span>
               </div>
-              <h3 style={{ fontSize: '1.8rem', color: '#ffffff', fontWeight: 700, margin: '0.35rem 0 0.5rem 0' }}>
-                Want a Comprehensive Wealth Roadmap?
+              <h3 style={{ fontSize: '1.9rem', color: 'var(--color-text)', marginBottom: '0.65rem', fontFamily: 'var(--font-serif)' }}>
+                Need a comprehensive family wealth roadmap?
               </h3>
-              <p style={{ color: '#94a3b8', fontSize: '1rem', margin: 0, maxWidth: '580px', lineHeight: 1.6 }}>
-                Calculators provide mathematical simulations. Our AMFI registered advisors in Gomtinagar, Lucknow review your actual cash flows, tax brackets, and time horizon to design an actionable plan.
+              <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.96rem', maxWidth: '580px', lineHeight: 1.6 }}>
+                Calculators illustrate scenarios, but real life demands customized tax harvesting, liquidity management, and scheme selection. Speak with an AMFI-registered advisor today.
               </p>
             </div>
-            
+
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <button 
-                onClick={() => onOpenModal && onOpenModal('consultation')}
-                className="btn-primary-emerald"
+                onClick={() => onOpenModal && onOpenModal('contact-consult')}
+                className="btn-gold"
+                style={{ height: '48px', fontSize: '0.84rem' }}
               >
-                <span>Request Goal Roadmap →</span>
+                <span>Book Advisor Consultation</span>
+                <ArrowRight size={14} />
               </button>
+
               <a 
                 href={`tel:${COMPANY_INFO.phone}`}
-                className="btn-outline-white"
+                className="btn-outline"
+                style={{ height: '48px', fontSize: '0.84rem' }}
               >
-                <Phone size={15} />
-                <span>Call Advisor Desk</span>
+                <Phone size={13} color="var(--color-gold)" />
+                <span>Call {COMPANY_INFO.phone}</span>
               </a>
             </div>
           </div>
         </div>
       </section>
+
     </div>
   );
 }
+
+export default CalculatorsPage;

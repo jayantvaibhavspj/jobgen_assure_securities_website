@@ -1,247 +1,211 @@
 import React from 'react';
 import { 
   UserCheck, FileCheck, PhoneCall, Users, UserPlus, ExternalLink, 
-  Download, FileText, ShieldAlert, CheckCircle, ArrowRight
+  Download, FileText, ShieldAlert, CheckCircle2, ArrowRight, ShieldCheck 
 } from 'lucide-react';
 import { INVESTOR_SERVICES, DOWNLOADABLE_FORMS, COMPANY_INFO } from '../data/websiteData';
 
-export function InvestorZone({ onOpenModal, theme = "dark" }) {
-  const isDark = theme === "dark";
-
+export function InvestorZone({ onOpenModal, theme = 'dark' }) {
+  const themeClass = theme === 'light' ? 'section-theme-light' : 'section-theme-dark';
   const getServiceIcon = (name) => {
     switch (name) {
-      case 'UserCheck': return <UserCheck size={24} color={isDark ? "#38bdf8" : "#2563eb"} />;
-      case 'FileCheck': return <FileCheck size={24} color="#10b981" />;
-      case 'PhoneCall': return <PhoneCall size={24} color="#f59e0b" />;
-      case 'Users': return <Users size={24} color="#a78bfa" />;
-      case 'UserPlus': return <UserPlus size={24} color="#38bdf8" />;
-      default: return <UserCheck size={24} color={isDark ? "#38bdf8" : "#2563eb"} />;
+      case 'UserCheck': return <UserCheck size={20} color="var(--color-gold)" />;
+      case 'FileCheck': return <FileCheck size={20} color="#60a5fa" />;
+      case 'PhoneCall': return <PhoneCall size={20} color="var(--color-gold)" />;
+      case 'Users': return <Users size={20} color="#e2e8f0" />;
+      case 'UserPlus': return <UserPlus size={20} color="var(--color-gold)" />;
+      default: return <UserCheck size={20} color="var(--color-gold)" />;
     }
   };
 
   const handleDownloadForm = (formName) => {
-    alert(`Downloading ${formName}... If you need pre-filled paperwork with ARN-182137, contact Assure Securities at care@assuresecurities.in or +91 9455555742.`);
+    alert(`Downloading ${formName}... For pre-filled paperwork with ARN-182137, contact Assure Securities at care@assuresecurities.in or +91 9455555742.`);
   };
 
   return (
-    <section 
-      id="investor-zone" 
-      className={isDark ? "section-dark section-wrapper" : "section-light-white section-wrapper"}
-      style={{ 
-        background: isDark ? '#0b1120' : '#ffffff',
-        borderTop: isDark ? '1px solid rgba(255,255,255,0.06)' : 'none',
-        padding: '5rem 0'
-      }}
-    >
+    <section id="investor-zone" className={`section-pad ${themeClass}`} style={{ borderBottom: '1px solid var(--color-border)' }}>
       <div className="container">
         
         {/* Section Header */}
-        <div className="section-title-wrap" style={{ marginBottom: '3rem' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: isDark ? 'rgba(56, 189, 248, 0.12)' : '#e0f2fe', color: isDark ? '#38bdf8' : '#0369a1', border: isDark ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid #bae6fd', padding: '0.35rem 0.9rem', borderRadius: '100px', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-            <CheckCircle size={14} color="#10b981" />
-            <span>SEBI & AMFI Regulatory Infrastructure • ARN-182137</span>
+        <div className="section-header-editorial">
+          <div className="eyebrow-label">
+            <span>REGULATORY PORTALS & SERVICE DESK</span>
           </div>
-          <h2 className="section-heading" style={{ color: isDark ? '#ffffff' : '#0f172a', fontSize: '2.3rem' }}>
-            Official Portals, <span className="gradient-text">e-KYC & Regulatory Compliance Hub</span>
-          </h2>
-          <p className="section-subheading" style={{ color: isDark ? '#cbd5e1' : '#64748b' }}>
-            Direct, uninterrupted access to sovereign KYC registration agencies, SEBI-licensed registrars (CAMS & KFintech), and statutory mutual fund document repositories.
-          </p>
-        </div>
 
-        {/* 4-Pillar Zero-Custody Security Matrix */}
-        <div style={{
-          background: isDark ? 'linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%)' : '#f8fafc',
-          border: isDark ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid #e2e8f0',
-          borderRadius: '22px',
-          padding: '2rem 2.5rem',
-          marginBottom: '3rem',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-          gap: '1.5rem'
-        }}>
-          <div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Zero Custody Risk</div>
-            <div style={{ fontSize: '1rem', fontWeight: 800, color: isDark ? '#ffffff' : '#0f172a', marginTop: '0.25rem' }}>Direct-to-AMC Funds Flow</div>
-            <div style={{ fontSize: '0.8rem', color: isDark ? '#94a3b8' : '#64748b', marginTop: '0.25rem', lineHeight: 1.5 }}>
-              Your money never touches Assure bank accounts. Payments route directly to respective AMC escrow accounts.
-            </div>
-          </div>
-          <div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#10b981', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Statutory Registrars</div>
-            <div style={{ fontSize: '1rem', fontWeight: 800, color: isDark ? '#ffffff' : '#0f172a', marginTop: '0.25rem' }}>CAMS & KFintech Integrated</div>
-            <div style={{ fontSize: '0.8rem', color: isDark ? '#94a3b8' : '#64748b', marginTop: '0.25rem', lineHeight: 1.5 }}>
-              All folios created under your direct PAN. Access independent Consolidated Account Statements (CAS) anytime.
-            </div>
-          </div>
-          <div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#f59e0b', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Exchange Settlement</div>
-            <div style={{ fontSize: '1rem', fontWeight: 800, color: isDark ? '#ffffff' : '#0f172a', marginTop: '0.25rem' }}>BSE StAR MF Execution</div>
-            <div style={{ fontSize: '0.8rem', color: isDark ? '#94a3b8' : '#64748b', marginTop: '0.25rem', lineHeight: 1.5 }}>
-              Institutional trade routing with instant automated payment authentication via UPI, Netbanking & OTM.
-            </div>
-          </div>
-          <div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#a78bfa', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Full Confidentiality</div>
-            <div style={{ fontSize: '1rem', fontWeight: 800, color: isDark ? '#ffffff' : '#0f172a', marginTop: '0.25rem' }}>256-Bit Cryptographic Vault</div>
-            <div style={{ fontSize: '0.8rem', color: isDark ? '#94a3b8' : '#64748b', marginTop: '0.25rem', lineHeight: 1.5 }}>
-              Enterprise data protection. We strictly uphold non-disclosure and confidentiality of all private family assets.
-            </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '2rem' }}>
+            <h2 style={{ fontSize: 'clamp(2.4rem, 4.2vw, 3.6rem)', color: 'var(--color-text)', maxWidth: '650px', lineHeight: 1.12 }}>
+              Official <span className="text-blue">Portals</span> &
+              <br />
+              <span className="text-red" style={{ fontStyle: 'italic' }}>
+                Investor Service Hub.
+              </span>
+            </h2>
+
+            <p style={{ maxWidth: '440px', fontSize: '0.96rem', color: 'var(--color-text-secondary)', lineHeight: 1.65 }}>
+              Direct access to official SEBI KRA portals, RTA platforms (CAMS & KFintech), and statutory compliance documents.
+            </p>
           </div>
         </div>
 
-        {/* 5 Official Service Cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem', marginBottom: '3.5rem' }}>
-          {INVESTOR_SERVICES.map((srv, idx) => (
-            <div 
-              key={idx}
-              className="glass-card"
-              style={{ 
-                padding: '1.75rem', 
-                display: 'flex', 
-                flexDirection: 'column', 
-                justifyContent: 'space-between', 
-                background: isDark ? '#0f172a' : '#ffffff', 
-                border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e2e8f0',
-                borderRadius: '18px',
-                color: isDark ? '#ffffff' : '#0f172a',
-                boxShadow: isDark ? '0 10px 25px rgba(0,0,0,0.4)' : '0 4px 15px rgba(0,0,0,0.04)'
-              }}
-            >
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
-                  <div style={{ background: isDark ? '#1e293b' : '#eff6ff', padding: '0.7rem', borderRadius: '14px', border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid #dbeafe' }}>
-                    {getServiceIcon(srv.icon)}
-                  </div>
-                  <span style={{ 
-                    fontSize: '0.7rem', 
-                    fontWeight: 800, 
-                    padding: '0.25rem 0.6rem', 
-                    borderRadius: '6px', 
-                    background: isDark ? 'rgba(56, 189, 248, 0.15)' : '#e0f2fe', 
-                    color: isDark ? '#38bdf8' : '#0284c7',
-                    border: isDark ? '1px solid rgba(56, 189, 248, 0.3)' : '1px solid #bae6fd',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.04em'
-                  }}>
-                    {srv.portal}
-                  </span>
-                </div>
-
-                <h3 style={{ fontSize: '1.2rem', color: isDark ? '#ffffff' : '#0f172a', fontWeight: 800, marginBottom: '0.5rem', letterSpacing: '-0.01em' }}>
-                  {srv.title}
-                </h3>
-                <p style={{ fontSize: '0.85rem', color: isDark ? '#94a3b8' : '#64748b', lineHeight: 1.6, marginBottom: '1.25rem' }}>
-                  {srv.desc}
-                </p>
+        {/* 4-Pillar Custody Strip */}
+        <div 
+          style={{ 
+            background: 'var(--color-bg-card)', 
+            border: '1px solid var(--color-border)', 
+            borderRadius: '2px', 
+            padding: '1.75rem 2rem', 
+            marginBottom: '3.5rem',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
+            gap: '1.5rem'
+          }}
+        >
+          {[
+            { label: "AMFI Registration", val: "ARN-182137", sub: "Valid till 19 July 2027" },
+            { label: "Direct Settlement", val: "Zero Custody", sub: "Cheques & debits payable to AMC only" },
+            { label: "RTA Connectivity", val: "CAMS & KFin", sub: "Official registrar automated sync" },
+            { label: "Client Records", val: "256-Bit SSL", sub: "SEBI IT security framework compliant" }
+          ].map((item, i) => (
+            <div key={i} style={{ borderRight: i < 3 ? '1px solid var(--color-border)' : 'none', paddingRight: '1rem' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', color: 'var(--color-gold)', fontWeight: 600 }}>
+                {item.val}
               </div>
-
-              <a 
-                href={srv.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn-secondary"
-                style={{ 
-                  width: '100%', 
-                  padding: '0.75rem', 
-                  fontSize: '0.85rem', 
-                  fontWeight: 700,
-                  justifyContent: 'center',
-                  background: isDark ? '#1e293b' : '#ffffff',
-                  color: isDark ? '#38bdf8 !important' : 'var(--primary-700) !important',
-                  borderColor: isDark ? 'rgba(56, 189, 248, 0.3)' : 'var(--primary-200)',
-                  borderRadius: '10px'
-                }}
-              >
-                <span>Launch Official Portal</span>
-                <ExternalLink size={14} />
-              </a>
+              <div style={{ fontSize: '0.86rem', color: 'var(--color-text)', fontWeight: 500, marginTop: '0.2rem' }}>
+                {item.label}
+              </div>
+              <div style={{ fontSize: '0.74rem', color: 'var(--color-text-muted)', marginTop: '0.15rem' }}>
+                {item.sub}
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Form Downloads Center */}
-        <div style={{ 
-          background: isDark ? 'rgba(30, 41, 59, 0.6)' : '#f8fafc', 
-          borderRadius: '24px', 
-          padding: '2.5rem', 
-          border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid #e2e8f0' 
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.75rem' }}>
-            <div>
-              <span className="badge-tag accent-emerald" style={{ margin: 0 }}>Downloads Center</span>
-              <h3 style={{ fontSize: '1.5rem', color: isDark ? '#ffffff' : '#0f172a', fontWeight: 800, marginTop: '0.35rem' }}>
-                Standard Investor Forms & Mandates
-              </h3>
-            </div>
-            <p style={{ fontSize: '0.9rem', color: isDark ? '#cbd5e1' : '#64748b', maxWidth: '420px', margin: 0 }}>
-              Official physical & digital paperwork for initial investment, banking changes, and regulatory declarations.
-            </p>
+        {/* Official Services Grid */}
+        <div style={{ marginBottom: '4rem' }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', color: 'var(--color-gold)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '1.5rem' }}>
+            SEBI & Registrar Direct Portals
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
-            {DOWNLOADABLE_FORMS.map((form, i) => (
-              <div 
-                key={i}
-                style={{ 
-                  background: isDark ? '#0f172a' : '#ffffff', 
-                  padding: '1.25rem', 
-                  borderRadius: '16px', 
-                  border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid #e2e8f0', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'space-between', 
-                  gap: '1rem' 
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+            {INVESTOR_SERVICES.map((srv, idx) => (
+              <a
+                key={idx}
+                href={srv.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  background: 'var(--color-bg-card)',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: '2px',
+                  padding: '1.75rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  textDecoration: 'none',
+                  transition: 'all 0.25s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--color-gold-border)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--color-border)';
+                  e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                  <div style={{ background: '#fee2e2', color: '#dc2626', padding: '0.65rem', borderRadius: '10px' }}>
-                    <FileText size={20} />
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                    <div style={{ padding: '0.5rem', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '2px', border: '1px solid var(--color-border)' }}>
+                      {getServiceIcon(srv.icon)}
+                    </div>
+                    <span className="metric-pill-dark">
+                      {srv.portal}
+                    </span>
                   </div>
-                  <div>
-                    <h4 style={{ fontSize: '0.92rem', color: isDark ? '#ffffff' : '#0f172a', fontWeight: 700, marginBottom: '2px' }}>{form.name}</h4>
-                    <span style={{ fontSize: '0.75rem', color: isDark ? '#94a3b8' : '#64748b' }}>{form.category} • {form.size}</span>
+
+                  <h3 style={{ fontSize: '1.25rem', color: 'var(--color-text)', fontFamily: 'var(--font-serif)', marginBottom: '0.65rem' }}>
+                    {srv.title}
+                  </h3>
+
+                  <p style={{ fontSize: '0.86rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
+                    {srv.desc}
+                  </p>
+                </div>
+
+                <div style={{ marginTop: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--color-gold)', fontSize: '0.82rem', fontFamily: 'var(--font-mono)' }}>
+                  <span>Launch Official Portal</span>
+                  <ExternalLink size={12} />
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Standard Downloadable Compliance Forms */}
+        <div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', color: 'var(--color-gold)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+              Standard Regulatory Forms (PDF)
+            </span>
+            <span style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)' }}>
+              Empaneled with ARN-182137
+            </span>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1rem' }}>
+            {DOWNLOADABLE_FORMS.map((form, idx) => (
+              <div
+                key={idx}
+                style={{
+                  padding: '1.25rem 1.5rem',
+                  background: 'var(--color-bg-card)',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: '2px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  gap: '1rem'
+                }}
+              >
+                <div>
+                  <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.92rem', color: 'var(--color-text)', fontWeight: 500 }}>
+                    {form.name}
+                  </div>
+                  <div style={{ fontSize: '0.74rem', color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)', marginTop: '0.2rem' }}>
+                    {form.category} • {form.size} • {form.type}
                   </div>
                 </div>
 
-                <button 
+                <button
                   onClick={() => handleDownloadForm(form.name)}
-                  style={{ 
-                    background: isDark ? 'rgba(56,189,248,0.15)' : '#eff6ff', 
-                    color: isDark ? '#38bdf8' : '#2563eb', 
-                    padding: '0.5rem', 
-                    borderRadius: '8px', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center' 
+                  style={{
+                    padding: '0.5rem 0.85rem',
+                    background: 'var(--color-gold-dim)',
+                    border: '1px solid var(--color-gold-border)',
+                    borderRadius: '2px',
+                    color: 'var(--color-gold)',
+                    fontSize: '0.76rem',
+                    fontFamily: 'var(--font-mono)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    transition: 'all 0.2s'
                   }}
-                  title="Download PDF"
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'var(--color-gold)';
+                    e.currentTarget.style.color = '#090a0d';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'var(--color-gold-dim)';
+                    e.currentTarget.style.color = 'var(--color-gold)';
+                  }}
                 >
-                  <Download size={17} />
+                  <Download size={12} />
+                  <span>Download</span>
                 </button>
               </div>
             ))}
-          </div>
-
-          <div style={{ 
-            marginTop: '2rem', 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            flexWrap: 'wrap', 
-            gap: '1rem', 
-            background: isDark ? '#0f172a' : '#ffffff', 
-            padding: '1.25rem', 
-            borderRadius: '14px', 
-            border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid #e2e8f0' 
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: isDark ? '#cbd5e1' : '#475569', fontSize: '0.88rem' }}>
-              <CheckCircle size={16} color="#10b981" />
-              <span>All forms are compliant with SEBI & AMFI circulars for ARN-182137.</span>
-            </div>
-            <button onClick={() => onOpenModal('consultation')} style={{ color: '#38bdf8', fontWeight: 700, fontSize: '0.88rem' }}>
-              Need Help With Paperwork? Ask Assure Team &rarr;
-            </button>
           </div>
         </div>
 
@@ -249,3 +213,5 @@ export function InvestorZone({ onOpenModal, theme = "dark" }) {
     </section>
   );
 }
+
+export default InvestorZone;

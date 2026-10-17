@@ -1,154 +1,97 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { EducationalVideos } from '../components/EducationalVideos';
-import { Video, BookOpen, ArrowRight, Sparkles, Phone, MessageSquare } from 'lucide-react';
-import { RECENT_INSIGHTS, COMPANY_INFO } from '../data/websiteData';
+import { Video, ArrowRight, Phone } from 'lucide-react';
+import { COMPANY_INFO } from '../data/websiteData';
 
 export function VideosPage({ onOpenModal }) {
   return (
-    <div>
+    <div style={{ minHeight: '100vh', paddingTop: '80px' }}>
       
-      {/* Section 1: Page Header Banner (Dark) */}
-      <section className="section-dark-navy" style={{ padding: '4.5rem 0 3.5rem 0', position: 'relative' }}>
-        <div className="container">
-          <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '1.25rem' }}>
-            <Link to="/" style={{ color: '#38bdf8', fontWeight: 600 }}>Home</Link>
-            <span>/</span>
-            <span style={{ color: '#ffffff', fontWeight: 600 }}>Investor Zone</span>
-            <span>/</span>
-            <span style={{ color: '#38bdf8', fontWeight: 600 }}>Educational Videos</span>
+      {/* 1. Editorial Page Header (LIGHT) */}
+      <section className="section-theme-light" style={{ padding: 'clamp(5rem, 8vw, 7rem) 0 clamp(2.5rem, 4vw, 3.5rem) 0', borderBottom: '1px solid var(--color-border)', position: 'relative', overflow: 'hidden' }}>
+        {/* Subtle Knowledge Archive Skyline Watermark */}
+        <div 
+          style={{
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            bottom: 0,
+            width: '45%',
+            backgroundImage: 'url(/assets/hero-city-poster.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.08,
+            maskImage: 'linear-gradient(to right, transparent, black 80%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 80%)',
+            pointerEvents: 'none'
+          }}
+        />
+
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          
+          <div className="eyebrow-label">
+            <span>KNOWLEDGE ARCHIVE • 12 VIDEO MASTERCLASSES</span>
           </div>
 
-          <div className="badge-tag" style={{ background: 'rgba(56, 189, 248, 0.15)', borderColor: 'rgba(56, 189, 248, 0.3)', color: '#38bdf8' }}>
-            Knowledge Center • 12 Masterclasses
-          </div>
-          <h1 style={{ fontSize: '2.8rem', fontWeight: 800, color: '#ffffff', marginBottom: '1rem', lineHeight: 1.2 }}>
-            Educational <span className="gradient-text">Videos & Learning</span>
+          <h1 style={{ fontSize: 'clamp(2.8rem, 5.2vw, 4.4rem)', color: 'var(--color-text)', marginBottom: '1.25rem', lineHeight: 1.1 }}>
+            Educational <span className="text-blue">Masterclasses</span> & <span className="text-red">Market Insights</span>
           </h1>
-          <p style={{ fontSize: '1.15rem', color: '#cbd5e1', maxWidth: '720px', lineHeight: 1.6 }}>
-            As an investor, you can either manage your finances yourself or hire a professional firm. Watch our official video library covering Mutual Fund fundamentals, SIP compounding, tax saving ELSS, and asset allocation.
+
+          <p style={{ fontSize: 'clamp(1.05rem, 1.4vw, 1.25rem)', color: 'var(--color-text-secondary)', maxWidth: '720px', lineHeight: 1.65 }}>
+            Watch our official video series on mutual fund fundamentals, rupee-cost averaging via SIPs, Section 80C tax planning, and multi-cycle asset allocation.
           </p>
         </div>
       </section>
 
-      {/* Section 2: 12 Video Masterclasses (Light) */}
-      <div style={{ background: '#f8fafc' }}>
-        <EducationalVideos onOpenModal={onOpenModal} showInsights={false} />
-      </div>
+      {/* 2. Main Educational Videos Component (DARK) */}
+      <EducationalVideos onOpenModal={onOpenModal} theme="dark" />
 
-      {/* Section 3: Financial Research & Weekly Market Insights (Dark) */}
-      <section className="section-dark-navy" style={{ padding: '5rem 0', background: '#0b1120', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+      {/* 3. Advisory Consultation Strip (LIGHT) */}
+      <section className="section-pad section-theme-light" style={{ borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
         <div className="container">
-          
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '3rem' }}>
+          <div 
+            style={{ 
+              background: 'var(--color-bg-card)', 
+              borderRadius: '2px', 
+              padding: 'clamp(2rem, 4vw, 3.5rem)', 
+              border: '1px solid var(--color-border)', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'space-between', 
+              flexWrap: 'wrap', 
+              gap: '2rem' 
+            }}
+          >
             <div>
-              <span className="badge-tag" style={{ background: 'rgba(56, 189, 248, 0.15)', borderColor: 'rgba(56, 189, 248, 0.3)', color: '#38bdf8' }}>
-                Assure Research Desk
-              </span>
-              <h2 className="section-heading" style={{ color: '#ffffff', marginBottom: '0.5rem' }}>
-                Market Insights & <span className="gradient-text">Financial Research</span>
-              </h2>
-              <p style={{ color: '#cbd5e1', fontSize: '1.05rem', margin: 0, maxWidth: '580px' }}>
-                Curated articles breaking down economic trends, RBI monetary policy impacts, and prudent asset allocation strategies.
-              </p>
-            </div>
-
-            <button 
-              onClick={() => onOpenModal('consultation')}
-              className="btn-emerald"
-              style={{ padding: '0.75rem 1.6rem', fontSize: '0.95rem' }}
-            >
-              <span>Subscribe to Monthly Digest</span>
-            </button>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-            {RECENT_INSIGHTS.map((post) => (
-              <div 
-                key={post.id}
-                className="glass-card"
-                style={{ 
-                  padding: '2rem', 
-                  borderRadius: '24px', 
-                  background: 'rgba(30, 41, 59, 0.75)', 
-                  border: '1px solid rgba(255,255,255,0.1)', 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  justifyContent: 'space-between',
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
-                }}
-              >
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#94a3b8', marginBottom: '0.8rem' }}>
-                    <span>{post.date}</span>
-                    <span style={{ color: '#38bdf8', fontWeight: 600 }}>{post.readTime}</span>
-                  </div>
-                  <h3 style={{ fontSize: '1.25rem', color: '#ffffff', fontWeight: 700, marginBottom: '0.8rem', lineHeight: 1.4 }}>
-                    {post.title}
-                  </h3>
-                  <p style={{ fontSize: '0.92rem', color: '#cbd5e1', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                    {post.excerpt}
-                  </p>
-                </div>
-
-                <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem' }}>
-                  <span style={{ color: '#94a3b8', fontWeight: 600 }}>By {post.author}</span>
-                  <button 
-                    onClick={() => onOpenModal('consultation')} 
-                    style={{ color: '#38bdf8', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.3rem' }}
-                  >
-                    <span>Read Advisory</span>
-                    <ArrowRight size={14} />
-                  </button>
-                </div>
+              <div className="eyebrow-label">
+                <span>PERSONALIZED ADVISORY SESSION</span>
               </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* Section 4: Video Learning Consultation Desk (Light) */}
-      <section className="section-wrapper" style={{ background: '#f8fafc', padding: '4.5rem 0' }}>
-        <div className="container">
-          <div style={{ 
-            background: '#ffffff', 
-            borderRadius: '24px', 
-            padding: '3rem', 
-            border: '1px solid #e2e8f0', 
-            boxShadow: 'var(--shadow-card)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '2rem'
-          }}>
-            <div>
-              <span className="badge-tag accent-emerald">Live 1-on-1 Concept Discussion</span>
-              <h3 style={{ fontSize: '1.8rem', color: '#0f172a', fontWeight: 800, marginTop: '0.5rem', marginBottom: '0.5rem' }}>
-                Have Questions on Any Video Strategy?
+              <h3 style={{ fontSize: '1.85rem', color: 'var(--color-text)', marginBottom: '0.65rem', fontFamily: 'var(--font-serif)' }}>
+                Have questions regarding your personal portfolio?
               </h3>
-              <p style={{ color: '#475569', fontSize: '1rem', maxWidth: '600px', margin: 0, lineHeight: 1.6 }}>
-                Our team can walk you through how compounding, ELSS 80C tax deductions, or asset rebalancing applies specifically to your income and goals.
+              <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.96rem', maxWidth: '580px', lineHeight: 1.6 }}>
+                Videos illustrate concepts, but your family's financial roadmap requires custom risk profiling and allocation. Schedule a session with an AMFI-registered advisor.
               </p>
             </div>
 
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <button 
-                onClick={() => onOpenModal('consultation')}
-                className="btn-primary"
-                style={{ padding: '0.85rem 1.8rem', fontSize: '0.95rem' }}
+                onClick={() => onOpenModal && onOpenModal('contact-consult')}
+                className="btn-gold"
+                style={{ height: '48px', fontSize: '0.84rem' }}
               >
-                <span>Book Free Video Q&A Call</span>
-                <ArrowRight size={16} />
+                <span>Book 1-on-1 Consultation</span>
+                <ArrowRight size={14} />
               </button>
+
               <a 
                 href={`tel:${COMPANY_INFO.phone}`}
-                className="btn-secondary"
-                style={{ padding: '0.85rem 1.8rem', fontSize: '0.95rem' }}
+                className="btn-outline"
+                style={{ height: '48px', fontSize: '0.84rem' }}
               >
-                <Phone size={16} />
-                <span>Call Advisor</span>
+                <Phone size={13} color="var(--color-gold)" />
+                <span>Call {COMPANY_INFO.phone}</span>
               </a>
             </div>
           </div>
@@ -158,3 +101,5 @@ export function VideosPage({ onOpenModal }) {
     </div>
   );
 }
+
+export default VideosPage;

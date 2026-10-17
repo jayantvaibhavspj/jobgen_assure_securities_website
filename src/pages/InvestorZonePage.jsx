@@ -1,83 +1,97 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { InvestorZone } from '../components/InvestorZone';
-import { QuickToolsBar } from '../components/QuickToolsBar';
-import { Shield, ExternalLink, ArrowRight, FileCheck, CheckCircle } from 'lucide-react';
+import { ShieldCheck, Phone, ArrowRight } from 'lucide-react';
 import { COMPANY_INFO } from '../data/websiteData';
 
 export function InvestorZonePage({ onOpenModal }) {
   return (
-    <div>
+    <div style={{ minHeight: '100vh', paddingTop: '80px' }}>
       
-      {/* Section 1: Page Header Banner (Dark) */}
-      <section className="section-dark-navy" style={{ padding: '4.5rem 0 3.5rem 0', position: 'relative' }}>
-        <div className="container">
-          <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '1.25rem' }}>
-            <Link to="/" style={{ color: '#38bdf8', fontWeight: 600 }}>Home</Link>
-            <span>/</span>
-            <span style={{ color: '#ffffff', fontWeight: 600 }}>Investor Zone</span>
-            <span>/</span>
-            <span style={{ color: '#38bdf8', fontWeight: 600 }}>Self-Service & Downloads</span>
+      {/* 1. Editorial Page Header (LIGHT) */}
+      <section className="section-theme-light" style={{ padding: 'clamp(5rem, 8vw, 7rem) 0 clamp(2.5rem, 4vw, 3.5rem) 0', borderBottom: '1px solid var(--color-border)', position: 'relative', overflow: 'hidden' }}>
+        {/* Subtle Regulatory Architecture Watermark */}
+        <div 
+          style={{
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            bottom: 0,
+            width: '45%',
+            backgroundImage: 'url(/assets/hero-finance-bg.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.08,
+            maskImage: 'linear-gradient(to right, transparent, black 80%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 80%)',
+            pointerEvents: 'none'
+          }}
+        />
+
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          
+          <div className="eyebrow-label">
+            <span>OFFICIAL COMPLIANCE & REGULATORY PORTALS</span>
           </div>
 
-          <div className="badge-tag" style={{ background: 'rgba(56, 189, 248, 0.15)', borderColor: 'rgba(56, 189, 248, 0.3)', color: '#38bdf8' }}>
-            Official Compliance & Portals
-          </div>
-          <h1 style={{ fontSize: '2.8rem', fontWeight: 800, color: '#ffffff', marginBottom: '1rem', lineHeight: 1.2 }}>
-            Investor Zone: <span className="gradient-text">KYC, Forms & Tools</span>
+          <h1 style={{ fontSize: 'clamp(2.8rem, 5.2vw, 4.4rem)', color: 'var(--color-text)', marginBottom: '1.25rem', lineHeight: 1.1 }}>
+            Investor <span className="text-blue">Zone</span> & <span className="text-red">Service Desk</span>
           </h1>
-          <p style={{ fontSize: '1.15rem', color: '#cbd5e1', maxWidth: '720px', lineHeight: 1.6 }}>
-            Direct access to official SEBI, KRA, and Registrar service portals to check KYC, verify PAN-Aadhaar links, update contact details, opt-in for nomination, and download standard mutual fund forms.
+
+          <p style={{ fontSize: 'clamp(1.05rem, 1.4vw, 1.25rem)', color: 'var(--color-text-secondary)', maxWidth: '720px', lineHeight: 1.65 }}>
+            Direct access to official SEBI, KRA, and Registrar portals to verify KYC compliance, validate PAN-Aadhaar links, execute electronic nomination modifications, and download mutual fund application forms.
           </p>
         </div>
       </section>
 
-      {/* Section 2: Quick Market Tools (Light) */}
-      <QuickToolsBar onOpenModal={onOpenModal} theme="light" />
-
-      {/* Section 3: Official Portals & Forms Download (Dark) */}
+      {/* 2. Main Investor Zone Component (DARK) */}
       <InvestorZone onOpenModal={onOpenModal} theme="dark" />
 
-      {/* Section 4: Physical Paperwork Drop-off & Registrar Courier Assistance (Light) */}
-      <section className="section-wrapper" style={{ background: '#f8fafc', padding: '4.5rem 0' }}>
+      {/* 3. Physical Paperwork Assistance Strip (LIGHT) */}
+      <section className="section-pad section-theme-light" style={{ borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
         <div className="container">
-          <div style={{ 
-            background: '#ffffff', 
-            borderRadius: '24px', 
-            padding: '3rem', 
-            border: '1px solid #e2e8f0', 
-            boxShadow: 'var(--shadow-card)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '2rem'
-          }}>
+          <div 
+            style={{ 
+              background: 'var(--color-bg-card)', 
+              borderRadius: '2px', 
+              padding: 'clamp(2rem, 4vw, 3.5rem)', 
+              border: '1px solid var(--color-border)', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'space-between', 
+              flexWrap: 'wrap', 
+              gap: '2rem' 
+            }}
+          >
             <div>
-              <span className="badge-tag accent-emerald">Physical Paperwork Support</span>
-              <h3 style={{ fontSize: '1.8rem', color: '#0f172a', fontWeight: 800, marginTop: '0.5rem', marginBottom: '0.5rem' }}>
-                Need Help with Physical Nomination or Transmission Forms?
+              <div className="eyebrow-label">
+                <span>PAPERWORK & PHYSICAL TRANSMISSION</span>
+              </div>
+              <h3 style={{ fontSize: '1.85rem', color: 'var(--color-text)', marginBottom: '0.65rem', fontFamily: 'var(--font-serif)' }}>
+                Need physical nomination or folio transmission assistance?
               </h3>
-              <p style={{ color: '#475569', fontSize: '1rem', maxWidth: '620px', margin: 0, lineHeight: 1.6 }}>
-                Physical forms requiring signature verification or gazetted notarization can be submitted directly at our Gomtinagar, Lucknow branch office. Our operations team handles AMC submission and acknowledgment receipts.
+              <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.96rem', maxWidth: '580px', lineHeight: 1.6 }}>
+                Our Lucknow office provides end-to-end guidance for physical folio retrieval, signature updates, and legal heir wealth succession with CAMS and KFintech.
               </p>
             </div>
 
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <button 
-                onClick={() => onOpenModal('consultation')}
-                className="btn-primary"
-                style={{ padding: '0.85rem 1.8rem', fontSize: '0.95rem' }}
+                onClick={() => onOpenModal && onOpenModal('contact-consult')}
+                className="btn-gold"
+                style={{ height: '48px', fontSize: '0.84rem' }}
               >
-                <span>Request Form Pre-Fill Assistance</span>
-                <ArrowRight size={16} />
+                <span>Request Paperwork Help</span>
+                <ArrowRight size={14} />
               </button>
+
               <a 
                 href={`tel:${COMPANY_INFO.phone}`}
-                className="btn-secondary"
-                style={{ padding: '0.85rem 1.8rem', fontSize: '0.95rem' }}
+                className="btn-outline"
+                style={{ height: '48px', fontSize: '0.84rem' }}
               >
-                <span>Helpline: {COMPANY_INFO.phone}</span>
+                <Phone size={13} color="var(--color-gold)" />
+                <span>Call {COMPANY_INFO.phone}</span>
               </a>
             </div>
           </div>
@@ -87,3 +101,5 @@ export function InvestorZonePage({ onOpenModal }) {
     </div>
   );
 }
+
+export default InvestorZonePage;

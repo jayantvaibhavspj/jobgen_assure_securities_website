@@ -11,7 +11,7 @@ const INITIAL_MESSAGES = [
   {
     id: 'welcome-1',
     sender: 'bot',
-    text: `Hello! 👋 I'm **Assure AI**, your intelligent wealth companion from **Assure Securities** (AMFI Reg. ARN-182137).`,
+    text: `Hello! 👋 I'm **Assure Securities Bot**, powered by **jobgen.ai** — your intelligent wealth companion from **Assure Securities** (AMFI Reg. ARN-182137).`,
     timestamp: 'Just now'
   },
   {
@@ -50,126 +50,28 @@ function AIBrainVisual({ isTyping, isDragging }) {
         justifyContent: 'center',
         borderRadius: '50%',
         overflow: 'hidden',
-        background: 'radial-gradient(circle at 35% 35%, #0F2A4A 0%, #071A2F 65%, #030D18 100%)',
+        background: '#ffffff',
         boxShadow: isDragging 
-          ? '0 20px 45px rgba(7, 26, 47, 0.6), 0 0 25px rgba(22, 185, 129, 0.45)' 
-          : '0 10px 28px rgba(7, 26, 47, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.15)',
-        border: '1.5px solid rgba(22, 185, 129, 0.55)',
+          ? '0 20px 45px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.6)' 
+          : '0 10px 28px rgba(0, 0, 0, 0.5), 0 0 16px rgba(56, 189, 248, 0.35)',
+        border: '2px solid rgba(56, 189, 248, 0.7)',
         transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
       }}
     >
-      {/* Background Neural Circuitry SVG */}
-      <svg 
-        viewBox="0 0 64 64" 
+      <img 
+        src="/assets/assure-bot-logo.png" 
+        alt="Assure Securities Bot Logo" 
+        draggable={false}
         style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
           width: '100%',
           height: '100%',
-          pointerEvents: 'none'
-        }}
-      >
-        <defs>
-          <linearGradient id="brainSynapseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#10B981" stopOpacity="0.8" />
-          </linearGradient>
-          <radialGradient id="brainCoreGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(22, 185, 129, 0.35)" />
-            <stop offset="100%" stopColor="rgba(7, 26, 47, 0)" />
-          </radialGradient>
-        </defs>
-
-        {/* Ambient Core Radial Halo */}
-        <circle cx="32" cy="32" r="28" fill="url(#brainCoreGlow)" />
-
-        {/* Left Cerebral Lobe Circuitry */}
-        <path 
-          d="M 22 13 C 14 13 9 19 9 27 C 9 34 13 41 18 47 C 22 51 25 53 26 54" 
-          fill="none" 
-          stroke="rgba(56, 189, 248, 0.45)" 
-          strokeWidth="1.4" 
-          strokeLinecap="round" 
-        />
-        {/* Right Cerebral Lobe Circuitry */}
-        <path 
-          d="M 42 13 C 50 13 55 19 55 27 C 55 34 51 41 46 47 C 42 51 39 53 38 54" 
-          fill="none" 
-          stroke="rgba(16, 185, 129, 0.45)" 
-          strokeWidth="1.4" 
-          strokeLinecap="round" 
-        />
-
-        {/* Synaptic Radiating Connectors */}
-        <path d="M 14 23 L 23 27 L 32 32" fill="none" stroke="rgba(56, 189, 248, 0.35)" strokeWidth="1" strokeDasharray={isTyping ? "3,2" : "none"} className={isTyping ? "synapse-flow" : ""} />
-        <path d="M 50 23 L 41 27 L 32 32" fill="none" stroke="rgba(16, 185, 129, 0.35)" strokeWidth="1" strokeDasharray={isTyping ? "3,2" : "none"} className={isTyping ? "synapse-flow" : ""} />
-        <path d="M 11 34 L 20 34 L 32 32" fill="none" stroke="rgba(56, 189, 248, 0.35)" strokeWidth="1" />
-        <path d="M 53 34 L 44 34 L 32 32" fill="none" stroke="rgba(16, 185, 129, 0.35)" strokeWidth="1" />
-        <path d="M 18 45 L 25 41 L 32 32" fill="none" stroke="rgba(56, 189, 248, 0.35)" strokeWidth="1" />
-        <path d="M 46 45 L 39 41 L 32 32" fill="none" stroke="rgba(16, 185, 129, 0.35)" strokeWidth="1" />
-
-        {/* Synaptic Neural Nodes */}
-        <circle cx="14" cy="23" r="2.2" fill="#38BDF8" className="neural-node pulse-node-1" />
-        <circle cx="50" cy="23" r="2.2" fill="#10B981" className="neural-node pulse-node-2" />
-        <circle cx="11" cy="34" r="2" fill="#38BDF8" className="neural-node pulse-node-3" />
-        <circle cx="53" cy="34" r="2" fill="#10B981" className="neural-node pulse-node-1" />
-        <circle cx="18" cy="45" r="2.2" fill="#38BDF8" className="neural-node pulse-node-2" />
-        <circle cx="46" cy="45" r="2.2" fill="#10B981" className="neural-node pulse-node-3" />
-        <circle cx="23" cy="27" r="1.6" fill="#A7F3D0" />
-        <circle cx="41" cy="27" r="1.6" fill="#BAE6FD" />
-        <circle cx="25" cy="41" r="1.6" fill="#BAE6FD" />
-        <circle cx="39" cy="41" r="1.6" fill="#A7F3D0" />
-
-        {/* Active Thought Flow Ring */}
-        {isTyping && (
-          <circle 
-            cx="32" 
-            cy="32" 
-            r="16" 
-            fill="none" 
-            stroke="url(#brainSynapseGrad)" 
-            strokeWidth="1.5" 
-            strokeDasharray="14 10" 
-            className="brain-pulse-ring" 
-          />
-        )}
-      </svg>
-
-      {/* Central Assure Brand Core Emblem */}
-      <div 
-        style={{
-          width: '28px',
-          height: '28px',
+          objectFit: 'cover',
           borderRadius: '50%',
-          background: 'rgba(7, 26, 47, 0.85)',
-          backdropFilter: 'blur(4px)',
-          border: '1.5px solid rgba(22, 185, 129, 0.7)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 0 12px rgba(22, 185, 129, 0.4), inset 0 0 6px rgba(56, 189, 248, 0.3)',
-          zIndex: 2,
-          position: 'relative'
+          display: 'block',
+          pointerEvents: 'none',
+          userSelect: 'none'
         }}
-      >
-        <img 
-          src="/assets/favicon.png" 
-          alt="Assure Securities Logo" 
-          style={{
-            width: '18px',
-            height: '18px',
-            objectFit: 'contain',
-            borderRadius: '4px',
-            filter: 'brightness(1.1)'
-          }}
-          onError={(e) => {
-            // Elegant SVG fallback if favicon image takes time
-            e.currentTarget.style.display = 'none';
-          }}
-        />
-      </div>
-
+      />
       {/* Subtle Breathing Glow Aura */}
       <div className="brain-idle-aura" />
     </div>
@@ -190,7 +92,17 @@ export default function Chatbot({ onOpenModal }) {
   const [isTyping, setIsTyping] = useState(false);
 
   // Position & Dragging State
-  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [pos, setPos] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const isMobile = window.innerWidth < 640;
+      const btnSize = isMobile ? 60 : 64;
+      return {
+        x: window.innerWidth - btnSize - 20,
+        y: window.innerHeight - btnSize - 24
+      };
+    }
+    return { x: 1200, y: 750 };
+  });
   const [isMounted, setIsMounted] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [showIntroPopup, setShowIntroPopup] = useState(false);
@@ -222,22 +134,24 @@ export default function Chatbot({ onOpenModal }) {
   useEffect(() => {
     const isMobile = window.innerWidth < 640;
     const btnSize = isMobile ? 60 : 64;
-    const defaultX = window.innerWidth - btnSize - 24;
-    const defaultY = window.innerHeight - btnSize - 88; // 88px leaves room for WhatsApp at bottom: 24
+    // Extreme corner default: 20px from right, 24px from bottom
+    const defaultX = window.innerWidth - btnSize - 20;
+    const defaultY = window.innerHeight - btnSize - 24;
 
     try {
       const saved = localStorage.getItem('assure_ai_brain_pos');
       if (saved) {
         const parsed = JSON.parse(saved);
-        const minX = isMobile ? 12 : 20;
-        const maxX = window.innerWidth - btnSize - minX;
-        const minY = window.innerWidth < 768 ? 60 : 70;
-        const maxY = window.innerHeight - btnSize - minX;
-
-        setPos({
-          x: clamp(parsed.x, minX, maxX),
-          y: clamp(parsed.y, minY, maxY)
-        });
+        // Reset to bottom-right corner if it was anywhere on the left or top
+        if (parsed.x < window.innerWidth - 300 || parsed.y < window.innerHeight - 300) {
+          setPos({ x: defaultX, y: defaultY });
+          localStorage.removeItem('assure_ai_brain_pos');
+        } else {
+          setPos({
+            x: clamp(parsed.x, 8, window.innerWidth - btnSize - 12),
+            y: clamp(parsed.y, 55, window.innerHeight - btnSize - 12)
+          });
+        }
       } else {
         setPos({ x: defaultX, y: defaultY });
       }
@@ -247,23 +161,20 @@ export default function Chatbot({ onOpenModal }) {
 
     setIsMounted(true);
 
-    // Initial Intro Popup: Show once per session for 5 seconds
-    const hasSeenIntro = sessionStorage.getItem('assure_ai_intro_seen');
-    if (!hasSeenIntro) {
-      const introTimer = setTimeout(() => {
-        setShowIntroPopup(true);
-      }, 700);
+    // Initial Intro Popup: Show Assure Bot (Powered by jobgen.ai) briefly
+    const introTimer = setTimeout(() => {
+      setShowIntroPopup(true);
+    }, 400);
 
-      const hideTimer = setTimeout(() => {
-        setShowIntroPopup(false);
-        sessionStorage.setItem('assure_ai_intro_seen', 'true');
-      }, 5700);
+    // Auto-fade speech bubble after 7 seconds so it doesn't block any buttons
+    const autoDismissTimer = setTimeout(() => {
+      setShowIntroPopup(false);
+    }, 7000);
 
-      return () => {
-        clearTimeout(introTimer);
-        clearTimeout(hideTimer);
-      };
-    }
+    return () => {
+      clearTimeout(introTimer);
+      clearTimeout(autoDismissTimer);
+    };
   }, []);
 
   // Handle Window Resize (Clamp Position)
@@ -271,15 +182,18 @@ export default function Chatbot({ onOpenModal }) {
     const handleResize = () => {
       const isMobile = window.innerWidth < 640;
       const btnSize = isMobile ? 60 : 64;
-      const minX = isMobile ? 12 : 20;
-      const maxX = window.innerWidth - btnSize - minX;
-      const minY = window.innerWidth < 768 ? 60 : 70;
-      const maxY = window.innerHeight - btnSize - minX;
+      const defaultX = window.innerWidth - btnSize - 20;
+      const defaultY = window.innerHeight - btnSize - 24;
 
-      setPos(prev => ({
-        x: clamp(prev.x, minX, maxX),
-        y: clamp(prev.y, minY, maxY)
-      }));
+      setPos(prev => {
+        if (prev.x < window.innerWidth - 300 || prev.y < window.innerHeight - 300) {
+          return { x: defaultX, y: defaultY };
+        }
+        return {
+          x: clamp(prev.x, 8, window.innerWidth - btnSize - 8),
+          y: clamp(prev.y, 55, window.innerHeight - btnSize - 8)
+        };
+      });
     };
 
     window.addEventListener('resize', handleResize);
@@ -294,7 +208,6 @@ export default function Chatbot({ onOpenModal }) {
   useEffect(() => {
     if (isOpen) {
       scrollToBottom();
-      setShowIntroPopup(false);
       setTimeout(() => inputRef.current?.focus(), 300);
     }
   }, [isOpen, messages, isTyping]);
@@ -345,90 +258,284 @@ export default function Chatbot({ onOpenModal }) {
     } catch {}
   };
 
-  // Natural Language Response Generator
+  // Natural Language Response Generator with Advanced Financial Knowledge & Multilingual Understanding
   const generateBotReply = (query) => {
     const q = query.toLowerCase().trim();
 
-    // 1. SIP Calculator intent
-    if (q.includes('sip') || q.includes('calculate') || q.includes('calculator') || q.includes('returns') || q.includes('10000') || q.includes('5000')) {
-      setShowInlineCalc(true);
+    // Helper for formatting rupees into Lakhs/Crores
+    const formatAmount = (num) => {
+      if (num >= 10000000) return `₹${(num / 10000000).toFixed(2)} Cr`;
+      if (num >= 100000) return `₹${(num / 100000).toFixed(2)} Lakhs`;
+      return `₹${num.toLocaleString('en-IN')}`;
+    };
+
+    // Helper to calculate SIP future value
+    const calcFutureValue = (monthlyAmt, years, ratePercent = 12) => {
+      const r = ratePercent / 12 / 100;
+      const n = years * 12;
+      return Math.round(monthlyAmt * ((Math.pow(1 + r, n) - 1) / r) * (1 + r));
+    };
+
+    // 0. Extract any numeric monthly SIP amount if mentioned (e.g. 5000, 10000, 25000, 50,000)
+    const amountMatch = q.match(/(?:rs\.?|inr|₹)?\s*([0-9]{1,3}(?:,[0-9]{3})+|[0-9]{3,7})/i);
+    let parsedAmount = null;
+    if (amountMatch) {
+      const num = parseInt(amountMatch[1].replace(/,/g, ''), 10);
+      if (!isNaN(num) && num >= 500 && num <= 1000000) {
+        parsedAmount = num;
+      }
+    }
+
+    // 1. GREETINGS & HINGLISH CHIT-CHAT
+    if (/^(hi|hello|hey|namaste|namaskar|pranam|salaam|kaise ho|kya haal|good morning|good afternoon|good evening|who are you|tum kaun ho|aap kaun ho|kya karte ho|kya kar sakte ho|bot|madad|help)$/i.test(q) ||
+        (/\b(namaste|namaskar|pranam|kaise ho|kya haal|kya kar sakte ho)\b/i.test(q) && !q.includes('sip') && !q.includes('invest') && !q.includes('fund'))) {
       return {
-        text: `Here is our **Instant SIP Growth Modeler**! 📊\n\nA regular SIP of **₹10,000/month** at **12% p.a.** projected return over **10 years** can turn your total investment of **₹12,00,000** into approximately **₹23,23,391** (wealth gain of ₹11.23 Lakhs)!\n\nYou can customize the numbers using the interactive tool below:`,
+        text: `Namaste! 🙏 Main **Assure Securities Bot** hoon (Powered by jobgen.ai). Assure Securities (AMFI Reg. **ARN-182137**) ki taraf se aapka swagat hai!\n\nMain aapki in cheezon mein instant madad kar sakta hoon:\n• **SIP & Compounding:** Return calculate karein aur wealth roadmap banayein\n• **Mutual Funds:** Apne goals ke anusaar sahi Equity, Hybrid ya Debt funds chunein\n• **Tax Saving:** ELSS & Section 80C ke tahat ₹46,800 tak tax bachayein\n• **Corporate FDs:** CRISIL AAA rated FDs mein 8.60% p.a. tak surakshit byaj\n• **Direct AMC Settlement:** 100% Zero Custody Risk guarantee\n\nAap kis topic ke baare mein jaanna chahte hain?`,
+        chips: [
+          "SIP Calculator Khologe?",
+          "Kaise Invest Karein?",
+          "Best Mutual Funds",
+          "Corporate FD Rates",
+          "Senior Advisor Se Baat Karein"
+        ]
+      };
+    }
+
+    // 2. DYNAMIC SIP COMPOUNDING & NUMBER QUERY INTENT
+    if (parsedAmount || q.includes('sip') || q.includes('compounding') || q.includes('monthly') || q.includes('har mahine') || q.includes('calculate') || q.includes('calculator') || q.includes('returns') || q.includes('kitna return') || q.includes('kitna milega')) {
+      const activeAmount = parsedAmount || 10000;
+      setCalcState(prev => ({ ...prev, amount: activeAmount }));
+      setShowInlineCalc(true);
+
+      const fv10 = calcFutureValue(activeAmount, 10, 12);
+      const inv10 = activeAmount * 120;
+      const gain10 = fv10 - inv10;
+
+      const fv15 = calcFutureValue(activeAmount, 15, 12);
+      const inv15 = activeAmount * 180;
+
+      const fv20 = calcFutureValue(activeAmount, 20, 12);
+      const inv20 = activeAmount * 240;
+
+      return {
+        text: `Here is your **SIP Compounding Roadmap** for **₹${activeAmount.toLocaleString('en-IN')}/month** at an assumed **12% p.a.** long-term growth: 📊\n\n• **10 Years:** Total Invested: **${formatAmount(inv10)}** ➔ Expected Value: **${formatAmount(fv10)}** (Wealth Gain: ${formatAmount(gain10)})\n• **15 Years:** Total Invested: **${formatAmount(inv15)}** ➔ Expected Value: **${formatAmount(fv15)}**\n• **20 Years:** Total Invested: **${formatAmount(inv20)}** ➔ Expected Value: **${formatAmount(fv20)}**\n\nCompounding ka asali jaadu 10 saal ke baad shuru hota hai! Niche diye gaye interactive tool se aap duration aur return percentage change karke dekh sakte hain:`,
         chips: [
           "Start SIP with an Advisor",
           "What is Rupee Cost Averaging?",
-          "Equity vs Hybrid Funds",
-          "Tax Saving (ELSS)"
+          "SIP vs Lumpsum (STP)",
+          "Tax Saving (ELSS SIP)"
         ]
       };
     }
 
-    // 2. Tax Saving / 80C
-    if (q.includes('tax') || q.includes('80c') || q.includes('elss') || q.includes('save tax')) {
+    // 3. SAFETY, LOSS, RISK & MARKET VOLATILITY WORRIES ("Loss to nahi hoga?", "Market gir gaya to?", "Safe hai?")
+    if (q.includes('loss') || q.includes('nuksan') || q.includes('risk') || q.includes('gir gaya') || q.includes('market crash') || q.includes('doob') || q.includes('guarantee') || q.includes('safe') || q.includes('safety') || q.includes('surakshit') || q.includes('bharosa') || q.includes('dar') || q.includes('fraud')) {
       return {
-        text: `Under Section 80C of the Income Tax Act, you can invest up to **₹1,50,000** annually in **ELSS (Equity Linked Savings Schemes)** to save up to **₹46,800** in tax (under the old tax regime).\n\n**Why ELSS over PPF/FD?**\n• Shortest lock-in period of just **3 years** (vs 5 yrs for tax FD, 15 yrs for PPF)\n• High wealth creation potential through equity markets\n• Option to invest monthly via disciplined SIP.`,
+        text: `Yeh bohot hi swabhavik aur zaroori sawaal hai! Aaiye ise clear karte hain:\n\n1️⃣ **Zero Custody Risk:** Assure Securities aapka paisa kabhi apne paas nahi rakhta. Aapka payment direct **Mutual Fund AMC / BSE StAR MF exchange** ko jata hai, aur units aapke PAN/folio mein allot hoti hain.\n2️⃣ **Short-Term Volatility vs Permanent Loss:** Market short term mein upar-niche hota hai, lekin **7+ saal ki diversified equity SIP mein Indian stock market (Sensex/Nifty) ne kabhi negative return nahi diya hai**.\n3️⃣ **Rupee Cost Averaging:** Jab market girta hai, to aapki SIP saste daam (kam NAV) par zyada units khareedti hai. Jab market recover karta hai, to wahi units massive wealth generate karti hain!\n4️⃣ **Fixed & Safe Options:** Agar aap equity market ka risk nahi lena chahte, to hamare paas **CRISIL AAA Rated Corporate FDs** hain jahan 8.60% p.a. tak guaranteed fixed return milta hai.`,
         chips: [
-          "Compare ELSS with PPF",
-          "Start ELSS SIP Now",
-          "Book Consultation",
-          "Direct AMC Settlement"
+          "Check Safe Corporate FDs (8.6%)",
+          "What is Rupee Cost Averaging?",
+          "Verify AMFI ARN-182137",
+          "Talk to Pradeep Bajpai"
         ]
       };
     }
 
-    // 3. Corporate FDs & Bonds
-    if (q.includes('fd') || q.includes('fixed deposit') || q.includes('bond') || q.includes('interest rate')) {
+    // 4. KAISE INVEST KAREIN / GETTING STARTED / ONBOARDING / ACCOUNT OPENING
+    if (q.includes('kaise invest') || q.includes('invest kaise') || q.includes('shuru kaise') || q.includes('kaise shuru') || q.includes('how to start') || q.includes('how to invest') || q.includes('process') || q.includes('account opening') || q.includes('nayi shuruat') || q.includes('pehli baar') || q.includes('khata') || q.includes('start investing')) {
       return {
-        text: `Assure Securities distributes high-rated **Corporate Fixed Deposits** from premier institutions like **Bajaj Finance, Shriram Finance, Mahindra Finance, and HDFC Ltd.**\n\n**Key Highlights:**\n• Attractive interest rates up to **8.25% - 8.60% p.a.**\n• Additional **0.25% - 0.50%** for Senior Citizens\n• AAA and AA+ credit ratings by CRISIL / ICRA for maximum capital safety\n• Flexible tenures from 12 to 60 months with Monthly, Quarterly, or Cumulative payout options.`,
+        text: `Assure Securities ke saath investment shuru karna behad aasan aur **100% Paperless** hai (Only 10 Minutes):\n\n1️⃣ **Free e-KYC Verification:** PAN Card aur Aadhaar (Digilocker OTP) ke zariye instant verification.\n2️⃣ **Goal & Risk Profiling:** Hamare senior advisors aapke tenure aur risk appetite ko samajhte hain.\n3️⃣ **Fund Selection:** SEBI & AMFI-vetted top funds aapke portfolio ke liye allocate kiye jaate hain.\n4️⃣ **Bank Mandate Setup:** Auto-debit ke liye UPI/NetBanking mandate authorize karein. Direct AMC settlement (paisa seedha Mutual Fund house mein jata hai).\n\nKya aap aaj apna free onboarding shuru karna chahte hain?`,
         chips: [
-          "Check Current FD Rates",
-          "FD vs Debt Mutual Funds",
-          "Talk to FD Specialist",
-          "Sovereign Gold Bonds"
+          "Start Free e-KYC with Advisor",
+          "Calculate My SIP",
+          "Documents Kya Chahiye?",
+          "Book Free Consultation"
         ]
       };
     }
 
-    // 4. Mutual Fund Recommendations / Categories
-    if (q.includes('fund') || q.includes('mutual') || q.includes('invest') || q.includes('portfolio') || q.includes('pick')) {
+    // 5. LUMPSUM VS STP ("Ek sath paisa lagana hai")
+    if (q.includes('lump') || q.includes('lumpsum') || q.includes('ek sath') || q.includes('ek bar') || q.includes('ek baari') || q.includes('ikhatta') || q.includes('stp') || q.includes('systematic transfer') || q.includes('one time')) {
       return {
-        text: `At Assure Securities, we curate goal-aligned Mutual Fund portfolios tailored to your time horizon and risk profile:\n\n• **Wealth Creation (7+ years):** Flexi-Cap, Large & Mid-Cap, and Index Funds.\n• **Balanced Growth (3-5 years):** Multi-Asset Allocation and Balanced Advantage Funds.\n• **Capital Preservation (1-3 years):** Short-Duration, Banking & PSU Debt Funds.\n• **Emergency Parking (Days to Months):** Liquid and Overnight Funds.\n\nAll investments feature **Direct AMC Settlement** (Zero Custody Risk—money goes directly to the mutual fund house).`,
+        text: `Agar aapke paas bada corpus hai (jaise ₹1 Lakh, ₹5 Lakh ya ₹10 Lakh), to market ke all-time high par pura paisa ek sath Equity mein lagana risky ho sakta hai.\n\n**Best Strategy: STP (Systematic Transfer Plan)**\n1️⃣ Pehle pura lumpsum amount ek safe **Liquid ya Arbitrage Fund** mein park karein (jahan bank savings se behtar ~6.5-7% p.a. byaj banta rahe).\n2️⃣ Us fund se har hafte ya har mahine ek nishchit rashi (e.g., ₹25,000) automatically chune hue Equity Funds mein transfer (STP) hoti rahegi.\n3️⃣ Isse market ke utar-chadhaw ka faida milta hai aur capital bhi safe rehta hai!\n\nAlternative: Agar capital protection chahiye to **AAA Corporate FD** mein invest karein jahan 8.60% p.a. tak fixed byaj milta hai.`,
+        chips: [
+          "How STP Works",
+          "Check Corporate FD Rates",
+          "Calculate Lumpsum Growth",
+          "Talk to Advisory Desk"
+        ]
+      };
+    }
+
+    // 6. TAX SAVING (ELSS, 80C, 80D, Budget Changes, LTCG)
+    if (q.includes('tax') || q.includes('80c') || q.includes('80d') || q.includes('elss') || q.includes('save tax') || q.includes('tax bachaye') || q.includes('income tax') || q.includes('ppf') || q.includes('nps') || q.includes('capital gain') || q.includes('ltcg')) {
+      return {
+        text: `Aap in proven tools se maximum tax bacha sakte hain:\n\n• **Section 80C (Save up to ₹46,800/yr):** ELSS (Equity Linked Savings Scheme) mein ₹1,50,000 tak invest karein.\n  - **ELSS ka faida:** Sabse chota lock-in period (sirf **3 saal**, jabki PPF mein 15 saal aur Tax FD mein 5 saal) + High Equity Growth!\n• **New Tax Rules (LTCG Exemption):** Equity Mutual Funds mein saal ka **₹1.25 Lakh** tak ka long-term capital gain puri tarah **TAX-FREE** hai!\n• **Section 80D (Health Insurance):** Self aur parents ke health insurance premium par additional ₹25,000 se ₹50,000 tak ki tax deduction.\n\nAap SIP ya lumpsum dono tarike se ELSS shuru kar sakte hain.`,
+        chips: [
+          "Start ELSS Tax SIP",
+          "Compare ELSS vs PPF",
+          "Health Insurance under 80D",
+          "Book Tax Strategy Session"
+        ]
+      };
+    }
+
+    // 7. CORPORATE FIXED DEPOSITS & SENIOR CITIZENS
+    if (q.includes('fd') || q.includes('fixed deposit') || q.includes('byaj') || q.includes('interest rate') || q.includes('bajaj finance') || q.includes('shriram') || q.includes('mahindra') || q.includes('senior citizen') || q.includes('highest fd')) {
+      return {
+        text: `Assure Securities distributes India's premier **CRISIL AAA & ICRA AA+ Rated Corporate Fixed Deposits**:\n\n• **Interest Rates:** **8.25% se 8.60% p.a.** tak (Bank FDs se 1.5% - 2.0% zyada!)\n• **Senior Citizens Bonus:** Extra **0.25% - 0.50% p.a.** additional return\n• **Trusted Issuers:** Bajaj Finance, Shriram Finance, Mahindra Finance, LIC Housing\n• **Payout Flexibility:** Monthly pension payout, Quarterly, ya Cumulative (maturity par ikhatta).\n• **Doorstep & Digital Support:** Paperless application via Assure Securities desk.`,
+        chips: [
+          "Check Today's Highest FD Rates",
+          "Senior Citizen Monthly Payout",
+          "Corporate FD vs Bank FD",
+          "Apply for Corporate FD"
+        ]
+      };
+    }
+
+    // 8. RETIREMENT PLANNING & SWP (MONTHLY PENSION)
+    if (q.includes('retirement') || q.includes('pension') || q.includes('swp') || q.includes('systematic withdrawal') || q.includes('monthly income') || q.includes('regular income') || q.includes('budhapa') || q.includes('retire')) {
+      return {
+        text: `**SWP (Systematic Withdrawal Plan)** modern retirement ka sabse smart tool hai:\n\n• **Monthly Regular Income:** Aap apne Mutual Fund corpus se har mahine ek nishchit rashi (e.g. ₹40,000 - ₹1,00,000) seedha apne bank account mein pa sakte hain.\n• **Tax Efficiency:** Bank FD interest par 30%+ slab ke hisaab se heavy tax lagta hai, jabki SWP mein sirf capital gain portion par nominal tax lagta hai — yaani aapka monthly payout lagbhag **Tax-Free** rehta hai!\n• **Capital Appreciation:** Bacha hua corpus conservative hybrid funds mein grow hota rehta hai taaki mehangai (inflation) ko beat kar sake.`,
+        chips: [
+          "Calculate Retirement Corpus",
+          "How SWP Works",
+          "Talk to Retirement Specialist",
+          "Book Private Meeting"
+        ]
+      };
+    }
+
+    // 9. CHILD HIGHER EDUCATION & MARRIAGE PLANNING
+    if (q.includes('child') || q.includes('education') || q.includes('padhai') || q.includes('bachha') || q.includes('bachho') || q.includes('college') || q.includes('marriage') || q.includes('shadi') || q.includes('beti') || q.includes('sukanya')) {
+      return {
+        text: `Bacchon ki higher education inflation India mein **10-12% p.a.** hai. Jo MBA/MBBS degree aaj ₹25 Lakhs ki hai, 15 saal baad uski cost lagbhag **₹75 Lakhs se ₹1 Crore** hogi!\n\n• **Solution:** Ek disciplined monthly SIP (e.g. ₹10,000/month) 15 saal mein **₹50+ Lakhs** ka corpus tayyar kar sakti hai.\n• **Milestone Based De-risking:** Jab baccha college ke karib pahunchta hai (last 3 saal), to corpus ko equity se safe debt funds mein shift kar diya jata hai taaki capital surakshit rahe.\n\nAssure Securities aapke bacche ke future ke liye dedicated goal portfolio design karta hai.`,
+        chips: [
+          "Plan Child Education SIP",
+          "Sukanya vs Mutual Fund",
+          "Calculate College Goal",
+          "Book Free Consultation"
+        ]
+      };
+    }
+
+    // 10. GOLD & SOVEREIGN GOLD BONDS (SGB)
+    if (q.includes('gold') || q.includes('sgb') || q.includes('sovereign gold') || q.includes('sona') || q.includes('gold etf') || q.includes('gold fund')) {
+      return {
+        text: `Sona khareedne ka sabse smart aur profitable tarika physical jewellery nahi, balki **SGBs & Gold ETFs** hain:\n\n• **Sovereign Gold Bonds (SGB):**\n  - Sone ke daam badhne ka pura faida\n  - Extra **2.50% p.a. guaranteed interest** har 6 mahine par direct bank account mein\n  - 8 saal maturity par **100% Capital Gains TAX-FREE**\n  - Zero making charges, zero GST, zero theft/locker risk!\n• **Portfolio Allocation:** Har investor ko apne portfolio ka **10% se 15%** gold mein rakhna chahiye inflation hedging ke liye.`,
+        chips: [
+          "SGB Secondary Market Buying",
+          "Gold ETF vs Physical Gold",
+          "Portfolio Gold Allocation",
+          "Contact Gold Desk"
+        ]
+      };
+    }
+
+    // 11. BONDS & 54EC (PROPERTY SALE CAPITAL GAIN TAX EXEMPTION)
+    if (q.includes('54ec') || q.includes('property') || q.includes('zameen') || q.includes('makan') || q.includes('plot') || q.includes('capital gain bond') || q.includes('nhai') || q.includes('rec') || q.includes('pfc') || q.includes('irfc')) {
+      return {
+        text: `Agar aapne koi zameen, ghar ya commercial property bechi hai aur aapko bhaari Long-Term Capital Gains (LTCG) tax lag raha hai, to **Section 54EC** aapke liye vardaan hai:\n\n• **Tax Exemption:** Aap **₹50 Lakhs** tak Capital Gain Bonds mein invest karke 100% LTCG tax bacha sakte hain.\n• **Issuers:** NHAI, REC, PFC, IRFC (Govt of India backed, AAA rated).\n• **Lock-in:** 5 saal (Interest rate: ~5.25% p.a. paid annually).\n• **Crucial Rule:** Property sale registry ke **6 mahine ke andar** yeh investment karna anivarya hai.\n\nAssure Securities direct bond application aur documentation support provide karta hai.`,
+        chips: [
+          "54EC Bond Application Support",
+          "Other Capital Gain Options",
+          "Talk to Tax Advisor",
+          "Book Private Meeting"
+        ]
+      };
+    }
+
+    // 12. LIFE & HEALTH INSURANCE (MEDICLAIM, TERM PLAN)
+    if (q.includes('insurance') || q.includes('term plan') || q.includes('term insurance') || q.includes('health insurance') || q.includes('mediclaim') || q.includes('bima') || q.includes('super top up') || q.includes('ayushman') || q.includes('policy')) {
+      return {
+        text: `Financial planning mein Insurance aapka defensive shield hai:\n\n• **Pure Term Life Insurance:** Family ki financial security ke liye aapki annual income ka 10-15 guna cover (e.g. ₹1-2 Crore cover) behad kam premium par.\n• **Comprehensive Health Insurance:** Cashless hospitalization (₹10 Lakh se ₹1 Crore) with 0% co-pay, restoration benefit aur no-claim bonus.\n• **Tax Relief:** Term plan Section 80C mein aur Health cover Section 80D mein tax rebate deta hai.\n\nAssure Securities Care, HDFC ERGO, Star Health, Niva Bupa aur Tata AIG jaise top insurers ke saath tied-up hai.`,
+        chips: [
+          "Get Term Insurance Quote",
+          "Super Top-up Health Cover",
+          "Section 80D Deductions",
+          "Book Policy Review"
+        ]
+      };
+    }
+
+    // 13. PMS & AIF FOR HIGH NET-WORTH INDIVIDUALS (HNIs)
+    if (q.includes('pms') || q.includes('aif') || q.includes('portfolio management') || q.includes('50 lakh') || q.includes('hni') || q.includes('alternate investment') || q.includes('uhni')) {
+      return {
+        text: `HNIs aur affluent families ke liye jinka investable surplus ₹50 Lakhs+ (PMS) ya ₹1 Crore+ (AIF) hai, Assure Securities bespoke wealth management offer karta hai:\n\n• **Concentrated Portfolios:** 15-25 high-conviction alpha generating stocks directly owned in client's Demat account.\n• **Top Fund Managers:** WhiteOak Capital, Marcellus, ASK Investment, ICICI Prudential PMS, Motilal Oswal.\n• **Dedicated Wealth Manager:** Personalized portfolio rebalancing, private analyst briefings aur quarterly family wealth reviews.`,
+        chips: [
+          "Schedule HNI Consultation",
+          "PMS Performance Tracker",
+          "PMS vs Mutual Funds",
+          "Request Callback"
+        ]
+      };
+    }
+
+    // 14. MUTUAL FUND RECOMMENDATIONS / CATEGORIES
+    if (q.includes('fund') || q.includes('mutual') || q.includes('invest') || q.includes('portfolio') || q.includes('pick') || q.includes('konsa') || q.includes('kaun sa') || q.includes('small cap') || q.includes('mid cap') || q.includes('large cap') || q.includes('flexi cap') || q.includes('multicap') || q.includes('baf') || q.includes('hybrid')) {
+      return {
+        text: `Koi ek fund sabke liye best nahi hota — sahi fund aapke **Time Horizon** aur **Risk Profile** par depend karta hai:\n\n• **Long Term Wealth (7+ Years):** Flexi-Cap Funds (Parag Parikh, HDFC, Kotak) & Large-and-Mid Cap Funds. (Historical CAGR: 12-15%)\n• **High Growth / High Risk (10+ Years):** Quality Mid-Cap & Small-Cap Funds for aggressive compounding.\n• **Balanced Growth (3-5 Years):** Balanced Advantage Funds (BAFs) & Multi-Asset Allocation Funds (Automatic equity, debt & gold rebalancing).\n• **Low Risk / Short Term (1-3 Years):** Banking & PSU Debt Funds or Corporate FDs.\n\nHamara advisory desk aapke existing portfolio ka **Free Audit** karta hai!`,
         chips: [
           "Review My Existing Portfolio",
-          "How does Zero Custody Risk work?",
-          "Start with ₹1,000/month",
+          "What is Flexi Cap Fund?",
+          "Conservative vs Aggressive",
+          "Book Free Advisory Call"
+        ]
+      };
+    }
+
+    // 15. DIRECT VS REGULAR MUTUAL FUNDS & COMMISSIONS
+    if (q.includes('direct vs regular') || q.includes('direct fund') || q.includes('commission') || q.includes('kya charge') || q.includes('fees') || q.includes('free') || q.includes('kharcha') || q.includes('cost')) {
+      return {
+        text: `**Puri Transparency:** Assure Securities AMFI-registered distributor hai aur hum Regular plans distribute karte hain. Hamara trail commission mutual fund houses (AMCs) se aata hai. **Client se koi advisory fee ya hidden charges nahi liye jaate.**\n\n**Direct vs Assure Regular:**\n• Direct funds mein ~0.5% expense ratio bachta hai, lekin research dikhati hai ki **80% se zyada direct DIY investors market crash mein panic sell karke ya galat fund chun kar 3-5% ka nuksan kar lete hain**.\n• Assure Securities ke saath aapko milta hai: Dedicated Advisor, Annual Rebalancing, Tax-Loss Harvesting, Paperless e-KYC aur door-step family claim assistance.`,
+        chips: [
+          "View Commission Disclosure",
+          "Book Free Portfolio Review",
+          "Start Disciplined SIP",
+          "Talk to Advisor"
+        ]
+      };
+    }
+
+    // 16. EMERGENCY FUND & LIQUID FUNDS
+    if (q.includes('emergency fund') || q.includes('liquid fund') || q.includes('savings account') || q.includes('parking money') || q.includes('overnight fund') || q.includes('short term')) {
+      return {
+        text: `Har vyakti ke paas **6 se 12 mahine ke kharche** ka Emergency Fund hona chahiye.\n\n• Bank savings account mein pada paisa sirf 2.7% - 3.0% byaj deta hai aur mehangai se kamzor hota hai.\n• **Liquid Mutual Funds** mein invest karne par aapko **~6.5% se 7.2% p.a.** return milta hai.\n• **Instant Redemption:** Emergency padne par ₹50,000 ya 90% tak ka paisa 30 minutes ke andar 24x7 aapke bank account mein credit ho jata hai!\n• AAA rated sovereign & T-bill security.`,
+        chips: [
+          "Start Liquid Fund Parking",
+          "Liquid Fund vs FD",
+          "Calculate Emergency Corpus",
+          "Talk to Advisor"
+        ]
+      };
+    }
+
+    // 17. KYC & DOCUMENTS REQUIRED
+    if (q.includes('kyc') || q.includes('document') || q.includes('pan') || q.includes('aadhaar') || q.includes('cheque') || q.includes('paperwork')) {
+      return {
+        text: `Assure Securities ke saath mutual fund shuru karne ke liye sirf yeh basic documents chahiye (100% Online & Paperless):\n\n1️⃣ **PAN Card** (Mandatory for financial investments)\n2️⃣ **Aadhaar Card** (Address verification via Digilocker OTP)\n3️⃣ **Bank Account Proof** (Cancelled cheque ya passbook copy with name & IFSC)\n4️⃣ **Live Selfie / Photo**\n\nHamara technical desk 10 minute mein aapka online KYC complete karwa deta hai bina kisi charge ke!`,
+        chips: [
+          "Start Online KYC with Advisor",
+          "Send Documents on WhatsApp",
           "Book Advisory Call"
         ]
       };
     }
 
-    // 5. Contact / Office / Location
-    if (q.includes('contact') || q.includes('office') || q.includes('address') || q.includes('lucknow') || q.includes('phone') || q.includes('call') || q.includes('location')) {
+    // 18. ABOUT ASSURE SECURITIES, AMFI ARN-182137 & PRADEEP BAJPAI
+    if (q.includes('about') || q.includes('pradeep') || q.includes('bajpai') || q.includes('arn') || q.includes('amfi') || q.includes('licence') || q.includes('license') || q.includes('founder') || q.includes('owner')) {
       return {
-        text: `You can reach the Assure Securities team anytime:\n\n📍 **Headquarters:**\n2/163 Vishal Khand, Gomtinagar, Lucknow - 226010, Uttar Pradesh\n\n📞 **Helpline:** +91 9455555742 / 09170707555\n✉️ **Email:** care@assuresecurities.in\n🕒 **Hours:** Monday – Saturday, 9:30 AM to 6:30 PM\n\nWould you like a senior advisor to call you back today?`,
+        text: `**Assure Securities** ko lead karte hain **Pradeep Bajpai**, jinke paas Indian capital markets aur wealth management ka **25+ saal** ka vishal anubhav hai:\n\n• **AMFI ARN:** \`ARN-182137\` (Valid till 19 July 2027)\n• **Fiduciary Standard:** 100% compliant with SEBI regulations and AMFI code of conduct.\n• **Zero Custody Risk:** Assure Securities never holds client funds. All transactions settle directly through the official mutual fund houses (AMCs) and BSE StAR MF exchange infrastructure.\n• **Track Record:** 3,500+ satisfied client families across Uttar Pradesh and India.`,
         chips: [
-          "Request a Callback",
-          "Chat on WhatsApp",
-          "Get Google Maps Route",
-          "View ARN Verification"
+          "Verify on AMFI Portal",
+          "Book Meeting with Pradeep Bajpai",
+          "Visit Lucknow Office",
+          "View Products"
         ]
       };
     }
 
-    // 6. ARN / Credibility / Safety
-    if (q.includes('arn') || q.includes('amfi') || q.includes('safe') || q.includes('sebi') || q.includes('license') || q.includes('pradeep')) {
-      return {
-        text: `**Assure Securities** is an authorized, AMFI-registered Mutual Fund Distributor:\n\n• **AMFI ARN:** \`ARN-182137\`\n• **Registration Date:** 20 July 2021 (Valid till 19 July 2027)\n• **Fiduciary Standard:** 100% compliant with SEBI regulations and AMFI code of conduct.\n• **Zero Custody Risk:** Assure Securities never holds client funds. All transactions settle directly through the official mutual fund houses (AMCs) and BSE StAR MF exchange infrastructure.`,
-        chips: [
-          "Check AMFI Portal",
-          "Who is the Founder?",
-          "How to Start Investing?",
-          "Book Consultation"
-        ]
-      };
-    }
-
-    // 7. Consultation / Booking
+    // 19. CONSULTATION / MEETING / BOOKING / ADVISOR TALK
     if (q.includes('consultation') || q.includes('advisor') || q.includes('talk') || q.includes('book') || q.includes('meeting') || q.includes('callback') || q.includes('appointment')) {
       return {
         text: `We'd love to assist you! You can book a 1-on-1 personalized portfolio strategy session with our certified wealth advisors.\n\nClick the button below or leave your mobile number directly in this chat, and our advisory desk will connect with you shortly.`,
@@ -441,27 +548,29 @@ export default function Chatbot({ onOpenModal }) {
       };
     }
 
-    // 8. KYC / Documents
-    if (q.includes('kyc') || q.includes('document') || q.includes('pan') || q.includes('aadhaar')) {
+    // 20. CONTACT / OFFICE / LOCATION / LUCKNOW
+    if (q.includes('contact') || q.includes('office') || q.includes('address') || q.includes('lucknow') || q.includes('phone') || q.includes('call') || q.includes('location') || q.includes('gomti')) {
       return {
-        text: `Starting mutual fund investments requires a one-time simple **e-KYC**:\n\n1. **PAN Card** (Mandatory for financial verification)\n2. **Aadhaar Card** (For address verification)\n3. **Bank Account Details** (Cancelled cheque or passbook copy with IFSC)\n4. **Passport-size Photo / Selfie**\n\nOur team can complete your online KYC in less than 10 minutes free of charge!`,
+        text: `You can reach the Assure Securities team anytime:\n\n📍 **Headquarters:**\n2/163 Vishal Khand, Gomtinagar, Lucknow - 226010, Uttar Pradesh\n\n📞 **Helpline:** +91 9455555742 / 09170707555\n📱 **WhatsApp Direct:** +91 94151 08197\n✉️ **Email:** care@assuresecurities.in\n🕒 **Hours:** Monday – Saturday, 9:30 AM to 6:30 PM\n\nWould you like a senior advisor to call you back today?`,
         chips: [
-          "Start Online KYC with Advisor",
-          "Calculate SIP Returns",
-          "Book Consultation"
+          "Request a Callback",
+          "Chat on WhatsApp",
+          "Get Google Maps Route",
+          "View ARN Verification"
         ]
       };
     }
 
-    // Default Fallback
+    // 21. SMART FALLBACK
     return {
-      text: `Thank you for reaching out! While I am learning every day, our senior wealth advisory desk in Gomtinagar, Lucknow can provide detailed guidance tailored specifically to your financial objectives.\n\nFeel free to explore our popular topics below or connect with our desk directly:`,
+      text: `Thank you for reaching out! Main aapki baat samajh raha hoon. Hamara Gomtinagar, Lucknow advisory desk aapke personalized goals ke mutabiq detailed plan taiyyar karta hai.\n\nAap in popular financial topics mein se kisi par bhi click kar sakte hain ya direct humse connect kar sakte hain:`,
       chips: [
         "Calculate SIP Returns",
-        "Explore Mutual Fund Options",
-        "Fixed Deposits & Bonds",
+        "Kaise Invest Karein?",
+        "Best Mutual Funds 2026",
         "Tax Saving (ELSS)",
-        "Talk to a Senior Advisor"
+        "Fixed Deposits & Bonds",
+        "Senior Advisor Se Baat Karein"
       ]
     };
   };
@@ -498,12 +607,27 @@ export default function Chatbot({ onOpenModal }) {
       };
 
       setMessages(prev => [...prev, botMsg]);
-    }, 650);
+    }, 550);
   };
 
   // Handle Quick Chip Click
   const handleChipClick = (chip) => {
-    if (chip === "Book Free Consultation" || chip === "Book Consultation" || chip === "Book Advisory Call" || chip === "Start SIP with an Advisor") {
+    const consultationChips = [
+      "Book Free Consultation", 
+      "Book Consultation", 
+      "Book Advisory Call", 
+      "Start SIP with an Advisor",
+      "Senior Advisor Se Baat Karein",
+      "Talk to Human Advisor",
+      "Talk to Pradeep Bajpai",
+      "Book Meeting with Pradeep Bajpai",
+      "Start Free e-KYC with Advisor",
+      "Schedule HNI Consultation",
+      "Book Tax Strategy Session",
+      "Book Private Meeting"
+    ];
+
+    if (consultationChips.includes(chip)) {
       if (onOpenModal) {
         onOpenModal('consultation');
       } else {
@@ -511,14 +635,26 @@ export default function Chatbot({ onOpenModal }) {
       }
       return;
     }
-    if (chip === "Chat on WhatsApp" || chip === "Connect on WhatsApp Now") {
+
+    if (chip === "Chat on WhatsApp" || chip === "Connect on WhatsApp Now" || chip === "Chat on WhatsApp Now" || chip === "Send Documents on WhatsApp" || chip === "WhatsApp Desk") {
       window.open(`https://wa.me/${COMPANY_INFO.whatsapp}?text=Hi%20Assure%20Securities,%20I%20would%20like%20to%20consult%20an%20advisor.`, '_blank');
       return;
     }
-    if (chip === "Get Google Maps Route") {
+
+    if (chip === "Get Google Maps Route" || chip === "Visit Lucknow Office" || chip === "Get Google Maps Directions") {
       window.open(COMPANY_INFO.googleMapsUrl, '_blank');
       return;
     }
+
+    if (chip === "Verify on AMFI Portal" || chip === "View ARN Verification") {
+      window.open('https://www.amfiindia.com/locate-your-nearest-mutual-fund-distributor-details', '_blank');
+      return;
+    }
+
+    if (chip === "SIP Calculator Khologe?" || chip === "Calculate SIP Returns" || chip === "Calculate My SIP") {
+      setShowInlineCalc(true);
+    }
+
     handleSendMessage(chip);
   };
 
@@ -558,95 +694,92 @@ export default function Chatbot({ onOpenModal }) {
   // POINTER EVENT DRAG & CLICK CONTROLLERS
   const handlePointerDown = (e) => {
     if (e.button !== undefined && e.button !== 0) return; // Left click / touch only
+    e.stopPropagation();
+
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const initialX = pos.x;
+    const initialY = pos.y;
+    let hasMoved = false;
+
     pointerState.current = {
       isDown: true,
-      startX: e.clientX,
-      startY: e.clientY,
-      initialX: pos.x,
-      initialY: pos.y,
+      startX,
+      startY,
+      initialX,
+      initialY,
       moved: false,
       pointerId: e.pointerId
     };
-    try {
-      e.currentTarget.setPointerCapture(e.pointerId);
-    } catch {}
-  };
 
-  const handlePointerMove = (e) => {
-    if (!pointerState.current.isDown) return;
-    const dx = e.clientX - pointerState.current.startX;
-    const dy = e.clientY - pointerState.current.startY;
-    const distance = Math.hypot(dx, dy);
+    const handleWindowPointerMove = (moveEvt) => {
+      if (!pointerState.current.isDown) return;
+      const dx = moveEvt.clientX - startX;
+      const dy = moveEvt.clientY - startY;
+      const distance = Math.hypot(dx, dy);
 
-    // Movement threshold of 7px to distinguish drag vs click
-    if (distance > 7) {
-      if (!pointerState.current.moved) {
-        pointerState.current.moved = true;
-        setIsDragging(true);
-        setShowIntroPopup(false);
-      }
-
-      const isMobile = window.innerWidth < 640;
-      const btnSize = isMobile ? 60 : 64;
-      const minX = isMobile ? 12 : 20;
-      const maxX = window.innerWidth - btnSize - minX;
-      const minY = window.innerWidth < 768 ? 60 : 70;
-      const maxY = window.innerHeight - btnSize - minX;
-
-      let targetX = pointerState.current.initialX + dx;
-      let targetY = pointerState.current.initialY + dy;
-
-      targetX = clamp(targetX, minX, maxX);
-      targetY = clamp(targetY, minY, maxY);
-
-      // WhatsApp safety clearance (WhatsApp is at bottom: 24, right: 24)
-      const waX = window.innerWidth - 76;
-      const waY = window.innerHeight - 76;
-      if (Math.abs(targetX - waX) < 55 && Math.abs(targetY - waY) < 55) {
-        if (targetY > waY - 58) {
-          targetY = Math.max(minY, waY - 68);
+      // Movement threshold of 5px to distinguish drag vs click
+      if (distance > 5) {
+        if (!hasMoved) {
+          hasMoved = true;
+          pointerState.current.moved = true;
+          setIsDragging(true);
         }
+
+        const isMobile = window.innerWidth < 640;
+        const btnSize = isMobile ? 60 : 64;
+        const minX = 8;
+        const maxX = window.innerWidth - btnSize - 8;
+        const minY = 55;
+        const maxY = window.innerHeight - btnSize - 8; // Right down to the extreme corner!
+
+        let targetX = clamp(initialX + dx, minX, maxX);
+        let targetY = clamp(initialY + dy, minY, maxY);
+
+        // WhatsApp is at bottom-left (left: 24, bottom: 24). Avoid overlap only if moved directly over bottom-left
+        if (targetX < 80 && targetY > window.innerHeight - 90) {
+          targetY = Math.max(minY, window.innerHeight - 90 - btnSize);
+        }
+
+        setPos({ x: targetX, y: targetY });
       }
+    };
 
-      setPos({ x: targetX, y: targetY });
-    }
-  };
+    const handleWindowPointerUp = () => {
+      window.removeEventListener('pointermove', handleWindowPointerMove);
+      window.removeEventListener('pointerup', handleWindowPointerUp);
+      window.removeEventListener('pointercancel', handleWindowPointerCancel);
 
-  const handlePointerUp = (e) => {
-    if (!pointerState.current.isDown) return;
-    pointerState.current.isDown = false;
-    try {
-      e.currentTarget.releasePointerCapture(e.pointerId);
-    } catch {}
+      if (!pointerState.current.isDown) return;
+      pointerState.current.isDown = false;
 
-    if (pointerState.current.moved) {
-      // Snap gently to nearest edge if close
-      const isMobile = window.innerWidth < 640;
-      const btnSize = isMobile ? 60 : 64;
-      const minX = isMobile ? 12 : 20;
-      const maxX = window.innerWidth - btnSize - minX;
-      let finalX = pos.x;
+      if (pointerState.current.moved) {
+        setTimeout(() => setIsDragging(false), 60);
+        // Save freely chosen position to localStorage
+        setPos(currentPos => {
+          try {
+            localStorage.setItem('assure_ai_brain_pos', JSON.stringify(currentPos));
+          } catch {}
+          return currentPos;
+        });
+      } else {
+        // Plain Click -> Toggle Chat
+        setIsDragging(false);
+        setIsOpen(prev => !prev);
+      }
+    };
 
-      if (finalX < minX + 35) finalX = minX;
-      else if (finalX > maxX - 35) finalX = maxX;
-
-      setPos(prev => ({ ...prev, x: finalX }));
-
-      try {
-        localStorage.setItem('assure_ai_brain_pos', JSON.stringify({ x: finalX, y: pos.y }));
-      } catch {}
-
-      setTimeout(() => setIsDragging(false), 80);
-    } else {
-      // Regular Click detected
+    const handleWindowPointerCancel = () => {
+      window.removeEventListener('pointermove', handleWindowPointerMove);
+      window.removeEventListener('pointerup', handleWindowPointerUp);
+      window.removeEventListener('pointercancel', handleWindowPointerCancel);
+      pointerState.current.isDown = false;
       setIsDragging(false);
-      setIsOpen(prev => !prev);
-    }
-  };
+    };
 
-  const handlePointerCancel = () => {
-    pointerState.current.isDown = false;
-    setIsDragging(false);
+    window.addEventListener('pointermove', handleWindowPointerMove, { passive: false });
+    window.addEventListener('pointerup', handleWindowPointerUp);
+    window.addEventListener('pointercancel', handleWindowPointerCancel);
   };
 
   // Keyboard navigation for trigger
@@ -719,12 +852,14 @@ export default function Chatbot({ onOpenModal }) {
 
   const isMobile = window.innerWidth < 640;
   const btnSize = isMobile ? 60 : 64;
-  const isRightHalf = pos.x > window.innerWidth / 2;
-  const isBottomHalf = pos.y > window.innerHeight / 2;
+  const safeX = (pos.x && pos.x > 300) ? pos.x : (typeof window !== 'undefined' ? window.innerWidth - btnSize - 20 : 1200);
+  const safeY = (pos.y && pos.y > 300) ? pos.y : (typeof window !== 'undefined' ? window.innerHeight - btnSize - 24 : 700);
+  const isRightHalf = safeX > window.innerWidth / 2;
+  const isBottomHalf = safeY > window.innerHeight / 2;
 
   return (
     <>
-      {/* 1. Independent Floating WhatsApp Button */}
+      {/* 1. Independent Floating WhatsApp Button (Bottom-Left with Official WhatsApp Logo) */}
       <a
         href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=Hi%20Assure%20Securities,%20I%20would%20like%20to%20consult%20with%20an%20advisor.`}
         target="_blank"
@@ -732,35 +867,44 @@ export default function Chatbot({ onOpenModal }) {
         style={{
           position: 'fixed',
           bottom: '24px',
-          right: '24px',
-          width: '46px',
-          height: '46px',
+          left: '24px',
+          width: '52px',
+          height: '52px',
           borderRadius: '50%',
-          background: '#25D366',
+          background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
           color: '#ffffff',
           display: isMobile && isOpen ? 'none' : 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 16px rgba(37, 211, 102, 0.45)',
+          boxShadow: '0 8px 24px rgba(37, 211, 102, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.4)',
           zIndex: 980,
           cursor: 'pointer',
           textDecoration: 'none',
-          transition: 'transform 0.25s ease'
+          transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease'
         }}
-        title="Connect on WhatsApp"
-        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+        title="Connect on WhatsApp: +91 94151 08197"
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'scale(1.1) translateY(-2px)';
+          e.currentTarget.style.boxShadow = '0 12px 28px rgba(37, 211, 102, 0.65)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'scale(1)';
+          e.currentTarget.style.boxShadow = '0 8px 24px rgba(37, 211, 102, 0.5)';
+        }}
         aria-label="Connect with Assure Securities on WhatsApp"
       >
-        <Phone size={20} />
+        {/* Official WhatsApp SVG Vector Logo */}
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.27-2.42 5.82a8.17 8.17 0 01-5.82 2.42c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 01-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24zm4.8 11.64c-.26-.13-1.56-.77-1.8-.86-.24-.09-.42-.13-.6.13-.18.26-.69.86-.84 1.04-.16.18-.31.2-.58.07-.26-.13-1.11-.41-2.12-1.31-.78-.7-1.31-1.56-1.46-1.82-.16-.26-.02-.4.11-.53.12-.12.26-.31.4-.46.13-.16.18-.26.26-.44.09-.18.04-.33-.02-.46-.07-.13-.6-1.45-.82-1.99-.22-.53-.44-.45-.6-.46-.16-.01-.33-.01-.51-.01-.18 0-.46.07-.71.33-.24.26-.93.91-.93 2.22s.95 2.58 1.09 2.76c.13.18 1.88 2.87 4.55 4.02.64.28 1.13.44 1.52.56.64.2 1.22.18 1.68.11.51-.08 1.56-.64 1.78-1.25.22-.62.22-1.14.16-1.25-.07-.12-.24-.19-.51-.32z"/>
+        </svg>
       </a>
 
       {/* 2. Draggable AI Brain Button Anchor */}
       <div 
         style={{
           position: 'fixed',
-          left: `${pos.x}px`,
-          top: `${pos.y}px`,
+          left: `${safeX}px`,
+          top: `${safeY}px`,
           width: `${btnSize}px`,
           height: `${btnSize}px`,
           zIndex: 1500,
@@ -769,63 +913,106 @@ export default function Chatbot({ onOpenModal }) {
           WebkitUserSelect: 'none'
         }}
       >
-        {/* Intro Greeting Speech Card (Phase 8 Premium Floating AI Assistant) */}
+        {/* Intro Greeting Speech Card (Assure Bot • Powered by jobgen.ai) */}
         {showIntroPopup && !isOpen && !isDragging && (
           <div 
+            onClick={() => { setIsOpen(true); }}
             style={{
               position: 'absolute',
-              bottom: isBottomHalf ? `${btnSize + 12}px` : 'auto',
-              top: !isBottomHalf ? `${btnSize + 12}px` : 'auto',
+              bottom: isBottomHalf ? `${btnSize + 14}px` : 'auto',
+              top: !isBottomHalf ? `${btnSize + 14}px` : 'auto',
               right: isRightHalf ? '0' : 'auto',
               left: !isRightHalf ? '0' : 'auto',
-              minWidth: '220px',
-              maxWidth: '260px',
-              background: '#ffffff',
+              minWidth: '255px',
+              maxWidth: 'min(300px, calc(100vw - 32px))',
+              background: '#0B0F17',
               borderRadius: '16px',
               padding: '12px 14px',
-              boxShadow: '0 16px 36px -4px rgba(7, 26, 47, 0.25), 0 4px 12px rgba(0,0,0,0.06)',
-              border: '1px solid #E2E8F0',
-              animation: 'introCardFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+              boxShadow: '0 20px 45px -8px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(56, 189, 248, 0.3)',
+              border: '1px solid rgba(56, 189, 248, 0.35)',
+              animation: 'introCardFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
               pointerEvents: 'auto',
+              cursor: 'pointer',
               zIndex: 1650
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px' }}>
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{ fontSize: '1rem' }}>👋</span>
-                  <span style={{ fontWeight: 800, fontSize: '0.9rem', color: '#071A2F', letterSpacing: '-0.01em' }}>Hi, I'm Assure AI</span>
-                </div>
-                <div style={{ fontSize: '0.8rem', color: '#334155', fontWeight: 600, marginTop: '2px' }}>
-                  How can I help you?
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '10px' }}>
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                <img 
+                  src="/assets/assure-bot-logo.png" 
+                  alt="Assure Securities Bot Logo" 
+                  draggable={false}
+                  style={{
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '50%',
+                    objectFit: 'cover',
+                    flexShrink: 0,
+                    border: '1.5px solid rgba(56, 189, 248, 0.5)',
+                    boxShadow: '0 0 10px rgba(56, 189, 248, 0.25)',
+                    marginTop: '2px',
+                    pointerEvents: 'none'
+                  }}
+                />
+                <div>
+                  <div style={{ fontWeight: 800, fontSize: '0.94rem', color: '#ffffff', letterSpacing: '-0.01em', lineHeight: 1.25 }}>
+                    Assure Securities
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '2px' }}>
+                    <span style={{ fontWeight: 800, fontSize: '0.90rem', color: '#38BDF8', letterSpacing: '-0.01em' }}>
+                      Bot
+                    </span>
+                    <span style={{ fontSize: '0.58rem', background: 'rgba(16, 185, 129, 0.2)', color: '#10B981', border: '1px solid rgba(16, 185, 129, 0.4)', padding: '1px 5px', borderRadius: '4px', fontWeight: 700 }}>
+                      ONLINE
+                    </span>
+                  </div>
+                  
+                  {/* Chota sa niche powered by jobgen.ai */}
+                  <div style={{
+                    fontSize: '0.67rem',
+                    color: '#94A3B8',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    marginTop: '3px',
+                    marginBottom: '6px'
+                  }}>
+                    <span>powered by</span>
+                    <strong style={{ color: '#38BDF8', fontWeight: 700 }}>jobgen.ai</strong>
+                  </div>
+
+                  <div style={{ fontSize: '0.78rem', color: '#CBD5E1', fontWeight: 500, lineHeight: 1.4 }}>
+                    Hi! Ask me about SIPs, Top Mutual Funds & Wealth Advisory.
+                  </div>
                 </div>
               </div>
               <button 
-                onClick={(e) => { e.stopPropagation(); setShowIntroPopup(false); sessionStorage.setItem('assure_ai_intro_seen', 'true'); }}
-                style={{ background: 'rgba(0,0,0,0.04)', border: 'none', color: '#64748b', cursor: 'pointer', padding: '3px', display: 'flex', borderRadius: '50%', transition: 'background 0.2s' }}
+                onClick={(e) => { e.stopPropagation(); setShowIntroPopup(false); }}
+                style={{ background: 'rgba(255,255,255,0.08)', border: 'none', color: '#94A3B8', cursor: 'pointer', padding: '4px', display: 'flex', borderRadius: '50%', transition: 'background 0.2s', flexShrink: 0 }}
                 aria-label="Close greeting"
-                title="Dismiss greeting"
+                title="Dismiss"
               >
                 <X size={13} />
               </button>
             </div>
             
-            <div style={{ marginTop: '8px', paddingTop: '6px', borderTop: '1px solid #f1f5f9', fontSize: '0.72rem', color: '#10B981', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span>Ask about SIPs, Funds, or drag me anywhere!</span>
+            <div style={{ marginTop: '8px', paddingTop: '7px', borderTop: '1px solid rgba(255, 255, 255, 0.08)', fontSize: '0.7rem', color: '#10B981', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span>Click to open chat</span>
+              <span style={{ opacity: 0.6, fontSize: '0.65rem', color: '#94A3B8' }}>Drag anywhere ⇄</span>
             </div>
 
             {/* Speech bubble pointer notch */}
             <div 
               style={{
                 position: 'absolute',
-                [isBottomHalf ? 'bottom' : 'top']: '-5px',
-                [isRightHalf ? 'right' : 'left']: `${Math.min(btnSize / 2 - 4, 30)}px`,
+                [isBottomHalf ? 'bottom' : 'top']: '-6px',
+                [isRightHalf ? 'right' : 'left']: `${Math.min(btnSize / 2 - 4, 32)}px`,
                 width: '10px',
                 height: '10px',
-                background: '#ffffff',
-                borderRight: '1px solid #E2E8F0',
-                borderBottom: isBottomHalf ? '1px solid #E2E8F0' : 'none',
-                borderTop: !isBottomHalf ? '1px solid #E2E8F0' : 'none',
+                background: '#0B0F17',
+                borderRight: '1px solid rgba(56, 189, 248, 0.35)',
+                borderBottom: isBottomHalf ? '1px solid rgba(56, 189, 248, 0.35)' : 'none',
+                borderTop: !isBottomHalf ? '1px solid rgba(56, 189, 248, 0.35)' : 'none',
                 transform: 'rotate(45deg)',
                 pointerEvents: 'none'
               }}
@@ -833,28 +1020,42 @@ export default function Chatbot({ onOpenModal }) {
           </div>
         )}
 
-        {/* Hover Tooltip (Desktop) */}
-        {!isMobile && isHovered && !showIntroPopup && !isOpen && !isDragging && (
+        {/* Persistent Bot Name Pill attached to launcher when card is dismissed */}
+        {!showIntroPopup && !isOpen && !isDragging && (
           <div 
+            onClick={() => setShowIntroPopup(true)}
             style={{
               position: 'absolute',
-              bottom: '100%',
-              left: '50%',
-              transform: 'translateX(-50%) translateY(-8px)',
-              background: '#071A2F',
-              color: '#ffffff',
-              padding: '4px 10px',
-              borderRadius: '8px',
-              fontSize: '0.72rem',
-              fontWeight: 600,
+              bottom: isBottomHalf ? `${btnSize + 10}px` : 'auto',
+              top: !isBottomHalf ? `${btnSize + 10}px` : 'auto',
+              right: isRightHalf ? '0' : 'auto',
+              left: !isRightHalf ? '0' : 'auto',
+              background: '#0B0F17',
+              borderRadius: '12px',
+              padding: '6px 12px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: isRightHalf ? 'flex-end' : 'flex-start',
+              gap: '2px',
+              boxShadow: '0 12px 30px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(56, 189, 248, 0.35)',
+              border: '1px solid rgba(56, 189, 248, 0.4)',
+              animation: 'introCardFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+              pointerEvents: 'auto',
+              cursor: 'pointer',
               whiteSpace: 'nowrap',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-              border: '1px solid rgba(22, 185, 129, 0.4)',
-              pointerEvents: 'none',
-              animation: 'tooltipFade 0.2s ease-out'
+              zIndex: 1640
             }}
+            title="Click to show info"
           >
-            Assure AI • Drag or Click to Chat
+            <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <span style={{ fontWeight: 800, fontSize: '0.82rem', color: '#ffffff', letterSpacing: '-0.01em' }}>
+                Assure Securities
+              </span>
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981', boxShadow: '0 0 8px #10B981' }} />
+            </div>
+            <div style={{ fontSize: '0.67rem', color: '#94A3B8' }}>
+              <strong style={{ color: '#38BDF8' }}>Bot</strong> • powered by <strong style={{ color: '#38BDF8' }}>jobgen.ai</strong>
+            </div>
           </div>
         )}
 
@@ -865,9 +1066,6 @@ export default function Chatbot({ onOpenModal }) {
           aria-label={isOpen ? "Close Assure AI assistant" : "Open Assure AI assistant (Draggable)"}
           aria-expanded={isOpen}
           onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerUp}
-          onPointerCancel={handlePointerCancel}
           onKeyDown={handleKeyDownTrigger}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -879,7 +1077,7 @@ export default function Chatbot({ onOpenModal }) {
             outline: 'none',
             transform: isDragging ? 'scale(1.08)' : isHovered ? 'scale(1.04)' : 'scale(1)',
             transition: isDragging ? 'none' : 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-            filter: isDragging ? 'drop-shadow(0 15px 25px rgba(7, 26, 47, 0.5))' : 'none'
+            filter: isDragging ? 'drop-shadow(0 15px 25px rgba(0, 0, 0, 0.7))' : 'none'
           }}
         >
           {isOpen ? (
@@ -888,15 +1086,15 @@ export default function Chatbot({ onOpenModal }) {
                 width: '100%',
                 height: '100%',
                 borderRadius: '50%',
-                background: '#071A2F',
-                border: '1.5px solid #16B981',
+                background: '#090a0d',
+                border: '1.5px solid var(--color-gold)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 8px 24px rgba(7, 26, 47, 0.4)'
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.6), 0 0 16px var(--color-gold-glow)'
               }}
             >
-              <X size={24} color="#16B981" />
+              <X size={22} color="var(--color-gold)" />
             </div>
           ) : (
             <>
@@ -910,10 +1108,10 @@ export default function Chatbot({ onOpenModal }) {
                   right: '2px',
                   width: '11px',
                   height: '11px',
-                  background: '#10B981',
+                  background: 'var(--color-gold)',
                   borderRadius: '50%',
-                  border: '2px solid #071A2F',
-                  boxShadow: '0 0 8px #10B981',
+                  border: '2px solid #090a0d',
+                  boxShadow: '0 0 8px var(--color-gold)',
                   zIndex: 4
                 }}
                 title="Assure AI: Online & Ready"
@@ -922,20 +1120,20 @@ export default function Chatbot({ onOpenModal }) {
               </div>
             </>
           )}
+          </div>
         </div>
-      </div>
 
       {/* 3. Intelligently Positioned Chatbot Window */}
       {isOpen && (
         <div 
           style={{
             ...getChatWindowStyle(),
-            background: 'rgba(255, 255, 255, 0.96)',
+            background: '#0e1117',
             backdropFilter: 'blur(24px)',
             WebkitBackdropFilter: 'blur(24px)',
-            borderRadius: isMobile ? '20px 20px 0 0' : '20px',
-            boxShadow: '0 24px 60px rgba(7, 26, 47, 0.28), 0 4px 20px rgba(0,0,0,0.06)',
-            border: '1px solid rgba(229, 234, 240, 0.85)',
+            borderRadius: isMobile ? '12px 12px 0 0' : '4px',
+            boxShadow: '0 24px 60px rgba(0, 0, 0, 0.8), 0 0 20px rgba(16, 185, 129, 0.1)',
+            border: '1px solid var(--color-gold-border)',
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
@@ -945,46 +1143,59 @@ export default function Chatbot({ onOpenModal }) {
           {/* Header */}
           <div 
             style={{
-              background: 'linear-gradient(135deg, #071A2F 0%, #0d2746 100%)',
-              color: '#ffffff',
+              background: '#121620',
+              color: 'var(--color-text)',
               padding: '0.95rem 1.15rem',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              borderBottom: '1px solid rgba(255,255,255,0.08)'
+              borderBottom: '1px solid var(--color-border)'
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <div 
+              <img 
+                src="/assets/assure-bot-logo.png" 
+                alt="Assure Securities Bot Logo" 
                 style={{
-                  width: '36px',
-                  height: '36px',
+                  width: '38px',
+                  height: '38px',
                   borderRadius: '50%',
-                  background: 'rgba(22, 185, 129, 0.15)',
-                  border: '1.5px solid #16B981',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  position: 'relative'
+                  objectFit: 'cover',
+                  border: '1.5px solid rgba(56, 189, 248, 0.45)',
+                  boxShadow: '0 0 10px rgba(56, 189, 248, 0.25)',
+                  flexShrink: 0
                 }}
-              >
-                <img 
-                  src="/assets/favicon.png" 
-                  alt="Assure" 
-                  style={{ width: '18px', height: '18px', objectFit: 'contain' }}
-                  onError={(e) => e.currentTarget.style.display = 'none'} 
-                />
-              </div>
+              />
               <div>
-                <div style={{ fontSize: '0.95rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span>Assure AI</span>
-                  <span style={{ fontSize: '0.62rem', background: 'rgba(22, 185, 129, 0.2)', color: '#16B981', padding: '1px 6px', borderRadius: '4px', fontWeight: 800 }}>
-                    FINTECH 2026
-                  </span>
+                <div style={{ fontSize: '0.94rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ color: '#ffffff', letterSpacing: '-0.01em', fontWeight: 800 }}>Assure Securities Bot</span>
+                  <a 
+                    href="https://jobgen.ai" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    title="Powered by jobgen.ai"
+                    style={{ 
+                      fontSize: '0.62rem', 
+                      background: 'rgba(56, 189, 248, 0.12)', 
+                      border: '1px solid rgba(56, 189, 248, 0.35)', 
+                      color: '#38BDF8', 
+                      padding: '2px 7px', 
+                      borderRadius: '12px', 
+                      fontWeight: 700, 
+                      letterSpacing: '0.04em',
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '3px'
+                    }}
+                  >
+                    <span>POWERED BY JOBGEN.AI</span>
+                    <ExternalLink size={9} />
+                  </a>
                 </div>
-                <div style={{ fontSize: '0.72rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '6px', marginTop: '1px' }}>
-                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#16B981', display: 'inline-block', boxShadow: '0 0 6px #16B981' }} />
-                  <span>ARN-182137 Certified • Ready</span>
+                <div style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)', display: 'flex', alignItems: 'center', gap: '6px', marginTop: '2px', fontFamily: 'var(--font-mono)' }}>
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
+                  <span>ARN-182137 Certified • Online Advisory</span>
                 </div>
               </div>
             </div>
@@ -995,44 +1206,44 @@ export default function Chatbot({ onOpenModal }) {
                 onClick={handleReset}
                 title="Reset Conversation"
                 style={{
-                  background: 'rgba(255,255,255,0.08)',
-                  border: 'none',
-                  color: '#94a3b8',
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid var(--color-border)',
+                  color: 'var(--color-text-muted)',
                   padding: '6px',
-                  borderRadius: '8px',
+                  borderRadius: '2px',
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   transition: 'color 0.2s'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
-                onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-gold)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted)'}
                 aria-label="Reset conversation"
               >
-                <RotateCcw size={15} />
+                <RotateCcw size={14} />
               </button>
               
               <button
                 onClick={() => setIsOpen(false)}
                 title="Close Chat"
                 style={{
-                  background: 'rgba(255,255,255,0.08)',
-                  border: 'none',
-                  color: '#94a3b8',
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid var(--color-border)',
+                  color: 'var(--color-text-muted)',
                   padding: '6px',
-                  borderRadius: '8px',
+                  borderRadius: '2px',
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   transition: 'color 0.2s'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
-                onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-gold)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted)'}
                 aria-label="Close chat window"
               >
-                <X size={16} />
+                <X size={15} />
               </button>
             </div>
           </div>
@@ -1040,28 +1251,29 @@ export default function Chatbot({ onOpenModal }) {
           {/* Direct AMC Settlement Strip */}
           <div 
             style={{
-              background: '#F0FDF4',
-              color: '#166534',
+              background: '#090a0d',
+              color: 'var(--color-text-secondary)',
               padding: '6px 14px',
-              fontSize: '0.74rem',
-              fontWeight: 600,
+              fontSize: '0.72rem',
+              fontWeight: 500,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              borderBottom: '1px solid #DCFCE7'
+              borderBottom: '1px solid var(--color-border)',
+              fontFamily: 'var(--font-mono)'
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <ShieldCheck size={14} color="#16B981" />
+              <ShieldCheck size={13} color="var(--color-gold)" />
               <span>Direct AMC Settlement • Zero Custody Risk</span>
             </div>
             <a 
               href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=Hi%20Assure%20Securities,%20I%20am%20chatting%20on%20the%20website%20and%20want%20to%20connect%20with%20an%20advisor.`}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: '#15803d', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '2px', fontWeight: 700 }}
+              style={{ color: 'var(--color-gold)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '2px', fontWeight: 600 }}
             >
-              WhatsApp <ExternalLink size={11} />
+              WhatsApp <ExternalLink size={10} />
             </a>
           </div>
 
@@ -1071,7 +1283,7 @@ export default function Chatbot({ onOpenModal }) {
               flex: 1,
               padding: '1.25rem 1rem',
               overflowY: 'auto',
-              background: '#F8FAFC',
+              background: '#090a0d',
               display: 'flex',
               flexDirection: 'column',
               gap: '1rem'
@@ -1103,30 +1315,38 @@ export default function Chatbot({ onOpenModal }) {
                       style={{
                         width: '28px',
                         height: '28px',
-                        borderRadius: '50%',
-                        background: isBot ? '#071A2F' : 'linear-gradient(135deg, #16B981 0%, #059669 100%)',
+                        borderRadius: '2px',
+                        background: isBot ? '#121620' : 'rgba(16, 185, 129, 0.2)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         flexShrink: 0,
                         marginTop: '2px',
-                        border: isBot ? '1px solid rgba(22, 185, 129, 0.4)' : 'none'
+                        border: isBot ? '1px solid var(--color-border)' : '1px solid var(--color-gold)'
                       }}
                     >
-                      {isBot ? <Bot size={15} color="#16B981" /> : <User size={15} color="#ffffff" />}
+                      {isBot ? (
+                        <img 
+                          src="/assets/assure-bot-logo.png" 
+                          alt="Assure Securities Bot" 
+                          style={{ width: '22px', height: '22px', borderRadius: '50%', objectFit: 'cover' }} 
+                        />
+                      ) : (
+                        <User size={14} color="var(--color-text)" />
+                      )}
                     </div>
 
                     {/* Bubble */}
                     <div 
                       style={{
-                        background: isBot ? '#ffffff' : '#071A2F',
-                        color: isBot ? '#172033' : '#ffffff',
+                        background: isBot ? '#121620' : 'rgba(16, 185, 129, 0.12)',
+                        color: isBot ? 'var(--color-text-secondary)' : 'var(--color-text)',
                         padding: '10px 14px',
-                        borderRadius: isBot ? '4px 16px 16px 16px' : '16px 4px 16px 16px',
-                        boxShadow: isBot ? '0 2px 8px rgba(0,0,0,0.04)' : '0 4px 12px rgba(7, 26, 47, 0.2)',
-                        border: isBot ? '1px solid #E5EAF0' : 'none',
+                        borderRadius: '2px',
+                        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.4)',
+                        border: isBot ? '1px solid var(--color-border)' : '1px solid var(--color-gold-border)',
                         fontSize: '0.88rem',
-                        lineHeight: 1.5,
+                        lineHeight: 1.6,
                         wordBreak: 'break-word',
                         whiteSpace: 'pre-line'
                       }}
@@ -1137,7 +1357,7 @@ export default function Chatbot({ onOpenModal }) {
                           <p key={idx} style={{ margin: idx === 0 ? 0 : '0.45rem 0 0 0' }}>
                             {parts.map((part, pIdx) => {
                               if (part.startsWith('**') && part.endsWith('**')) {
-                                return <strong key={pIdx} style={{ fontWeight: 700, color: isBot ? '#071A2F' : '#16B981' }}>{part.slice(2, -2)}</strong>;
+                                return <strong key={pIdx} style={{ fontWeight: 600, color: 'var(--color-gold)' }}>{part.slice(2, -2)}</strong>;
                               }
                               return part;
                             })}
@@ -1149,18 +1369,18 @@ export default function Chatbot({ onOpenModal }) {
                       {msg.action === 'open-consultation' && (
                         <button
                           onClick={() => onOpenModal && onOpenModal('consultation')}
-                          className="btn-primary-emerald"
+                          className="btn-gold"
                           style={{
                             marginTop: '0.75rem',
                             padding: '6px 12px',
-                            fontSize: '0.82rem',
-                            minHeight: '36px',
+                            fontSize: '0.78rem',
+                            height: '36px',
                             width: '100%',
                             justifyContent: 'center'
                           }}
                         >
                           <span>Open Consultation Booking Form</span>
-                          <ArrowRight size={14} />
+                          <ArrowRight size={13} />
                         </button>
                       )}
                     </div>
@@ -1169,11 +1389,12 @@ export default function Chatbot({ onOpenModal }) {
                   {/* Timestamp */}
                   <span 
                     style={{
-                      fontSize: '0.66rem',
-                      color: '#94a3b8',
+                      fontSize: '0.64rem',
+                      color: 'var(--color-text-muted)',
                       marginTop: '3px',
                       marginLeft: isBot ? '36px' : '0',
-                      marginRight: isBot ? '0' : '36px'
+                      marginRight: isBot ? '0' : '36px',
+                      fontFamily: 'var(--font-mono)'
                     }}
                   >
                     {msg.timestamp}
@@ -1195,33 +1416,31 @@ export default function Chatbot({ onOpenModal }) {
                           key={cIdx}
                           onClick={() => handleChipClick(chip)}
                           style={{
-                            background: '#ffffff',
-                            color: '#071A2F',
-                            border: '1px solid #DCE2EA',
-                            borderRadius: '16px',
+                            background: '#121620',
+                            color: 'var(--color-gold)',
+                            border: '1px solid var(--color-border)',
+                            borderRadius: '2px',
                             padding: '4px 10px',
                             fontSize: '0.74rem',
-                            fontWeight: 600,
+                            fontWeight: 500,
                             cursor: 'pointer',
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '4px',
                             transition: 'all 0.2s ease',
-                            boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
+                            fontFamily: 'var(--font-mono)'
                           }}
                           onMouseEnter={(e) => {
-                            e.currentTarget.style.borderColor = '#16B981';
-                            e.currentTarget.style.color = '#16B981';
-                            e.currentTarget.style.background = '#F0FDF4';
+                            e.currentTarget.style.borderColor = 'var(--color-gold)';
+                            e.currentTarget.style.background = 'var(--color-gold-dim)';
                           }}
                           onMouseLeave={(e) => {
-                            e.currentTarget.style.borderColor = '#DCE2EA';
-                            e.currentTarget.style.color = '#071A2F';
-                            e.currentTarget.style.background = '#ffffff';
+                            e.currentTarget.style.borderColor = 'var(--color-border)';
+                            e.currentTarget.style.background = '#121620';
                           }}
                         >
                           <span>{chip}</span>
-                          <ArrowRight size={11} />
+                          <ArrowRight size={10} />
                         </button>
                       ))}
                     </div>
@@ -1234,29 +1453,29 @@ export default function Chatbot({ onOpenModal }) {
             {showInlineCalc && (
               <div 
                 style={{
-                  background: '#ffffff',
-                  border: '1.5px solid #16B981',
-                  borderRadius: '14px',
+                  background: '#121620',
+                  border: '1px solid rgba(16, 185, 129, 0.4)',
+                  borderRadius: '12px',
                   padding: '12px 14px',
-                  boxShadow: '0 4px 16px rgba(22, 185, 129, 0.12)',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(16, 185, 129, 0.15)',
                   fontSize: '0.84rem'
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: '#071A2F' }}>
-                    <Calculator size={16} color="#16B981" />
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: '#f8fafc' }}>
+                    <Calculator size={15} color="#10B981" />
                     <span>Quick SIP Modeler</span>
                   </div>
-                  <span style={{ fontSize: '0.72rem', background: '#F0FDF4', color: '#166534', padding: '1px 6px', borderRadius: '4px', fontWeight: 700 }}>
+                  <span style={{ fontSize: '0.7rem', background: 'rgba(16, 185, 129, 0.15)', color: '#34d399', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '1px 6px', borderRadius: '4px', fontWeight: 700 }}>
                     Live Preview
                   </span>
                 </div>
 
                 {/* Amount Slider */}
-                <div style={{ marginBottom: '8px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.76rem', color: '#64748b' }}>
+                <div style={{ marginBottom: '10px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.76rem', color: '#94a3b8', marginBottom: '4px' }}>
                     <span>Monthly SIP:</span>
-                    <strong style={{ color: '#071A2F' }}>₹{calcState.amount.toLocaleString('en-IN')}</strong>
+                    <strong style={{ color: '#38bdf8' }}>₹{calcState.amount.toLocaleString('en-IN')}</strong>
                   </div>
                   <input 
                     type="range"
@@ -1265,15 +1484,15 @@ export default function Chatbot({ onOpenModal }) {
                     step="1000"
                     value={calcState.amount}
                     onChange={(e) => setCalcState({ ...calcState, amount: Number(e.target.value) })}
-                    style={{ width: '100%', accentColor: '#16B981', cursor: 'pointer' }}
+                    style={{ width: '100%', accentColor: '#10B981', cursor: 'pointer' }}
                   />
                 </div>
 
                 {/* Duration Slider */}
-                <div style={{ marginBottom: '10px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.76rem', color: '#64748b' }}>
+                <div style={{ marginBottom: '12px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.76rem', color: '#94a3b8', marginBottom: '4px' }}>
                     <span>Tenure:</span>
-                    <strong style={{ color: '#071A2F' }}>{calcState.years} Years</strong>
+                    <strong style={{ color: '#38bdf8' }}>{calcState.years} Years</strong>
                   </div>
                   <input 
                     type="range"
@@ -1282,46 +1501,50 @@ export default function Chatbot({ onOpenModal }) {
                     step="1"
                     value={calcState.years}
                     onChange={(e) => setCalcState({ ...calcState, years: Number(e.target.value) })}
-                    style={{ width: '100%', accentColor: '#16B981', cursor: 'pointer' }}
+                    style={{ width: '100%', accentColor: '#10B981', cursor: 'pointer' }}
                   />
                 </div>
 
                 {/* Results Card */}
                 <div 
                   style={{
-                    background: '#071A2F',
+                    background: '#090a0d',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
                     color: '#ffffff',
-                    borderRadius: '10px',
-                    padding: '8px 10px',
+                    borderRadius: '8px',
+                    padding: '8px 12px',
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center'
                   }}
                 >
                   <div>
-                    <div style={{ fontSize: '0.66rem', color: '#94a3b8' }}>Invested: ₹{(investedAmount / 100000).toFixed(2)}L</div>
-                    <div style={{ fontSize: '0.66rem', color: '#16B981', fontWeight: 600 }}>Gain: +₹{(wealthGain / 100000).toFixed(2)}L</div>
+                    <div style={{ fontSize: '0.68rem', color: '#94a3b8' }}>Invested: ₹{(investedAmount / 100000).toFixed(2)}L</div>
+                    <div style={{ fontSize: '0.68rem', color: '#10B981', fontWeight: 600 }}>Gain: +₹{(wealthGain / 100000).toFixed(2)}L</div>
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: '0.66rem', color: '#94a3b8' }}>Maturity Value</div>
-                    <div style={{ fontSize: '1.05rem', fontWeight: 800, color: '#16B981' }}>{formatRupees(futureValue)}</div>
+                    <div style={{ fontSize: '1.05rem', fontWeight: 800, color: '#10B981' }}>{formatRupees(futureValue)}</div>
                   </div>
                 </div>
 
                 <button
                   onClick={() => handleSendMessage(`I calculated ₹${calcState.amount}/month for ${calcState.years} years (Maturity: ${formatRupees(futureValue)}). Please advise me on which mutual funds can help achieve this.`)}
                   style={{
-                    marginTop: '8px',
+                    marginTop: '10px',
                     width: '100%',
-                    background: '#F0FDF4',
-                    border: '1px solid #16B981',
-                    color: '#15803d',
-                    padding: '5px',
+                    background: 'rgba(16, 185, 129, 0.12)',
+                    border: '1px solid rgba(16, 185, 129, 0.4)',
+                    color: '#34d399',
+                    padding: '6px',
                     borderRadius: '6px',
                     fontSize: '0.76rem',
                     fontWeight: 700,
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    transition: 'all 0.2s'
                   }}
+                  onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(16, 185, 129, 0.25)'}
+                  onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(16, 185, 129, 0.12)'}
                 >
                   Ask Advisor About This Goal →
                 </button>
@@ -1331,16 +1554,16 @@ export default function Chatbot({ onOpenModal }) {
             {/* Quick Callback Request Box */}
             <div 
               style={{
-                background: '#ffffff',
-                border: '1px solid #E5EAF0',
-                borderRadius: '12px',
-                padding: '10px 12px',
-                fontSize: '0.8rem'
+                background: '#121620',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                borderRadius: '10px',
+                padding: '9px 12px',
+                fontSize: '0.78rem'
               }}
             >
-              <div style={{ fontWeight: 700, color: '#071A2F', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                <Phone size={13} color="#16B981" />
-                <span>Want a call from Lucknow Advisory Desk?</span>
+              <div style={{ fontWeight: 600, color: '#e2e8f0', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <Phone size={12} color="#10B981" />
+                <span>Want a callback from Lucknow Advisory Desk?</span>
               </div>
               <form onSubmit={handleCallbackSubmit} style={{ display: 'flex', gap: '6px', marginTop: '6px' }}>
                 <input 
@@ -1351,9 +1574,11 @@ export default function Chatbot({ onOpenModal }) {
                   style={{
                     flex: 1,
                     padding: '6px 10px',
-                    borderRadius: '6px',
-                    border: '1px solid #DCE2EA',
-                    fontSize: '0.8rem',
+                    borderRadius: '5px',
+                    background: '#090a0d',
+                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                    color: '#ffffff',
+                    fontSize: '0.78rem',
                     outline: 'none'
                   }}
                   maxLength={13}
@@ -1361,12 +1586,12 @@ export default function Chatbot({ onOpenModal }) {
                 <button
                   type="submit"
                   style={{
-                    background: '#16B981',
+                    background: '#10B981',
                     color: '#ffffff',
                     border: 'none',
-                    borderRadius: '6px',
+                    borderRadius: '5px',
                     padding: '0 12px',
-                    fontSize: '0.78rem',
+                    fontSize: '0.76rem',
                     fontWeight: 700,
                     cursor: 'pointer'
                   }}
@@ -1406,9 +1631,9 @@ export default function Chatbot({ onOpenModal }) {
           {/* Chat Input Bar */}
           <div 
             style={{
-              padding: '0.75rem 1rem',
-              background: '#ffffff',
-              borderTop: '1px solid #E5EAF0',
+              padding: '0.85rem 1rem',
+              background: '#090a0d',
+              borderTop: '1px solid var(--color-border)',
               display: 'flex',
               alignItems: 'center',
               gap: '8px'
@@ -1424,25 +1649,27 @@ export default function Chatbot({ onOpenModal }) {
               style={{
                 flex: 1,
                 padding: '10px 14px',
-                borderRadius: '10px',
-                border: '1.5px solid #DCE2EA',
+                borderRadius: '2px',
+                border: '1px solid var(--color-border)',
+                background: '#121620',
                 fontSize: '0.88rem',
                 outline: 'none',
                 transition: 'border-color 0.2s',
-                color: '#172033'
+                color: 'var(--color-text)',
+                fontFamily: 'var(--font-sans)'
               }}
-              onFocus={(e) => e.target.style.borderColor = '#16B981'}
-              onBlur={(e) => e.target.style.borderColor = '#DCE2EA'}
+              onFocus={(e) => e.target.style.borderColor = 'var(--color-gold)'}
+              onBlur={(e) => e.target.style.borderColor = 'var(--color-border)'}
             />
             <button
               onClick={() => handleSendMessage()}
               disabled={!inputMessage.trim()}
               style={{
-                width: '42px',
-                height: '42px',
-                borderRadius: '10px',
-                background: inputMessage.trim() ? '#16B981' : '#E5EAF0',
-                color: inputMessage.trim() ? '#ffffff' : '#94a3b8',
+                width: '40px',
+                height: '40px',
+                borderRadius: '2px',
+                background: inputMessage.trim() ? 'var(--color-gold)' : 'rgba(255, 255, 255, 0.05)',
+                color: inputMessage.trim() ? '#090a0d' : 'var(--color-text-muted)',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
@@ -1453,7 +1680,7 @@ export default function Chatbot({ onOpenModal }) {
               }}
               title="Send Message"
             >
-              <Send size={18} />
+              <Send size={16} />
             </button>
           </div>
         </div>

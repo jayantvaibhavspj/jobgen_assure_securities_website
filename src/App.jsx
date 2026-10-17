@@ -15,6 +15,7 @@ const VideosPage = React.lazy(() => import('./pages/VideosPage').then(m => ({ de
 const PartnerPage = React.lazy(() => import('./pages/PartnerPage').then(m => ({ default: m.PartnerPage })));
 const ContactPage = React.lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
 const LegalPage = React.lazy(() => import('./pages/LegalPage').then(m => ({ default: m.LegalPage })));
+const MutualFundsPage = React.lazy(() => import('./pages/MutualFundsPage').then(m => ({ default: m.MutualFundsPage })));
 
 import Chatbot from './components/Chatbot';
 import { COMPANY_INFO } from './data/websiteData';
@@ -57,7 +58,7 @@ function AppContent() {
               {/* 3. Products Main & Sub-pages */}
               <Route path="/products" element={<ProductsPage onOpenModal={setActiveModal} />} />
               <Route path="/products/:productId" element={<ProductsPage onOpenModal={setActiveModal} />} />
-              <Route path="/mutual-funds" element={<ProductsPage onOpenModal={setActiveModal} defaultProduct="mutual-funds" />} />
+              <Route path="/mutual-funds" element={<MutualFundsPage onOpenModal={setActiveModal} />} />
               <Route path="/fixed-deposits" element={<ProductsPage onOpenModal={setActiveModal} defaultProduct="fixed-deposits" />} />
               <Route path="/bonds" element={<ProductsPage onOpenModal={setActiveModal} defaultProduct="bonds" />} />
               <Route path="/life-insurance" element={<ProductsPage onOpenModal={setActiveModal} defaultProduct="life-insurance" />} />

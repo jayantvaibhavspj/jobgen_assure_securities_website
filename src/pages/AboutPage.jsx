@@ -1,240 +1,899 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { 
-  Building2, ShieldCheck, Target, Eye, CheckCircle2, Award, 
-  Users, HeartHandshake, ArrowRight, Phone, Mail, Sparkles 
+  Building2, ShieldCheck, TrendingUp, CheckCircle2, 
+  Sparkles, ArrowRight, ArrowUpRight, Phone, Mail, Award, Users, MapPin
 } from 'lucide-react';
-import { COMPANY_INFO, CLIENT_TESTIMONIALS } from '../data/websiteData';
+import { COMPANY_INFO } from '../data/websiteData';
 
 export function AboutPage({ onOpenModal }) {
   return (
-    <div>
-      
-      {/* Page Header Banner (Dark Navy #071A2F) */}
-      <section style={{ background: 'var(--color-primary)', color: '#ffffff', padding: '4.5rem 0 3.5rem 0', position: 'relative', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+    <div 
+      style={{ 
+        minHeight: '100vh', 
+        paddingTop: '80px',
+        background: '#FAF9F6',
+        color: '#0f172a',
+        position: 'relative',
+        overflow: 'hidden'
+      }}
+    >
+      {/* Behance-style Floating Ambient Decorative Bubbles */}
+      <div 
+        style={{
+          position: 'absolute',
+          top: '3%',
+          left: '4%',
+          width: '20px',
+          height: '20px',
+          borderRadius: '50%',
+          background: 'rgba(249, 115, 22, 0.25)',
+          pointerEvents: 'none'
+        }}
+      />
+      <div 
+        style={{
+          position: 'absolute',
+          top: '12%',
+          right: '5%',
+          width: '28px',
+          height: '28px',
+          borderRadius: '50%',
+          background: 'rgba(16, 185, 129, 0.2)',
+          pointerEvents: 'none'
+        }}
+      />
+      <div 
+        style={{
+          position: 'absolute',
+          top: '35%',
+          left: '2%',
+          width: '16px',
+          height: '16px',
+          borderRadius: '50%',
+          background: 'rgba(56, 189, 248, 0.25)',
+          pointerEvents: 'none'
+        }}
+      />
+      <div 
+        style={{
+          position: 'absolute',
+          bottom: '15%',
+          right: '3%',
+          width: '24px',
+          height: '24px',
+          borderRadius: '50%',
+          background: 'rgba(236, 72, 153, 0.2)',
+          pointerEvents: 'none'
+        }}
+      />
+
+      {/* =========================================================================
+          1. Hero Section: Split Narrative + 3D Wealth Illustration
+          ========================================================================= */}
+      <section style={{ padding: 'clamp(4rem, 6vw, 6rem) 0 3.5rem 0', position: 'relative', zIndex: 2 }}>
         <div className="container">
-          <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '1.25rem' }}>
-            <Link to="/" style={{ color: '#cbd5e1' }}>Home</Link>
-            <span>/</span>
-            <span style={{ color: 'var(--color-accent)', fontWeight: 600 }}>About Us</span>
+          
+          <div 
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 480px), 1fr))', 
+              gap: 'clamp(2.5rem, 5vw, 4.5rem)',
+              alignItems: 'center'
+            }}
+          >
+            {/* Left Column: Eyebrow + Two-Tone Headline + AMFI Badge + Narrative */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.4rem' }}>
+              
+              {/* Pill Eyebrow Badge */}
+              <div>
+                <span 
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.45rem',
+                    padding: '0.45rem 1rem',
+                    borderRadius: '9999px',
+                    background: 'rgba(16, 185, 129, 0.1)',
+                    border: '1px solid rgba(16, 185, 129, 0.25)',
+                    color: '#059669',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.82rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.06em'
+                  }}
+                >
+                  <Sparkles size={14} color="#059669" />
+                  01 — ABOUT ASSURE SECURITIES
+                </span>
+              </div>
+
+              {/* Bold Behance-Style Two-Tone Headline */}
+              <h1 
+                style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: 'clamp(2.6rem, 4.5vw, 4rem)',
+                  fontWeight: 800,
+                  color: '#0f172a',
+                  lineHeight: 1.15,
+                  letterSpacing: '-0.03em',
+                  margin: 0
+                }}
+              >
+                Your goals.{' '}
+                <span style={{ color: '#059669' }}>Our expertise.</span>
+                <br />
+                A smarter{' '}
+                <span style={{ color: '#ea580c' }}>financial journey.</span>
+              </h1>
+
+              {/* AMFI Reg Pill Badge */}
+              <div 
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.65rem',
+                  padding: '0.55rem 1.15rem',
+                  background: '#ffffff',
+                  border: '1px solid rgba(226, 232, 240, 0.95)',
+                  borderRadius: '9999px',
+                  boxShadow: '0 4px 14px rgba(15, 23, 42, 0.05)',
+                  width: 'fit-content'
+                }}
+              >
+                <ShieldCheck size={16} color="#059669" />
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: '#334155', letterSpacing: '0.04em', fontWeight: 600 }}>
+                  AMFI REG. {COMPANY_INFO.arn} • EXP: {COMPANY_INFO.validity.toUpperCase()}
+                </span>
+              </div>
+
+              {/* Narrative Paragraphs */}
+              <p 
+                style={{
+                  fontSize: '1.14rem',
+                  color: '#1e293b',
+                  lineHeight: 1.7,
+                  fontWeight: 500,
+                  margin: 0
+                }}
+              >
+                Assure Securities is an AMFI-registered Mutual Fund Distributor dedicated to transforming 
+                the way discerning individuals, business owners, and families navigate Indian and global capital markets.
+              </p>
+
+              <p 
+                style={{
+                  fontSize: '1rem',
+                  color: '#64748b',
+                  lineHeight: 1.75,
+                  margin: 0
+                }}
+              >
+                Headquartered in Lucknow and servicing clients nationwide, our fiduciary philosophy is rooted 
+                in patience, asset-allocation discipline, and personalized strategy. We believe that enduring wealth 
+                is never created through speculative trading or market timing—it is forged through structured compounding, 
+                tax efficiency, and rigorous risk containment.
+              </p>
+
+              {/* Action Buttons: Behance style pill button + ghost outline */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap', paddingTop: '0.5rem' }}>
+                <button 
+                  onClick={() => onOpenModal && onOpenModal('contact-consult')}
+                  style={{
+                    borderRadius: '9999px',
+                    padding: '0 2.2rem',
+                    height: '48px',
+                    background: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
+                    color: '#ffffff',
+                    fontWeight: 700,
+                    fontSize: '0.9rem',
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.6rem',
+                    boxShadow: '0 10px 22px rgba(5, 150, 105, 0.32)',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 14px 28px rgba(5, 150, 105, 0.42)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 10px 22px rgba(5, 150, 105, 0.32)';
+                  }}
+                >
+                  <span>Book Free Advisory Call</span>
+                  <ArrowRight size={15} />
+                </button>
+
+                <a 
+                  href="/products/mutual-funds" 
+                  style={{ 
+                    borderRadius: '9999px',
+                    padding: '0 1.85rem',
+                    height: '48px',
+                    background: '#ffffff',
+                    color: '#0f172a',
+                    border: '1.5px solid rgba(203, 213, 225, 0.8)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    fontWeight: 600,
+                    fontSize: '0.9rem',
+                    textDecoration: 'none',
+                    boxShadow: '0 4px 12px rgba(15, 23, 42, 0.04)',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = '#059669';
+                    e.currentTarget.style.color = '#059669';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(203, 213, 225, 0.8)';
+                    e.currentTarget.style.color = '#0f172a';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  <span>Explore Solutions Suite</span>
+                  <ArrowUpRight size={15} />
+                </a>
+              </div>
+
+            </div>
+
+            {/* Right Column: 3D Wealth Illustration + Floating Stat Bubbles */}
+            <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
+              
+              {/* Main Rounded 3D Image Card */}
+              <div 
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  maxWidth: '520px',
+                  borderRadius: '32px',
+                  overflow: 'hidden',
+                  background: '#ffffff',
+                  border: '1px solid rgba(226, 232, 240, 0.9)',
+                  boxShadow: '0 25px 60px -15px rgba(15, 23, 42, 0.12), 0 0 1px 1px rgba(0, 0, 0, 0.04)',
+                  aspectRatio: '1 / 1'
+                }}
+              >
+                <img 
+                  src="/assets/about-behance-3d.jpg" 
+                  alt="Assure Securities Wealth Stewardship & Analytics" 
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block'
+                  }}
+                />
+              </div>
+
+              {/* Floating Behance-Style Pill 1 (Top Left) */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  top: '5%',
+                  left: '-4%',
+                  background: '#ffffff',
+                  padding: '0.75rem 1.15rem',
+                  borderRadius: '18px',
+                  border: '1px solid rgba(226, 232, 240, 0.9)',
+                  boxShadow: '0 15px 35px -5px rgba(15, 23, 42, 0.12)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.65rem',
+                  zIndex: 3,
+                  animation: 'floatSlow 4s ease-in-out infinite'
+                }}
+              >
+                <div 
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '12px',
+                    background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#ffffff',
+                    boxShadow: '0 6px 14px rgba(16, 185, 129, 0.35)'
+                  }}
+                >
+                  <TrendingUp size={18} />
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.2 }}>
+                    15+ Years
+                  </div>
+                  <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 500 }}>
+                    Disciplined Stewardship
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Behance-Style Pill 2 (Bottom Right) */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  bottom: '5%',
+                  right: '-4%',
+                  background: '#ffffff',
+                  padding: '0.75rem 1.15rem',
+                  borderRadius: '18px',
+                  border: '1px solid rgba(226, 232, 240, 0.9)',
+                  boxShadow: '0 15px 35px -5px rgba(15, 23, 42, 0.12)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.65rem',
+                  zIndex: 3,
+                  animation: 'floatSlow 4.5s ease-in-out infinite 0.5s'
+                }}
+              >
+                <div 
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '12px',
+                    background: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#ffffff',
+                    boxShadow: '0 6px 14px rgba(249, 115, 22, 0.35)'
+                  }}
+                >
+                  <ShieldCheck size={18} />
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.2 }}>
+                    Zero Custody Risk
+                  </div>
+                  <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 500 }}>
+                    Direct AMC Settlement
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
-          <div className="eyebrow-pill emerald">
-            <Sparkles size={13} />
-            <span>AMFI Registered Distributor • ARN-182137</span>
-          </div>
-
-          <h1 style={{ fontSize: 'clamp(2.4rem, 4.2vw, 3.4rem)', fontWeight: 700, color: '#ffffff', marginBottom: '1rem', letterSpacing: '-0.03em' }}>
-            About <span style={{ color: 'var(--color-accent)' }}>Assure Securities</span>
-          </h1>
-
-          <p style={{ fontSize: '1.1rem', color: '#94a3b8', maxWidth: '680px', lineHeight: 1.6, margin: 0 }}>
-            In an era of constantly changing and volatile financial markets, investors need a qualified, trained, and unbiased professional firm to help them in achieving their short-term and long-term financial wishes.
-          </p>
         </div>
       </section>
 
-      {/* Core Story & Fiduciary Foundation (White #FFFFFF) */}
-      <section style={{ background: '#ffffff', padding: 'var(--section-pad-desktop) 0', borderBottom: '1px solid var(--color-border)' }} className="section-pad">
+      {/* =========================================================================
+          2. Metrics Bar (Behance Rounded Pill Cards)
+          ========================================================================= */}
+      <section style={{ padding: '2rem 0 3.5rem 0', position: 'relative', zIndex: 2 }}>
         <div className="container">
           <div 
             style={{ 
               display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-              gap: 'clamp(2.5rem, 5vw, 4rem)', 
-              alignItems: 'center' 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', 
+              gap: '1.25rem' 
             }}
           >
-            <div>
-              <div className="eyebrow-pill emerald">
-                <ShieldCheck size={13} />
-                <span>Established Trust & Integrity</span>
-              </div>
-
-              <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.6rem)', color: 'var(--color-primary)', fontWeight: 700, marginBottom: '1.25rem', letterSpacing: '-0.025em' }}>
-                Your Trusted Wealth Companion in Lucknow & Across India
-              </h2>
-
-              <p style={{ fontSize: '1.02rem', color: 'var(--color-text)', lineHeight: 1.7, marginBottom: '1.25rem' }}>
-                At <strong>Assure Securities</strong>, our core aim is to serve our clients with sheer dedication and integrity, meet their expectations, and build enduring, lifelong relationships. We offer multiple financial distribution services including Mutual Funds, Insurance, Fixed Deposits, Bonds, and PMS/AIF.
-              </p>
-
-              <p style={{ fontSize: '0.95rem', color: 'var(--color-text-secondary)', lineHeight: 1.7, marginBottom: '2rem' }}>
-                As an investor, you can either spend endless hours deciphering complex market fluctuations yourself or hire a disciplined, dedicated professional firm with 15+ years of market wisdom. Meeting your life's aspirations is our primary objective.
-              </p>
-
-              {/* Quick Stat Highlights with Live Counter Animation */}
-              <div className="reveal-on-scroll stagger-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '1rem' }}>
-                <div style={{ background: 'var(--color-bg)', padding: '1.25rem', borderRadius: '14px', border: '1px solid var(--color-border)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--color-primary)' }}>ARN-182137</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: 600 }}>AMFI Reg.</div>
-                </div>
-                <div style={{ background: 'var(--color-bg)', padding: '1.25rem', borderRadius: '14px', border: '1px solid var(--color-border)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-accent)' }} data-counter-target="15" data-counter-suffix="+">15+</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: 600 }}>Years of Trust</div>
-                </div>
-                <div style={{ background: 'var(--color-bg)', padding: '1.25rem', borderRadius: '14px', border: '1px solid var(--color-border)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)' }} data-counter-target="40" data-counter-suffix="+">40+</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: 600 }}>Empaneled AMCs</div>
-                </div>
-              </div>
-            </div>
-
-            <div style={{ textAlign: 'center' }}>
-              <div className="cinematic-image-wrap" style={{ background: '#ffffff', borderRadius: '24px', border: '1px solid var(--color-border)', boxShadow: '0 16px 36px -8px rgba(7, 26, 47, 0.12)', overflow: 'hidden' }}>
-                <div style={{ position: 'relative', height: '280px', overflow: 'hidden' }}>
-                  <img 
-                    src="/assets/why-assure-advisory.jpg" 
-                    alt="Assure Securities Client Advisory"
-                    loading="lazy"
-                    decoding="async"
-                    className="cinematic-reveal"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    onError={(e) => { e.target.src = '/assets/img_se.png'; }}
-                  />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(7, 26, 47, 0.8) 0%, transparent 60%)' }} />
-                  <div style={{ position: 'absolute', bottom: '12px', left: '16px', right: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#ffffff' }}>Dedicated Wealth Relationship Desk</span>
-                    <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#16B981', background: 'rgba(7, 26, 47, 0.85)', padding: '0.2rem 0.55rem', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.15)' }}>ARN-182137</span>
+            {[
+              { label: "Advisory Heritage", value: "15+", suffix: "Years", color: "#059669", icon: Award },
+              { label: "Assets Guided Nationwide", value: "₹250Cr+", suffix: "AUM", color: "#0284c7", icon: TrendingUp },
+              { label: "Investor Families", value: "1,500+", suffix: "Families", color: "#ea580c", icon: Users },
+              { label: "Empaneled AMCs & Insurers", value: "40+", suffix: "Partners", color: "#db2777", icon: Building2 }
+            ].map((stat, idx) => {
+              const StatIcon = stat.icon;
+              return (
+                <div 
+                  key={idx}
+                  style={{
+                    background: '#ffffff',
+                    borderRadius: '24px',
+                    padding: '1.75rem 1.5rem',
+                    border: '1px solid rgba(226, 232, 240, 0.9)',
+                    boxShadow: '0 8px 24px -4px rgba(15, 23, 42, 0.04)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1.2rem',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-4px)';
+                    e.currentTarget.style.boxShadow = '0 16px 32px -8px rgba(15, 23, 42, 0.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(15, 23, 42, 0.04)';
+                  }}
+                >
+                  <div 
+                    style={{
+                      width: '46px',
+                      height: '46px',
+                      borderRadius: '14px',
+                      background: `${stat.color}15`,
+                      color: stat.color,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}
+                  >
+                    <StatIcon size={22} />
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-sans)', fontSize: '1.85rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.1 }}>
+                      {stat.value}
+                    </div>
+                    <div style={{ fontSize: '0.82rem', color: '#64748b', fontWeight: 600, marginTop: '0.25rem' }}>
+                      {stat.label}
+                    </div>
                   </div>
                 </div>
-                <div style={{ padding: '1.15rem', fontSize: '0.85rem', color: 'var(--color-text-secondary)', fontWeight: 600, background: 'var(--color-bg)' }}>
-                  AMFI Registered Mutual Fund Distributor • 15+ Years Industry Discipline
-                </div>
-              </div>
-            </div>
-
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Mission & Vision (Light Gray #F7F9FC) */}
-      <section style={{ padding: 'var(--section-pad-desktop) 0', background: 'var(--color-bg)', borderBottom: '1px solid var(--color-border)' }} className="section-pad">
+      {/* =========================================================================
+          3. Built On Four Fiduciary Pillars (4 Behance-Style Cards)
+          ========================================================================= */}
+      <section style={{ padding: '3.5rem 0', position: 'relative', zIndex: 2 }}>
         <div className="container">
-          <div className="section-header-center reveal-on-scroll">
-            <div className="eyebrow-pill emerald">
-              <Sparkles size={13} />
-              <span>Core Philosophy & Ambition</span>
-            </div>
-
-            <h2>
-              Our Guiding <span style={{ color: 'var(--color-accent)' }}>Mission & Vision</span>
+          
+          <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 3rem auto' }}>
+            <h2 
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(2rem, 3.5vw, 2.6rem)',
+                fontWeight: 800,
+                color: '#0f172a',
+                lineHeight: 1.2,
+                letterSpacing: '-0.02em',
+                marginBottom: '0.75rem'
+              }}
+            >
+              Built On Four <span style={{ color: '#059669' }}>Fiduciary Pillars</span>
             </h2>
-
-            <p>
-              Built upon 3 non-negotiable principles: Uncompromising Integrity, Quantitative Knowledge, and Unbiased Client Service.
+            <p style={{ fontSize: '1.02rem', color: '#64748b', lineHeight: 1.6 }}>
+              Institutional asset management and risk containment principles designed around your family's timeline.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
-            
-            {/* Mission Card */}
-            <div 
-              className="fintech-card interactive-glow-card reveal-on-scroll stagger-1" 
-              style={{ 
-                padding: '2.5rem', 
-                background: '#ffffff', 
-                border: '1px solid var(--color-border)', 
-                borderTop: '4px solid var(--color-primary)',
-                borderRadius: '20px'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.25rem' }}>
-                <div style={{ background: 'rgba(7, 26, 47, 0.05)', padding: '0.65rem', borderRadius: '12px' }}>
-                  <Target size={24} color="var(--color-primary)" />
-                </div>
-                <div>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Core Purpose</span>
-                  <h3 style={{ fontSize: '1.45rem', color: 'var(--color-primary)', margin: 0 }}>Our Mission</h3>
-                </div>
-              </div>
-              <p style={{ fontSize: '1.05rem', color: 'var(--color-text)', lineHeight: 1.7, margin: 0 }}>
-                &ldquo;To provide superior quality financial services to our customers with transparent disclosures, state-of-the-art market intelligence, and unconditional client dedication.&rdquo;
-              </p>
-            </div>
-
-            {/* Vision Card */}
-            <div 
-              className="fintech-card interactive-glow-card reveal-on-scroll stagger-2" 
-              style={{ 
-                padding: '2.5rem', 
-                background: '#ffffff', 
-                border: '1px solid var(--color-border)', 
-                borderTop: '4px solid var(--color-accent)',
-                borderRadius: '20px'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.25rem' }}>
-                <div style={{ background: 'rgba(22, 185, 129, 0.1)', padding: '0.65rem', borderRadius: '12px' }}>
-                  <Eye size={24} color="var(--color-accent)" />
-                </div>
-                <div>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Future Horizon</span>
-                  <h3 style={{ fontSize: '1.45rem', color: 'var(--color-primary)', margin: 0 }}>Our Vision</h3>
-                </div>
-              </div>
-              <p style={{ fontSize: '1.05rem', color: 'var(--color-text)', lineHeight: 1.7, margin: 0 }}>
-                &ldquo;To make every individual and family a successful, confident investor without compromising on Quality, Integrity, and Knowledge.&rdquo;
-              </p>
-            </div>
-
-          </div>
-
-          {/* AMFI Official Compliance Banner */}
           <div 
             style={{ 
-              background: '#ffffff', 
-              border: '1px solid var(--color-border)', 
-              borderRadius: '16px', 
-              padding: '1.5rem 2rem', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'space-between', 
-              flexWrap: 'wrap', 
-              gap: '1.5rem' 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', 
+              gap: '1.75rem' 
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-              <div style={{ background: 'rgba(22, 185, 129, 0.1)', padding: '0.55rem', borderRadius: '10px' }}>
-                <ShieldCheck size={22} color="var(--color-accent)" />
-              </div>
-              <div>
-                <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--color-primary)' }}>Official AMFI Credentials</div>
-                <div style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)' }}>ARN: <strong>182137</strong> | Valid Until: <strong>July 2027</strong> | Lucknow Registered</div>
-              </div>
-            </div>
+            {[
+              {
+                step: "01",
+                icon: ShieldCheck,
+                color: "#10b981",
+                gradient: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+                title: "Direct AMC Routing",
+                desc: "Zero custody risk. Funds settle directly with SEBI-regulated AMCs and sovereign depositories with complete transparency."
+              },
+              {
+                step: "02",
+                icon: TrendingUp,
+                color: "#38bdf8",
+                gradient: "linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)",
+                title: "Multi-Asset Architecture",
+                desc: "Balanced diversification across Mutual Funds, AAA Corporate FDs, Sovereign Bonds & PMS/AIFs tailored to your risk tolerance."
+              },
+              {
+                step: "03",
+                icon: CheckCircle2,
+                color: "#f59e0b",
+                gradient: "linear-gradient(135deg, #fbbf24 0%, #d97706 100%)",
+                title: "Independent Scrutiny",
+                desc: "Quantitative fund manager track record scrutiny, downside capture ratio analysis, and rolling return consistency checks."
+              },
+              {
+                step: "04",
+                icon: Building2,
+                color: "#ec4899",
+                gradient: "linear-gradient(135deg, #f472b6 0%, #db2777 100%)",
+                title: "Lifelong Partnership",
+                desc: "Structured periodic portfolio reviews, disciplined rebalancing triggers, tax optimization, and family succession guidance."
+              }
+            ].map((item, idx) => {
+              const PillarIcon = item.icon;
 
-            <div style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', maxWidth: '440px', lineHeight: 1.5 }}>
-              Assure Securities strictly abides by the Code of Conduct prescribed by the Association of Mutual Funds in India (AMFI).
-            </div>
+              return (
+                <div 
+                  key={idx}
+                  style={{
+                    background: '#ffffff',
+                    borderRadius: '24px',
+                    padding: '2.2rem 1.8rem',
+                    border: '1px solid rgba(226, 232, 240, 0.9)',
+                    boxShadow: '0 10px 30px -5px rgba(15, 23, 42, 0.05)',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    position: 'relative'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-6px)';
+                    e.currentTarget.style.boxShadow = '0 20px 40px -10px rgba(15, 23, 42, 0.12)';
+                    e.currentTarget.style.borderColor = item.color;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 10px 30px -5px rgba(15, 23, 42, 0.05)';
+                    e.currentTarget.style.borderColor = 'rgba(226, 232, 240, 0.9)';
+                  }}
+                >
+                  <div>
+                    {/* Top row: Colorful square icon badge + Step number */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.6rem' }}>
+                      <div 
+                        style={{
+                          width: '52px',
+                          height: '52px',
+                          borderRadius: '16px',
+                          background: item.gradient,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: '#ffffff',
+                          boxShadow: `0 8px 18px ${item.color}45`
+                        }}
+                      >
+                        <PillarIcon size={24} />
+                      </div>
+
+                      <span 
+                        style={{
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: '0.9rem',
+                          fontWeight: 800,
+                          color: '#94a3b8'
+                        }}
+                      >
+                        {item.step}
+                      </span>
+                    </div>
+
+                    <h3 
+                      style={{
+                        fontFamily: 'var(--font-sans)',
+                        fontSize: '1.25rem',
+                        fontWeight: 700,
+                        color: '#0f172a',
+                        marginBottom: '0.75rem',
+                        lineHeight: 1.3
+                      }}
+                    >
+                      {item.title}
+                    </h3>
+
+                    <p 
+                      style={{
+                        fontSize: '0.92rem',
+                        color: '#64748b',
+                        lineHeight: 1.65,
+                        margin: 0
+                      }}
+                    >
+                      {item.desc}
+                    </p>
+                  </div>
+
+                  <div 
+                    style={{
+                      marginTop: '1.75rem',
+                      paddingTop: '1.2rem',
+                      borderTop: '1px solid rgba(241, 245, 249, 1)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.45rem',
+                      fontSize: '0.82rem',
+                      fontWeight: 700,
+                      color: item.color,
+                      fontFamily: 'var(--font-mono)'
+                    }}
+                  >
+                    <span>VERIFIED STANDARD</span>
+                    <ArrowRight size={14} />
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
         </div>
       </section>
 
-      {/* Advisory Callout Strip */}
-      <section style={{ padding: '4.5rem 0', background: 'var(--color-primary)', color: '#ffffff' }}>
-        <div className="container" style={{ textAlign: 'center', maxWidth: '720px' }}>
-          <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.6rem)', color: '#ffffff', fontWeight: 700, marginBottom: '1rem' }}>
-            Ready to Build Your Structured Wealth Plan?
-          </h2>
-          <p style={{ fontSize: '1.05rem', color: '#94a3b8', margin: '0 auto 2rem auto', lineHeight: 1.6 }}>
-            Connect with our certified mutual fund advisors at our Gomtinagar, Lucknow headquarters or book a virtual consultation.
-          </p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <button 
-              onClick={() => onOpenModal && onOpenModal('consultation')}
-              className="btn-primary-emerald"
+      {/* =========================================================================
+          4. Vision & Regulatory Safeguards (Dual Modern Rounded Cards)
+          ========================================================================= */}
+      <section style={{ padding: '3.5rem 0', position: 'relative', zIndex: 2 }}>
+        <div className="container">
+          <div 
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 460px), 1fr))', 
+              gap: '2rem' 
+            }}
+          >
+            {/* Vision Card */}
+            <div 
+              style={{
+                background: '#ffffff',
+                borderRadius: '28px',
+                padding: 'clamp(2.2rem, 4vw, 3rem)',
+                border: '1px solid rgba(226, 232, 240, 0.95)',
+                boxShadow: '0 12px 35px -8px rgba(15, 23, 42, 0.06)'
+              }}
             >
-              <span>Schedule a Meeting →</span>
-            </button>
-            <a 
-              href={`tel:${COMPANY_INFO.phone}`}
-              className="btn-outline-white"
+              <div 
+                style={{
+                  display: 'inline-block',
+                  padding: '0.35rem 0.85rem',
+                  borderRadius: '9999px',
+                  background: 'rgba(5, 150, 105, 0.1)',
+                  color: '#059669',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.78rem',
+                  fontWeight: 700,
+                  marginBottom: '1.25rem'
+                }}
+              >
+                OUR PURPOSE
+              </div>
+              <h3 
+                style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: 'clamp(1.6rem, 2.5vw, 2.1rem)',
+                  fontWeight: 800,
+                  color: '#0f172a',
+                  lineHeight: 1.25,
+                  marginBottom: '1rem'
+                }}
+              >
+                Transforming Family Aspirations into Enduring Wealth
+              </h3>
+              <p style={{ fontSize: '0.98rem', color: '#64748b', lineHeight: 1.7, margin: 0 }}>
+                Our ambition is to be India's most respected, client-first wealth distributor. 
+                We eliminate speculative noise by applying institutional asset-allocation principles, 
+                ensuring your family's savings compound steadily across market cycles with absolute peace of mind.
+              </p>
+            </div>
+
+            {/* Regulatory Safeguards Card */}
+            <div 
+              style={{
+                background: '#ffffff',
+                borderRadius: '28px',
+                padding: 'clamp(2.2rem, 4vw, 3rem)',
+                border: '1px solid rgba(226, 232, 240, 0.95)',
+                boxShadow: '0 12px 35px -8px rgba(15, 23, 42, 0.06)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between'
+              }}
             >
-              <Phone size={15} />
-              <span>Call Direct Desk</span>
-            </a>
+              <div>
+                <div 
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.35rem 0.85rem',
+                    borderRadius: '9999px',
+                    background: 'rgba(249, 115, 22, 0.1)',
+                    color: '#ea580c',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.78rem',
+                    fontWeight: 700,
+                    marginBottom: '1.25rem'
+                  }}
+                >
+                  STATUTORY GOVERNANCE
+                </div>
+                <h3 
+                  style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: 'clamp(1.6rem, 2.5vw, 2.1rem)',
+                    fontWeight: 800,
+                    color: '#0f172a',
+                    lineHeight: 1.25,
+                    marginBottom: '1rem'
+                  }}
+                >
+                  Zero Custody Risk Direct Settlement
+                </h3>
+                <p style={{ fontSize: '0.98rem', color: '#64748b', lineHeight: 1.7, margin: 0 }}>
+                  Assure Securities never handles client cash. All transactions flow directly 
+                  from your bank account to SEBI-regulated Mutual Fund houses and sovereign depositories. 
+                  You retain complete, verifiable ownership at every single moment.
+                </p>
+              </div>
+
+              <div style={{ marginTop: '2rem' }}>
+                <button 
+                  onClick={() => onOpenModal && onOpenModal('contact-consult')}
+                  style={{
+                    width: '100%',
+                    height: '50px',
+                    borderRadius: '9999px',
+                    background: '#0f172a',
+                    color: '#ffffff',
+                    fontWeight: 700,
+                    fontSize: '0.92rem',
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.6rem',
+                    boxShadow: '0 10px 25px rgba(15, 23, 42, 0.2)',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#059669';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#0f172a';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  <span>Schedule Advisory Consultation</span>
+                  <ArrowRight size={15} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          5. Bottom Contact & Office Presence Banner (Behance Style Pill Container)
+          ========================================================================= */}
+      <section style={{ padding: '3rem 0 6rem 0', position: 'relative', zIndex: 2 }}>
+        <div className="container">
+          <div 
+            style={{
+              background: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
+              borderRadius: '32px',
+              padding: 'clamp(2.5rem, 5vw, 4rem)',
+              color: '#ffffff',
+              boxShadow: '0 20px 45px rgba(5, 150, 105, 0.25)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textAlign: 'center',
+              gap: '1.75rem'
+            }}
+          >
+            <div 
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                padding: '0.35rem 0.9rem',
+                borderRadius: '9999px',
+                background: 'rgba(255, 255, 255, 0.2)',
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                letterSpacing: '0.04em'
+              }}
+            >
+              <MapPin size={14} />
+              HEADQUARTERED IN LUCKNOW • SERVICING NATIONWIDE
+            </div>
+
+            <h3 
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(2rem, 3.8vw, 3rem)',
+                fontWeight: 800,
+                lineHeight: 1.2,
+                maxWidth: '720px',
+                margin: 0
+              }}
+            >
+              Ready to construct an institutional-grade portfolio for your family?
+            </h3>
+
+            <p style={{ fontSize: '1.05rem', color: 'rgba(255, 255, 255, 0.9)', maxWidth: '600px', lineHeight: 1.6, margin: 0 }}>
+              Connect with our registered wealth stewards for an unbiased diagnostic review of your existing assets.
+            </p>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <button 
+                onClick={() => onOpenModal && onOpenModal('contact-consult')}
+                style={{
+                  borderRadius: '9999px',
+                  padding: '0 2.2rem',
+                  height: '48px',
+                  background: '#ffffff',
+                  color: '#059669',
+                  fontWeight: 800,
+                  fontSize: '0.92rem',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  boxShadow: '0 8px 20px rgba(0, 0, 0, 0.15)',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                <span>Request Callback</span>
+                <ArrowRight size={15} />
+              </button>
+
+              <a 
+                href={`tel:${COMPANY_INFO.phone}`}
+                style={{
+                  borderRadius: '9999px',
+                  padding: '0 1.8rem',
+                  height: '48px',
+                  background: 'rgba(255, 255, 255, 0.15)',
+                  color: '#ffffff',
+                  fontWeight: 700,
+                  fontSize: '0.92rem',
+                  border: '1.5px solid rgba(255, 255, 255, 0.3)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.55rem',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+                }}
+              >
+                <Phone size={15} />
+                <span>{COMPANY_INFO.phone}</span>
+              </a>
+
+              <a 
+                href={`mailto:${COMPANY_INFO.email}`}
+                style={{
+                  borderRadius: '9999px',
+                  padding: '0 1.8rem',
+                  height: '48px',
+                  background: 'rgba(255, 255, 255, 0.15)',
+                  color: '#ffffff',
+                  fontWeight: 700,
+                  fontSize: '0.92rem',
+                  border: '1.5px solid rgba(255, 255, 255, 0.3)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.55rem',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+                }}
+              >
+                <Mail size={15} />
+                <span>{COMPANY_INFO.email}</span>
+              </a>
+            </div>
+
           </div>
         </div>
       </section>
@@ -242,3 +901,5 @@ export function AboutPage({ onOpenModal }) {
     </div>
   );
 }
+
+export default AboutPage;
