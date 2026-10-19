@@ -15,12 +15,12 @@ export function MutualFundsPage({ onOpenModal }) {
           ========================================================================= */}
       <section 
         style={{ 
-          padding: 'clamp(4.5rem, 6vw, 6rem) 0 clamp(2.5rem, 4vw, 3.5rem) 0', 
+          padding: 'clamp(5rem, 7vw, 6.5rem) 0 clamp(3.5rem, 5vw, 4.5rem) 0', 
           borderBottom: '1px solid rgba(255, 255, 255, 0.08)', 
           position: 'relative', 
           overflow: 'hidden',
           background: '#050811',
-          minHeight: '460px',
+          minHeight: '560px',
           display: 'flex',
           alignItems: 'center'
         }}
@@ -56,15 +56,8 @@ export function MutualFundsPage({ onOpenModal }) {
           />
         </div>
 
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2, paddingTop: '2cm' }}>
           
-          {/* Breadcrumbs Navigation */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1.25rem', fontSize: '0.8rem', color: '#94a3b8' }}>
-            <Link to="/" style={{ color: '#94a3b8', textDecoration: 'none', transition: 'color 0.2s' }}>Home</Link>
-            <ChevronRight size={13} opacity={0.5} />
-            <span style={{ color: '#10b981', fontWeight: 600 }}>Mutual Funds Intelligence Hub</span>
-          </div>
-
           {/* Page Headline */}
           <h1 
             style={{ 
