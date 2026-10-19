@@ -8,38 +8,64 @@ export function ContactPage() {
   return (
     <div style={{ minHeight: '100vh', paddingTop: '80px' }}>
       
-      {/* 1. Editorial Page Header (LIGHT) */}
-      <section className="section-theme-light" style={{ padding: 'clamp(5rem, 8vw, 7rem) 0 clamp(2.5rem, 4vw, 3.5rem) 0', borderBottom: '1px solid var(--color-border)', position: 'relative', overflow: 'hidden' }}>
-        {/* Boardroom Atmosphere */}
+      {/* 1. Editorial Page Header with Video Background */}
+      <section 
+        style={{ 
+          padding: 'clamp(5rem, 8vw, 7rem) 0 clamp(3rem, 5vw, 4.5rem) 0', 
+          borderBottom: '1px solid rgba(255, 255, 255, 0.08)', 
+          position: 'relative', 
+          overflow: 'hidden',
+          background: '#070a12',
+          minHeight: '440px',
+          display: 'flex',
+          alignItems: 'center'
+        }}
+      >
+        {/* Background Video Layer */}
         <div 
           style={{
             position: 'absolute',
-            right: 0,
-            top: 0,
-            bottom: 0,
-            width: '45%',
-            backgroundImage: 'url(/assets/boardroom-luxury-bg.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: 0.08,
-            maskImage: 'linear-gradient(to right, transparent, black 80%)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent, black 80%)',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            overflow: 'hidden',
+            zIndex: 0,
             pointerEvents: 'none'
           }}
-        />
+          aria-hidden="true"
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            src="/assets/contact-hero-bg.mp4"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'right 20%'
+            }}
+          />
+        </div>
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           
-          <div className="eyebrow-label">
-            <span>LUCKNOW ADVISORY HEADQUARTERS • ARN-182137</span>
+          <div className="eyebrow-label" style={{ color: '#10b981', marginBottom: '0.85rem' }}>
+            <span style={{ color: '#10b981', fontWeight: 600, letterSpacing: '0.08em', textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>LUCKNOW ADVISORY HEADQUARTERS • ARN-182137</span>
           </div>
 
-          <h1 style={{ fontSize: 'clamp(2.8rem, 5.2vw, 4.4rem)', color: 'var(--color-text)', marginBottom: '1.25rem', lineHeight: 1.1 }}>
-            Contact <span className="text-blue" style={{ fontStyle: 'italic' }}>Assure</span>{' '}
-            <span className="text-red" style={{ fontStyle: 'italic' }}>Securities</span>
+          <h1 style={{ fontSize: 'clamp(2.5rem, 4.6vw, 4rem)', color: '#ffffff', marginBottom: '1.25rem', lineHeight: 1.15, fontFamily: 'var(--font-serif)', fontWeight: 600, maxWidth: '640px', textShadow: '0 2px 12px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.95)' }}>
+            Contact
+            <br />
+            <span style={{ color: '#38bdf8', fontStyle: 'italic' }}>Assure</span>{' '}
+            <span style={{ color: '#fbbf24', fontStyle: 'italic' }}>Securities</span>
           </h1>
 
-          <p style={{ fontSize: 'clamp(1.05rem, 1.4vw, 1.25rem)', color: 'var(--color-text-secondary)', maxWidth: '720px', lineHeight: 1.65 }}>
+          <p style={{ fontSize: 'clamp(1rem, 1.3vw, 1.18rem)', color: '#ffffff', maxWidth: '580px', lineHeight: 1.65, textShadow: '0 1px 8px rgba(0, 0, 0, 0.9)' }}>
             Visit our corporate office in Gomtinagar, Lucknow or connect directly with our AMFI-registered advisors for mutual fund distribution, portfolio diagnostic reviews, and personalized wealth consulting.
           </p>
         </div>

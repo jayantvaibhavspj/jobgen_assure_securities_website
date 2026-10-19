@@ -11,44 +11,50 @@ export function MutualFundsPage({ onOpenModal }) {
     <div style={{ minHeight: '100vh', paddingTop: '80px', background: '#050811' }}>
       
       {/* =========================================================================
-          1. Editorial Page Header (Dark Glassmorphic Luxury Style)
+          1. Editorial Page Header with Cinematic Background Video
           ========================================================================= */}
       <section 
         style={{ 
-          padding: 'clamp(4rem, 6vw, 5.5rem) 0 clamp(2rem, 3.5vw, 3rem) 0', 
+          padding: 'clamp(4.5rem, 6vw, 6rem) 0 clamp(2.5rem, 4vw, 3.5rem) 0', 
           borderBottom: '1px solid rgba(255, 255, 255, 0.08)', 
           position: 'relative', 
           overflow: 'hidden',
-          background: 'linear-gradient(180deg, #070B14 0%, #050811 100%)'
+          background: '#050811',
+          minHeight: '460px',
+          display: 'flex',
+          alignItems: 'center'
         }}
       >
-        {/* Subtle Ambient Decorative Glows */}
+        {/* Cinematic Background Video Layer */}
         <div 
           style={{
             position: 'absolute',
-            top: '-20%',
-            right: '10%',
-            width: '450px',
-            height: '450px',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%)',
-            pointerEvents: 'none',
-            filter: 'blur(70px)'
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            overflow: 'hidden',
+            zIndex: 0,
+            pointerEvents: 'none'
           }}
-        />
-        <div 
-          style={{
-            position: 'absolute',
-            top: '30%',
-            left: '5%',
-            width: '400px',
-            height: '400px',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(6, 182, 212, 0.10) 0%, transparent 70%)',
-            pointerEvents: 'none',
-            filter: 'blur(70px)'
-          }}
-        />
+          aria-hidden="true"
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            src="/assets/mutual-funds-hero.mp4"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center 25%'
+            }}
+          />
+        </div>
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           
@@ -91,13 +97,14 @@ export function MutualFundsPage({ onOpenModal }) {
               maxWidth: '850px', 
               lineHeight: 1.15,
               fontWeight: 500,
-              margin: '0 0 1.25rem 0'
+              margin: '0 0 1.25rem 0',
+              textShadow: '0 2px 12px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.95)'
             }}
           >
             Mutual Funds <span style={{ color: '#06b6d4', fontStyle: 'italic', fontWeight: 600 }}>Intelligence</span> & <span style={{ color: '#10b981', fontStyle: 'italic', fontWeight: 600 }}>Analytics Hub</span>
           </h1>
 
-          <p style={{ fontSize: 'clamp(1rem, 1.3vw, 1.2rem)', color: '#94a3b8', maxWidth: '750px', lineHeight: 1.65, margin: '0 0 2rem 0' }}>
+          <p style={{ fontSize: 'clamp(1rem, 1.3vw, 1.2rem)', color: '#f1f5f9', maxWidth: '750px', lineHeight: 1.65, margin: '0 0 2rem 0', textShadow: '0 1px 8px rgba(0, 0, 0, 0.9)' }}>
             Direct SEBI-regulated AMC clearing with zero distributor custody risk. 
             Analyze rolling alpha, downside capture, sector allocation, and real-time compounding trajectories across 1,500+ vetted mutual fund schemes.
           </p>

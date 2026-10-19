@@ -183,12 +183,30 @@ export function Hero({ onOpenModal, onNavigate }) {
       <div className="container hero-content-wrap">
         
 
-        {/* Visual Hierarchy: Huge Editorial Headline with Red & Blue Text */}
-        <div style={{ maxWidth: '1020px', marginBottom: '1.15rem' }}>
-          <h1 style={{ letterSpacing: '-0.02em', color: '#ffffff', textShadow: '0 3px 20px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.9)', fontSize: 'clamp(2.1rem, 3.8vw, 3.4rem)', lineHeight: 1.15 }}>
-            Invest With <span className="text-blue">Confidence</span>.
+        <div style={{ maxWidth: '1020px', marginBottom: '1.25rem' }}>
+          <h1 
+            style={{ 
+              fontFamily: "'Plus Jakarta Sans', var(--font-sans), sans-serif",
+              fontSize: 'clamp(2.5rem, 4.2vw, 3.8rem)',
+              fontWeight: 700,
+              lineHeight: 1.18,
+              letterSpacing: '-0.025em',
+              color: '#ffffff',
+              textShadow: '0 2px 10px rgba(0, 0, 0, 0.4)',
+              margin: 0
+            }}
+          >
+            Invest With{' '}
+            <span 
+              style={{
+                color: '#fbbf24',
+                fontWeight: 700
+              }}
+            >
+              Confidence.
+            </span>
             <br />
-            Build For <span className="text-red" style={{ fontStyle: 'italic' }}>Tomorrow</span>.
+            Build For Tomorrow.
           </h1>
         </div>
 
@@ -219,11 +237,9 @@ export function Hero({ onOpenModal, onNavigate }) {
         </div>
 
         {/* Visual Hierarchy: Short Supporting Paragraph */}
-        <div style={{ maxWidth: '640px', marginBottom: '1.35rem' }}>
-          <p style={{ fontSize: 'clamp(0.98rem, 1.25vw, 1.12rem)', color: '#f3f4f6', textShadow: '0 2px 12px rgba(0,0,0,0.9)', lineHeight: 1.55 }}>
-            Smart investment solutions designed around your financial goals.
-            <br />
-            Backed by 15+ years of disciplined fiduciary stewardship & research.
+        <div style={{ maxWidth: '600px', marginBottom: '1.35rem' }}>
+          <p style={{ fontSize: 'clamp(0.96rem, 1.2vw, 1.08rem)', color: 'rgba(255, 255, 255, 0.9)', lineHeight: 1.55, margin: 0 }}>
+            Smart investment solutions, backed by 15+ years of research.
           </p>
         </div>
 
@@ -260,71 +276,69 @@ export function Hero({ onOpenModal, onNavigate }) {
             <span>Explore Solutions</span>
             <ArrowUpRight size={14} opacity={0.8} />
           </button>
-
         </div>
       </div>
+    </section>
 
-      {/* 1. Transparent Number Strip Overlaid Directly on Top of Live Background Video */}
-      <div className="hero-stats-white-strip">
-        <div className="container">
-          <div className="hero-stats-white-grid">
-            {stats.map((stat, i) => {
-              const Icon = stat.icon;
-              return (
-                <div key={i} className="hero-stat-white-col">
-                  <div className="hero-stat-card">
-                    <div 
-                      className="hero-stat-icon-wrap"
-                      style={{ 
-                        backgroundColor: stat.bgTint, 
-                        borderColor: stat.borderColor, 
-                        color: stat.accent 
-                      }}
-                    >
-                      <Icon size={20} strokeWidth={2.2} />
-                    </div>
-                    <div className="hero-stat-info">
-                      <div className="hero-stat-num-row">
+    {/* 1. Dedicated Trust Metrics Strip (Directly Below Video) */}
+    <div className="hero-stats-white-strip">
+      <div className="container">
+        <div className="hero-stats-white-grid">
+          {stats.map((stat, i) => {
+            const Icon = stat.icon;
+            return (
+              <div key={i} className="hero-stat-white-col">
+                <div className="hero-stat-card">
+                  <div 
+                    className="hero-stat-icon-wrap"
+                    style={{ 
+                      backgroundColor: stat.bgTint, 
+                      borderColor: stat.borderColor, 
+                      color: stat.accent 
+                    }}
+                  >
+                    <Icon size={20} strokeWidth={2.2} />
+                  </div>
+                  <div className="hero-stat-info">
+                    <div className="hero-stat-num-row">
+                      <span 
+                        className="hero-stat-num-val"
+                        style={{
+                          backgroundImage: stat.gradient,
+                          WebkitBackgroundImage: stat.gradient
+                        }}
+                      >
+                        {stat.display}
+                      </span>
+                      {stat.suffix && (
                         <span 
-                          className="hero-stat-num-val"
-                          style={{
-                            backgroundImage: stat.gradient,
-                            WebkitBackgroundImage: stat.gradient
-                          }}
+                          className="hero-stat-num-suffix"
+                          style={{ color: stat.accent }}
                         >
-                          {stat.display}
+                          {stat.suffix}
                         </span>
-                        {stat.suffix && (
-                          <span 
-                            className="hero-stat-num-suffix"
-                            style={{ color: stat.accent }}
-                          >
-                            {stat.suffix}
-                          </span>
-                        )}
-                      </div>
-                      <div className="hero-stat-label-text">
-                        {stat.label}
-                      </div>
-                      <div className="hero-stat-sub-row">
-                        <span 
-                          className="hero-stat-sub-dot" 
-                          style={{ backgroundColor: stat.accent }} 
-                        />
-                        <span className="hero-stat-sub-text">
-                          {stat.sub}
-                        </span>
-                      </div>
+                      )}
+                    </div>
+                    <div className="hero-stat-label-text">
+                      {stat.label}
+                    </div>
+                    <div className="hero-stat-sub-row">
+                      <span 
+                        className="hero-stat-sub-dot" 
+                        style={{ backgroundColor: stat.accent }} 
+                      />
+                      <span className="hero-stat-sub-text">
+                        {stat.sub}
+                      </span>
                     </div>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
       </div>
-
-    </section>
+    </div>
 
     {/* 2. Running Financial Market Ticker Strip (Directly Below Video Section) */}
     <div className="market-ticker-strip">

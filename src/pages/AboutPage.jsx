@@ -261,8 +261,8 @@ export function AboutPage({ onOpenModal }) {
                 }}
               >
                 <img 
-                  src="/assets/about-behance-3d.jpg" 
-                  alt="Assure Securities Wealth Stewardship & Analytics" 
+                  src="/assets/about-our-firm.png" 
+                  alt="Assure Securities Wealth Stewardship & Portfolio Analytics" 
                   style={{
                     width: '100%',
                     height: '100%',

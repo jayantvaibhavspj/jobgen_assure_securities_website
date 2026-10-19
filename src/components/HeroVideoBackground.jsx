@@ -314,7 +314,7 @@ export function HeroVideoBackground({ onSceneChange }) {
         onEnded={() => handleEnded('B')}
       />
 
-      {/* Subtle black tint across entire video for crystal-clear text contrast */}
+      {/* Left-side cinematic backdrop gradient for razor-sharp text readability without darkening people on the right */}
       <div className="hero-video-tint" />
     </div>
   );
