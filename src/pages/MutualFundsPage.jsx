@@ -65,37 +65,14 @@ export function MutualFundsPage({ onOpenModal }) {
             <span style={{ color: '#10b981', fontWeight: 600 }}>Mutual Funds Intelligence Hub</span>
           </div>
 
-          {/* Eyebrow Pill */}
-          <div style={{ marginBottom: '1rem' }}>
-            <span 
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.35rem 0.95rem',
-                borderRadius: '9999px',
-                background: 'rgba(16, 185, 129, 0.15)',
-                border: '1px solid rgba(16, 185, 129, 0.35)',
-                color: '#34d399',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.78rem',
-                fontWeight: 700,
-                letterSpacing: '0.06em'
-              }}
-            >
-              <TrendingUp size={13} color="#34d399" />
-              AMFI REG. ARN-182137 • SEBI REGULATED MUTUAL FUND DISTRIBUTOR
-            </span>
-          </div>
-
           {/* Page Headline */}
           <h1 
             style={{ 
               fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(2.6rem, 5vw, 4.2rem)', 
+              fontSize: 'clamp(2.5rem, 4.8vw, 4rem)', 
               color: '#ffffff', 
               maxWidth: '850px', 
-              lineHeight: 1.15,
+              lineHeight: 1.18,
               fontWeight: 700,
               margin: '0 0 1.25rem 0',
               WebkitTextStroke: '1.2px #000000',
@@ -103,7 +80,9 @@ export function MutualFundsPage({ onOpenModal }) {
               textShadow: '0 2px 10px rgba(0, 0, 0, 0.95), 0 0 3px #000000'
             }}
           >
-            Mutual Funds <span style={{ color: '#06b6d4', fontStyle: 'italic', fontWeight: 700, WebkitTextStroke: '1.2px #000000' }}>Intelligence</span> &amp; <span style={{ color: '#10b981', fontStyle: 'italic', fontWeight: 700, WebkitTextStroke: '1.2px #000000' }}>Analytics Hub</span>
+            Mutual Funds
+            <br />
+            <span style={{ color: '#06b6d4', fontStyle: 'italic', fontWeight: 700, WebkitTextStroke: '1.2px #000000' }}>Intelligence</span> &amp; <span style={{ color: '#10b981', fontStyle: 'italic', fontWeight: 700, WebkitTextStroke: '1.2px #000000' }}>Analytics Hub</span>
           </h1>
 
           <p 
