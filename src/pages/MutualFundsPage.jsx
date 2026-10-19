@@ -96,15 +96,29 @@ export function MutualFundsPage({ onOpenModal }) {
               color: '#ffffff', 
               maxWidth: '850px', 
               lineHeight: 1.15,
-              fontWeight: 500,
+              fontWeight: 700,
               margin: '0 0 1.25rem 0',
-              textShadow: '0 2px 12px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.95)'
+              WebkitTextStroke: '1.2px #000000',
+              paintOrder: 'stroke fill',
+              textShadow: '0 2px 10px rgba(0, 0, 0, 0.95), 0 0 3px #000000'
             }}
           >
-            Mutual Funds <span style={{ color: '#06b6d4', fontStyle: 'italic', fontWeight: 600 }}>Intelligence</span> & <span style={{ color: '#10b981', fontStyle: 'italic', fontWeight: 600 }}>Analytics Hub</span>
+            Mutual Funds <span style={{ color: '#06b6d4', fontStyle: 'italic', fontWeight: 700, WebkitTextStroke: '1.2px #000000' }}>Intelligence</span> &amp; <span style={{ color: '#10b981', fontStyle: 'italic', fontWeight: 700, WebkitTextStroke: '1.2px #000000' }}>Analytics Hub</span>
           </h1>
 
-          <p style={{ fontSize: 'clamp(1rem, 1.3vw, 1.2rem)', color: '#f1f5f9', maxWidth: '750px', lineHeight: 1.65, margin: '0 0 2rem 0', textShadow: '0 1px 8px rgba(0, 0, 0, 0.9)' }}>
+          <p 
+            style={{ 
+              fontSize: 'clamp(1rem, 1.3vw, 1.2rem)', 
+              color: '#ffffff', 
+              maxWidth: '750px', 
+              lineHeight: 1.65, 
+              margin: '0 0 2rem 0', 
+              fontWeight: 500,
+              WebkitTextStroke: '0.4px #000000',
+              paintOrder: 'stroke fill',
+              textShadow: '1px 1px 2px #000000, -1px -1px 2px #000000, 1px -1px 2px #000000, -1px 1px 2px #000000, 0 2px 8px rgba(0, 0, 0, 0.9)'
+            }}
+          >
             Direct SEBI-regulated AMC clearing with zero distributor custody risk. 
             Analyze rolling alpha, downside capture, sector allocation, and real-time compounding trajectories across 1,500+ vetted mutual fund schemes.
           </p>

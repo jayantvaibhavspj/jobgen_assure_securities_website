@@ -53,20 +53,42 @@ export function CalculatorsPage({ onOpenModal }) {
         </div>
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          
           <div className="eyebrow-label" style={{ color: '#10b981', marginBottom: '0.85rem' }}>
-            <span style={{ color: '#10b981', fontWeight: 600, letterSpacing: '0.08em', textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>WEALTH ENGINES • QUANTITATIVE MODELING</span>
+            <span style={{ color: '#10b981', fontWeight: 700, letterSpacing: '0.08em', textShadow: '0 1px 3px #000000, 0 0 2px #000000' }}>WEALTH ENGINES • QUANTITATIVE MODELING</span>
           </div>
 
-          <h1 style={{ fontSize: 'clamp(2.5rem, 4.6vw, 4rem)', color: '#ffffff', marginBottom: '1.25rem', lineHeight: 1.15, fontFamily: 'var(--font-serif)', fontWeight: 600, textShadow: '0 2px 12px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.95)' }}>
+          <h1 
+            style={{ 
+              fontSize: 'clamp(2.5rem, 4.6vw, 4rem)', 
+              color: '#ffffff', 
+              marginBottom: '1.25rem', 
+              lineHeight: 1.15, 
+              fontFamily: 'var(--font-serif)', 
+              fontWeight: 700,
+              WebkitTextStroke: '1.2px #000000',
+              paintOrder: 'stroke fill',
+              textShadow: '0 2px 10px rgba(0, 0, 0, 0.95), 0 0 3px #000000'
+            }}
+          >
             Financial
             <br />
-            <span style={{ color: '#38bdf8' }}>Calculators</span> &amp;
+            <span style={{ color: '#38bdf8', WebkitTextStroke: '1.2px #000000' }}>Calculators</span> &amp;
             <br />
-            <span style={{ color: '#fbbf24' }}>Goal Architecture</span>
+            <span style={{ color: '#fbbf24', WebkitTextStroke: '1.2px #000000' }}>Goal Architecture</span>
           </h1>
 
-          <p style={{ fontSize: 'clamp(1rem, 1.3vw, 1.18rem)', color: '#ffffff', maxWidth: '580px', lineHeight: 1.65, textShadow: '0 1px 8px rgba(0, 0, 0, 0.9)' }}>
+          <p 
+            style={{ 
+              fontSize: 'clamp(1rem, 1.3vw, 1.18rem)', 
+              color: '#ffffff', 
+              maxWidth: '580px', 
+              lineHeight: 1.65,
+              fontWeight: 500,
+              WebkitTextStroke: '0.4px #000000',
+              paintOrder: 'stroke fill',
+              textShadow: '1px 1px 2px #000000, -1px -1px 2px #000000, 1px -1px 2px #000000, -1px 1px 2px #000000, 0 2px 8px rgba(0, 0, 0, 0.9)'
+            }}
+          >
             Model compounding trajectories with inflation adjustments. Plan for your child's higher education, wedding milestones, and retirement independence with mathematical precision.
           </p>
         </div>

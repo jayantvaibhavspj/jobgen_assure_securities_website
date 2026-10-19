@@ -55,18 +55,42 @@ export function VideosPage({ onOpenModal }) {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           
           <div className="eyebrow-label" style={{ color: '#10b981', marginBottom: '0.85rem' }}>
-            <span style={{ color: '#10b981', fontWeight: 600, letterSpacing: '0.08em', textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>KNOWLEDGE ARCHIVE • 12 VIDEO MASTERCLASSES</span>
+            <span style={{ color: '#10b981', fontWeight: 700, letterSpacing: '0.08em', textShadow: '0 1px 3px #000000, 0 0 2px #000000' }}>KNOWLEDGE ARCHIVE • 12 VIDEO MASTERCLASSES</span>
           </div>
 
-          <h1 style={{ fontSize: 'clamp(2.4rem, 4.4vw, 3.8rem)', color: '#ffffff', marginBottom: '1.25rem', lineHeight: 1.15, fontFamily: 'var(--font-serif)', fontWeight: 600, maxWidth: '640px', textShadow: '0 2px 12px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.95)' }}>
+          <h1 
+            style={{ 
+              fontSize: 'clamp(2.4rem, 4.4vw, 3.8rem)', 
+              color: '#ffffff', 
+              marginBottom: '1.25rem', 
+              lineHeight: 1.15, 
+              fontFamily: 'var(--font-serif)', 
+              fontWeight: 700, 
+              maxWidth: '640px',
+              WebkitTextStroke: '1.2px #000000',
+              paintOrder: 'stroke fill',
+              textShadow: '0 2px 10px rgba(0, 0, 0, 0.95), 0 0 3px #000000'
+            }}
+          >
             Educational
             <br />
-            <span style={{ color: '#38bdf8' }}>Masterclasses</span>
+            <span style={{ color: '#38bdf8', WebkitTextStroke: '1.2px #000000' }}>Masterclasses</span>
             <br />
-            &amp; <span style={{ color: '#fbbf24' }}>Market Insights</span>
+            &amp; <span style={{ color: '#fbbf24', WebkitTextStroke: '1.2px #000000' }}>Market Insights</span>
           </h1>
 
-          <p style={{ fontSize: 'clamp(1rem, 1.3vw, 1.18rem)', color: '#ffffff', maxWidth: '580px', lineHeight: 1.65, textShadow: '0 1px 8px rgba(0, 0, 0, 0.9)' }}>
+          <p 
+            style={{ 
+              fontSize: 'clamp(1rem, 1.3vw, 1.18rem)', 
+              color: '#ffffff', 
+              maxWidth: '580px', 
+              lineHeight: 1.65, 
+              fontWeight: 500,
+              WebkitTextStroke: '0.4px #000000',
+              paintOrder: 'stroke fill',
+              textShadow: '1px 1px 2px #000000, -1px -1px 2px #000000, 1px -1px 2px #000000, -1px 1px 2px #000000, 0 2px 8px rgba(0, 0, 0, 0.9)'
+            }}
+          >
             Watch our official video series on mutual fund fundamentals, rupee-cost averaging via SIPs, Section 80C tax planning, and multi-cycle asset allocation.
           </p>
         </div>
