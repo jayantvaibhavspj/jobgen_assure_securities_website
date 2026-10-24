@@ -2590,3 +2590,70 @@ input[type="range"]::-webkit-slider-thumb:hover {
   transform: translate(3px, -3px);
   color: #10B981;
 }
+
+/* ==========================================================================
+   Mutual Funds Page Hero Split Layout (Left: Text, Right: Video Card)
+   ========================================================================== */
+.mf-hero-split-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .mf-hero-split-grid {
+    grid-template-columns: 1.25fr 0.95fr;
+    gap: 3.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .mf-hero-split-grid {
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: 4rem;
+  }
+}
+
+.mf-hero-video-wrapper {
+  position: relative;
+  border-radius: 24px;
+  padding: 8px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75), 0 0 40px rgba(6, 182, 212, 0.15);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mf-hero-video-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 35px 75px -15px rgba(0, 0, 0, 0.85), 0 0 50px rgba(16, 185, 129, 0.22);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.mf-hero-video-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #020408;
+}
+
+.mf-hero-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.25s ease;
+}
+
+.mf-hero-badge-item:hover {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(6, 182, 212, 0.35);
+  transform: translateY(-2px);
+}
+
